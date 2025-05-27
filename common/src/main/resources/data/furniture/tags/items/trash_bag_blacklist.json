@@ -54,6 +54,7 @@
     "minecraft:red_shulker_box",
     "minecraft:black_shulker_box",
     "minecraft:elytra",
-    "minecraft:debug_stick"
+    "minecraft:debug_stick",
+    "minecraft:bedrock"
   ]
 }
