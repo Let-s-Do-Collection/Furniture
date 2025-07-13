@@ -1,4 +1,4 @@
-package com.berksire.furniture.neoforge.client.render;
+package com.berksire.furniture.client.render.neoforge;
 
 import com.berksire.furniture.client.render.FluidRenderer;
 import com.mojang.blaze3d.vertex.PoseStack;
