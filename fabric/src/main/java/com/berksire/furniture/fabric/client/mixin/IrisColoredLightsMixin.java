@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 
-// TODO fixme
+// TODO Waiting for updated
 /// Optional mixin to support colored lights when using Iris. Selects the most similar
 /// vanilla blocks, so it is up to the shader to decide what color intensity
 @Mixin(value = ChunkBuilderMeshingTask.class, priority = 1500)
