@@ -40,7 +40,7 @@ dependencies {
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
 
-    modImplementation("com.lowdragmc.shimmer:Shimmer-forge:${rootProject.minecraft_version}-${rootProject.shimmer_version}")
+    //modImplementation("com.lowdragmc.shimmer:Shimmer-forge:${rootProject.minecraft_version}-${rootProject.shimmer_version}")
 }
 
 processResources {
