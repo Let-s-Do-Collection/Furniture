@@ -11,14 +11,9 @@ def jarFileName = 'letsdo-furniture-neoforge'
 
 archivesBaseName = jarFileName
 
-
-
 loom {
-    accessWidenerPath = project(":common").loom.accessWidenerPath
-
     neoForge {
         accessWidenerPath = project(":common").loom.accessWidenerPath
-
         neoForge {
         }
     }
@@ -63,6 +58,7 @@ remapJar {
     input.set shadowJar.archiveFile
     dependsOn shadowJar
     archiveClassifier.set(null)
+    atAccessWideners.add(loom.accessWidenerPath.get().asFile.getName())
 }
 
 jar {
