@@ -6,7 +6,7 @@ import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.decoration.PaintingVariant;
-
+// TODO fixme
 @SuppressWarnings("unused")
 public class CanvasRegistry {
     public static final DeferredRegister<PaintingVariant> PAINTING_VARIANTS = DeferredRegister.create(Furniture.MODID, Registries.PAINTING_VARIANT);

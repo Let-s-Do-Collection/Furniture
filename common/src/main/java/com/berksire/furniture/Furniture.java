@@ -14,8 +14,9 @@ public class Furniture {
         Reflection.initialize(
                 ObjectRegistry.class,
                 EntityTypeRegistry.class,
-                CanvasRegistry.class,
-                TabRegistry.class,
+                // TODO fixme
+                /*CanvasRegistry.class,*/
+                /*TabRegistry.class,*/
                 SoundRegistry.class
         );
     }

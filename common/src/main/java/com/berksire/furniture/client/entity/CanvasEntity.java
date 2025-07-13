@@ -32,6 +32,8 @@ public class CanvasEntity extends Painting {
         this.setPos(this.getX(), this.getY(), this.getZ());
     }
 
+    // TODO fixme
+    /*
     @Override
     public ItemEntity spawnAtLocation(ItemLike item) {
         return super.spawnAtLocation(ObjectRegistry.CANVAS.get());
@@ -40,5 +42,5 @@ public class CanvasEntity extends Painting {
     @Override
     public ItemStack getPickResult() {
         return new ItemStack(ObjectRegistry.CANVAS.get());
-    }
+    }*/
 }

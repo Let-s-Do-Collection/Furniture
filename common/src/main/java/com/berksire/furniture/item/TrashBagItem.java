@@ -34,6 +34,7 @@ public class TrashBagItem extends Item {
     @Override
     @SuppressWarnings("deprecation")
     public @NotNull InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+        /*
         if (world.isClientSide || user.isCrouching()) {
             return super.use(world, user, hand);
         }
@@ -84,7 +85,8 @@ public class TrashBagItem extends Item {
         }
 
         world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.BUNDLE_INSERT, SoundSource.PLAYERS, 1.0F, 1.0F);
-        return InteractionResultHolder.sidedSuccess(itemStack, world.isClientSide());
+        return InteractionResultHolder.sidedSuccess(itemStack, world.isClientSide());*/
+        return super.use(world, user, hand);
     }
 
     @Override
