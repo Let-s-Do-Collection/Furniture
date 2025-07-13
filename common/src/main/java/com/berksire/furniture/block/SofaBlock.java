@@ -6,10 +6,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -97,8 +99,8 @@ public class SofaBlock extends LineConnectingBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        return FurnitureUtil.useItemOn(world, player, hand, hit, 0);
+    protected ItemInteractionResult useItemOn(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
+        return FurnitureUtil.useItemOn(level, player, interactionHand, blockHitResult, 0);
     }
 
     @Override
@@ -152,8 +154,7 @@ public class SofaBlock extends LineConnectingBlock {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public boolean isPathfindable(BlockState state, BlockGetter level, BlockPos pos, PathComputationType type) {
+    protected boolean isPathfindable(BlockState blockState, PathComputationType pathComputationType) {
         return false;
     }
 }

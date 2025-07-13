@@ -1,6 +1,7 @@
 package com.berksire.furniture.block;
 
 import com.berksire.furniture.util.FurnitureUtil;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -70,6 +71,13 @@ public class StreetLanternBlock extends HorizontalDirectionalBlock implements Si
                 .setValue(WATERLOGGED, false)
                 .setValue(BULBS, 0)
                 .setValue(LIT, true));
+    }
+
+    public static final MapCodec<StreetLanternBlock> CODEC = simpleCodec(StreetLanternBlock::new);
+
+    @Override
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return CODEC;
     }
 
     @Override

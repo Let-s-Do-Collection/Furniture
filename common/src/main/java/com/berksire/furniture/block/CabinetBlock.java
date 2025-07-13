@@ -2,6 +2,7 @@ package com.berksire.furniture.block;
 
 import com.berksire.furniture.block.entity.CabinetBlockEntity;
 import com.berksire.furniture.util.FurnitureUtil;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
@@ -50,12 +51,19 @@ public class CabinetBlock extends BaseEntityBlock {
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(OPEN, false));
 	}
 
+	public CabinetBlock(Properties properties) {
+		super(properties);
+		// TODO fixme CODEC
+		this.openSound = null;
+		this.closeSound = null;
+	}
+
 	@Override
-	public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		if (world.isClientSide) {
+	protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
+		if (level.isClientSide) {
 			return InteractionResult.SUCCESS;
 		} else {
-			BlockEntity blockEntity = world.getBlockEntity(pos);
+			BlockEntity blockEntity = level.getBlockEntity(blockPos);
 			if (blockEntity instanceof CabinetBlockEntity blockEntity1) {
 				player.openMenu(blockEntity1);
 			}
@@ -83,6 +91,13 @@ public class CabinetBlock extends BaseEntityBlock {
 		return new CabinetBlockEntity(pos, state);
 	}
 
+	public static final MapCodec<CabinetBlock> CODEC = simpleCodec(CabinetBlock::new);
+
+	@Override
+	protected MapCodec<? extends BaseEntityBlock> codec() {
+		return CODEC;
+	}
+
 	@Override
 	public @NotNull RenderShape getRenderShape(BlockState state) {
 		return RenderShape.MODEL;
@@ -90,12 +105,14 @@ public class CabinetBlock extends BaseEntityBlock {
 
 	@Override
 	public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+		// TODO fixme
+		/*
 		if (itemStack.hasCustomHoverName()) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof CabinetBlockEntity blockEntity1) {
 				blockEntity1.setCustomName(itemStack.getHoverName());
 			}
-		}
+		}*/
 	}
 
 	@Override

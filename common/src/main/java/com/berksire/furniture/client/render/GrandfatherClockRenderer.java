@@ -4,6 +4,7 @@ import com.berksire.furniture.Furniture;
 import com.berksire.furniture.block.GrandfatherClockBlock;
 import com.berksire.furniture.block.entity.GrandfatherClockBlockEntity;
 import com.berksire.furniture.client.model.GrandfatherClockModel;
+import com.berksire.furniture.util.FurnitureIdentifier;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.geom.ModelPart;
@@ -25,14 +26,14 @@ import java.util.Objects;
 public class GrandfatherClockRenderer implements BlockEntityRenderer<GrandfatherClockBlockEntity> {
     private static final Map<GrandfatherClockBlock.WoodType, ResourceLocation> TEXTURES = new EnumMap<>(GrandfatherClockBlock.WoodType.class);
     static {
-        TEXTURES.put(GrandfatherClockBlock.WoodType.OAK, new ResourceLocation(Furniture.MODID, "textures/entity/oak_grandfatherclock.png"));
-        TEXTURES.put(GrandfatherClockBlock.WoodType.SPRUCE, new ResourceLocation(Furniture.MODID, "textures/entity/spruce_grandfatherclock.png"));
-        TEXTURES.put(GrandfatherClockBlock.WoodType.BIRCH, new ResourceLocation(Furniture.MODID, "textures/entity/birch_grandfatherclock.png"));
-        TEXTURES.put(GrandfatherClockBlock.WoodType.JUNGLE, new ResourceLocation(Furniture.MODID, "textures/entity/jungle_grandfatherclock.png"));
-        TEXTURES.put(GrandfatherClockBlock.WoodType.ACACIA, new ResourceLocation(Furniture.MODID, "textures/entity/acacia_grandfatherclock.png"));
-        TEXTURES.put(GrandfatherClockBlock.WoodType.DARK_OAK, new ResourceLocation(Furniture.MODID, "textures/entity/dark_oak_grandfatherclock.png"));
-        TEXTURES.put(GrandfatherClockBlock.WoodType.MANGROVE, new ResourceLocation(Furniture.MODID, "textures/entity/mangrove_grandfatherclock.png"));
-        TEXTURES.put(GrandfatherClockBlock.WoodType.CHERRY, new ResourceLocation(Furniture.MODID, "textures/entity/cherry_grandfatherclock.png"));
+        TEXTURES.put(GrandfatherClockBlock.WoodType.OAK, FurnitureIdentifier.parseIdentifier( "textures/entity/oak_grandfatherclock.png"));
+        TEXTURES.put(GrandfatherClockBlock.WoodType.SPRUCE, FurnitureIdentifier.parseIdentifier( "textures/entity/spruce_grandfatherclock.png"));
+        TEXTURES.put(GrandfatherClockBlock.WoodType.BIRCH, FurnitureIdentifier.parseIdentifier( "textures/entity/birch_grandfatherclock.png"));
+        TEXTURES.put(GrandfatherClockBlock.WoodType.JUNGLE, FurnitureIdentifier.parseIdentifier( "textures/entity/jungle_grandfatherclock.png"));
+        TEXTURES.put(GrandfatherClockBlock.WoodType.ACACIA, FurnitureIdentifier.parseIdentifier( "textures/entity/acacia_grandfatherclock.png"));
+        TEXTURES.put(GrandfatherClockBlock.WoodType.DARK_OAK, FurnitureIdentifier.parseIdentifier(  "textures/entity/dark_oak_grandfatherclock.png"));
+        TEXTURES.put(GrandfatherClockBlock.WoodType.MANGROVE, FurnitureIdentifier.parseIdentifier( "textures/entity/mangrove_grandfatherclock.png"));
+        TEXTURES.put(GrandfatherClockBlock.WoodType.CHERRY, FurnitureIdentifier.parseIdentifier(  "textures/entity/cherry_grandfatherclock.png"));
     }
 
     private final GrandfatherClockModel<Entity> model;
@@ -72,7 +73,7 @@ public class GrandfatherClockRenderer implements BlockEntityRenderer<Grandfather
         }
         VertexConsumer vertexConsumer = bufferSource.getBuffer(RenderType.entityCutout(texture));
 
-        model.renderToBuffer(poseStack, vertexConsumer, combinedLight, combinedOverlay, 1.0F, 1.0F, 1.0F, 1.0F);
+        model.renderToBuffer(poseStack, vertexConsumer, combinedLight, combinedOverlay);
         poseStack.popPose();
     }
 }

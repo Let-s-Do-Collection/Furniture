@@ -145,19 +145,18 @@ public class LampBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult blockHitResult) {
         if (player.isShiftKeyDown() && (state.getValue(TYPE) == FurnitureUtil.VerticalConnectingType.NONE || state.getValue(TYPE) == FurnitureUtil.VerticalConnectingType.TOP)) {
             boolean lit = !state.getValue(LIT);
             world.setBlock(pos, state.setValue(LIT, lit), 3);
             world.playSound(null, pos, SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_ON, SoundSource.BLOCKS, 1.0F, 1.0F);
             return InteractionResult.SUCCESS;
         }
-        return super.use(state, world, pos, player, hand, hit);
+        return super.useWithoutItem(state, world, pos, player, blockHitResult);
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public boolean isPathfindable(BlockState state, BlockGetter level, BlockPos pos, PathComputationType type) {
+    protected boolean isPathfindable(BlockState blockState, PathComputationType pathComputationType) {
         return false;
     }
 }

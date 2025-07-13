@@ -2,6 +2,7 @@ package com.berksire.furniture.block;
 
 import com.berksire.furniture.block.entity.DresserBlockEntity;
 import com.berksire.furniture.util.FurnitureUtil;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
@@ -59,6 +60,13 @@ public class DresserBlock extends BaseEntityBlock implements SimpleWaterloggedBl
         this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false).setValue(FACING, Direction.NORTH).setValue(TYPE, FurnitureUtil.LineConnectingType.NONE));
     }
 
+    private DresserBlock(Properties properties) {
+        super(properties);
+        // TODO fixme
+        this.openSound = null;
+        this.closeSound = null;
+    }
+
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         Level world = context.getLevel();
@@ -92,11 +100,11 @@ public class DresserBlock extends BaseEntityBlock implements SimpleWaterloggedBl
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (world.isClientSide) {
+    protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
+        if (level.isClientSide) {
             return InteractionResult.SUCCESS;
         } else {
-            BlockEntity blockEntity = world.getBlockEntity(pos);
+            BlockEntity blockEntity = level.getBlockEntity(blockPos);
             if (blockEntity instanceof DresserBlockEntity blockEntity1) {
                 player.openMenu(blockEntity1);
             }
@@ -115,6 +123,13 @@ public class DresserBlock extends BaseEntityBlock implements SimpleWaterloggedBl
         return new DresserBlockEntity(pos, state);
     }
 
+    public static final MapCodec<DresserBlock> CODEC = simpleCodec(DresserBlock::new);
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
+    }
+
     @Override
     public @NotNull RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
@@ -122,12 +137,14 @@ public class DresserBlock extends BaseEntityBlock implements SimpleWaterloggedBl
 
     @Override
     public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+        // TODO fixme
+        /*
         if (itemStack.hasCustomHoverName()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof DresserBlockEntity blockEntity1) {
                 blockEntity1.setCustomName(itemStack.getHoverName());
             }
-        }
+        }*/
     }
 
     @Override

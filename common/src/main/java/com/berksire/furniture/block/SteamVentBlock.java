@@ -111,14 +111,14 @@ public class SteamVentBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
+    protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
         if (!level.isClientSide) {
             boolean particlesEnabled = blockState.getValue(PARTICLES_ENABLED);
             level.setBlock(blockPos, blockState.setValue(PARTICLES_ENABLED, !particlesEnabled), 3);
             String messageKey = particlesEnabled ? "tooltip.furniture.vent_disabled" : "tooltip.furniture.vent_enabled";
             player.displayClientMessage(Component.translatable(messageKey), true);
         }
-        return ItemInteractionResult.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     @Override

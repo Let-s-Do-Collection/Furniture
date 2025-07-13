@@ -3,6 +3,7 @@ package com.berksire.furniture.block;
 import com.berksire.furniture.block.entity.CofferBlockEntity;
 import com.berksire.furniture.registry.EntityTypeRegistry;
 import com.berksire.furniture.util.FurnitureUtil;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -16,6 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -54,6 +56,13 @@ public class CofferBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
 
 	}
 
+	public static final MapCodec<CofferBlock> CODEC = simpleCodec(CofferBlock::new);
+
+	@Override
+	protected MapCodec<? extends BaseEntityBlock> codec() {
+		return CODEC;
+	}
+
 	private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
 		VoxelShape shape = Shapes.empty();
 		shape = Shapes.join(shape, Shapes.box(0.0625, 0, 0.1875, 0.9375, 0.3125, 0.8125), BooleanOp.OR);
@@ -85,12 +94,13 @@ public class CofferBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
 		}
 	}
 
+	@Override
 	public BlockState playerWillDestroy(Level level, BlockPos blockPos, BlockState blockState, Player player) {
 		if (!level.isClientSide) {
 			BlockEntity blockEntity = level.getBlockEntity(blockPos);
 			if (blockEntity instanceof CofferBlockEntity cofferBlockEntity) {
 				ItemStack itemStack = new ItemStack(blockState.getBlock());
-				cofferBlockEntity.saveToItem(itemStack);
+				//cofferBlockEntity.saveToItem(itemStack); // TODO fixme
 				double x = blockPos.getX() + 0.5;
 				double y = blockPos.getY() + 0.5;
 				double z = blockPos.getZ() + 0.5;
@@ -99,7 +109,7 @@ public class CofferBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
 				level.addFreshEntity(itemEntity);
 			}
 		}
-		super.playerWillDestroy(level, blockPos, blockState, player);
+		return super.playerWillDestroy(level, blockPos, blockState, player);
 	}
 
 	public @NotNull List<ItemStack> getDrops(BlockState blockState, LootParams.Builder builder) {
@@ -117,12 +127,14 @@ public class CofferBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
 	}
 
 	public void setPlacedBy(Level level, BlockPos blockPos, BlockState blockState, LivingEntity livingEntity, ItemStack itemStack) {
+		// TODO fixme
+		/*
 		if (itemStack.hasCustomHoverName()) {
 			BlockEntity blockEntity = level.getBlockEntity(blockPos);
 			if (blockEntity instanceof CofferBlockEntity) {
 				((CofferBlockEntity)blockEntity).setCustomName(itemStack.getHoverName());
 			}
-		}
+		}*/
 
 	}
 
@@ -143,9 +155,11 @@ public class CofferBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
 		}
 	}
 
-	public @NotNull ItemStack getCloneItemStack(BlockGetter blockGetter, BlockPos blockPos, BlockState blockState) {
-		ItemStack itemStack = super.getCloneItemStack(blockGetter, blockPos, blockState);
-		blockGetter.getBlockEntity(blockPos, EntityTypeRegistry.COFFER_BLOCK_ENTITY.get()).ifPresent((cofferBlockEntity) -> cofferBlockEntity.saveToItem(itemStack));
+	@Override
+	public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+		ItemStack itemStack = super.getCloneItemStack(levelReader, blockPos, blockState);
+		// TODO fixme
+		//levelReader.getBlockEntity(blockPos, EntityTypeRegistry.COFFER_BLOCK_ENTITY.get()).ifPresent((cofferBlockEntity) -> cofferBlockEntity.saveToItem(itemStack));
 		return itemStack;
 	}
 
@@ -195,6 +209,6 @@ public class CofferBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
 	static{
 		FACING = HorizontalDirectionalBlock.FACING;
 		WATERLOGGED = BlockStateProperties.WATERLOGGED;
-		CONTENTS = new ResourceLocation("contents");
+		CONTENTS = ResourceLocation.parse("contents");
 	}
 }

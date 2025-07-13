@@ -4,6 +4,7 @@ import com.berksire.furniture.block.FishTankBlock;
 import com.berksire.furniture.block.entity.FishTankBlockEntity;
 import com.berksire.furniture.client.model.FishTankModel;
 import com.berksire.furniture.registry.ObjectRegistry;
+import com.berksire.furniture.util.FurnitureIdentifier;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
@@ -21,8 +22,8 @@ import net.minecraft.world.level.material.Fluids;
 import org.joml.Quaternionf;
 
 public class FishTankRenderer implements BlockEntityRenderer<FishTankBlockEntity> {
-    private static final ResourceLocation NORMAL_TEXTURE = new ResourceLocation("furniture", "textures/entity/copper_fish_tank.png");
-    private static final ResourceLocation IRON_TEXTURE = new ResourceLocation("furniture", "textures/entity/iron_fish_tank.png");
+    private static final ResourceLocation NORMAL_TEXTURE = FurnitureIdentifier.parseIdentifier("textures/entity/copper_fish_tank.png");
+    private static final ResourceLocation IRON_TEXTURE = FurnitureIdentifier.parseIdentifier("textures/entity/iron_fish_tank.png");
     private final FishTankModel model;
 
     public FishTankRenderer(BlockEntityRendererProvider.Context context) {
@@ -57,38 +58,38 @@ public class FishTankRenderer implements BlockEntityRenderer<FishTankBlockEntity
 
         Level world = blockEntity.getLevel();
         assert world != null;
-        float renderTick = (world.getGameTime() % 24000L) + Minecraft.getInstance().getFrameTime();
+        float renderTick = (world.getGameTime() % 24000L) + Minecraft.getInstance().getFrameTimeNs();
         this.model.setupAnim(blockEntity, renderTick);
 
         if (blockEntity.getBlockState().getValue(FishTankBlock.HAS_COD)) {
-            this.model.cod_1.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
-            this.model.cod_2.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
-            this.model.cod_3.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
-            this.model.cod_4.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+            this.model.cod_1.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
+            this.model.cod_2.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
+            this.model.cod_3.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
+            this.model.cod_4.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
         }
 
         if (blockEntity.getBlockState().getValue(FishTankBlock.HAS_PUFFERFISH)) {
             poseStack.pushPose();
             poseStack.translate(0.5, -0.6, 0);
-            this.model.pufferfish_1.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+            this.model.pufferfish_1.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
             poseStack.popPose();
 
             poseStack.pushPose();
             poseStack.translate(0.9, -0.8, 0.1);
-            this.model.pufferfish_2.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+            this.model.pufferfish_2.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
             poseStack.popPose();
         }
 
         if (blockEntity.getBlockState().getValue(FishTankBlock.HAS_SALMON)) {
             poseStack.pushPose();
             poseStack.translate(0, 0, 0.05);
-            this.model.salmon_1.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+            this.model.salmon_1.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
             poseStack.popPose();
-            this.model.salmon_2.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+            this.model.salmon_2.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
         }
 
-        this.model.tank.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
-        this.model.decoration.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        this.model.tank.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
+        this.model.decoration.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
 
         poseStack.popPose();
         poseStack.pushPose();

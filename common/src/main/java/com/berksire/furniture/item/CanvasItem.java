@@ -53,10 +53,12 @@ public class CanvasItem extends HangingEntityItem {
         }
         CanvasEntity painting = optional.get();
 
+        // TODO fixme
+        /*
         CompoundTag tag = stack.getTag();
         if (tag != null) {
             EntityType.updateCustomEntityTag(level, player, painting, tag);
-        }
+        }*/
         if (painting.survives()) {
             if (!level.isClientSide) {
                 painting.playPlacementSound();
@@ -70,7 +72,9 @@ public class CanvasItem extends HangingEntityItem {
     }
 
     public Optional<CanvasEntity> create(Level level, BlockPos pos, Direction direction) {
-        CanvasEntity painting = new CanvasEntity(level, pos, direction, BuiltInRegistries.PAINTING_VARIANT.wrapAsHolder(defaultVariant.get()));
+        // TODO fixme
+        /*
+       CanvasEntity painting = new CanvasEntity(level, pos, direction, BuiltInRegistries.PAINTING_VARIANT.wrapAsHolder(defaultVariant.get()));
         List<Holder<PaintingVariant>> list = new ArrayList<>();
         BuiltInRegistries.PAINTING_VARIANT.getTagOrEmpty(variants).forEach(list::add);
         if (!list.isEmpty()) {
@@ -86,11 +90,11 @@ public class CanvasItem extends HangingEntityItem {
                     return painting;
                 });
             }
-        }
+        }*/
         return Optional.empty();
     }
 
     private static int variantArea(Holder<PaintingVariant> variant) {
-        return variant.value().getWidth() * variant.value().getHeight();
+        return variant.value().area();
     }
 }

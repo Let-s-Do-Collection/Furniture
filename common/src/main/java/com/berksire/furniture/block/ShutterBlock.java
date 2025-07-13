@@ -106,11 +106,11 @@ public class ShutterBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
+    protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
         return toggleShutters(blockState, level, blockPos, player);
     }
 
-    public ItemInteractionResult toggleShutters(BlockState state, Level level, BlockPos pos, Player player) {
+    public InteractionResult toggleShutters(BlockState state, Level level, BlockPos pos, Player player) {
         state = state.cycle(OPEN);
         level.setBlock(pos, state, 3);
         if (player == null || !player.isCrouching()) toggleShutters(state, level, pos, state.getValue(OPEN));
@@ -118,7 +118,7 @@ public class ShutterBlock extends Block implements SimpleWaterloggedBlock {
 
         if (state.getValue(WATERLOGGED)) level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
 
-        return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        return InteractionResult.sidedSuccess(level.isClientSide);
     }
 
     public void toggleShutters(BlockState state, Level level, BlockPos pos, boolean open) {

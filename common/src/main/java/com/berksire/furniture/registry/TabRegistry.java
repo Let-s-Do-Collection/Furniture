@@ -84,8 +84,10 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.TERRARIUM.get());
                 out.accept(ObjectRegistry.DISPLAY.get());
                 out.accept(ObjectRegistry.CANVAS.get());
+                // TODO fixme
+                /*
                 out.accept(ObjectRegistry.CPHS_PRIDE.get());
-                out.accept(ObjectRegistry.LETSDO_THEME.get());
+                out.accept(ObjectRegistry.LETSDO_THEME.get());*/
                 out.accept(ObjectRegistry.BIN.get());
                 out.accept(ObjectRegistry.TRASH_BAG.get());
             })
