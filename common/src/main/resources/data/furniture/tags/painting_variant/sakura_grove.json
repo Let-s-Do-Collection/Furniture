@@ -1,0 +1,11 @@
+{
+  "asset_id": "furiniture:sakura_grove",
+  "height": 64,
+  "width": 32,
+  "title": {
+    "translate": "painting.furniture.sakura_grove.title"
+  },
+  "author": {
+    "translate": "painting.furniture.sakura_grove.author"
+  }
+}

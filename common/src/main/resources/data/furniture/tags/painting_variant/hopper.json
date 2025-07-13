@@ -1,0 +1,11 @@
+{
+  "asset_id": "furiniture:hopper",
+  "height": 64,
+  "width": 64,
+  "title": {
+    "translate": "painting.furniture.hopper.title"
+  },
+  "author": {
+    "translate": "painting.furniture.hopper.author"
+  }
+}
