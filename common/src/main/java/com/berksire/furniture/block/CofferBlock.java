@@ -6,13 +6,21 @@ import com.berksire.furniture.util.FurnitureUtil;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -29,6 +37,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
@@ -42,7 +51,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 @SuppressWarnings("deprecation")
 public class CofferBlock extends BaseEntityBlock implements SimpleWaterloggedBlock{
@@ -100,7 +111,7 @@ public class CofferBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
 			BlockEntity blockEntity = level.getBlockEntity(blockPos);
 			if (blockEntity instanceof CofferBlockEntity cofferBlockEntity) {
 				ItemStack itemStack = new ItemStack(blockState.getBlock());
-				//cofferBlockEntity.saveToItem(itemStack); // TODO fixme
+				cofferBlockEntity.saveToItem(itemStack, null); // Current null provider, TODO fixme
 				double x = blockPos.getX() + 0.5;
 				double y = blockPos.getY() + 0.5;
 				double z = blockPos.getZ() + 0.5;
@@ -127,14 +138,12 @@ public class CofferBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
 	}
 
 	public void setPlacedBy(Level level, BlockPos blockPos, BlockState blockState, LivingEntity livingEntity, ItemStack itemStack) {
-		// TODO fixme
-		/*
-		if (itemStack.hasCustomHoverName()) {
+		if (itemStack.has(DataComponents.CUSTOM_NAME)) {
 			BlockEntity blockEntity = level.getBlockEntity(blockPos);
-			if (blockEntity instanceof CofferBlockEntity) {
-				((CofferBlockEntity)blockEntity).setCustomName(itemStack.getHoverName());
+			if (blockEntity instanceof CofferBlockEntity blockEntity1) {
+				blockEntity1.name = itemStack.getHoverName();
 			}
-		}*/
+		}
 
 	}
 
@@ -158,8 +167,7 @@ public class CofferBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
 	@Override
 	public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
 		ItemStack itemStack = super.getCloneItemStack(levelReader, blockPos, blockState);
-		// TODO fixme
-		//levelReader.getBlockEntity(blockPos, EntityTypeRegistry.COFFER_BLOCK_ENTITY.get()).ifPresent((cofferBlockEntity) -> cofferBlockEntity.saveToItem(itemStack));
+		levelReader.getBlockEntity(blockPos, EntityTypeRegistry.COFFER_BLOCK_ENTITY.get()).ifPresent((cofferBlockEntity) -> cofferBlockEntity.saveToItem(itemStack, null));// Current Null, TODO fixme
 		return itemStack;
 	}
 

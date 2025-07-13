@@ -5,6 +5,8 @@ import com.berksire.furniture.util.FurnitureUtil;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponentMap;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
@@ -62,7 +64,7 @@ public class DresserBlock extends BaseEntityBlock implements SimpleWaterloggedBl
 
     private DresserBlock(Properties properties) {
         super(properties);
-        // TODO fixme
+        // when codec this will be cleared
         this.openSound = null;
         this.closeSound = null;
     }
@@ -137,14 +139,12 @@ public class DresserBlock extends BaseEntityBlock implements SimpleWaterloggedBl
 
     @Override
     public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        // TODO fixme
-        /*
-        if (itemStack.hasCustomHoverName()) {
+        if (itemStack.has(DataComponents.CUSTOM_NAME)) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof DresserBlockEntity blockEntity1) {
-                blockEntity1.setCustomName(itemStack.getHoverName());
+                blockEntity1.name = itemStack.getHoverName();
             }
-        }*/
+        }
     }
 
     @Override

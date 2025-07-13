@@ -47,6 +47,6 @@ public class ClockModel<T extends Entity> extends EntityModel<T> {
 
     @Override
     public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int i, int j, int k) {
-        super.renderToBuffer(poseStack, vertexConsumer, i, j);
+        wallclock.render(poseStack, vertexConsumer, i, j, k);
     }
 }

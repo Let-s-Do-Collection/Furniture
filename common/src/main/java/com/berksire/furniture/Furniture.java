@@ -8,10 +8,9 @@ public class Furniture {
 
     public static void init() {
         Reflection.initialize(
+                TagRegistry.class,
                 ObjectRegistry.class,
                 EntityTypeRegistry.class,
-                // TODO fixme
-                /*CanvasRegistry.class,*/
                 TabRegistry.class,
                 SoundRegistry.class
         );

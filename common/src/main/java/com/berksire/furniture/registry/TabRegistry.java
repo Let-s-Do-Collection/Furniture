@@ -28,11 +28,9 @@ public class TabRegistry {
                 for (String color : colorOrder) {
                     ObjectRegistry.POUFFE.get(color).ifPresent(out::accept);
                 }
-                // TODO fixme
-                /*
                 for (String color : colorOrder) {
                     ObjectRegistry.LAMP_ITEMS.get(color).ifPresent(out::accept);
-                }*/
+                }
                 for (String woodType : woodTypeOrder) {
                     ObjectRegistry.SHUTTERS.get(woodType).ifPresent(out::accept);
                 }
@@ -85,9 +83,8 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.IRON_FISH_TANK.get());
                 out.accept(ObjectRegistry.TERRARIUM.get());
                 out.accept(ObjectRegistry.DISPLAY.get());
-                // TODO fixme
-                /*
                 out.accept(ObjectRegistry.CANVAS.get());
+                /*
                 out.accept(ObjectRegistry.CPHS_PRIDE.get());
                 out.accept(ObjectRegistry.LETSDO_THEME.get());*/
                 out.accept(ObjectRegistry.BIN.get());

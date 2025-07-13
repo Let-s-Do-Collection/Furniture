@@ -16,6 +16,7 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.StandingAndWallBlockItem;
+import net.minecraft.world.level.block.AbstractCandleBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
@@ -57,8 +58,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> TOOL_BOX = registerWithItem("tool_box", () -> new ToolBoxBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SMITHING_TABLE).pushReaction(PushReaction.DESTROY)));
     public static final RegistrySupplier<Block> BLUEPRINTS = registerWithItem("blueprints", () -> new BlueprintsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAKE).instabreak()));
     public static final RegistrySupplier<Block> SEWING_KIT = registerWithItem("sewing_kit", () -> new SewingKitBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LOOM)));
-    // TODO fixme
-    //public static final RegistrySupplier<Item> CANVAS = registerItem("canvas", () -> new CanvasItem(new Item.Properties(), CanvasRegistry.LONELY_DAISY, TagRegistry.PAINTINGS));
+    public static final RegistrySupplier<Item> CANVAS = registerItem("canvas", () -> new CanvasItem(new Item.Properties(), CanvasRegistry.LONELY_DAISY, TagRegistry.PAINTINGS));
     public static final RegistrySupplier<Block> BIN = registerWithItem("bin", () -> new BinBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
     public static final RegistrySupplier<Item> TRASH_BAG = registerItem("trash_bag", () -> new TrashBagItem(new Item.Properties()));
     public static final RegistrySupplier<Block> STEAM_VENT = registerWithItem("steam_vent", () -> new SteamVentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
@@ -113,17 +113,15 @@ public class ObjectRegistry {
             String lampName = "lamp_" + color;
             String wallLampName = "lamp_wall_" + color;
 
-            // TODO fixme
-            /*
             RegistrySupplier<Block> lamp = registerWithoutItem(lampName, () -> new LampBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
-                    .lightLevel(state -> state.getValue(LampBlock.LIT) ? 15 : 0).pushReaction(PushReaction.DESTROY), dyeColor));
+                    .lightLevel(state -> state.getValue(AbstractCandleBlock.LIT) ? 15 : 0).pushReaction(PushReaction.DESTROY), dyeColor));
             LAMPS.put(color, lamp);
 
             RegistrySupplier<Block> wallLamp = registerWithoutItem(wallLampName, () -> new LampWallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
-                    .lightLevel(state -> state.getValue(LampBlock.LIT) ? 15 : 0).pushReaction(PushReaction.DESTROY), dyeColor));
+                    .lightLevel(state -> state.getValue(AbstractCandleBlock.LIT) ? 15 : 0).pushReaction(PushReaction.DESTROY), dyeColor));
             WALL_LAMPS.put(color, wallLamp);
 
-            LAMP_ITEMS.put(color, registerItem(lampName, () -> new StandingAndWallBlockItem(lamp.get(), wallLamp.get(), new Item.Properties(), Direction.DOWN)));*/
+            LAMP_ITEMS.put(color, registerItem(lampName, () -> new StandingAndWallBlockItem(lamp.get(), wallLamp.get(), new Item.Properties(), Direction.DOWN)));
         }
         BLOCKS.register();
         ITEMS.register();

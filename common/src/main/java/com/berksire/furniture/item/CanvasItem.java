@@ -5,8 +5,12 @@ import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.PaintingVariantTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
@@ -14,6 +18,7 @@ import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.HangingEntityItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
@@ -25,10 +30,10 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 public class CanvasItem extends HangingEntityItem {
-    private final Supplier<PaintingVariant> defaultVariant;
+    private final ResourceKey<PaintingVariant> defaultVariant;
     private final TagKey<PaintingVariant> variants;
 
-    public CanvasItem(Properties settings, Supplier<PaintingVariant> defaultVariant, TagKey<PaintingVariant> variants) {
+    public CanvasItem(Properties settings, ResourceKey<PaintingVariant> defaultVariant, TagKey<PaintingVariant> variants) {
         super(EntityType.PAINTING, settings);
 
         this.defaultVariant = defaultVariant;
@@ -53,12 +58,10 @@ public class CanvasItem extends HangingEntityItem {
         }
         CanvasEntity painting = optional.get();
 
-        // TODO fixme
-        /*
-        CompoundTag tag = stack.getTag();
-        if (tag != null) {
-            EntityType.updateCustomEntityTag(level, player, painting, tag);
-        }*/
+        CustomData customData = stack.getOrDefault(DataComponents.ENTITY_DATA, CustomData.EMPTY);
+        if (customData != null) {
+            EntityType.updateCustomEntityTag(level, player, painting, customData);
+        }
         if (painting.survives()) {
             if (!level.isClientSide) {
                 painting.playPlacementSound();
@@ -72,11 +75,9 @@ public class CanvasItem extends HangingEntityItem {
     }
 
     public Optional<CanvasEntity> create(Level level, BlockPos pos, Direction direction) {
-        // TODO fixme
-        /*
-       CanvasEntity painting = new CanvasEntity(level, pos, direction, BuiltInRegistries.PAINTING_VARIANT.wrapAsHolder(defaultVariant.get()));
+        CanvasEntity painting = new CanvasEntity(level, pos);
         List<Holder<PaintingVariant>> list = new ArrayList<>();
-        BuiltInRegistries.PAINTING_VARIANT.getTagOrEmpty(variants).forEach(list::add);
+        level.registryAccess().registryOrThrow(Registries.PAINTING_VARIANT).getTagOrEmpty(PaintingVariantTags.PLACEABLE).forEach(list::add);
         if (!list.isEmpty()) {
             list.removeIf((holder) -> {
                 painting.setVariant(holder);
@@ -90,7 +91,7 @@ public class CanvasItem extends HangingEntityItem {
                     return painting;
                 });
             }
-        }*/
+        }
         return Optional.empty();
     }
 

@@ -13,6 +13,7 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.AbstractCandleBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -33,11 +34,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-@SuppressWarnings("deprecation")
 public class LampWallBlock extends Block implements SimpleWaterloggedBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    public static final BooleanProperty LIT = BooleanProperty.create("lit");
     private final DyeColor color;
 
     public LampWallBlock(BlockBehaviour.Properties properties, DyeColor color) {
@@ -45,7 +44,7 @@ public class LampWallBlock extends Block implements SimpleWaterloggedBlock {
         this.color = color;
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
-                .setValue(LIT, false)
+                .setValue(AbstractCandleBlock.LIT, false)
                 .setValue(WATERLOGGED, false));
     }
 
@@ -56,7 +55,7 @@ public class LampWallBlock extends Block implements SimpleWaterloggedBlock {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
-        builder.add(FACING, WATERLOGGED, LIT);
+        builder.add(FACING, WATERLOGGED, AbstractCandleBlock.LIT);
     }
 
     @Override
@@ -77,8 +76,8 @@ public class LampWallBlock extends Block implements SimpleWaterloggedBlock {
     @Override
     protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
         if (player.isShiftKeyDown()) {
-            boolean lit = !blockState.getValue(LIT);
-            level.setBlock(blockPos, blockState.setValue(LIT, lit), 3);
+            boolean lit = !blockState.getValue(AbstractCandleBlock.LIT);
+            level.setBlock(blockPos, blockState.setValue(AbstractCandleBlock.LIT, lit), 3);
             level.playSound(null, blockPos, lit ? SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_ON : SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_OFF, SoundSource.BLOCKS, 1.0F, 1.0F);
             return InteractionResult.SUCCESS;
         }
