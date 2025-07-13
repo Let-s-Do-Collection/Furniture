@@ -1,34 +1,34 @@
-modLoader = "javafml"
-loaderVersion = "[4,)"
-license = "Custom"
+modLoader="javafml"
+loaderVersion="[4,)"
+license="All Rights Reserved"
 
 [[mods]]
-modId = "furniture"
-version = "${version}"
-displayName = "[Let's Do] Furniture"
-authors = "berksire, satisfy, cph101"
+modId="furniture"
+version="${mod_version}"
+displayName="[Let's Do] Furniture"
+authors="berksire, satisfy, cph101"
 icon = "pack.png"
-description = '''
+description= '''
 Let's expand your world with a whole set of new and exciting furnitures! All in the style of the Let's Do Mods.
 '''
 
 [[dependencies.furniture]]
-modId = "neoforge"
-mandatory = true
-versionRange = "[21.1.80,)"
-ordering = "NONE"
-side = "BOTH"
+modId="neoforge"
+type="required"
+versionRange="[21.1.0,)"
+ordering="NONE"
+side="BOTH"
 
 [[dependencies.furniture]]
-modId = "minecraft"
-mandatory = true
-versionRange = "[1.20.1,)"
-ordering = "NONE"
-side = "BOTH"
+modId="minecraft"
+type="required"
+versionRange="[1.21.1,)"
+ordering="NONE"
+side="BOTH"
 
 [[dependencies.furniture]]
 modId = "architectury"
 mandatory = true
-versionRange = "[9.0.8,)"
+versionRange = "[13.0.0,)"
 ordering = "AFTER"
 side = "BOTH"

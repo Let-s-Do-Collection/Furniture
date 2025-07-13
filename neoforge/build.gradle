@@ -40,11 +40,14 @@ dependencies {
     shadowCommon(project(path: ":common", configuration: "transformProductionNeoForge")) { transitive = false }
 }
 
-processResources {
-    inputs.property "version", project.version
+tasks.withType(ProcessResources).configureEach {
+    var replaceProperties = [
+            mod_version            : mod_version,
+    ]
+    inputs.properties replaceProperties
 
-    filesMatching("META-INF/mods.toml") {
-        expand "version": project.version
+    filesMatching(['META-INF/neoforge.mods.toml']) {
+        expand replaceProperties
     }
 }
 
