@@ -49,37 +49,37 @@ public class ObjectRegistry {
     public static final Map<String, RegistrySupplier<Block>> BENCHES = new HashMap<>();
     public static final Map<String, RegistrySupplier<Block>> MIRRORS = new HashMap<>();
     public static final Map<String, RegistrySupplier<Block>> SHUTTERS = new HashMap<>();
-    public static final RegistrySupplier<Block> GRAMOPHONE = registerWithItem("gramophone", () -> new GramophoneBlock(BlockBehaviour.Properties.copy(Blocks.JUKEBOX)));
-    public static final RegistrySupplier<Block> TELESCOPE = registerWithItem("telescope", () -> new TelescopeBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
-    public static final RegistrySupplier<Block> COFFER = registerWithItem("coffer", () -> new CofferBlock(BlockBehaviour.Properties.copy(Blocks.RED_WOOL).pushReaction(PushReaction.DESTROY)));
-    public static final RegistrySupplier<Block> EXPLORERS_BOX = registerWithItem("explorers_box", () -> new ExplorersBoxBlock(BlockBehaviour.Properties.copy(Blocks.CARTOGRAPHY_TABLE)));
-    public static final RegistrySupplier<Block> CASH_REGISTER = registerWithItem("cash_register", () -> new CashRegisterBlock(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK)));
-    public static final RegistrySupplier<Block> TOOL_BOX = registerWithItem("tool_box", () -> new ToolBoxBlock(BlockBehaviour.Properties.copy(Blocks.SMITHING_TABLE).pushReaction(PushReaction.DESTROY)));
-    public static final RegistrySupplier<Block> BLUEPRINTS = registerWithItem("blueprints", () -> new BlueprintsBlock(BlockBehaviour.Properties.copy(Blocks.CAKE).instabreak()));
-    public static final RegistrySupplier<Block> SEWING_KIT = registerWithItem("sewing_kit", () -> new SewingKitBlock(BlockBehaviour.Properties.copy(Blocks.LOOM)));
+    public static final RegistrySupplier<Block> GRAMOPHONE = registerWithItem("gramophone", () -> new GramophoneBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.JUKEBOX)));
+    public static final RegistrySupplier<Block> TELESCOPE = registerWithItem("telescope", () -> new TelescopeBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)));
+    public static final RegistrySupplier<Block> COFFER = registerWithItem("coffer", () -> new CofferBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_WOOL).pushReaction(PushReaction.DESTROY)));
+    public static final RegistrySupplier<Block> EXPLORERS_BOX = registerWithItem("explorers_box", () -> new ExplorersBoxBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CARTOGRAPHY_TABLE)));
+    public static final RegistrySupplier<Block> CASH_REGISTER = registerWithItem("cash_register", () -> new CashRegisterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK)));
+    public static final RegistrySupplier<Block> TOOL_BOX = registerWithItem("tool_box", () -> new ToolBoxBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SMITHING_TABLE).pushReaction(PushReaction.DESTROY)));
+    public static final RegistrySupplier<Block> BLUEPRINTS = registerWithItem("blueprints", () -> new BlueprintsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAKE).instabreak()));
+    public static final RegistrySupplier<Block> SEWING_KIT = registerWithItem("sewing_kit", () -> new SewingKitBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LOOM)));
     public static final RegistrySupplier<Item> CANVAS = registerItem("canvas", () -> new CanvasItem(new Item.Properties(), CanvasRegistry.LONELY_DAISY, TagRegistry.PAINTINGS));
-    public static final RegistrySupplier<Block> BIN = registerWithItem("bin", () -> new BinBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+    public static final RegistrySupplier<Block> BIN = registerWithItem("bin", () -> new BinBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
     public static final RegistrySupplier<Item> TRASH_BAG = registerItem("trash_bag", () -> new TrashBagItem(new Item.Properties()));
-    public static final RegistrySupplier<Block> STEAM_VENT = registerWithItem("steam_vent", () -> new SteamVentBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
-    public static final RegistrySupplier<Block> COPPER_FISH_TANK = registerWithItem("copper_fish_tank", () -> new FishTankBlock(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK)));
-    public static final RegistrySupplier<Block> IRON_FISH_TANK = registerWithItem("iron_fish_tank", () -> new FishTankBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
-    public static final RegistrySupplier<Block> BRICK_CHIMNEY = registerWithItem("brick_chimney", () -> new ChimneyBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
-    public static final RegistrySupplier<Block> STONE_BRICKS_CHIMNEY = registerWithItem("stone_bricks_chimney", () -> new ChimneyBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
-    public static final RegistrySupplier<Block> COPPER_CHIMNEY = registerWithItem("copper_chimney", () -> new CopperChimneyBlock(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK)));
-    public static final RegistrySupplier<Block> BOAT_IN_A_JAR = registerWithItem("boat_in_a_jar", () -> new BoatInAJarBlock(BlockBehaviour.Properties.copy(Blocks.GLASS)));
-    public static final RegistrySupplier<Block> STREET_LANTERN = registerWithoutItem("street_lantern", () -> new StreetLanternBlock(BlockBehaviour.Properties.copy(Blocks.DECORATED_POT).lightLevel(StreetLanternBlock::vanillaLightLevel)));
-    public static final RegistrySupplier<Block> STREET_WALL_LANTERN = registerWithoutItem("street_lantern_wall", () -> new StreetLanternWallBlock(BlockBehaviour.Properties.copy(Blocks.DECORATED_POT).lightLevel(StreetLanternBlock::vanillaLightLevel)));
+    public static final RegistrySupplier<Block> STEAM_VENT = registerWithItem("steam_vent", () -> new SteamVentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
+    public static final RegistrySupplier<Block> COPPER_FISH_TANK = registerWithItem("copper_fish_tank", () -> new FishTankBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK)));
+    public static final RegistrySupplier<Block> IRON_FISH_TANK = registerWithItem("iron_fish_tank", () -> new FishTankBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
+    public static final RegistrySupplier<Block> BRICK_CHIMNEY = registerWithItem("brick_chimney", () -> new ChimneyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
+    public static final RegistrySupplier<Block> STONE_BRICKS_CHIMNEY = registerWithItem("stone_bricks_chimney", () -> new ChimneyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
+    public static final RegistrySupplier<Block> COPPER_CHIMNEY = registerWithItem("copper_chimney", () -> new CopperChimneyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK)));
+    public static final RegistrySupplier<Block> BOAT_IN_A_JAR = registerWithItem("boat_in_a_jar", () -> new BoatInAJarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS)));
+    public static final RegistrySupplier<Block> STREET_LANTERN = registerWithoutItem("street_lantern", () -> new StreetLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT).lightLevel(StreetLanternBlock::vanillaLightLevel)));
+    public static final RegistrySupplier<Block> STREET_WALL_LANTERN = registerWithoutItem("street_lantern_wall", () -> new StreetLanternWallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT).lightLevel(StreetLanternBlock::vanillaLightLevel)));
     public static final RegistrySupplier<Item> STREET_LANTERN_ITEM = registerItem("street_lantern_item", () -> new StandingAndWallBlockItem(ObjectRegistry.STREET_LANTERN.get(), ObjectRegistry.STREET_WALL_LANTERN.get(), new Item.Properties(), Direction.DOWN));
-    public static final RegistrySupplier<Block> PLATED_STREET_LANTERN = registerWithoutItem("plated_street_lantern", () -> new StreetLanternBlock(BlockBehaviour.Properties.copy(Blocks.DECORATED_POT).lightLevel(StreetLanternBlock::vanillaLightLevel)));
-    public static final RegistrySupplier<Block> PLATED_STREET_WALL_LANTERN = registerWithoutItem("plated_street_lantern_wall", () -> new StreetLanternWallBlock(BlockBehaviour.Properties.copy(Blocks.DECORATED_POT).lightLevel(StreetLanternBlock::vanillaLightLevel)));
+    public static final RegistrySupplier<Block> PLATED_STREET_LANTERN = registerWithoutItem("plated_street_lantern", () -> new StreetLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT).lightLevel(StreetLanternBlock::vanillaLightLevel)));
+    public static final RegistrySupplier<Block> PLATED_STREET_WALL_LANTERN = registerWithoutItem("plated_street_lantern_wall", () -> new StreetLanternWallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT).lightLevel(StreetLanternBlock::vanillaLightLevel)));
     public static final RegistrySupplier<Item> PLATED_STREET_LANTERN_ITEM = registerItem("plated_street_lantern_item", () -> new StandingAndWallBlockItem(ObjectRegistry.PLATED_STREET_LANTERN.get(), ObjectRegistry.PLATED_STREET_WALL_LANTERN.get(), new Item.Properties(), Direction.DOWN));
     public static final RegistrySupplier<Item> PELLS = registerItem("pells", () -> new PellsSpawnItem(new Item.Properties()));
     public static final RegistrySupplier<Item> CPHS_PRIDE = registerItem("cphs_pride", () -> new RecordItem(1, SoundRegistry.CPHS_PRIDE.get(), getSettings().stacksTo(1), 191));
     public static final RegistrySupplier<Item> LETSDO_THEME = registerItem("letsdo_theme", () -> new RecordItem(1, SoundRegistry.LETSDO_THEME.get(), getSettings().stacksTo(1), 124));
-    public static final RegistrySupplier<Block> DISPLAY = registerWithItem("display", () -> new DisplayBlock(BlockBehaviour.Properties.copy(Blocks.GLASS)));
-    public static final RegistrySupplier<Block> TERRARIUM = registerWithItem("terrarium", () -> new TerrariumBlock(BlockBehaviour.Properties.copy(Blocks.GLASS)));
-    public static final RegistrySupplier<Block> WOODEN_PLANTER = registerWithItem("wooden_planter", () -> new PlanterBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)));
-    public static final RegistrySupplier<Block> STONE_BRICK_PLANTER = registerWithItem("stone_brick_planter", () -> new PlanterBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BRICKS)));
+    public static final RegistrySupplier<Block> DISPLAY = registerWithItem("display", () -> new DisplayBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS)));
+    public static final RegistrySupplier<Block> TERRARIUM = registerWithItem("terrarium", () -> new TerrariumBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS)));
+    public static final RegistrySupplier<Block> WOODEN_PLANTER = registerWithItem("wooden_planter", () -> new PlanterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD)));
+    public static final RegistrySupplier<Block> STONE_BRICK_PLANTER = registerWithItem("stone_brick_planter", () -> new PlanterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS)));
 
     public static final String[] colors = {
             "white", "light_gray", "gray", "black", "red", "orange", "yellow", "lime", "green", "cyan", "light_blue", "blue", "purple", "magenta", "pink", "brown"
@@ -149,14 +149,14 @@ public class ObjectRegistry {
     }
 
     public static <T extends Block> RegistrySupplier<T> registerWithItem(String name, Supplier<T> block) {
-        return FurnitureUtil.registerWithItem(BLOCKS, BLOCK_REGISTRAR, ITEMS, ITEM_REGISTRAR, new FurnitureIdentifier(name), block);
+        return FurnitureUtil.registerWithItem(BLOCKS, BLOCK_REGISTRAR, ITEMS, ITEM_REGISTRAR, FurnitureIdentifier.parseIdentifier(name), block);
     }
 
     public static <T extends Block> RegistrySupplier<T> registerWithoutItem(String path, Supplier<T> block) {
-        return FurnitureUtil.registerWithoutItem(BLOCKS, BLOCK_REGISTRAR, new FurnitureIdentifier(path), block);
+        return FurnitureUtil.registerWithoutItem(BLOCKS, BLOCK_REGISTRAR, FurnitureIdentifier.parseIdentifier(path), block);
     }
 
     public static <T extends Item> RegistrySupplier<T> registerItem(String path, Supplier<T> itemSupplier) {
-        return FurnitureUtil.registerItem(ITEMS, ITEM_REGISTRAR, new FurnitureIdentifier(path), itemSupplier);
+        return FurnitureUtil.registerItem(ITEMS, ITEM_REGISTRAR, FurnitureIdentifier.parseIdentifier(path), itemSupplier);
     }
 }

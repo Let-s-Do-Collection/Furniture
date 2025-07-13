@@ -49,8 +49,8 @@ public class PellsEntity extends Mob {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
         entityData.define(LAST_DAMAGE, 0f);
         entityData.define(IS_CRIT, false);
     }
@@ -201,6 +201,7 @@ public class PellsEntity extends Mob {
     public boolean isPushedByFluid() {
         return false;
     }
+
 
     @Override
     public boolean canBreatheUnderwater() {

@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[43,)"
+loaderVersion = "[4,)"
 license = "Custom"
 
 [[mods]]
@@ -13,9 +13,9 @@ Let's expand your world with a whole set of new and exciting furnitures! All in 
 '''
 
 [[dependencies.furniture]]
-modId = "forge"
+modId = "neoforge"
 mandatory = true
-versionRange = "[43,)"
+versionRange = "[21.1.80,)"
 ordering = "NONE"
 side = "BOTH"
 

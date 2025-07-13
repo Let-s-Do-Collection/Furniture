@@ -1,4 +1,4 @@
-package com.berksire.furniture.client.render.forge;
+package com.berksire.furniture.neoforge.client.render;
 
 import com.berksire.furniture.client.render.FluidRenderer;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -11,14 +11,14 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
-import net.minecraftforge.fluids.FluidType;
+import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.neoforged.neoforge.fluids.FluidType;
 
 public class FluidRendererImpl {
     public static void renderFluidBox(FluidStack archStack, float xMin, float yMin, float zMin, float xMax, float yMax,
                                       float zMax, VertexConsumer builder, PoseStack ms, int light, boolean renderBottom) {
         Fluid fluid = archStack.getFluid();
-        net.minecraftforge.fluids.FluidStack fluidStack = FluidStackHooksForge.toForge(archStack);
+        net.neoforged.neoforge.fluids.FluidStack fluidStack = FluidStackHooksForge.toForge(archStack);
         IClientFluidTypeExtensions clientFluid = IClientFluidTypeExtensions.of(fluid);
         FluidType fluidAttributes = fluid.getFluidType();
         TextureAtlasSprite fluidTexture = Minecraft.getInstance()

@@ -66,7 +66,7 @@ Stacktrace:
 	at dev.architectury.registry.registries.DeferredRegister$Entry.get(DeferredRegister.java:133) ~[architectury-forge-9.1.12.jar%23203!/:?] {re:classloading}
 	at com.berksire.furniture.registry.FlammableBlockRegistry.init(FlammableBlockRegistry.java:11) ~[5299234295228364464.jar%23204!/:?] {re:classloading}
 	at com.berksire.furniture.Furniture.init(Furniture.java:13) ~[5299234295228364464.jar%23204!/:?] {re:classloading}
-	at com.berksire.furniture.forge.FurnitureForge.<init>(FurnitureForge.java:12) ~[%23199!/:?] {re:classloading}
+	at com.berksire.furniture.neoforge.FurnitureForge.<init>(FurnitureForge.java:12) ~[%23199!/:?] {re:classloading}
 	at jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67) ~[?:?] {}
 	at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499) ~[?:?] {}
 	at java.lang.reflect.Constructor.newInstance(Constructor.java:483) ~[?:?] {}

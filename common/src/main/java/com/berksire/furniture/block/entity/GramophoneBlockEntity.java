@@ -2,14 +2,14 @@ package com.berksire.furniture.block.entity;
 
 import com.berksire.furniture.registry.EntityTypeRegistry;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Clearable;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.RecordItem;
+import net.minecraft.world.item.JukeboxSong;
+import net.minecraft.world.item.JukeboxSongPlayer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.JukeboxBlock;
@@ -24,33 +24,43 @@ public class GramophoneBlockEntity extends BlockEntity implements Clearable {
     private long recordStartedTick;
     private boolean isPlaying;
     private boolean repeat;
+    private final JukeboxSongPlayer jukeboxSongPlayer;
 
     public GramophoneBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(EntityTypeRegistry.GRAMOPHONE_BLOCK_ENTITY.get(), blockPos, blockState);
+        this.jukeboxSongPlayer = new JukeboxSongPlayer(this::onSongChanged, this.getBlockPos());
     }
 
     @Override
-    public void load(CompoundTag tag) {
-        super.load(tag);
-        if (tag.contains("RecordItem")) {
-            this.recordItem = ItemStack.of(tag.getCompound("RecordItem"));
+    protected void loadAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.loadAdditional(compoundTag, provider);
+        if (compoundTag.contains("RecordItem")) {
+            this.recordItem = (ItemStack) ItemStack.parse(provider, compoundTag.getCompound("RecordItem")).orElse(ItemStack.EMPTY);
         }
-        this.isPlaying = tag.getBoolean("IsPlaying");
-        this.recordStartedTick = tag.getLong("RecordStartTick");
-        this.tickCount = tag.getLong("TickCount");
-        this.repeat = tag.getBoolean("Repeat");
+        this.isPlaying = compoundTag.getBoolean("IsPlaying");
+        this.recordStartedTick = compoundTag.getLong("RecordStartTick");
+        this.tickCount = compoundTag.getLong("TickCount");
+        this.repeat = compoundTag.getBoolean("Repeat");
+        if (compoundTag.contains("ticks_since_song_started", 4)) {
+            JukeboxSong.fromStack(provider, this.recordItem).ifPresent((holder) -> {
+                this.jukeboxSongPlayer.setSongWithoutPlaying(holder, compoundTag.getLong("ticks_since_song_started"));
+            });
+        }
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag) {
-        super.saveAdditional(tag);
+    protected void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.saveAdditional(compoundTag, provider);
         if (!this.recordItem.isEmpty()) {
-            tag.put("RecordItem", this.recordItem.save(new CompoundTag()));
+            compoundTag.put("RecordItem", this.recordItem.save(provider));
         }
-        tag.putBoolean("IsPlaying", this.isPlaying);
-        tag.putLong("RecordStartTick", this.recordStartedTick);
-        tag.putLong("TickCount", this.tickCount);
-        tag.putBoolean("Repeat", this.repeat);
+        compoundTag.putBoolean("IsPlaying", this.isPlaying);
+        compoundTag.putLong("RecordStartTick", this.recordStartedTick);
+        compoundTag.putLong("TickCount", this.tickCount);
+        compoundTag.putBoolean("Repeat", this.repeat);
+        if (this.jukeboxSongPlayer.getSong() != null) {
+            compoundTag.putLong("ticks_since_song_started", this.jukeboxSongPlayer.getTicksSinceSongStarted());
+        }
     }
 
     public boolean isRecordPlaying() {
@@ -74,34 +84,8 @@ public class GramophoneBlockEntity extends BlockEntity implements Clearable {
         }
     }
 
-
-    @SuppressWarnings("all")
     public void tick(Level level, BlockPos pos, BlockState state) {
-        if (this.isRecordPlaying()) {
-            ItemStack item = this.recordItem;
-            if (item.getItem() instanceof RecordItem recordItem) {
-                if (this.tickCount >= this.recordStartedTick + (long) recordItem.getLengthInTicks() + 20L) {
-                    if (this.repeat) {
-                        this.startPlaying();
-                    } else {
-                        this.stopPlaying();
-                    }
-                } else if (this.tickCount % 20 == 0) {
-                    level.gameEvent(GameEvent.JUKEBOX_PLAY, pos, GameEvent.Context.of(state));
-                    this.spawnMusicParticles(level, pos);
-
-                }
-            }
-        }
-        this.tickCount++;
-    }
-
-    private void spawnMusicParticles(Level level, BlockPos pos) {
-        if (level instanceof ServerLevel serverLevel) {
-            Vec3 vec3 = Vec3.atBottomCenterOf(pos).add(-0.25, 2, -0.25);
-            float f = (float) level.getRandom().nextInt(4) / 24.0F;
-            serverLevel.sendParticles(ParticleTypes.NOTE, vec3.x(), vec3.y(), vec3.z(), 0, f, 0.0, 0.0, 1.0);
-        }
+        this.jukeboxSongPlayer.tick(level, state);
     }
 
     public void popOutRecord() {
@@ -127,6 +111,15 @@ public class GramophoneBlockEntity extends BlockEntity implements Clearable {
                 this.level.updateNeighborsAt(this.worldPosition, state.getBlock());
             }
         }
+    }
+
+    public void onSongChanged() {
+        this.level.updateNeighborsAt(this.getBlockPos(), this.getBlockState().getBlock());
+        this.setChanged();
+    }
+
+    public JukeboxSongPlayer getSongPlayer() {
+        return this.jukeboxSongPlayer;
     }
 
     @Override

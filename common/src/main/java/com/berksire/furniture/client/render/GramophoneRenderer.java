@@ -20,7 +20,7 @@ import org.joml.Quaternionf;
 import java.util.Objects;
 
 public class GramophoneRenderer implements BlockEntityRenderer<GramophoneBlockEntity> {
-    private static final ResourceLocation TEXTURE = new FurnitureIdentifier("textures/entity/gramophone.png");
+    private static final ResourceLocation TEXTURE = FurnitureIdentifier.parseIdentifier("textures/entity/gramophone.png");
     private final GramophoneModel<?> model;
 
     public GramophoneRenderer(BlockEntityRendererProvider.Context context) {

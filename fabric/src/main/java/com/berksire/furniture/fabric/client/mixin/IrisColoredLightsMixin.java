@@ -4,19 +4,20 @@ import com.bawnorton.mixinsquared.TargetHandler;
 import com.berksire.furniture.registry.ObjectRegistry;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import me.jellysquid.mods.sodium.client.render.chunk.compile.tasks.ChunkBuilderMeshingTask;
-import net.irisshaders.iris.compat.sodium.impl.block_context.ChunkBuildBuffersExt;
+import net.caffeinemc.mods.sodium.client.render.chunk.compile.tasks.ChunkBuilderMeshingTask;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 
+// TODO fixme
 /// Optional mixin to support colored lights when using Iris. Selects the most similar
 /// vanilla blocks, so it is up to the shader to decide what color intensity
 @Mixin(value = ChunkBuilderMeshingTask.class, priority = 1500)
 public class IrisColoredLightsMixin {
 
+    /*
     @TargetHandler(
             mixin = "net.irisshaders.iris.compat.sodium.mixin.block_id.MixinChunkRenderRebuildTask",
             name = "iris$setLocalPos"
@@ -50,5 +51,5 @@ public class IrisColoredLightsMixin {
             original = Blocks.PEARLESCENT_FROGLIGHT.defaultBlockState();
         }
         operation.call(instance, original, someOtherVar, emission);
-    }
+    }*/
 }

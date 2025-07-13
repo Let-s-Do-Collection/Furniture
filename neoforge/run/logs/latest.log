@@ -70,7 +70,7 @@
 [27Juni2024 13:58:01.565] [modloading-worker-0/INFO] [REI/]: [REI] Registered plugin provider HideIngredientsFromTagsPlugin [roughlyenoughitems] for REIPlugin
 [27Juni2024 13:58:01.567] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering S2C receiver with id roughlyenoughitems:ci_msg
 [27Juni2024 13:58:01.567] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering S2C receiver with id roughlyenoughitems:og_not_enough
-[27Juni2024 13:58:01.687] [modloading-worker-0/ERROR] [net.minecraftforge.fml.javafmlmod.FMLModContainer/LOADING]: Failed to create mod instance. ModID: furniture, class com.berksire.furniture.forge.FurnitureForge
+[27Juni2024 13:58:01.687] [modloading-worker-0/ERROR] [net.minecraftforge.fml.javafmlmod.FMLModContainer/LOADING]: Failed to create mod instance. ModID: furniture, class com.berksire.furniture.neoforge.FurnitureForge
 java.lang.reflect.InvocationTargetException: null
 	at jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:77) ~[?:?]
 	at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499) ~[?:?]
@@ -88,7 +88,7 @@ Caused by: java.lang.NullPointerException: Registry Object not present: furnitur
 	at dev.architectury.registry.registries.DeferredRegister$Entry.get(DeferredRegister.java:133) ~[architectury-forge-9.1.12.jar%23203!/:?]
 	at com.berksire.furniture.registry.FlammableBlockRegistry.init(FlammableBlockRegistry.java:11) ~[5299234295228364464.jar%23204!/:?]
 	at com.berksire.furniture.Furniture.init(Furniture.java:13) ~[5299234295228364464.jar%23204!/:?]
-	at com.berksire.furniture.forge.FurnitureForge.<init>(FurnitureForge.java:12) ~[%23199!/:?]
+	at com.berksire.furniture.neoforge.FurnitureForge.<init>(FurnitureForge.java:12) ~[%23199!/:?]
 	at jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67) ~[?:?]
 	... 11 more
 [27Juni2024 13:58:01.690] [Render thread/FATAL] [net.minecraftforge.fml.ModLoader/LOADING]: Failed to complete lifecycle event CONSTRUCT, 1 errors found

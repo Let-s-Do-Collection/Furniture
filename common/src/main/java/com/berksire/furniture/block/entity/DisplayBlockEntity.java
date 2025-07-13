@@ -2,6 +2,7 @@ package com.berksire.furniture.block.entity;
 
 import com.berksire.furniture.registry.EntityTypeRegistry;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Clearable;
@@ -25,24 +26,24 @@ public class DisplayBlockEntity extends BlockEntity implements Clearable {
     }
 
     @Override
-    public void load(CompoundTag tag) {
-        super.load(tag);
-        this.displayedItem = ItemStack.of(tag.getCompound("DisplayedItem"));
+    protected void loadAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.loadAdditional(compoundTag, provider);
+        this.displayedItem = ItemStack.parse(provider, compoundTag.getCompound("DisplayedItem")).orElse(ItemStack.EMPTY);
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag) {
-        super.saveAdditional(tag);
-        tag.put("DisplayedItem", this.displayedItem.save(new CompoundTag()));
+    protected void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.saveAdditional(compoundTag, provider);
+        compoundTag.put("DisplayedItem", this.displayedItem.save(provider));
     }
 
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
-    public @NotNull CompoundTag getUpdateTag() {
+    public @NotNull CompoundTag getUpdateTag(HolderLookup.Provider provider) {
         CompoundTag compoundTag = new CompoundTag();
-        compoundTag.put("DisplayedItem", this.displayedItem.save(new CompoundTag()));
+        compoundTag.put("DisplayedItem", this.displayedItem.save(provider));
         return compoundTag;
     }
 
