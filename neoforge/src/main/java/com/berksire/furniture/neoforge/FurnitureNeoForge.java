@@ -9,8 +9,8 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 
 @Mod(Furniture.MODID)
-public class FurnitureForge {
-    public FurnitureForge(IEventBus modEventBus, ModContainer modContainer) {
+public class FurnitureNeoForge {
+    public FurnitureNeoForge(IEventBus modEventBus, ModContainer modContainer) {
         EventBusesHooks.whenAvailable(Furniture.MODID, IEventBus::start);
         Furniture.init();
 

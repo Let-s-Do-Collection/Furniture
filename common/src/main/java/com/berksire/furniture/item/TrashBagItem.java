@@ -34,6 +34,7 @@ public class TrashBagItem extends Item {
     @Override
     @SuppressWarnings("deprecation")
     public @NotNull InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+        // TODO fixme
         /*
         if (world.isClientSide || user.isCrouching()) {
             return super.use(world, user, hand);

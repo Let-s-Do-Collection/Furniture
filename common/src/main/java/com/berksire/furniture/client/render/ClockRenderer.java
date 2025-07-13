@@ -66,16 +66,14 @@ public class ClockRenderer implements BlockEntityRenderer<ClockBlockEntity> {
         ClockBlock.WoodType woodType = block.getWoodType();
         ResourceLocation texture = TEXTURES.get(woodType);
 
-        // TODO fixme
-        // renderModel(poseStack, bufferSource.getBuffer(RenderType.entityCutout(texture)), combinedLight, combinedOverlay);
+
+        renderModel(poseStack, bufferSource.getBuffer(RenderType.entityCutout(texture)), combinedLight, combinedOverlay);
         poseStack.popPose();
     }
 
-    // TODO fixme
-    /*
     private void renderModel(PoseStack poseStack, VertexConsumer vertexConsumer, int light, int overlay) {
-        this.model.renderToBuffer(poseStack, vertexConsumer, light, overlay, 1.0F, 1.0F, 1.0F, 1.0F);
-    }*/
+        this.model.renderToBuffer(poseStack, vertexConsumer, light, overlay);
+    }
 
 
 }

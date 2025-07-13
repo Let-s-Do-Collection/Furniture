@@ -1,6 +1,7 @@
 build/
 *.ipr
 fabric/run/
+neoforge/run
 *.iws
 out/
 *.iml

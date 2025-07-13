@@ -28,9 +28,11 @@ public class TabRegistry {
                 for (String color : colorOrder) {
                     ObjectRegistry.POUFFE.get(color).ifPresent(out::accept);
                 }
+                // TODO fixme
+                /*
                 for (String color : colorOrder) {
                     ObjectRegistry.LAMP_ITEMS.get(color).ifPresent(out::accept);
-                }
+                }*/
                 for (String woodType : woodTypeOrder) {
                     ObjectRegistry.SHUTTERS.get(woodType).ifPresent(out::accept);
                 }
