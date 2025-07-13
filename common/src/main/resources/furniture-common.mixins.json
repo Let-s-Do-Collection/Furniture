@@ -7,6 +7,7 @@
     "CraftingMenuMixin",
     "CropBlockMixin",
     "LoomMenuMixin",
+    "PaintingVariantsMixin",
     "SmithingMenuMixin"
   ],
   "injectors": {
