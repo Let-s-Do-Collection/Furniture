@@ -1,0 +1,11 @@
+{
+  "asset_id": "furniture:sunflower",
+  "height": 16,
+  "width": 32,
+  "title": {
+    "translate": "painting.furniture.sunflower.title"
+  },
+  "author": {
+    "translate": "painting.furniture.sunflower.author"
+  }
+}

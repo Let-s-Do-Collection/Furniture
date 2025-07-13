@@ -1,0 +1,11 @@
+{
+  "asset_id": "furniture:rabbit",
+  "height": 32,
+  "width": 16,
+  "title": {
+    "translate": "painting.furniture.rabbit.title"
+  },
+  "author": {
+    "translate": "painting.furniture.rabbit.author"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "asset_id": "furniture:butterfly",
+  "height": 48,
+  "width": 32,
+  "title": {
+    "translate": "painting.furniture.butterfly.title"
+  },
+  "author": {
+    "translate": "painting.furniture.butterfly.author"
+  }
+}
