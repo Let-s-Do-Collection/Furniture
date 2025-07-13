@@ -1,7 +1,7 @@
 {
   "asset_id": "furniture:tulip_fields",
-  "height": 64,
-  "width": 48,
+  "height": 16,
+  "width": 12,
   "title": {
     "translate": "painting.furniture.tulip_fields.title"
   },

@@ -1,7 +1,7 @@
 {
   "asset_id": "furniture:strong",
-  "height": 64,
-  "width": 16,
+  "height": 16,
+  "width": 4,
   "title": {
     "translate": "painting.furniture.strong.title"
   },

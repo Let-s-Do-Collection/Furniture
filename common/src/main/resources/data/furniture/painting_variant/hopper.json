@@ -1,7 +1,7 @@
 {
   "asset_id": "furniture:hopper",
-  "height": 64,
-  "width": 64,
+  "height": 16,
+  "width": 16,
   "title": {
     "translate": "painting.furniture.hopper.title"
   },

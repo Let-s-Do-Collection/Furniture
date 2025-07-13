@@ -1,7 +1,7 @@
 {
   "asset_id": "furniture:honey_fall",
-  "height": 16,
-  "width": 64,
+  "height": 4,
+  "width": 16,
   "title": {
     "translate": "painting.furniture.honey_fall.title"
   },

@@ -1,7 +1,7 @@
 {
   "asset_id": "furniture:roses",
-  "height": 32,
-  "width": 48,
+  "height": 8,
+  "width": 12,
   "title": {
     "translate": "painting.furniture.roses.title"
   },

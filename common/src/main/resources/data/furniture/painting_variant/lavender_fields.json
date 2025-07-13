@@ -1,7 +1,7 @@
 {
   "asset_id": "furniture:lavender_fields",
-  "height": 32,
-  "width": 32,
+  "height": 8,
+  "width": 8,
   "title": {
     "translate": "painting.furniture.lavender_fields.title"
   },

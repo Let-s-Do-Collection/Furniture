@@ -1,7 +1,7 @@
 {
   "asset_id": "furniture:ants",
-  "height": 48,
-  "width": 16,
+  "height": 12,
+  "width": 4,
   "title": {
     "translate": "painting.furniture.ants.title"
   },
