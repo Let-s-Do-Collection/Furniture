@@ -62,12 +62,12 @@ public class PellsModel<T extends Entity> extends EntityModel<T> {
     }
 
     @Override
-    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        Head.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-        Body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-        RightArm.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-        LeftArm.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-        Stand.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-        Baseplate.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
+        Head.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+        Body.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+        RightArm.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+        LeftArm.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+        Stand.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+        Baseplate.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
     }
 }

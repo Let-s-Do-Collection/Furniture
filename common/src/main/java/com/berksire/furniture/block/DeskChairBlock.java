@@ -102,16 +102,9 @@ public class DeskChairBlock extends Block {
     @Override
     protected ItemInteractionResult useItemOn(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
         if (blockState.getValue(HALF) == DoubleBlockHalf.LOWER) {
-            return FurnitureUtil.onUse(level, player, interactionHand, blockHitResult, 0);
+            return FurnitureUtil.useItemOn(level, player, interactionHand, blockHitResult, 0);
         }
-        return InteractionResult.PASS;    }
-
-    @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (state.getValue(HALF) == DoubleBlockHalf.LOWER) {
-            return FurnitureUtil.onUse(world, player, hand, hit, 0);
-        }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override

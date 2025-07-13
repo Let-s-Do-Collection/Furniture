@@ -75,14 +75,14 @@ public class LampWallBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
         if (player.isShiftKeyDown()) {
-            boolean lit = !state.getValue(LIT);
-            world.setBlock(pos, state.setValue(LIT, lit), 3);
-            world.playSound(null, pos, lit ? SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_ON : SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_OFF, SoundSource.BLOCKS, 1.0F, 1.0F);
+            boolean lit = !blockState.getValue(LIT);
+            level.setBlock(blockPos, blockState.setValue(LIT, lit), 3);
+            level.playSound(null, blockPos, lit ? SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_ON : SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_OFF, SoundSource.BLOCKS, 1.0F, 1.0F);
             return InteractionResult.SUCCESS;
         }
-        return super.use(state, world, pos, player, hand, hit);
+        return super.useWithoutItem(blockState, level, blockPos, player, blockHitResult);
     }
 
     private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {

@@ -14,7 +14,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.RecordItem;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -91,30 +91,30 @@ public class ObjectRegistry {
 
     static {
         for (String woodType : woodTypes) {
-            BENCHES.put(woodType, registerWithItem(woodType + "_bench", () -> new BenchBlock(BlockBehaviour.Properties.copy(getCorrespondingPlank(woodType)).pushReaction(PushReaction.IGNORE))));
+            BENCHES.put(woodType, registerWithItem(woodType + "_bench", () -> new BenchBlock(BlockBehaviour.Properties.ofFullCopy(getCorrespondingPlank(woodType)).pushReaction(PushReaction.IGNORE))));
             CABINETS.put(woodType, registerWithItem(woodType + "_cabinet", () -> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD), SoundRegistry.CABINET_OPEN, SoundRegistry.CABINET_CLOSE)));
-            CLOCKS.put(woodType, registerWithItem(woodType + "_clock", () -> new ClockBlock(BlockBehaviour.Properties.copy(getCorrespondingPlank(woodType)).pushReaction(PushReaction.IGNORE), ClockBlock.WoodType.valueOf(woodType.toUpperCase()))));
-            GRANDFATHER_CLOCKS.put(woodType, registerWithItem(woodType + "_grandfather_clock", () -> new GrandfatherClockBlock(BlockBehaviour.Properties.copy(getCorrespondingPlank(woodType)).pushReaction(PushReaction.IGNORE), GrandfatherClockBlock.WoodType.valueOf(woodType.toUpperCase()))));
-            MIRRORS.put(woodType, registerWithItem(woodType + "_mirror", () -> new MirrorBlock(BlockBehaviour.Properties.copy(getCorrespondingPlank(woodType)).pushReaction(PushReaction.IGNORE))));
-            SHUTTERS.put(woodType, registerWithItem(woodType + "_shutter", () -> new ShutterBlock(BlockBehaviour.Properties.copy(getCorrespondingPlank(woodType)).pushReaction(PushReaction.IGNORE))));
-            DESKS.put(woodType, registerWithItem(woodType + "_desk", () -> new DeskBlock(BlockBehaviour.Properties.copy(getCorrespondingPlank(woodType)).pushReaction(PushReaction.IGNORE))));
+            CLOCKS.put(woodType, registerWithItem(woodType + "_clock", () -> new ClockBlock(BlockBehaviour.Properties.ofFullCopy(getCorrespondingPlank(woodType)).pushReaction(PushReaction.IGNORE), ClockBlock.WoodType.valueOf(woodType.toUpperCase()))));
+            GRANDFATHER_CLOCKS.put(woodType, registerWithItem(woodType + "_grandfather_clock", () -> new GrandfatherClockBlock(BlockBehaviour.Properties.ofFullCopy(getCorrespondingPlank(woodType)).pushReaction(PushReaction.IGNORE), GrandfatherClockBlock.WoodType.valueOf(woodType.toUpperCase()))));
+            MIRRORS.put(woodType, registerWithItem(woodType + "_mirror", () -> new MirrorBlock(BlockBehaviour.Properties.ofFullCopy(getCorrespondingPlank(woodType)).pushReaction(PushReaction.IGNORE))));
+            SHUTTERS.put(woodType, registerWithItem(woodType + "_shutter", () -> new ShutterBlock(BlockBehaviour.Properties.ofFullCopy(getCorrespondingPlank(woodType)).pushReaction(PushReaction.IGNORE))));
+            DESKS.put(woodType, registerWithItem(woodType + "_desk", () -> new DeskBlock(BlockBehaviour.Properties.ofFullCopy(getCorrespondingPlank(woodType)).pushReaction(PushReaction.IGNORE))));
             DRESSER.put(woodType, registerWithItem(woodType + "_dresser", () -> new DresserBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD), SoundRegistry.CABINET_OPEN, SoundRegistry.CABINET_CLOSE)));
-            DESK_CHAIRS.put(woodType, registerWithItem(woodType + "_desk_chair", () -> new DeskChairBlock(BlockBehaviour.Properties.copy(getCorrespondingPlank(woodType)))));
+            DESK_CHAIRS.put(woodType, registerWithItem(woodType + "_desk_chair", () -> new DeskChairBlock(BlockBehaviour.Properties.ofFullCopy(getCorrespondingPlank(woodType)))));
         }
         for (String color : colors) {
             DyeColor dyeColor = DyeColor.valueOf(color.toUpperCase(Locale.ENGLISH));
-            SOFAS.put(color, registerWithItem("sofa_" + color, () -> new SofaBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).pushReaction(PushReaction.DESTROY), dyeColor)));
-            POUFFE.put(color, registerWithItem("pouffe_" + color, () -> new PouffeBlock(BlockBehaviour.Properties.copy(Blocks.RED_WOOL).pushReaction(PushReaction.NORMAL), dyeColor)));
-            CURTAINS.put(color, registerWithItem("curtain_" + color, () -> new CurtainBlock(BlockBehaviour.Properties.copy(Blocks.RED_WOOL).pushReaction(PushReaction.DESTROY), dyeColor)));
+            SOFAS.put(color, registerWithItem("sofa_" + color, () -> new SofaBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).pushReaction(PushReaction.DESTROY), dyeColor)));
+            POUFFE.put(color, registerWithItem("pouffe_" + color, () -> new PouffeBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_WOOL).pushReaction(PushReaction.NORMAL), dyeColor)));
+            CURTAINS.put(color, registerWithItem("curtain_" + color, () -> new CurtainBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_WOOL).pushReaction(PushReaction.DESTROY), dyeColor)));
 
             String lampName = "lamp_" + color;
             String wallLampName = "lamp_wall_" + color;
 
-            RegistrySupplier<Block> lamp = registerWithoutItem(lampName, () -> new LampBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)
+            RegistrySupplier<Block> lamp = registerWithoutItem(lampName, () -> new LampBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
                     .lightLevel(state -> state.getValue(LampBlock.LIT) ? 15 : 0).pushReaction(PushReaction.DESTROY), dyeColor));
             LAMPS.put(color, lamp);
 
-            RegistrySupplier<Block> wallLamp = registerWithoutItem(wallLampName, () -> new LampWallBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)
+            RegistrySupplier<Block> wallLamp = registerWithoutItem(wallLampName, () -> new LampWallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
                     .lightLevel(state -> state.getValue(LampBlock.LIT) ? 15 : 0).pushReaction(PushReaction.DESTROY), dyeColor));
             WALL_LAMPS.put(color, wallLamp);
 

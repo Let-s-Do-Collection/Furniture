@@ -88,8 +88,7 @@ public class TrashBagItem extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, @NotNull TooltipFlag flag) {
-        tooltip.add(Component.translatable("tooltip.furniture.trash_bag").withStyle(ChatFormatting.YELLOW, ChatFormatting.ITALIC));
+    public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
+        list.add(Component.translatable("tooltip.furniture.trash_bag").withStyle(ChatFormatting.YELLOW, ChatFormatting.ITALIC));
     }
-
 }

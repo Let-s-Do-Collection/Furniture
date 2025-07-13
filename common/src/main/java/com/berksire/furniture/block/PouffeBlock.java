@@ -36,7 +36,7 @@ public class PouffeBlock extends Block {
 
     @Override
     public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        return FurnitureUtil.onUse(world, player, hand, hit, 0);
+        return FurnitureUtil.useItemOn(world, player, hand, hit, 0);
     }
 
     @Override

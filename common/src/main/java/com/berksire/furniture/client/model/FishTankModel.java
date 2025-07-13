@@ -17,7 +17,7 @@ import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
 public class FishTankModel extends HierarchicalBlockModel<FishTankBlockEntity> {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(Furniture.MODID, "fish_tank"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(Furniture.MODID, "fish_tank"), "main");
     public final ModelPart fish_tank;
     public final ModelPart cod;
     public final ModelPart cod_1;
@@ -120,8 +120,8 @@ public class FishTankModel extends HierarchicalBlockModel<FishTankBlockEntity> {
     }
 
     @Override
-    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        fish_tank.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int i, int j, int k) {
+        fish_tank.render(poseStack, vertexConsumer, i, j, k);
     }
 
     public static final AnimationDefinition FISHY = AnimationDefinition.Builder.withLength(6.1333F).looping()

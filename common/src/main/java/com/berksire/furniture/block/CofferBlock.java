@@ -85,7 +85,7 @@ public class CofferBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
 		}
 	}
 
-	public void playerWillDestroy(Level level, BlockPos blockPos, BlockState blockState, Player player) {
+	public BlockState playerWillDestroy(Level level, BlockPos blockPos, BlockState blockState, Player player) {
 		if (!level.isClientSide) {
 			BlockEntity blockEntity = level.getBlockEntity(blockPos);
 			if (blockEntity instanceof CofferBlockEntity cofferBlockEntity) {

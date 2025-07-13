@@ -39,7 +39,7 @@ public class PellsEntity extends Mob {
 
     public PellsEntity(EntityType<? extends Mob> type, Level worldIn) {
         super(type, worldIn);
-        this.setMaxUpStep(0.0F);
+        this.setSpeed(0.0F);
     }
 
     public static @NotNull AttributeSupplier.Builder createMobAttributes() {
@@ -51,8 +51,8 @@ public class PellsEntity extends Mob {
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
-        entityData.define(LAST_DAMAGE, 0f);
-        entityData.define(IS_CRIT, false);
+        entityData.set(LAST_DAMAGE, 0f);
+        entityData.set(IS_CRIT, false);
     }
 
     public void tick() {
@@ -200,12 +200,6 @@ public class PellsEntity extends Mob {
     @Override
     public boolean isPushedByFluid() {
         return false;
-    }
-
-
-    @Override
-    public boolean canBreatheUnderwater() {
-        return true;
     }
 
     @Override

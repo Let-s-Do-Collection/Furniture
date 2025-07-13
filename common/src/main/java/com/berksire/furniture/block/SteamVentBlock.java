@@ -7,7 +7,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -109,14 +111,14 @@ public class SteamVentBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (!world.isClientSide) {
-            boolean particlesEnabled = state.getValue(PARTICLES_ENABLED);
-            world.setBlock(pos, state.setValue(PARTICLES_ENABLED, !particlesEnabled), 3);
+    protected ItemInteractionResult useItemOn(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
+        if (!level.isClientSide) {
+            boolean particlesEnabled = blockState.getValue(PARTICLES_ENABLED);
+            level.setBlock(blockPos, blockState.setValue(PARTICLES_ENABLED, !particlesEnabled), 3);
             String messageKey = particlesEnabled ? "tooltip.furniture.vent_disabled" : "tooltip.furniture.vent_enabled";
             player.displayClientMessage(Component.translatable(messageKey), true);
         }
-        return InteractionResult.SUCCESS;
+        return ItemInteractionResult.SUCCESS;
     }
 
     @Override

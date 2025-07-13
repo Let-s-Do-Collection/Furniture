@@ -8,7 +8,9 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -103,13 +105,12 @@ public class ShutterBlock extends Block implements SimpleWaterloggedBlock {
         world.setBlock(pos, state, 3);
     }
 
-
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        return toggleShutters(state, level, pos, player);
+    protected ItemInteractionResult useItemOn(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
+        return toggleShutters(blockState, level, blockPos, player);
     }
 
-    public InteractionResult toggleShutters(BlockState state, Level level, BlockPos pos, Player player) {
+    public ItemInteractionResult toggleShutters(BlockState state, Level level, BlockPos pos, Player player) {
         state = state.cycle(OPEN);
         level.setBlock(pos, state, 3);
         if (player == null || !player.isCrouching()) toggleShutters(state, level, pos, state.getValue(OPEN));
@@ -117,7 +118,7 @@ public class ShutterBlock extends Block implements SimpleWaterloggedBlock {
 
         if (state.getValue(WATERLOGGED)) level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
 
-        return InteractionResult.sidedSuccess(level.isClientSide);
+        return ItemInteractionResult.sidedSuccess(level.isClientSide);
     }
 
     public void toggleShutters(BlockState state, Level level, BlockPos pos, boolean open) {

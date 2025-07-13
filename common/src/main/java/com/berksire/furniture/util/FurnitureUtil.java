@@ -13,6 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -39,11 +40,11 @@ public class FurnitureUtil {
     }
 
     public static <T extends Block> RegistrySupplier<T> registerWithoutItem(DeferredRegister<Block> register, Registrar<Block> registrar, ResourceLocation path, Supplier<T> block) {
-        return Platform.isForge() ? register.register(path.getPath(), block) : registrar.register(path, block);
+        return Platform.isNeoForge() ? register.register(path.getPath(), block) : registrar.register(path, block);
     }
 
     public static <T extends Item> RegistrySupplier<T> registerItem(DeferredRegister<Item> register, Registrar<Item> registrar, ResourceLocation path, Supplier<T> itemSupplier) {
-        return Platform.isForge() ? register.register(path.getPath(), itemSupplier) : registrar.register(path, itemSupplier);
+        return Platform.isNeoForge() ? register.register(path.getPath(), itemSupplier) : registrar.register(path, itemSupplier);
     }
 
     public static VoxelShape rotateShape(Direction from, Direction to, VoxelShape shape) {
@@ -59,11 +60,11 @@ public class FurnitureUtil {
         return buffer[0];
     }
 
-    public static InteractionResult onUse(Level world, Player player, InteractionHand hand, BlockHitResult hit, double extraHeight) {
-        if (world.isClientSide) return InteractionResult.PASS;
-        if (player.isShiftKeyDown()) return InteractionResult.PASS;
-        if (FurnitureUtil.isPlayerSitting(player)) return InteractionResult.PASS;
-        if (hit.getDirection() == Direction.DOWN) return InteractionResult.PASS;
+    public static ItemInteractionResult useItemOn(Level world, Player player, InteractionHand hand, BlockHitResult hit, double extraHeight) {
+        if (world.isClientSide) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        if (player.isShiftKeyDown()) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        if (FurnitureUtil.isPlayerSitting(player)) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        if (hit.getDirection() == Direction.DOWN) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         BlockPos hitPos = hit.getBlockPos();
         if (!FurnitureUtil.isOccupied(world, hitPos) && player.getItemInHand(hand).isEmpty()) {
             ChairEntity chair = EntityTypeRegistry.CHAIR.get().create(world);
@@ -72,10 +73,10 @@ public class FurnitureUtil {
             if (FurnitureUtil.addChairEntity(world, hitPos, chair, player.blockPosition())) {
                 world.addFreshEntity(chair);
                 player.startRiding(chair);
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             }
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     public static void onStateReplaced(Level world, BlockPos pos) {
@@ -145,7 +146,7 @@ public class FurnitureUtil {
     }
 
     private static ResourceLocation getDimensionTypeId(Level world) {
-        return world.dimensionTypeId().location();
+        return world.dimension().location();
     }
 
     public enum LineConnectingType implements StringRepresentable {

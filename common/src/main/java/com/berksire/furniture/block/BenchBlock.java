@@ -6,7 +6,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -121,17 +123,17 @@ public class BenchBlock extends LineConnectingBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected ItemInteractionResult useItemOn(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
         if (player.isShiftKeyDown()) {
-            return toggleRest(state, world, pos);
+            return toggleRest(blockState, level, blockPos);
         }
-        return FurnitureUtil.onUse(world, player, hand, hit, -0.1);
+        return FurnitureUtil.useItemOn(level, player, interactionHand, blockHitResult, -0.1);
     }
 
-    public @NotNull InteractionResult toggleRest(BlockState state, Level world, BlockPos pos) {
+    public @NotNull ItemInteractionResult toggleRest(BlockState state, Level world, BlockPos pos) {
         boolean newRestState = !state.getValue(REST);
         updateConnectedBlocks(state, world, pos, newRestState);
-        return InteractionResult.sidedSuccess(world.isClientSide);
+        return ItemInteractionResult.sidedSuccess(world.isClientSide);
     }
 
     @Override
