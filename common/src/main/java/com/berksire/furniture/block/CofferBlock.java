@@ -111,7 +111,7 @@ public class CofferBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
 			BlockEntity blockEntity = level.getBlockEntity(blockPos);
 			if (blockEntity instanceof CofferBlockEntity cofferBlockEntity) {
 				ItemStack itemStack = new ItemStack(blockState.getBlock());
-				cofferBlockEntity.saveToItem(itemStack, null); // Current null provider, TODO fixme
+				cofferBlockEntity.saveToItem(itemStack, level.registryAccess());
 				double x = blockPos.getX() + 0.5;
 				double y = blockPos.getY() + 0.5;
 				double z = blockPos.getZ() + 0.5;
@@ -167,7 +167,7 @@ public class CofferBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
 	@Override
 	public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
 		ItemStack itemStack = super.getCloneItemStack(levelReader, blockPos, blockState);
-		levelReader.getBlockEntity(blockPos, EntityTypeRegistry.COFFER_BLOCK_ENTITY.get()).ifPresent((cofferBlockEntity) -> cofferBlockEntity.saveToItem(itemStack, null));// Current Null, TODO fixme
+		levelReader.getBlockEntity(blockPos, EntityTypeRegistry.COFFER_BLOCK_ENTITY.get()).ifPresent((cofferBlockEntity) -> cofferBlockEntity.saveToItem(itemStack, levelReader.registryAccess()));
 		return itemStack;
 	}
 
