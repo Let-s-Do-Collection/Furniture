@@ -12,7 +12,8 @@ public class Furniture {
                 ObjectRegistry.class,
                 EntityTypeRegistry.class,
                 TabRegistry.class,
-                SoundRegistry.class
+                SoundRegistry.class,
+                JukeboxSongRegistry.class
         );
     }
 
