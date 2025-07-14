@@ -41,9 +41,13 @@ public class DisplayBlockEntity extends BlockEntity implements Clearable {
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
+    @Override
     public @NotNull CompoundTag getUpdateTag(HolderLookup.Provider provider) {
         CompoundTag compoundTag = new CompoundTag();
-        compoundTag.put("DisplayedItem", this.displayedItem.save(provider));
+        // wdog5 - fix displayed Item crash
+        if (this.displayedItem != ItemStack.EMPTY) {
+            compoundTag.put("DisplayedItem", this.displayedItem.save(provider));
+        }
         return compoundTag;
     }
 
