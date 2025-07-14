@@ -2,6 +2,9 @@ modLoader="javafml"
 loaderVersion="[4,)"
 license="All Rights Reserved"
 
+[[mixins]]
+config = "furniture-common.mixins.json"
+
 [[mods]]
 modId="furniture"
 version="${mod_version}"
