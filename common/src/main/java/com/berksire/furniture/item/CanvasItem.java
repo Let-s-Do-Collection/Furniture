@@ -1,16 +1,10 @@
 package com.berksire.furniture.item;
 
 import com.berksire.furniture.client.entity.CanvasEntity;
-import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.tags.PaintingVariantTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
@@ -24,10 +18,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 public class CanvasItem extends HangingEntityItem {
     private final ResourceKey<PaintingVariant> defaultVariant;
@@ -52,7 +43,7 @@ public class CanvasItem extends HangingEntityItem {
             return InteractionResult.FAIL;
         }
 
-        Optional<CanvasEntity> optional = create(level, pos2, direction);
+        Optional<CanvasEntity> optional = CanvasEntity.createCanvas(level, pos2, direction);
         if (optional.isEmpty()) {
             return InteractionResult.CONSUME;
         }
@@ -72,30 +63,5 @@ public class CanvasItem extends HangingEntityItem {
             return InteractionResult.sidedSuccess(level.isClientSide);
         }
         return InteractionResult.CONSUME;
-    }
-
-    public Optional<CanvasEntity> create(Level level, BlockPos pos, Direction direction) {
-        CanvasEntity painting = new CanvasEntity(level, pos);
-        List<Holder<PaintingVariant>> list = new ArrayList<>();
-        level.registryAccess().registryOrThrow(Registries.PAINTING_VARIANT).getTagOrEmpty(PaintingVariantTags.PLACEABLE).forEach(list::add);
-        if (!list.isEmpty()) {
-            list.removeIf((holder) -> {
-                painting.setVariant(holder);
-                return !painting.survives();
-            });
-            if (!list.isEmpty()) {
-                int max = list.stream().mapToInt(CanvasItem::variantArea).max().orElse(0);
-                list.removeIf(holder -> variantArea(holder) < max);
-                return Util.getRandomSafe(list, level.getRandom()).map(holder -> {
-                    painting.setVariant(holder);
-                    return painting;
-                });
-            }
-        }
-        return Optional.empty();
-    }
-
-    private static int variantArea(Holder<PaintingVariant> variant) {
-        return variant.value().area();
     }
 }
