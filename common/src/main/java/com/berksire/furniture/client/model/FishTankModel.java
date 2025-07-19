@@ -1,7 +1,7 @@
 package com.berksire.furniture.client.model;
 
-import com.berksire.furniture.Furniture;
 import com.berksire.furniture.block.entity.FishTankBlockEntity;
+import com.berksire.furniture.util.FurnitureIdentifier;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.animation.AnimationChannel;
@@ -13,11 +13,10 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
 public class FishTankModel extends HierarchicalBlockModel<FishTankBlockEntity> {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(Furniture.MODID, "fish_tank"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(FurnitureIdentifier.parseIdentifier("fish_tank"), "main");
     public final ModelPart fish_tank;
     public final ModelPart cod;
     public final ModelPart cod_1;
@@ -356,5 +355,3 @@ public class FishTankModel extends HierarchicalBlockModel<FishTankBlockEntity> {
         return fish_tank;
     }
 }
-
-

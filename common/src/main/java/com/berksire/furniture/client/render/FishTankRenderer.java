@@ -14,7 +14,6 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.properties.BedPart;
@@ -23,7 +22,7 @@ import org.joml.Quaternionf;
 
 public class FishTankRenderer implements BlockEntityRenderer<FishTankBlockEntity> {
     private static final ResourceLocation NORMAL_TEXTURE = FurnitureIdentifier.parseIdentifier("textures/entity/copper_fish_tank.png");
-    private static final ResourceLocation IRON_TEXTURE = FurnitureIdentifier.parseIdentifier("textures/entity/iron_fish_tank.png");
+    private static final ResourceLocation IRON_TEXTURE = FurnitureIdentifier.parseIdentifier( "textures/entity/iron_fish_tank.png");
     private final FishTankModel model;
 
     public FishTankRenderer(BlockEntityRendererProvider.Context context) {
@@ -58,7 +57,7 @@ public class FishTankRenderer implements BlockEntityRenderer<FishTankBlockEntity
 
         Level world = blockEntity.getLevel();
         assert world != null;
-        float renderTick = (world.getGameTime() % 24000L) + Minecraft.getInstance().getFrameTimeNs();
+        float renderTick = (world.getGameTime() % 24000L) + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true);
         this.model.setupAnim(blockEntity, renderTick);
 
         if (blockEntity.getBlockState().getValue(FishTankBlock.HAS_COD)) {
