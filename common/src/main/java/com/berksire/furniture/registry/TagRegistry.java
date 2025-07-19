@@ -12,10 +12,10 @@ public final class TagRegistry {
     public static final TagKey<Item> TRASH_BAG_BLACKLIST = itemTag();
 
     private static TagKey<PaintingVariant> paintingTag() {
-        return TagKey.create(Registries.PAINTING_VARIANT, new ResourceLocation(Furniture.MODID, "paintings"));
+        return TagKey.create(Registries.PAINTING_VARIANT, ResourceLocation.fromNamespaceAndPath(Furniture.MODID, "paintings"));
     }
 
     private static TagKey<Item> itemTag() {
-        return TagKey.create(Registries.ITEM, new ResourceLocation(Furniture.MODID, "trash_bag_blacklist"));
+        return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Furniture.MODID, "trash_bag_blacklist"));
     }
 }

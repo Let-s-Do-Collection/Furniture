@@ -115,15 +115,14 @@ public class ClockBlock extends FacingBlock implements EntityBlock {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public boolean isPathfindable(BlockState state, BlockGetter level, BlockPos pos, PathComputationType type) {
+    protected boolean isPathfindable(BlockState blockState, PathComputationType pathComputationType) {
         return false;
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (!world.isClientSide) {
-            long time = world.getDayTime();
+    protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
+        if (!level.isClientSide) {
+            long time = level.getDayTime();
             int hours = (int) ((time / 1000 + 6) % 24);
             int minutes = (int) (60 * (time % 1000) / 1000);
 

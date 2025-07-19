@@ -120,9 +120,9 @@ public class GrandfatherClockBlock extends FacingBlock implements EntityBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (!world.isClientSide) {
-            long time = world.getDayTime();
+    protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
+        if (!level.isClientSide) {
+            long time = level.getDayTime();
             int hours = (int) ((time / 1000 + 6) % 24);
             int minutes = (int) (60 * (time % 1000) / 1000);
 

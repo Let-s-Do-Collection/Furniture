@@ -30,10 +30,6 @@ public class LineConnectingBlock extends Block {
         this.registerDefaultState(((this.stateDefinition.any().setValue(FACING, Direction.NORTH)).setValue(TYPE, FurnitureUtil.LineConnectingType.NONE)));
     }
 
-    public @NotNull InteractionResult use(BlockState arg, Level arg2, BlockPos arg3, Player arg4, InteractionHand arg5, BlockHitResult arg6) {
-        return InteractionResult.PASS;
-    }
-
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {

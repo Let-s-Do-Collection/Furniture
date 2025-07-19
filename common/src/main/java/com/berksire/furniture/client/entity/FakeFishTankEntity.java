@@ -3,6 +3,7 @@ package com.berksire.furniture.client.entity;
 import com.berksire.furniture.block.entity.FishTankBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
@@ -24,9 +25,6 @@ public class FakeFishTankEntity extends Entity {
     }
 
     @Override
-    protected void defineSynchedData() {}
-
-    @Override
     public boolean canCollideWith(Entity entity) {
         return false;
     }
@@ -34,6 +32,11 @@ public class FakeFishTankEntity extends Entity {
     @Override
     public boolean isColliding(BlockPos blockPos, BlockState blockState) {
         return false;
+    }
+
+    @Override
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+
     }
 
     public Optional<FishTankBlockEntity> getNearestTankEntity() {

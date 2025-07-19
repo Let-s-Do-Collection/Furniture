@@ -122,12 +122,11 @@ public class FluidRenderer {
         int g = color >> 8 & 0xff;
         int b = color & 0xff;
 
-        builder.vertex(peek.pose(), x, y, z)
-                .color(r, g, b, a)
-                .uv(u, v)
-                .overlayCoords(OverlayTexture.NO_OVERLAY)
-                .uv2(light)
-                .normal(peek.normal(), normal.getX(), normal.getY(), normal.getZ())
-                .endVertex();
+        builder.addVertex(peek.pose(), x, y, z)
+                .setColor(r, g, b, a)
+                .setUv(u, v)
+                .setOverlay(OverlayTexture.NO_OVERLAY)
+                .setLight(light)
+                .setNormal(normal.getX(), normal.getY(), normal.getZ());
     }
 }

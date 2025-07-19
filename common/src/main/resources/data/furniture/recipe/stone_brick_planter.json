@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "CBC",
+    "CCC"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:dirt"
+    },
+    "C": {
+      "item": "minecraft:stone_brick_slab"
+    }
+  },
+  "result": {
+    "id": "furniture:stone_brick_planter",
+    "count": 3
+  }
+}

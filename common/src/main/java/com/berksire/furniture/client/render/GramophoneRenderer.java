@@ -20,7 +20,7 @@ import org.joml.Quaternionf;
 import java.util.Objects;
 
 public class GramophoneRenderer implements BlockEntityRenderer<GramophoneBlockEntity> {
-    private static final ResourceLocation TEXTURE = new FurnitureIdentifier("textures/entity/gramophone.png");
+    private static final ResourceLocation TEXTURE = FurnitureIdentifier.parseIdentifier("textures/entity/gramophone.png");
     private final GramophoneModel<?> model;
 
     public GramophoneRenderer(BlockEntityRendererProvider.Context context) {
@@ -46,9 +46,9 @@ public class GramophoneRenderer implements BlockEntityRenderer<GramophoneBlockEn
 
         ModelPart base = model.gramophone.getChild("base");
         model.disc.visible = false;
-        base.render(poseStack, bufferSource.getBuffer(model.renderType(TEXTURE)), combinedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        base.render(poseStack, bufferSource.getBuffer(model.renderType(TEXTURE)), combinedLight, OverlayTexture.NO_OVERLAY);
         model.disc.visible = true;
-        model.gramophone.getChild("horn").render(poseStack, bufferSource.getBuffer(model.renderType(TEXTURE)), combinedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        model.gramophone.getChild("horn").render(poseStack, bufferSource.getBuffer(model.renderType(TEXTURE)), combinedLight, OverlayTexture.NO_OVERLAY);
 
         if (blockState.getValue(GramophoneBlock.HAS_RECORD)) {
             float totalGameTime = (Objects.requireNonNull(blockEntity.getLevel()).getGameTime() % 360) + partialTicks;
@@ -60,7 +60,7 @@ public class GramophoneRenderer implements BlockEntityRenderer<GramophoneBlockEn
             poseStack.translate(model.disc.x / 16.0F, 0.0, model.disc.z / 16.0F);
             poseStack.mulPose(new Quaternionf().rotateY((float) Math.toRadians(discRotation)));
             poseStack.translate(-model.disc.x / 16.0F, 0.0, -model.disc.z / 16.0F);
-            model.disc.render(poseStack, bufferSource.getBuffer(model.renderType(TEXTURE)), combinedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+            model.disc.render(poseStack, bufferSource.getBuffer(model.renderType(TEXTURE)), combinedLight, OverlayTexture.NO_OVERLAY);
             poseStack.popPose();
         }
 
