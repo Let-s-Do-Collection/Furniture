@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#B#",
+    "#A#"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:oak_slab"
+    },
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "B": {
+      "item": "minecraft:clock"
+    }
+  },
+  "result": {
+    "id": "furniture:oak_clock",
+    "count": 1
+  }
+}
