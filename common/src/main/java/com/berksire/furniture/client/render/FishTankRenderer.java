@@ -97,7 +97,7 @@ public class FishTankRenderer implements BlockEntityRenderer<FishTankBlockEntity
         poseStack.mulPose(rotationCorrector);
         poseStack.translate(-0.5, 0, -0.5);
 
-        FluidRenderer.renderFluidBox(FluidStack.create(Fluids.WATER, 100L), 1f / 16 + 1f / 128, 2f / 16, 1f / 16 + 1f / 128, 15f / 16 - 1f / 128, 13.6f / 16, 31f / 16 - 1f / 128, buffers, poseStack, light, false);
+        FluidRenderer.renderFluidBox(FluidStack.create(Fluids.WATER, 100L), 1f / 16 + 1f / 128, 2f / 16, 1f / 16 + 1f / 128, 15f / 16 - 1f / 128, 13.6f / 16, 31f / 16 - 1f / 128, buffers, poseStack, light, false, blockEntity.getLevel(), blockEntity.getBlockPos());
         poseStack.popPose();
     }
 }

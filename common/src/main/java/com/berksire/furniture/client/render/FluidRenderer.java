@@ -6,18 +6,21 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import dev.architectury.fluid.FluidStack;
-import dev.architectury.injectables.annotations.ExpectPlatform;
+import dev.architectury.hooks.fluid.FluidStackHooks;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.util.Mth;
+import net.minecraft.world.level.Level;
 
 import static net.minecraft.client.renderer.RenderStateShard.*;
 
 public class FluidRenderer {
+
     private static final RenderType FLUID = RenderType.create(Furniture.MODID + ":fluid",
             DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, false, true, RenderType.CompositeState.builder()
                     .setShaderState(RENDERTYPE_ENTITY_TRANSLUCENT_CULL_SHADER)
@@ -25,6 +28,7 @@ public class FluidRenderer {
                     .setTransparencyState(TRANSLUCENT_TRANSPARENCY)
                     .setLightmapState(LIGHTMAP)
                     .setOverlayState(OVERLAY)
+                    .setOutputState(TRANSLUCENT_TARGET)
                     .createCompositeState(true));
 
     public static VertexConsumer getFluidBuilder(MultiBufferSource buffer) {
@@ -32,14 +36,45 @@ public class FluidRenderer {
     }
 
     public static void renderFluidBox(FluidStack fluidStack, float xMin, float yMin, float zMin, float xMax,
-                                      float yMax, float zMax, MultiBufferSource buffer, PoseStack ms, int light, boolean renderBottom) {
-        renderFluidBox(fluidStack, xMin, yMin, zMin, xMax, yMax, zMax, getFluidBuilder(buffer), ms, light, renderBottom);
+                                      float yMax, float zMax, MultiBufferSource buffer, PoseStack ms, int light, boolean renderBottom, Level level, BlockPos blockPos) {
+        renderFluidBox(fluidStack, xMin, yMin, zMin, xMax, yMax, zMax, getFluidBuilder(buffer), ms, light, renderBottom, level, blockPos);
     }
 
-    @ExpectPlatform
-    public static void renderFluidBox(FluidStack fluidStack, float xMin, float yMin, float zMin, float xMax,
-                                      float yMax, float zMax, VertexConsumer builder, PoseStack ms, int light, boolean renderBottom) {
 
+    public static void renderFluidBox(FluidStack fluidStack, float xMin, float yMin, float zMin, float xMax,
+                                      float yMax, float zMax, VertexConsumer builder, PoseStack ms, int light, boolean renderBottom, Level level, BlockPos blockPos) {
+        TextureAtlasSprite fluidTexture = FluidStackHooks.getStillTexture(fluidStack);
+        if (fluidTexture == null)
+            return;
+
+        int color = FluidStackHooks.getColor(fluidStack);
+        int blockLightIn = (light >> 4) & 0xF;
+        int luminosity = Math.max(blockLightIn, FluidStackHooks.getLuminosity(fluidStack, level, blockPos));
+        light = (light & 0xF00000) | luminosity << 4;
+
+        ms.pushPose();
+
+        for (Direction side : Direction.values()) {
+            if (side == Direction.DOWN && !renderBottom)
+                continue;
+
+            boolean positive = side.getAxisDirection() == Direction.AxisDirection.POSITIVE;
+            if (side.getAxis()
+                    .isHorizontal()) {
+                if (side.getAxis() == Direction.Axis.X) {
+                    FluidRenderer.renderStillTiledFace(side, zMin, yMin, zMax, yMax, positive ? xMax : xMin, builder, ms, light,
+                            color, fluidTexture);
+                } else {
+                    FluidRenderer.renderStillTiledFace(side, xMin, yMin, xMax, yMax, positive ? zMax : zMin, builder, ms, light,
+                            color, fluidTexture);
+                }
+            } else {
+                FluidRenderer.renderStillTiledFace(side, xMin, zMin, xMax, zMax, positive ? yMax : yMin, builder, ms, light, color,
+                        fluidTexture);
+            }
+        }
+
+        ms.popPose();
     }
 
     public static void renderStillTiledFace(Direction dir, float left, float down, float right, float up, float depth,
@@ -117,12 +152,16 @@ public class FluidRenderer {
 
         Vec3i normal = face.getNormal();
         PoseStack.Pose peek = ms.last();
+        int a = color >> 24 & 0xff;
+        int r = color >> 16 & 0xff;
+        int g = color >> 8 & 0xff;
+        int b = color & 0xff;
 
         builder.addVertex(peek.pose(), x, y, z)
-                .setWhiteAlpha(OverlayTexture.NO_OVERLAY)
+                .setColor(r, g, b, a)
                 .setUv(u, v)
                 .setOverlay(OverlayTexture.NO_OVERLAY)
                 .setLight(light)
-                .setNormal(peek, normal.getX(), normal.getY(), normal.getZ());
+                .setNormal(normal.getX(), normal.getY(), normal.getZ());
     }
 }
