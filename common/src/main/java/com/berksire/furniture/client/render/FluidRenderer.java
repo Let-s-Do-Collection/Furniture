@@ -117,16 +117,12 @@ public class FluidRenderer {
 
         Vec3i normal = face.getNormal();
         PoseStack.Pose peek = ms.last();
-        int a = color >> 24 & 0xff;
-        int r = color >> 16 & 0xff;
-        int g = color >> 8 & 0xff;
-        int b = color & 0xff;
 
         builder.addVertex(peek.pose(), x, y, z)
-                .setColor(r, g, b, a)
+                .setWhiteAlpha(OverlayTexture.NO_OVERLAY)
                 .setUv(u, v)
                 .setOverlay(OverlayTexture.NO_OVERLAY)
                 .setLight(light)
-                .setNormal(normal.getX(), normal.getY(), normal.getZ());
+                .setNormal(peek, normal.getX(), normal.getY(), normal.getZ());
     }
 }
