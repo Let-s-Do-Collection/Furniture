@@ -1,6 +1,7 @@
 package com.berksire.furniture.block;
 
 import com.berksire.furniture.util.FurnitureUtil;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -42,6 +43,13 @@ public class StreetLanternWallBlock extends HorizontalDirectionalBlock implement
                 .setValue(WATERLOGGED, false)
                 .setValue(BULBS, 0)
                 .setValue(LIT, true));
+    }
+
+    public static final MapCodec<StreetLanternWallBlock> CODEC = simpleCodec(StreetLanternWallBlock::new);
+
+    @Override
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return CODEC;
     }
 
     public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {

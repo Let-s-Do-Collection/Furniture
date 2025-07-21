@@ -3,16 +3,18 @@ package com.berksire.furniture.block;
 import com.berksire.furniture.block.entity.GramophoneBlockEntity;
 import com.berksire.furniture.registry.EntityTypeRegistry;
 import com.berksire.furniture.util.FurnitureUtil;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.RecordItem;
+import net.minecraft.world.item.JukeboxPlayable;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -20,10 +22,12 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.JukeboxBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.JukeboxBlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -65,6 +69,13 @@ public class GramophoneBlock extends BaseEntityBlock {
     public GramophoneBlock(BlockBehaviour.Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(HAS_RECORD, false).setValue(FACING, Direction.NORTH).setValue(HALF, DoubleBlockHalf.LOWER).setValue(REPEAT, false));
+    }
+
+    public static final MapCodec<GramophoneBlock> CODEC = simpleCodec(GramophoneBlock::new);
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
     }
 
     private static VoxelShape makeLowerShape() {
@@ -177,14 +188,12 @@ public class GramophoneBlock extends BaseEntityBlock {
 
     @Override
     public int getAnalogOutputSignal(BlockState blockState, Level level, BlockPos blockPos) {
-        BlockEntity blockEntity = level.getBlockEntity(blockPos);
-        if (blockEntity instanceof GramophoneBlockEntity discPlayerBlockEntity) {
-            Item item = discPlayerBlockEntity.getFirstItem().getItem();
-            if (item instanceof RecordItem recordItem) {
-                return recordItem.getAnalogOutput();
-            }
+        BlockEntity var5 = level.getBlockEntity(blockPos);
+        if (var5 instanceof JukeboxBlockEntity jukeboxBlockEntity) {
+            return jukeboxBlockEntity.getComparatorOutput();
+        } else {
+            return 0;
         }
-        return 0;
     }
 
     @Override
@@ -193,28 +202,13 @@ public class GramophoneBlock extends BaseEntityBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        BlockEntity blockEntity = level.getBlockEntity(blockPos);
-
-        if (blockEntity instanceof GramophoneBlockEntity discPlayerBlockEntity) {
-            ItemStack itemStack = player.getItemInHand(interactionHand);
-            if (player.isShiftKeyDown()) {
-                if (blockState.getValue(HAS_RECORD)) {
-                    discPlayerBlockEntity.popOutRecord();
-                    return InteractionResult.sidedSuccess(level.isClientSide);
-                }
-            } else {
-                if (itemStack.isEmpty()) {
-                    boolean repeat = discPlayerBlockEntity.isRepeat();
-                    discPlayerBlockEntity.setRepeat(!repeat);
-                    player.displayClientMessage(Component.translatable("tooltip.furniture.repeat_mode", Component.translatable(!repeat ? "tooltip.furniture.on" : "tooltip.furniture.off")), true);
-                    return InteractionResult.sidedSuccess(level.isClientSide);
-                } else if (itemStack.getItem() instanceof RecordItem && !blockState.getValue(HAS_RECORD)) {
-                    discPlayerBlockEntity.setRecord(itemStack.copy());
-                    itemStack.shrink(1);
-                    level.setBlock(blockPos, blockState.setValue(HAS_RECORD, true), 3);
-                    return InteractionResult.sidedSuccess(level.isClientSide);
-                }
+    protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
+        if ((Boolean)blockState.getValue(HAS_RECORD)) {
+            BlockEntity var7 = level.getBlockEntity(blockPos);
+            if (var7 instanceof JukeboxBlockEntity) {
+                JukeboxBlockEntity jukeboxBlockEntity = (JukeboxBlockEntity)var7;
+                jukeboxBlockEntity.popOutTheItem();
+                return InteractionResult.sidedSuccess(level.isClientSide);
             }
         }
 
@@ -222,8 +216,18 @@ public class GramophoneBlock extends BaseEntityBlock {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public boolean isPathfindable(BlockState state, BlockGetter level, BlockPos pos, PathComputationType type) {
+    protected ItemInteractionResult useItemOn(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
+        if (blockState.getValue(HAS_RECORD)) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        } else {
+            ItemStack itemStack2 = player.getItemInHand(interactionHand);
+            ItemInteractionResult itemInteractionResult = JukeboxPlayable.tryInsertIntoJukebox(level, blockPos, itemStack2, player);
+            return !itemInteractionResult.consumesAction() ? ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION : itemInteractionResult;
+        }
+    }
+
+    @Override
+    protected boolean isPathfindable(BlockState blockState, PathComputationType pathComputationType) {
         return false;
     }
 }

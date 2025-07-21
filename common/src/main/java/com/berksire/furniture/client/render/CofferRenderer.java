@@ -19,11 +19,11 @@ import org.joml.Quaternionf;
 
 @SuppressWarnings("unused")
 public class CofferRenderer implements BlockEntityRenderer<CofferBlockEntity> {
-    private static final ResourceLocation TEXTURE = new FurnitureIdentifier("textures/entity/coffer.png");
+    private static final ResourceLocation TEXTURE = FurnitureIdentifier.parseIdentifier("textures/entity/coffer.png");
     private final ModelPart coffer;
     private final ModelPart top;
 
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new FurnitureIdentifier("coffer"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(FurnitureIdentifier.parseIdentifier("coffer"), "main");
 
     public CofferRenderer(BlockEntityRendererProvider.Context context) {
         ModelPart modelPart = context.bakeLayer(LAYER_LOCATION);

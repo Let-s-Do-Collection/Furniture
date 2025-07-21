@@ -7,8 +7,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -53,7 +55,7 @@ public class ChimneyBlock extends Block implements EntityBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected ItemInteractionResult useItemOn(ItemStack itemStack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult blockHitResult) {
         if (!world.isClientSide && hand == InteractionHand.MAIN_HAND) {
             if (player.getItemInHand(hand).getItem() == Items.BRUSH && state.getValue(SOOTY)) {
                 world.setBlock(pos, state.setValue(SOOTY, false), 3);
@@ -61,16 +63,16 @@ public class ChimneyBlock extends Block implements EntityBlock {
                 for (int i = 0; i < 5; i++) {
                     world.addParticle(ParticleTypes.WAX_ON, pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5, 0.0, 0.1, 0.0);
                 }
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             } else if (player.isShiftKeyDown()) {
                 SmokeType currentType = state.getValue(SMOKE_TYPE);
                 SmokeType newType = currentType.getNext();
                 world.setBlock(pos, state.setValue(SMOKE_TYPE, newType), 3);
                 player.displayClientMessage(Component.translatable("tooltip.furniture.smoke_type", Component.translatable(newType.getTranslationKey())), true);
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             }
         }
-        return super.use(state, world, pos, player, hand, hit);
+        return super.useItemOn(itemStack, state, world, pos, player, hand, blockHitResult);
     }
 
     @Override

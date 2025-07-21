@@ -1,4 +1,6 @@
 accessWidener   v2  named
 accessible method net/minecraft/world/level/block/FireBlock setFlammable (Lnet/minecraft/world/level/block/Block;II)V
-accessible method net/minecraft/world/level/block/entity/JukeboxBlockEntity tick (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+accessible method net/minecraft/world/level/block/entity/JukeboxBlockEntity tick (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/JukeboxBlockEntity;)V
 accessible method net/minecraft/client/animation/KeyframeAnimations getElapsedSeconds (Lnet/minecraft/client/animation/AnimationDefinition;J)F
+accessible field net/minecraft/world/level/block/entity/BaseContainerBlockEntity name Lnet/minecraft/network/chat/Component;
+accessible method net/minecraft/world/entity/decoration/Painting <init> (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V

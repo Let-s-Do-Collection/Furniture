@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#B#",
+    "#A#"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:mangrove_slab"
+    },
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "B": {
+      "item": "minecraft:tinted_glass"
+    }
+  },
+  "result": {
+    "id": "furniture:mangrove_mirror",
+    "count": 2
+  }
+}

@@ -1,0 +1,37 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="All Rights Reserved"
+
+[[mixins]]
+config = "furniture-common.mixins.json"
+
+[[mods]]
+modId="furniture"
+version="${mod_version}"
+displayName="[Let's Do] Furniture"
+authors="berksire, satisfy, cph101"
+icon = "pack.png"
+description= '''
+Let's expand your world with a whole set of new and exciting furnitures! All in the style of the Let's Do Mods.
+'''
+
+[[dependencies.furniture]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.0,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.furniture]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.furniture]]
+modId = "architectury"
+mandatory = true
+versionRange = "[13.0.0,)"
+ordering = "AFTER"
+side = "BOTH"
