@@ -4,13 +4,13 @@ import com.berksire.furniture.util.FurnitureUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.AbstractCandleBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -32,11 +32,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-@SuppressWarnings("deprecation")
 public class LampBlock extends Block implements SimpleWaterloggedBlock {
     public static final EnumProperty<FurnitureUtil.VerticalConnectingType> TYPE = FurnitureUtil.VerticalConnectingType.VERTICAL_CONNECTING_TYPE;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    public static final BooleanProperty LIT = BooleanProperty.create("lit");
     private static final Map<FurnitureUtil.VerticalConnectingType, Supplier<VoxelShape>> SHAPES_SUPPLIERS = new HashMap<>();
     private static final Map<FurnitureUtil.VerticalConnectingType, VoxelShape> SHAPES = new HashMap<>();
     private final DyeColor color;
@@ -57,7 +55,7 @@ public class LampBlock extends Block implements SimpleWaterloggedBlock {
         this.color = color;
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(TYPE, FurnitureUtil.VerticalConnectingType.NONE)
-                .setValue(LIT, false)
+                .setValue(AbstractCandleBlock.LIT, false)
                 .setValue(WATERLOGGED, false));
     }
 
@@ -67,7 +65,7 @@ public class LampBlock extends Block implements SimpleWaterloggedBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(TYPE, WATERLOGGED, LIT);
+        builder.add(TYPE, WATERLOGGED, AbstractCandleBlock.LIT);
     }
 
     @Override
@@ -145,19 +143,18 @@ public class LampBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult blockHitResult) {
         if (player.isShiftKeyDown() && (state.getValue(TYPE) == FurnitureUtil.VerticalConnectingType.NONE || state.getValue(TYPE) == FurnitureUtil.VerticalConnectingType.TOP)) {
-            boolean lit = !state.getValue(LIT);
-            world.setBlock(pos, state.setValue(LIT, lit), 3);
+            boolean lit = !state.getValue(AbstractCandleBlock.LIT);
+            world.setBlock(pos, state.setValue(AbstractCandleBlock.LIT, lit), 3);
             world.playSound(null, pos, SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_ON, SoundSource.BLOCKS, 1.0F, 1.0F);
             return InteractionResult.SUCCESS;
         }
-        return super.use(state, world, pos, player, hand, hit);
+        return super.useWithoutItem(state, world, pos, player, blockHitResult);
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public boolean isPathfindable(BlockState state, BlockGetter level, BlockPos pos, PathComputationType type) {
+    protected boolean isPathfindable(BlockState blockState, PathComputationType pathComputationType) {
         return false;
     }
 }

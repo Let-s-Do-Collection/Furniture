@@ -2,6 +2,7 @@ package com.berksire.furniture.block;
 
 import com.berksire.furniture.block.entity.FishTankBlockEntity;
 import com.berksire.furniture.registry.EntityTypeRegistry;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -9,10 +10,12 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Cod;
 import net.minecraft.world.entity.animal.Pufferfish;
 import net.minecraft.world.entity.animal.Salmon;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -52,6 +55,13 @@ public class FishTankBlock extends BaseEntityBlock implements EntityBlock {
                 .setValue(HAS_PUFFERFISH, false)
                 .setValue(HAS_SALMON, false)
                 .setValue(FACING, Direction.NORTH));
+    }
+
+    public static final MapCodec<FishTankBlock> CODEC = simpleCodec(FishTankBlock::new);
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
     }
 
     @Override
@@ -152,7 +162,7 @@ public class FishTankBlock extends BaseEntityBlock implements EntityBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, net.minecraft.world.entity.player.Player player, InteractionHand hand, BlockHitResult hit) {
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult blockHitResult) {
         ItemStack itemStack = player.getItemInHand(hand);
         FishTankBlockEntity blockEntity = (FishTankBlockEntity) world.getBlockEntity(pos);
 
@@ -190,15 +200,15 @@ public class FishTankBlock extends BaseEntityBlock implements EntityBlock {
                     player.setItemInHand(hand, new ItemStack(Items.BUCKET));
                 }
 
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             }
         }
 
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override
-    public void playerWillDestroy(Level world, BlockPos pos, BlockState state, net.minecraft.world.entity.player.Player player) {
+    public BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, net.minecraft.world.entity.player.Player player) {
         super.playerWillDestroy(world, pos, state, player);
 
         BlockPos otherPartPos = state.getValue(PART) == BedPart.FOOT
@@ -229,11 +239,11 @@ public class FishTankBlock extends BaseEntityBlock implements EntityBlock {
                 world.addFreshEntity(pufferfish);
             }
         }
+        return super.playerWillDestroy(world, pos, state, player);
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public boolean isPathfindable(BlockState state, BlockGetter level, BlockPos pos, PathComputationType type) {
+    protected boolean isPathfindable(BlockState blockState, PathComputationType pathComputationType) {
         return false;
     }
 }

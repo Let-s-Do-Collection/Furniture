@@ -18,7 +18,7 @@ public class CraftingMenuMixin {
     @Shadow @Final private ContainerLevelAccess access;
 
     @Inject(method = "stillValid", at = @At("HEAD"), cancellable = true)
-    public void stillValid(Player player, CallbackInfoReturnable<Boolean> cir) {
+    public void furniture$stillValid(Player player, CallbackInfoReturnable<Boolean> cir) {
         boolean isValid = this.access.evaluate((world, pos) -> {
             Block block = world.getBlockState(pos).getBlock();
             return world.getBlockState(pos).is(ObjectRegistry.BLUEPRINTS.get()) || block instanceof CraftingTableBlock;

@@ -42,7 +42,7 @@ public class PellsSpawnItem extends Item {
             if (level.noCollision(null, aabb) && level.getEntities(null, aabb).isEmpty() && !level.getBlockState(blockpos.below()).isAir()) {
                 if (level instanceof ServerLevel serverlevel) {
                     Consumer<PellsEntity> consumer = EntityType.createDefaultStackConfig(serverlevel, itemstack, pContext.getPlayer());
-                    PellsEntity pells = EntityTypeRegistry.PELLS.get().create(serverlevel, itemstack.getTag(), consumer, blockpos, MobSpawnType.SPAWN_EGG, true, true);
+                    PellsEntity pells = EntityTypeRegistry.PELLS.get().create(serverlevel, consumer, blockpos, MobSpawnType.SPAWN_EGG, true, true);
                     if (pells == null) {
                         return InteractionResult.FAIL;
                     }

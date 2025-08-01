@@ -99,8 +99,8 @@ public class CurtainBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        return toggleCurtain(state, level, pos, player);
+    protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
+        return toggleCurtain(blockState, level, blockPos, player);
     }
 
     public InteractionResult toggleCurtain(BlockState state, Level level, BlockPos pos, Player player) {

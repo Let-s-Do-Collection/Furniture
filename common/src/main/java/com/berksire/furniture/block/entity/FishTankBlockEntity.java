@@ -2,8 +2,10 @@ package com.berksire.furniture.block.entity;
 
 import com.berksire.furniture.registry.EntityTypeRegistry;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.AnimationState;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -50,19 +52,19 @@ public class FishTankBlockEntity extends BlockEntity implements BlockEntityTicke
     }
 
     @Override
-    public void load(CompoundTag tag) {
-        super.load(tag);
-        hasCod = tag.getBoolean("HasCod");
-        hasPufferfish = tag.getBoolean("HasPufferfish");
-        hasSalmon = tag.getBoolean("HasSalmon");
+    protected void loadAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.loadAdditional(compoundTag, provider);
+        hasCod = compoundTag.getBoolean("HasCod");
+        hasPufferfish = compoundTag.getBoolean("HasPufferfish");
+        hasSalmon = compoundTag.getBoolean("HasSalmon");
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag) {
-        super.saveAdditional(tag);
-        tag.putBoolean("HasCod", hasCod);
-        tag.putBoolean("HasPufferfish", hasPufferfish);
-        tag.putBoolean("HasSalmon", hasSalmon);
+    protected void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.saveAdditional(compoundTag, provider);
+        compoundTag.putBoolean("HasCod", hasCod);
+        compoundTag.putBoolean("HasPufferfish", hasPufferfish);
+        compoundTag.putBoolean("HasSalmon", hasSalmon);
     }
 
     @Override

@@ -92,7 +92,7 @@ public class TelescopeBlock extends Block {
     }
 
     @Override
-    public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
+    public BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
         if (!world.isClientSide) {
             if (player.isCreative()) {
                 preventCreativeDropFromBottomPart(world, pos, state, player);
@@ -100,7 +100,7 @@ public class TelescopeBlock extends Block {
                 dropResources(state, world, pos, null, player, player.getMainHandItem());
             }
         }
-        super.playerWillDestroy(world, pos, state, player);
+        return super.playerWillDestroy(world, pos, state, player);
     }
 
     @Override

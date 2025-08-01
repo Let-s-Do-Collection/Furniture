@@ -1,0 +1,11 @@
+{
+  "asset_id": "furniture:strong",
+  "height": 16,
+  "width": 4,
+  "title": {
+    "translate": "painting.furniture.strong.title"
+  },
+  "author": {
+    "translate": "painting.furniture.strong.author"
+  }
+}

@@ -33,12 +33,12 @@ public final class EntityTypeRegistry {
     public static final RegistrySupplier<BlockEntityType<DresserBlockEntity>> DRESSER_BLOCK_ENTITY = registerBlockEntity("dresser", () -> BlockEntityType.Builder.of(DresserBlockEntity::new, DRESSER.get("oak").get(), DRESSER.get("birch").get(), DRESSER.get("acacia").get(), DRESSER.get("cherry").get(), DRESSER.get("dark_oak").get(), DRESSER.get("jungle").get(), DRESSER.get("mangrove").get(), DRESSER.get("spruce").get()).build(null));
     public static final RegistrySupplier<BlockEntityType<DisplayBlockEntity>> DISPLAY_BLOCK_ENTITY = registerBlockEntity("display", () -> BlockEntityType.Builder.of(DisplayBlockEntity::new, DISPLAY.get()).build(null));
 
-    public static final RegistrySupplier<EntityType<ChairEntity>> CHAIR = registerEntity("chair", () -> EntityType.Builder.of(ChairEntity::new, MobCategory.MISC).sized(0.001F, 0.001F).build(new FurnitureIdentifier("chair").toString()));
-    public static final RegistrySupplier<EntityType<CanvasEntity>> CANVAS = registerEntity("canvas", () -> EntityType.Builder.<CanvasEntity>of(CanvasEntity::new, MobCategory.MISC).sized(1.0F, 2.0F).build(new FurnitureIdentifier("canvas").toString()));
-    public static final RegistrySupplier<EntityType<PellsEntity>> PELLS = registerEntity("pells", () -> EntityType.Builder.of(PellsEntity::new, MobCategory.MISC).sized(1.0F, 2.0F).build(new FurnitureIdentifier("pells").toString()));
+    public static final RegistrySupplier<EntityType<ChairEntity>> CHAIR = registerEntity("chair", () -> EntityType.Builder.of(ChairEntity::new, MobCategory.MISC).sized(0.001F, 0.001F).build(FurnitureIdentifier.parseIdentifier("chair").toString()));
+    public static final RegistrySupplier<EntityType<CanvasEntity>> CANVAS = registerEntity("canvas", () -> EntityType.Builder.<CanvasEntity>of(CanvasEntity::new, MobCategory.MISC).sized(1.0F, 2.0F).build(FurnitureIdentifier.parseIdentifier("canvas").toString()));
+    public static final RegistrySupplier<EntityType<PellsEntity>> PELLS = registerEntity("pells", () -> EntityType.Builder.of(PellsEntity::new, MobCategory.MISC).sized(1.0F, 2.0F).build(FurnitureIdentifier.parseIdentifier("pells").toString()));
 
     private static <T extends BlockEntityType<?>> RegistrySupplier<T> registerBlockEntity(final String path, final Supplier<T> type) {
-        return BLOCK_ENTITY_TYPES.register(new FurnitureIdentifier(path), type);
+        return BLOCK_ENTITY_TYPES.register(FurnitureIdentifier.parseIdentifier(path), type);
     }
 
     private static <T extends EntityType<?>> RegistrySupplier<T> registerEntity(final String path, final Supplier<T> type) {

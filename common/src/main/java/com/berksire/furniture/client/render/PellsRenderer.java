@@ -3,6 +3,7 @@ package com.berksire.furniture.client.render;
 import com.berksire.furniture.Furniture;
 import com.berksire.furniture.client.entity.PellsEntity;
 import com.berksire.furniture.client.model.PellsModel;
+import com.berksire.furniture.util.FurnitureIdentifier;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -21,7 +22,7 @@ import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
 public class PellsRenderer extends MobRenderer<PellsEntity, PellsModel<PellsEntity>>{
-    protected static final ResourceLocation TEXTURE = new ResourceLocation(Furniture.MODID, "textures/entity/pells.png");
+    protected static final ResourceLocation TEXTURE = FurnitureIdentifier.parseIdentifier("textures/entity/pells.png");
     private static final DecimalFormat FORMAT = new DecimalFormat("###.##", new DecimalFormatSymbols(Locale.GERMAN));
 
     public PellsRenderer(EntityRendererProvider.Context context){
@@ -59,7 +60,7 @@ public class PellsRenderer extends MobRenderer<PellsEntity, PellsModel<PellsEnti
 
     protected void renderText(PellsEntity entityIn, String text, PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, Color textColor){
         if(entityIn.hurtTime > 0){
-            float partialTicks = Minecraft.getInstance().getFrameTime();
+            float partialTicks = Minecraft.getInstance().getFrameTimeNs();
             Component component = Component.literal(text);
             entityIn.lastDamageOffset = Mth.lerp(partialTicks, entityIn.lastDamageOffsetPrev, (float)Math.abs(Math.sin(((float)entityIn.hurtTime) / 4f)));
             entityIn.lastDamageOffsetPrev = entityIn.lastDamageOffset;

@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class SmithingMenuMixin {
 
     @Inject(method = "isValidBlock", at = @At("HEAD"), cancellable = true)
-    private void injectIsValidBlock(BlockState blockState, CallbackInfoReturnable<Boolean> cir) {
+    private void furniture$injectIsValidBlock(BlockState blockState, CallbackInfoReturnable<Boolean> cir) {
         if (blockState.is(Blocks.SMITHING_TABLE) || blockState.is(ObjectRegistry.TOOL_BOX.get())) {
             cir.setReturnValue(true);
         }

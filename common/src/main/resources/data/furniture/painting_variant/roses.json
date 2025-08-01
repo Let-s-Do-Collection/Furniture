@@ -1,0 +1,11 @@
+{
+  "asset_id": "furniture:roses",
+  "height": 8,
+  "width": 12,
+  "title": {
+    "translate": "painting.furniture.roses.title"
+  },
+  "author": {
+    "translate": "painting.furniture.roses.author"
+  }
+}

@@ -32,8 +32,8 @@ dependencies {
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
 
     // Iris compat
-    modImplementation("maven.modrinth:iris:1.7.6+1.20.1")
-    modImplementation("maven.modrinth:sodium:mc1.20.1-0.5.12-beta.2-fabric")
+    modImplementation("maven.modrinth:iris:1.8.8+1.21.1-fabric")
+    modImplementation("maven.modrinth:sodium:mc1.21.1-0.6.13-fabric")
     // Normally included in iris
     runtimeOnly("org.anarres:jcpp:1.4.14")
     runtimeOnly("io.github.douira:glsl-transformer:2.0.2")
