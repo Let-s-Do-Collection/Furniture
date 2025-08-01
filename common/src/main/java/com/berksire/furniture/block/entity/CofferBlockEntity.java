@@ -75,6 +75,12 @@ public class CofferBlockEntity extends RandomizableContainerBlockEntity implemen
     }
 
     @Override
+    public void saveToItem(ItemStack itemStack) {
+        super.saveToItem(itemStack);
+        if (this.hasCustomName()) itemStack.setHoverName(this.getCustomName());
+    }
+
+    @Override
     protected @NotNull Component getDefaultName() {
         return Component.translatable(this.getBlockState().getBlock().getDescriptionId());
     }
