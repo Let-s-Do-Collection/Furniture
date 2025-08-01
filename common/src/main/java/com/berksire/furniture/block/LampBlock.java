@@ -36,7 +36,7 @@ import java.util.function.Supplier;
 public class LampBlock extends Block implements SimpleWaterloggedBlock {
     public static final EnumProperty<FurnitureUtil.VerticalConnectingType> TYPE = FurnitureUtil.VerticalConnectingType.VERTICAL_CONNECTING_TYPE;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    public static final BooleanProperty LIT = BooleanProperty.create("lit");
+    public static final BooleanProperty LIT = BlockStateProperties.LIT;
     private static final Map<FurnitureUtil.VerticalConnectingType, Supplier<VoxelShape>> SHAPES_SUPPLIERS = new HashMap<>();
     private static final Map<FurnitureUtil.VerticalConnectingType, VoxelShape> SHAPES = new HashMap<>();
     private final DyeColor color;

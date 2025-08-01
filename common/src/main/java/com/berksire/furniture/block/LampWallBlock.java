@@ -37,7 +37,7 @@ import java.util.function.Supplier;
 public class LampWallBlock extends Block implements SimpleWaterloggedBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    public static final BooleanProperty LIT = BooleanProperty.create("lit");
+    public static final BooleanProperty LIT = BlockStateProperties.LIT;
     private final DyeColor color;
 
     public LampWallBlock(BlockBehaviour.Properties properties, DyeColor color) {
