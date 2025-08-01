@@ -42,7 +42,9 @@ public class DisplayBlockEntity extends BlockEntity implements Clearable {
 
     public @NotNull CompoundTag getUpdateTag() {
         CompoundTag compoundTag = new CompoundTag();
-        compoundTag.put("DisplayedItem", this.displayedItem.save(new CompoundTag()));
+        if (this.displayedItem != ItemStack.EMPTY) {
+            compoundTag.put("DisplayedItem", this.displayedItem.save(new CompoundTag()));
+        }
         return compoundTag;
     }
 
