@@ -1,7 +1,7 @@
 package com.berksire.furniture.client.render;
 
-import com.berksire.furniture.block.FacingBlock;
-import com.berksire.furniture.block.entity.DisplayBlockEntity;
+import com.berksire.furniture.core.block.FacingBlock;
+import com.berksire.furniture.core.block.entity.DisplayBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;

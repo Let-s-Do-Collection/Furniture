@@ -1,10 +1,10 @@
 package com.berksire.furniture.client.render;
 
-import com.berksire.furniture.block.FishTankBlock;
-import com.berksire.furniture.block.entity.FishTankBlockEntity;
+import com.berksire.furniture.core.block.FishTankBlock;
+import com.berksire.furniture.core.block.entity.FishTankBlockEntity;
 import com.berksire.furniture.client.model.FishTankModel;
-import com.berksire.furniture.registry.ObjectRegistry;
-import com.berksire.furniture.util.FurnitureIdentifier;
+import com.berksire.furniture.core.registry.ObjectRegistry;
+import com.berksire.furniture.core.util.FurnitureIdentifier;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;

@@ -1,10 +1,9 @@
 package com.berksire.furniture.client.render;
 
-import com.berksire.furniture.Furniture;
-import com.berksire.furniture.block.GrandfatherClockBlock;
-import com.berksire.furniture.block.entity.GrandfatherClockBlockEntity;
+import com.berksire.furniture.core.block.GrandfatherClockBlock;
+import com.berksire.furniture.core.block.entity.GrandfatherClockBlockEntity;
 import com.berksire.furniture.client.model.GrandfatherClockModel;
-import com.berksire.furniture.util.FurnitureIdentifier;
+import com.berksire.furniture.core.util.FurnitureIdentifier;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.geom.ModelPart;

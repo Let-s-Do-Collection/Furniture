@@ -1,9 +1,9 @@
 package com.berksire.furniture.client.render;
 
-import com.berksire.furniture.block.GramophoneBlock;
-import com.berksire.furniture.block.entity.GramophoneBlockEntity;
+import com.berksire.furniture.core.block.GramophoneBlock;
+import com.berksire.furniture.core.block.entity.GramophoneBlockEntity;
 import com.berksire.furniture.client.model.GramophoneModel;
-import com.berksire.furniture.util.FurnitureIdentifier;
+import com.berksire.furniture.core.util.FurnitureIdentifier;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;

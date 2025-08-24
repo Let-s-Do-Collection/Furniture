@@ -1,7 +1,7 @@
 package com.berksire.furniture.neoforge;
 
 import com.berksire.furniture.Furniture;
-import com.berksire.furniture.registry.FlammableBlockRegistry;
+import com.berksire.furniture.core.registry.FlammableBlockRegistry;
 import dev.architectury.platform.hooks.EventBusesHooks;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;

@@ -5,7 +5,7 @@ import com.berksire.furniture.client.model.FishTankModel;
 import com.berksire.furniture.client.model.GramophoneModel;
 import com.berksire.furniture.client.model.GrandfatherClockModel;
 import com.berksire.furniture.client.render.*;
-import com.berksire.furniture.registry.EntityTypeRegistry;
+import com.berksire.furniture.core.registry.EntityTypeRegistry;
 import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
 import dev.architectury.registry.client.level.entity.EntityRendererRegistry;
 import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.Block;
 
 import java.util.stream.Stream;
 
-import static com.berksire.furniture.registry.ObjectRegistry.*;
+import static com.berksire.furniture.core.registry.ObjectRegistry.*;
 
 @Environment(EnvType.CLIENT)
 public class FurnitureClient {

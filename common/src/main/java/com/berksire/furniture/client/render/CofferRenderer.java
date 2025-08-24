@@ -1,8 +1,8 @@
 package com.berksire.furniture.client.render;
 
-import com.berksire.furniture.block.CofferBlock;
-import com.berksire.furniture.block.entity.CofferBlockEntity;
-import com.berksire.furniture.util.FurnitureIdentifier;
+import com.berksire.furniture.core.block.CofferBlock;
+import com.berksire.furniture.core.block.entity.CofferBlockEntity;
+import com.berksire.furniture.core.util.FurnitureIdentifier;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.geom.ModelLayerLocation;

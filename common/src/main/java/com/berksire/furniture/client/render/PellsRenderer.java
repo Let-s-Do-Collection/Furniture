@@ -1,11 +1,9 @@
 package com.berksire.furniture.client.render;
 
-import com.berksire.furniture.Furniture;
 import com.berksire.furniture.client.entity.PellsEntity;
 import com.berksire.furniture.client.model.PellsModel;
-import com.berksire.furniture.util.FurnitureIdentifier;
+import com.berksire.furniture.core.util.FurnitureIdentifier;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -23,7 +21,7 @@ import java.util.Locale;
 
 public class PellsRenderer extends MobRenderer<PellsEntity, PellsModel<PellsEntity>>{
     protected static final ResourceLocation TEXTURE = FurnitureIdentifier.parseIdentifier("textures/entity/pells.png");
-    private static final DecimalFormat FORMAT = new DecimalFormat("###.##", new DecimalFormatSymbols(Locale.GERMAN));
+    private static final DecimalFormat FORMAT = new DecimalFormat("###.##", new DecimalFormatSymbols(Locale.ENGLISH));
 
     public PellsRenderer(EntityRendererProvider.Context context){
         super(context, new PellsModel<>(PellsModel.createBodyLayer().bakeRoot()), 0.0F);
@@ -40,7 +38,7 @@ public class PellsRenderer extends MobRenderer<PellsEntity, PellsModel<PellsEnti
         float lastDamage = entityIn.getLastDamage();
         if(lastDamage > 0f){
             Color color = getColorByDamage(lastDamage);
-            renderText(entityIn, FORMAT.format(lastDamage), stack, bufferIn, packedLightIn, color);
+            renderText(entityIn, FORMAT.format(lastDamage), partialTicks, stack, bufferIn, packedLightIn, color);
         }
     }
 
@@ -58,23 +56,24 @@ public class PellsRenderer extends MobRenderer<PellsEntity, PellsModel<PellsEnti
         }
     }
 
-    protected void renderText(PellsEntity entityIn, String text, PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, Color textColor){
+    protected void renderText(PellsEntity entityIn, String text, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, Color textColor){
         if(entityIn.hurtTime > 0){
-            float partialTicks = Minecraft.getInstance().getFrameTimeNs();
             Component component = Component.literal(text);
-            entityIn.lastDamageOffset = Mth.lerp(partialTicks, entityIn.lastDamageOffsetPrev, (float)Math.abs(Math.sin(((float)entityIn.hurtTime) / 4f)));
+            float target = (float)Math.abs(Math.sin(((float)entityIn.hurtTime) / 4f));
+            entityIn.lastDamageOffset = Mth.lerp(partialTicks, entityIn.lastDamageOffsetPrev, target);
             entityIn.lastDamageOffsetPrev = entityIn.lastDamageOffset;
-            float alpha = entityIn.lastDamageOffset;
+            float alpha = Mth.clamp(entityIn.lastDamageOffset, 0.6f, 1f);
+            int argb = ((int)(alpha * 255f) << 24) | (textColor.getRGB() & 0x00FFFFFF);
 
             matrixStackIn.pushPose();
-            matrixStackIn.translate(0, entityIn.getBbHeight() + entityIn.lastDamageOffset, 0.0D);
+            matrixStackIn.translate(0.0D, entityIn.getBbHeight() + 0.5D + entityIn.lastDamageOffset * 0.5D, 0.0D);
             matrixStackIn.mulPose(this.entityRenderDispatcher.cameraOrientation());
-            matrixStackIn.scale(-entityIn.lastDamageOffset / 20f, -entityIn.lastDamageOffset / 20f, entityIn.lastDamageOffset / 20f);
+            matrixStackIn.scale(0.025F, -0.025F, 0.025F);
             Matrix4f matrix4f = matrixStackIn.last().pose();
 
             Font font = this.getFont();
-            Color color = new Color(textColor.getRed() / 255f, textColor.getGreen() / 255f, textColor.getBlue() / 255f, alpha);
-            font.drawInBatch(component, (float)(-font.width(component) / 2) * entityIn.lastDamageOffset, entityIn.lastDamageOffset, color.getRGB(), false, matrix4f, bufferIn, Font.DisplayMode.NORMAL, 0, packedLightIn);
+            float x = -font.width(component) / 2f;
+            font.drawInBatch(component, x, 0f, argb, false, matrix4f, bufferIn, Font.DisplayMode.NORMAL, 0, packedLightIn);
             matrixStackIn.popPose();
         }
     }

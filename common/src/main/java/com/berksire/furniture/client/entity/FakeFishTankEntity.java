@@ -1,6 +1,6 @@
 package com.berksire.furniture.client.entity;
 
-import com.berksire.furniture.block.entity.FishTankBlockEntity;
+import com.berksire.furniture.core.block.entity.FishTankBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.SynchedEntityData;

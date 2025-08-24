@@ -1,7 +1,7 @@
 package com.berksire.furniture.client.entity;
 
-import com.berksire.furniture.registry.EntityTypeRegistry;
-import com.berksire.furniture.registry.ObjectRegistry;
+import com.berksire.furniture.core.registry.EntityTypeRegistry;
+import com.berksire.furniture.core.registry.ObjectRegistry;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

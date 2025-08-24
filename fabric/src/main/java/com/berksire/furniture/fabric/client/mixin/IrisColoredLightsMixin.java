@@ -1,15 +1,7 @@
 package com.berksire.furniture.fabric.client.mixin;
 
-import com.bawnorton.mixinsquared.TargetHandler;
-import com.berksire.furniture.registry.ObjectRegistry;
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.caffeinemc.mods.sodium.client.render.chunk.compile.tasks.ChunkBuilderMeshingTask;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
 
 // TODO Waiting for updated
 /// Optional mixin to support colored lights when using Iris. Selects the most similar

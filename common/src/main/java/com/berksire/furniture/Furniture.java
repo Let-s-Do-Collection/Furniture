@@ -1,6 +1,6 @@
 package com.berksire.furniture;
 
-import com.berksire.furniture.registry.*;
+import com.berksire.furniture.core.registry.*;
 import com.google.common.reflect.Reflection;
 
 public class Furniture {

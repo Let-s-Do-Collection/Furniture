@@ -1,6 +1,6 @@
 package com.berksire.furniture.client.entity;
 
-import com.berksire.furniture.registry.ObjectRegistry;
+import com.berksire.furniture.core.registry.ObjectRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -51,8 +51,8 @@ public class PellsEntity extends Mob {
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
-        entityData.set(LAST_DAMAGE, 0f);
-        entityData.set(IS_CRIT, false);
+        builder.define(LAST_DAMAGE, 0f);
+        builder.define(IS_CRIT, false);
     }
 
     public void tick() {
@@ -122,10 +122,6 @@ public class PellsEntity extends Mob {
     }
 
     protected void doPush(@NotNull Entity pEntity) {
-    }
-
-    public boolean canBeLeashed(@NotNull Player pPlayer) {
-        return false;
     }
 
     protected void pushEntities() {

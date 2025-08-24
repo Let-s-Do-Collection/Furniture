@@ -1,6 +1,6 @@
 package com.berksire.furniture.client.entity;
 
-import com.berksire.furniture.util.FurnitureUtil;
+import com.berksire.furniture.core.util.FurnitureUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;

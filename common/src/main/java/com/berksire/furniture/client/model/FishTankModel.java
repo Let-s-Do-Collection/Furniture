@@ -1,7 +1,7 @@
 package com.berksire.furniture.client.model;
 
-import com.berksire.furniture.block.entity.FishTankBlockEntity;
-import com.berksire.furniture.util.FurnitureIdentifier;
+import com.berksire.furniture.core.block.entity.FishTankBlockEntity;
+import com.berksire.furniture.core.util.FurnitureIdentifier;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.animation.AnimationChannel;
