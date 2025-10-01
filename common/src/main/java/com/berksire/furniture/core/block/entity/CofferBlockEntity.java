@@ -11,6 +11,7 @@ import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Inventory;
@@ -25,6 +26,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 @SuppressWarnings("unused")
 public class CofferBlockEntity extends RandomizableContainerBlockEntity implements LidBlockEntity {
@@ -79,9 +82,10 @@ public class CofferBlockEntity extends RandomizableContainerBlockEntity implemen
         super.collectImplicitComponents(builder);
         if (this.getLootTable() == null && this.level != null) {
             CompoundTag tag = new CompoundTag();
-            HolderLookup.Provider provider = this.level.registryAccess();
-            ContainerHelper.saveAllItems(tag, this.items, provider);
+            ContainerHelper.saveAllItems(tag, this.items, this.level.registryAccess());
             if (tag.contains("Items", 9) && !tag.getList("Items", 10).isEmpty()) {
+                ResourceLocation id = Objects.requireNonNull(this.getType().builtInRegistryHolder()).key().location();
+                tag.putString("id", id.toString());
                 builder.set(DataComponents.BLOCK_ENTITY_DATA, CustomData.of(tag));
             }
         }

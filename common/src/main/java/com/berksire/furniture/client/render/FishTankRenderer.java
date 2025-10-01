@@ -31,7 +31,6 @@ public class FishTankRenderer implements BlockEntityRenderer<FishTankBlockEntity
 
     @Override
     public void render(FishTankBlockEntity blockEntity, float f, PoseStack poseStack, MultiBufferSource buffers, int light, int overlay) {
-        // Only render once
         boolean isFoot = blockEntity.getBlockState().getValue(FishTankBlock.PART) == BedPart.FOOT;
         if (!isFoot) return;
 

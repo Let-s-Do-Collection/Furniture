@@ -93,8 +93,7 @@ public class FluidRenderer {
         }
     }
 
-    private static void putVertex(VertexConsumer builder, PoseStack ms, float x, float y, float z, int color, float u,
-                                  float v, Direction face, int light) {
+    private static void putVertex(VertexConsumer builder, PoseStack ms, float x, float y, float z, int color, float u, float v, Direction face, int light) {
         Vec3i normal = face.getNormal();
         PoseStack.Pose pose = ms.last();
         int a = color >> 24 & 0xff;
