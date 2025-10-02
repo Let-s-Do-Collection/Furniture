@@ -10,23 +10,27 @@ import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.StringRepresentable;
+import net.minecraft.util.Tuple;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Supplier;
 
 public class FurnitureUtil {
@@ -57,6 +61,47 @@ public class FurnitureUtil {
         }
 
         return buffer[0];
+    }
+
+    public static Optional<Tuple<Float, Float>> getRelativeHitCoordinatesForBlockFace(
+            BlockHitResult blockHitResult,
+            Direction direction,
+            Direction[] unAllowedDirections) {
+
+        Direction hitDirection = blockHitResult.getDirection();
+
+        for (Direction unAllowed : unAllowedDirections) {
+            if (unAllowed == hitDirection) {
+                return Optional.empty();
+            }
+        }
+
+        if (hitDirection != direction && hitDirection != Direction.UP && hitDirection != Direction.DOWN) {
+            return Optional.empty();
+        }
+
+        BlockPos adjacentPos = blockHitResult.getBlockPos().relative(hitDirection);
+        Vec3 hitLocation = blockHitResult.getLocation().subtract(
+                adjacentPos.getX(),
+                adjacentPos.getY(),
+                adjacentPos.getZ()
+        );
+
+        float x = (float) hitLocation.x();
+        float z = (float) hitLocation.z();
+        float y = (float) hitLocation.y();
+
+        Direction effectiveDirection = (hitDirection == Direction.UP || hitDirection == Direction.DOWN)
+                ? direction
+                : hitDirection;
+
+        return switch (effectiveDirection) {
+            case NORTH -> Optional.of(new Tuple<>(1.0f - x, y));
+            case SOUTH -> Optional.of(new Tuple<>(x, y));
+            case WEST -> Optional.of(new Tuple<>(z, y));
+            case EAST -> Optional.of(new Tuple<>(1.0f - z, y));
+            default -> Optional.empty();
+        };
     }
 
     public static ItemInteractionResult useItemOn(Level world, Player player, InteractionHand hand, BlockHitResult hit, double extraHeight) {
@@ -223,5 +268,16 @@ public class FurnitureUtil {
         public String getTranslationKey() {
             return "tooltip.furniture.smoke_type." + this.name;
         }
+    }
+
+    public static Collection<ServerPlayer> tracking(ServerLevel world, ChunkPos pos) {
+        Objects.requireNonNull(world, "The world cannot be null");
+        Objects.requireNonNull(pos, "The chunk pos cannot be null");
+        return world.getChunkSource().chunkMap.getPlayers(pos, false);
+    }
+
+    public static Collection<ServerPlayer> tracking(ServerLevel world, BlockPos pos) {
+        Objects.requireNonNull(pos, "BlockPos cannot be null");
+        return tracking(world, new ChunkPos(pos));
     }
 }

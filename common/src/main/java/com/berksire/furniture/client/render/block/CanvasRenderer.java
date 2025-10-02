@@ -1,4 +1,4 @@
-package com.berksire.furniture.client.render;
+package com.berksire.furniture.client.render.block;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.PaintingRenderer;

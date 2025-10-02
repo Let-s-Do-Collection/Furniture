@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 
 public class GrandfatherClockModel<T extends Entity> extends EntityModel<T> {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(Furniture.MODID, "grandfatherclock"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(Furniture.identifier( "grandfatherclock"), "main");
     private final ModelPart grandfatherclock;
     public final ModelPart pendulum;
     public final ModelPart minutes;

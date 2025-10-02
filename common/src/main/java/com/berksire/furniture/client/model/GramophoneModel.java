@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 
 public class GramophoneModel<T extends Entity> extends EntityModel<T> {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(Furniture.MODID, "gramophone"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(Furniture.identifier("gramophone"), "main");
     public final ModelPart gramophone;
     public final ModelPart disc;
 

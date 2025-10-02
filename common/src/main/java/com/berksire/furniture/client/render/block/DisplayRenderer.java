@@ -1,4 +1,4 @@
-package com.berksire.furniture.client.render;
+package com.berksire.furniture.client.render.block;
 
 import com.berksire.furniture.core.block.FacingBlock;
 import com.berksire.furniture.core.block.entity.DisplayBlockEntity;

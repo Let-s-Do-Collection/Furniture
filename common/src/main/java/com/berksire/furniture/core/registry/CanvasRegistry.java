@@ -1,6 +1,6 @@
 package com.berksire.furniture.core.registry;
 
-import com.berksire.furniture.core.util.FurnitureIdentifier;
+import com.berksire.furniture.Furniture;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.decoration.PaintingVariant;
@@ -25,6 +25,6 @@ public class CanvasRegistry {
     public static final ResourceKey<PaintingVariant> HOPPER = create("hopper");
 
     private static ResourceKey<PaintingVariant> create(String string) {
-        return ResourceKey.create(Registries.PAINTING_VARIANT, FurnitureIdentifier.parseIdentifier(string));
+        return ResourceKey.create(Registries.PAINTING_VARIANT, Furniture.identifier(string));
     }
 }

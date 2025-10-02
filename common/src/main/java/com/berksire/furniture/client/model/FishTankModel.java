@@ -1,7 +1,7 @@
 package com.berksire.furniture.client.model;
 
+import com.berksire.furniture.Furniture;
 import com.berksire.furniture.core.block.entity.FishTankBlockEntity;
-import com.berksire.furniture.core.util.FurnitureIdentifier;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.animation.AnimationChannel;
@@ -16,7 +16,7 @@ import net.minecraft.client.renderer.RenderType;
 import org.jetbrains.annotations.NotNull;
 
 public class FishTankModel extends HierarchicalBlockModel<FishTankBlockEntity> {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(FurnitureIdentifier.parseIdentifier("fish_tank"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(Furniture.identifier("fish_tank"), "main");
     public final ModelPart fish_tank;
     public final ModelPart cod;
     public final ModelPart cod_1;

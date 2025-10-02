@@ -10,7 +10,7 @@ import net.minecraft.world.item.ItemStack;
 
 @SuppressWarnings("unused")
 public class TabRegistry {
-    public static final DeferredRegister<CreativeModeTab> FURNITURE_TABS = DeferredRegister.create(Furniture.MODID, Registries.CREATIVE_MODE_TAB);
+    public static final DeferredRegister<CreativeModeTab> FURNITURE_TABS = DeferredRegister.create(Furniture.MOD_ID, Registries.CREATIVE_MODE_TAB);
 
     public static final RegistrySupplier<CreativeModeTab> FURNITURE_TAB = FURNITURE_TABS.register("furniture", () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
             .icon(() -> new ItemStack(ObjectRegistry.BOAT_IN_A_JAR.get()))
@@ -86,6 +86,8 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.CANVAS.get());
                 out.accept(ObjectRegistry.CPHS_PRIDE.get());
                 out.accept(ObjectRegistry.LETSDO_THEME.get());
+                out.accept(ObjectRegistry.FLOWER_POT_BIG.get());
+                out.accept(ObjectRegistry.FLOWER_BOX.get());
                 out.accept(ObjectRegistry.BIN.get());
                 out.accept(ObjectRegistry.TRASH_BAG.get());
             })

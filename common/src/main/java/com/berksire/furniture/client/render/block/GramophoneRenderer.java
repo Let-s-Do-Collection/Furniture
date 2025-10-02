@@ -1,9 +1,9 @@
-package com.berksire.furniture.client.render;
+package com.berksire.furniture.client.render.block;
 
+import com.berksire.furniture.Furniture;
 import com.berksire.furniture.core.block.GramophoneBlock;
 import com.berksire.furniture.core.block.entity.GramophoneBlockEntity;
 import com.berksire.furniture.client.model.GramophoneModel;
-import com.berksire.furniture.core.util.FurnitureIdentifier;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -20,7 +20,7 @@ import org.joml.Quaternionf;
 import java.util.Objects;
 
 public class GramophoneRenderer implements BlockEntityRenderer<GramophoneBlockEntity> {
-    private static final ResourceLocation TEXTURE = FurnitureIdentifier.parseIdentifier("textures/entity/gramophone.png");
+    private static final ResourceLocation TEXTURE = Furniture.identifier("textures/entity/gramophone.png");
     private final GramophoneModel<?> model;
 
     public GramophoneRenderer(BlockEntityRendererProvider.Context context) {

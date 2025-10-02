@@ -1,8 +1,8 @@
-package com.berksire.furniture.client.render;
+package com.berksire.furniture.client.render.entity;
 
+import com.berksire.furniture.Furniture;
 import com.berksire.furniture.client.entity.PellsEntity;
 import com.berksire.furniture.client.model.PellsModel;
-import com.berksire.furniture.core.util.FurnitureIdentifier;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -20,7 +20,7 @@ import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
 public class PellsRenderer extends MobRenderer<PellsEntity, PellsModel<PellsEntity>>{
-    protected static final ResourceLocation TEXTURE = FurnitureIdentifier.parseIdentifier("textures/entity/pells.png");
+    protected static final ResourceLocation TEXTURE = Furniture.identifier("textures/entity/pells.png");
     private static final DecimalFormat FORMAT = new DecimalFormat("###.##", new DecimalFormatSymbols(Locale.ENGLISH));
 
     public PellsRenderer(EntityRendererProvider.Context context){

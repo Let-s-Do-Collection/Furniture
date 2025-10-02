@@ -1,10 +1,11 @@
-package com.berksire.furniture.client.render;
+package com.berksire.furniture.client.render.block;
 
+import com.berksire.furniture.Furniture;
+import com.berksire.furniture.client.render.entity.FluidRenderer;
 import com.berksire.furniture.core.block.FishTankBlock;
 import com.berksire.furniture.core.block.entity.FishTankBlockEntity;
 import com.berksire.furniture.client.model.FishTankModel;
 import com.berksire.furniture.core.registry.ObjectRegistry;
-import com.berksire.furniture.core.util.FurnitureIdentifier;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
@@ -21,8 +22,8 @@ import net.minecraft.world.level.material.Fluids;
 import org.joml.Quaternionf;
 
 public class FishTankRenderer implements BlockEntityRenderer<FishTankBlockEntity> {
-    private static final ResourceLocation NORMAL_TEXTURE = FurnitureIdentifier.parseIdentifier("textures/entity/copper_fish_tank.png");
-    private static final ResourceLocation IRON_TEXTURE = FurnitureIdentifier.parseIdentifier( "textures/entity/iron_fish_tank.png");
+    private static final ResourceLocation NORMAL_TEXTURE = Furniture.identifier("textures/entity/copper_fish_tank.png");
+    private static final ResourceLocation IRON_TEXTURE = Furniture.identifier( "textures/entity/iron_fish_tank.png");
     private final FishTankModel model;
 
     public FishTankRenderer(BlockEntityRendererProvider.Context context) {

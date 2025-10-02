@@ -5,7 +5,6 @@ import com.berksire.furniture.core.block.*;
 import com.berksire.furniture.core.item.CanvasItem;
 import com.berksire.furniture.core.item.PellsSpawnItem;
 import com.berksire.furniture.core.item.TrashBagItem;
-import com.berksire.furniture.core.util.FurnitureIdentifier;
 import com.berksire.furniture.core.util.FurnitureUtil;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.Registrar;
@@ -29,9 +28,9 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class ObjectRegistry {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Furniture.MODID, Registries.ITEM);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Furniture.MOD_ID, Registries.ITEM);
     public static final Registrar<Item> ITEM_REGISTRAR = ITEMS.getRegistrar();
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Furniture.MODID, Registries.BLOCK);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Furniture.MOD_ID, Registries.BLOCK);
     public static final Registrar<Block> BLOCK_REGISTRAR = BLOCKS.getRegistrar();
 
     public static final Map<String, RegistrySupplier<Block>> SOFAS = new HashMap<>();
@@ -80,6 +79,8 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> TERRARIUM = registerWithItem("terrarium", () -> new TerrariumBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS)));
     public static final RegistrySupplier<Block> WOODEN_PLANTER = registerWithItem("wooden_planter", () -> new PlanterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD)));
     public static final RegistrySupplier<Block> STONE_BRICK_PLANTER = registerWithItem("stone_brick_planter", () -> new PlanterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final RegistrySupplier<Block> FLOWER_POT_BIG = registerWithItem("flower_pot_big", () -> new FlowerPotBigBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
+    public static final RegistrySupplier<Block> FLOWER_BOX = registerWithItem("flower_box", () -> new FlowerBoxBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
 
     public static final String[] colors = {
             "white", "light_gray", "gray", "black", "red", "orange", "yellow", "lime", "green", "cyan", "light_blue", "blue", "purple", "magenta", "pink", "brown"
@@ -149,14 +150,14 @@ public class ObjectRegistry {
     }
 
     public static <T extends Block> RegistrySupplier<T> registerWithItem(String name, Supplier<T> block) {
-        return FurnitureUtil.registerWithItem(BLOCKS, BLOCK_REGISTRAR, ITEMS, ITEM_REGISTRAR, FurnitureIdentifier.parseIdentifier(name), block);
+        return FurnitureUtil.registerWithItem(BLOCKS, BLOCK_REGISTRAR, ITEMS, ITEM_REGISTRAR, Furniture.identifier(name), block);
     }
 
     public static <T extends Block> RegistrySupplier<T> registerWithoutItem(String path, Supplier<T> block) {
-        return FurnitureUtil.registerWithoutItem(BLOCKS, BLOCK_REGISTRAR, FurnitureIdentifier.parseIdentifier(path), block);
+        return FurnitureUtil.registerWithoutItem(BLOCKS, BLOCK_REGISTRAR, Furniture.identifier(path), block);
     }
 
     public static <T extends Item> RegistrySupplier<T> registerItem(String path, Supplier<T> itemSupplier) {
-        return FurnitureUtil.registerItem(ITEMS, ITEM_REGISTRAR, FurnitureIdentifier.parseIdentifier(path), itemSupplier);
+        return FurnitureUtil.registerItem(ITEMS, ITEM_REGISTRAR, Furniture.identifier(path), itemSupplier);
     }
 }

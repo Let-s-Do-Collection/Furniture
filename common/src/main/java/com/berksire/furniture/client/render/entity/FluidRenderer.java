@@ -1,4 +1,4 @@
-package com.berksire.furniture.client.render;
+package com.berksire.furniture.client.render.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

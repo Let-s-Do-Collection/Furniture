@@ -1,8 +1,8 @@
-package com.berksire.furniture.client.render;
+package com.berksire.furniture.client.render.block;
 
+import com.berksire.furniture.Furniture;
 import com.berksire.furniture.core.block.CofferBlock;
 import com.berksire.furniture.core.block.entity.CofferBlockEntity;
-import com.berksire.furniture.core.util.FurnitureIdentifier;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -19,11 +19,11 @@ import org.joml.Quaternionf;
 
 @SuppressWarnings("unused")
 public class CofferRenderer implements BlockEntityRenderer<CofferBlockEntity> {
-    private static final ResourceLocation TEXTURE = FurnitureIdentifier.parseIdentifier("textures/entity/coffer.png");
+    private static final ResourceLocation TEXTURE = Furniture.identifier("textures/entity/coffer.png");
     private final ModelPart coffer;
     private final ModelPart top;
 
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(FurnitureIdentifier.parseIdentifier("coffer"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(Furniture.identifier("coffer"), "main");
 
     public CofferRenderer(BlockEntityRendererProvider.Context context) {
         ModelPart modelPart = context.bakeLayer(LAYER_LOCATION);

@@ -1,9 +1,9 @@
-package com.berksire.furniture.client.render;
+package com.berksire.furniture.client.render.block;
 
+import com.berksire.furniture.Furniture;
 import com.berksire.furniture.core.block.ClockBlock;
 import com.berksire.furniture.core.block.entity.ClockBlockEntity;
 import com.berksire.furniture.client.model.ClockModel;
-import com.berksire.furniture.core.util.FurnitureIdentifier;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.geom.ModelPart;
@@ -25,14 +25,14 @@ import java.util.Objects;
 public class ClockRenderer implements BlockEntityRenderer<ClockBlockEntity> {
     private static final Map<ClockBlock.WoodType, ResourceLocation> TEXTURES = new EnumMap<>(ClockBlock.WoodType.class);
     static {
-        TEXTURES.put(ClockBlock.WoodType.OAK, FurnitureIdentifier.parseIdentifier("textures/entity/oak_clock.png"));
-        TEXTURES.put(ClockBlock.WoodType.SPRUCE, FurnitureIdentifier.parseIdentifier("textures/entity/spruce_clock.png"));
-        TEXTURES.put(ClockBlock.WoodType.BIRCH, FurnitureIdentifier.parseIdentifier("textures/entity/birch_clock.png"));
-        TEXTURES.put(ClockBlock.WoodType.JUNGLE, FurnitureIdentifier.parseIdentifier( "textures/entity/jungle_clock.png"));
-        TEXTURES.put(ClockBlock.WoodType.ACACIA, FurnitureIdentifier.parseIdentifier("textures/entity/acacia_clock.png"));
-        TEXTURES.put(ClockBlock.WoodType.DARK_OAK, FurnitureIdentifier.parseIdentifier( "textures/entity/dark_oak_clock.png"));
-        TEXTURES.put(ClockBlock.WoodType.MANGROVE, FurnitureIdentifier.parseIdentifier("textures/entity/mangrove_clock.png"));
-        TEXTURES.put(ClockBlock.WoodType.CHERRY, FurnitureIdentifier.parseIdentifier("textures/entity/cherry_clock.png"));
+        TEXTURES.put(ClockBlock.WoodType.OAK, Furniture.identifier("textures/entity/oak_clock.png"));
+        TEXTURES.put(ClockBlock.WoodType.SPRUCE, Furniture.identifier("textures/entity/spruce_clock.png"));
+        TEXTURES.put(ClockBlock.WoodType.BIRCH, Furniture.identifier("textures/entity/birch_clock.png"));
+        TEXTURES.put(ClockBlock.WoodType.JUNGLE, Furniture.identifier( "textures/entity/jungle_clock.png"));
+        TEXTURES.put(ClockBlock.WoodType.ACACIA, Furniture.identifier("textures/entity/acacia_clock.png"));
+        TEXTURES.put(ClockBlock.WoodType.DARK_OAK, Furniture.identifier( "textures/entity/dark_oak_clock.png"));
+        TEXTURES.put(ClockBlock.WoodType.MANGROVE, Furniture.identifier("textures/entity/mangrove_clock.png"));
+        TEXTURES.put(ClockBlock.WoodType.CHERRY, Furniture.identifier("textures/entity/cherry_clock.png"));
     }
 
     private final ClockModel<Entity> model;
