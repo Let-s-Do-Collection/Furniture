@@ -29,7 +29,11 @@ import net.minecraft.world.level.block.entity.JukeboxBlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
@@ -152,11 +156,17 @@ public class GramophoneBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
+        if (blockState.getValue(HALF) == DoubleBlockHalf.UPPER) {
+            return null;
+        }
         return createTickerHelper(blockEntityType, EntityTypeRegistry.GRAMOPHONE_BLOCK_ENTITY.get(), (level1, pos, state, be) -> GramophoneBlockEntity.playRecordTick(level1, state, be));
     }
 
     @Override
-    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+    public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+        if (blockState.getValue(HALF) == DoubleBlockHalf.UPPER) {
+            return null;
+        }
         return new GramophoneBlockEntity(blockPos, blockState);
     }
 
@@ -167,7 +177,8 @@ public class GramophoneBlock extends BaseEntityBlock {
 
     @Override
     public int getSignal(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, Direction direction) {
-        BlockEntity blockEntity = blockGetter.getBlockEntity(blockPos);
+        BlockPos basePos = blockState.getValue(HALF) == DoubleBlockHalf.UPPER ? blockPos.below() : blockPos;
+        BlockEntity blockEntity = blockGetter.getBlockEntity(basePos);
         if (blockEntity instanceof GramophoneBlockEntity discPlayerBlockEntity) {
             if (discPlayerBlockEntity.isRecordPlaying()) {
                 return 15;
@@ -183,12 +194,12 @@ public class GramophoneBlock extends BaseEntityBlock {
 
     @Override
     public int getAnalogOutputSignal(BlockState blockState, Level level, BlockPos blockPos) {
-        BlockEntity var5 = level.getBlockEntity(blockPos);
-        if (var5 instanceof JukeboxBlockEntity jukeboxBlockEntity) {
+        BlockPos basePos = blockState.getValue(HALF) == DoubleBlockHalf.UPPER ? blockPos.below() : blockPos;
+        BlockEntity blockEntity = level.getBlockEntity(basePos);
+        if (blockEntity instanceof JukeboxBlockEntity jukeboxBlockEntity) {
             return jukeboxBlockEntity.getComparatorOutput();
-        } else {
-            return 0;
         }
+        return 0;
     }
 
     @Override

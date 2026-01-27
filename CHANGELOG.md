@@ -1,3 +1,10 @@
+[1.1.2]
+
+**Fixed**
+* World save hang when quitting with an active Gramophone
+
+***
+
 [1.1.1]
 
 **Fixed**

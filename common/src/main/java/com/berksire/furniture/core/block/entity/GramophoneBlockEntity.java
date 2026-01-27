@@ -42,7 +42,7 @@ public class GramophoneBlockEntity extends BlockEntity implements Clearable {
         this.tickCount = compoundTag.getLong("TickCount");
         this.repeat = compoundTag.getBoolean("Repeat");
         if (compoundTag.contains("ticks_since_song_started", 4)) {
-            JukeboxSong.fromStack(provider, this.recordItem).ifPresent((holder) -> this.jukeboxSongPlayer.setSongWithoutPlaying(holder, compoundTag.getLong("ticks_since_song_started")));
+            JukeboxSong.fromStack(provider, this.recordItem).ifPresent(holder -> this.jukeboxSongPlayer.setSongWithoutPlaying(holder, compoundTag.getLong("ticks_since_song_started")));
         }
     }
 
@@ -59,6 +59,12 @@ public class GramophoneBlockEntity extends BlockEntity implements Clearable {
         if (this.jukeboxSongPlayer.getSong() != null) {
             compoundTag.putLong("ticks_since_song_started", this.jukeboxSongPlayer.getTicksSinceSongStarted());
         }
+    }
+
+    @Override
+    public void setRemoved() {
+        this.stopPlayingSilently();
+        super.setRemoved();
     }
 
     public boolean isRecordPlaying() {
@@ -84,15 +90,15 @@ public class GramophoneBlockEntity extends BlockEntity implements Clearable {
     public void tick(Level level, BlockState state) {
         this.tickCount++;
         this.jukeboxSongPlayer.tick(level, state);
-        net.minecraft.world.item.JukeboxSong song = this.jukeboxSongPlayer.getSong();
+        JukeboxSong song = this.jukeboxSongPlayer.getSong();
         if (this.isPlaying && song != null) {
             long elapsed = this.jukeboxSongPlayer.getTicksSinceSongStarted();
             long length = song.lengthInTicks();
             if (elapsed >= length) {
                 if (this.repeat) {
-                    net.minecraft.world.item.JukeboxSong.fromStack(level.registryAccess(), this.recordItem).ifPresent(h -> {
-                        this.jukeboxSongPlayer.setSongWithoutPlaying(h, 0L);
-                        level.levelEvent(null, 1010, this.worldPosition, net.minecraft.world.item.Item.getId(this.recordItem.getItem()));
+                    JukeboxSong.fromStack(level.registryAccess(), this.recordItem).ifPresent(holder -> {
+                        this.jukeboxSongPlayer.setSongWithoutPlaying(holder, 0L);
+                        level.levelEvent(null, 1010, this.worldPosition, Item.getId(this.recordItem.getItem()));
                     });
                 } else {
                     this.stopPlaying();
@@ -127,15 +133,12 @@ public class GramophoneBlockEntity extends BlockEntity implements Clearable {
     }
 
     public void onSongChanged() {
-        assert this.level != null;
+        if (this.level == null) return;
+        if (this.level.isClientSide) return;
+        if (this.isRemoved()) return;
+        if (!this.level.isLoaded(this.worldPosition)) return;
         this.level.updateNeighborsAt(this.getBlockPos(), this.getBlockState().getBlock());
         this.setChanged();
-    }
-
-    @Override
-    public void setRemoved() {
-        this.stopPlayingOnRemove();
-        super.setRemoved();
     }
 
     public void setRecord(ItemStack record) {
@@ -178,10 +181,17 @@ public class GramophoneBlockEntity extends BlockEntity implements Clearable {
         }
     }
 
-    public void stopPlayingOnRemove() {
-        if (this.isPlaying) {
-            this.stopPlaying();
+    private void stopPlayingSilently() {
+        if (!this.isPlaying) return;
+        this.isPlaying = false;
+        if (this.level != null) {
+            this.jukeboxSongPlayer.stop(this.level, this.getBlockState());
+            this.setChanged();
         }
+    }
+
+    public void stopPlayingOnRemove() {
+        this.stopPlayingSilently();
     }
 
     @Override
