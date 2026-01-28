@@ -1,6 +1,6 @@
 package com.berksire.furniture.core.item;
 
-import com.berksire.furniture.client.entity.CanvasEntity;
+import com.berksire.furniture.core.entity.CanvasEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
@@ -26,42 +26,49 @@ public class CanvasItem extends HangingEntityItem {
 
     public CanvasItem(Properties settings, ResourceKey<PaintingVariant> defaultVariant, TagKey<PaintingVariant> variants) {
         super(EntityType.PAINTING, settings);
-
         this.defaultVariant = defaultVariant;
         this.variants = variants;
     }
 
     @Override
     public @NotNull InteractionResult useOn(UseOnContext context) {
-        BlockPos pos = context.getClickedPos();
+        BlockPos clickedPos = context.getClickedPos();
         Direction direction = context.getClickedFace();
-        BlockPos pos2 = pos.relative(direction);
-        Player player = context.getPlayer();
-        ItemStack stack = context.getItemInHand();
-        Level level = context.getLevel();
-        if (player != null && !mayPlace(player, direction, stack, pos2)) {
+        if (direction.getAxis().isVertical()) {
             return InteractionResult.FAIL;
         }
 
-        Optional<CanvasEntity> optional = CanvasEntity.createCanvas(level, pos2, direction);
-        if (optional.isEmpty()) {
-            return InteractionResult.CONSUME;
+        BlockPos placePos = clickedPos.relative(direction);
+        Player player = context.getPlayer();
+        ItemStack stack = context.getItemInHand();
+        Level level = context.getLevel();
+
+        if (player != null && !mayPlace(player, direction, stack, placePos)) {
+            return InteractionResult.FAIL;
         }
-        CanvasEntity painting = optional.get();
+
+        Optional<CanvasEntity> optional = CanvasEntity.createCanvas(level, placePos, direction, this.variants, this.defaultVariant);
+        if (optional.isEmpty()) {
+            return InteractionResult.FAIL;
+        }
+
+        CanvasEntity canvasEntity = optional.get();
 
         CustomData customData = stack.getOrDefault(DataComponents.ENTITY_DATA, CustomData.EMPTY);
-        if (customData != null) {
-            EntityType.updateCustomEntityTag(level, player, painting, customData);
+        EntityType.updateCustomEntityTag(level, player, canvasEntity, customData);
+
+        canvasEntity.fixPosition();
+        if (!canvasEntity.survives()) {
+            return InteractionResult.FAIL;
         }
-        if (painting.survives()) {
-            if (!level.isClientSide) {
-                painting.playPlacementSound();
-                level.gameEvent(player, GameEvent.ENTITY_PLACE, painting.blockPosition());
-                level.addFreshEntity(painting);
-            }
+
+        if (!level.isClientSide) {
+            canvasEntity.playPlacementSound();
+            level.gameEvent(player, GameEvent.ENTITY_PLACE, canvasEntity.blockPosition());
+            level.addFreshEntity(canvasEntity);
             stack.shrink(1);
-            return InteractionResult.sidedSuccess(level.isClientSide);
         }
-        return InteractionResult.CONSUME;
+
+        return InteractionResult.sidedSuccess(level.isClientSide);
     }
 }

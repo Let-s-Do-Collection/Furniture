@@ -1,6 +1,6 @@
 package com.berksire.furniture.client.render.entity;
 
-import com.berksire.furniture.client.entity.ChairEntity;
+import com.berksire.furniture.core.entity.ChairEntity;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

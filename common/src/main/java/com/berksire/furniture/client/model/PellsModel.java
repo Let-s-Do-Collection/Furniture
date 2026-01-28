@@ -1,6 +1,6 @@
 package com.berksire.furniture.client.model;
 
-import com.berksire.furniture.client.entity.PellsEntity;
+import com.berksire.furniture.core.entity.PellsEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.EntityModel;

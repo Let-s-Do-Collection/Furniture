@@ -1,3 +1,10 @@
+[1.1.3]
+
+**Added**
+* KO_KR translation (thanks to cs8minty)
+
+***
+
 [1.1.2]
 
 **Fixed**

@@ -1,4 +1,4 @@
-package com.berksire.furniture.client.entity;
+package com.berksire.furniture.core.entity;
 
 import com.berksire.furniture.core.block.entity.FishTankBlockEntity;
 import net.minecraft.core.BlockPos;

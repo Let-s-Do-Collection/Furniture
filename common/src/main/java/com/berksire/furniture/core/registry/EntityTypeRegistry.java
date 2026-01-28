@@ -1,9 +1,9 @@
 package com.berksire.furniture.core.registry;
 
 import com.berksire.furniture.Furniture;
-import com.berksire.furniture.client.entity.CanvasEntity;
-import com.berksire.furniture.client.entity.ChairEntity;
-import com.berksire.furniture.client.entity.PellsEntity;
+import com.berksire.furniture.core.entity.CanvasEntity;
+import com.berksire.furniture.core.entity.ChairEntity;
+import com.berksire.furniture.core.entity.PellsEntity;
 import com.berksire.furniture.core.block.entity.*;
 import dev.architectury.registry.level.entity.EntityAttributeRegistry;
 import dev.architectury.registry.registries.DeferredRegister;

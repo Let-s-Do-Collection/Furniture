@@ -1,6 +1,6 @@
 package com.berksire.furniture.core.util;
 
-import com.berksire.furniture.client.entity.ChairEntity;
+import com.berksire.furniture.core.entity.ChairEntity;
 import com.berksire.furniture.core.registry.EntityTypeRegistry;
 import com.mojang.datafixers.util.Pair;
 import dev.architectury.platform.Platform;

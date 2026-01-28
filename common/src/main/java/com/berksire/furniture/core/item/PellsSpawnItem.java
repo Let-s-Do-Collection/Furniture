@@ -1,6 +1,6 @@
 package com.berksire.furniture.core.item;
 
-import com.berksire.furniture.client.entity.PellsEntity;
+import com.berksire.furniture.core.entity.PellsEntity;
 import com.berksire.furniture.core.registry.EntityTypeRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

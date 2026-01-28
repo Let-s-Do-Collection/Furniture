@@ -1,7 +1,7 @@
 package com.berksire.furniture.client.render.entity;
 
 import com.berksire.furniture.Furniture;
-import com.berksire.furniture.client.entity.PellsEntity;
+import com.berksire.furniture.core.entity.PellsEntity;
 import com.berksire.furniture.client.model.PellsModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.Font;

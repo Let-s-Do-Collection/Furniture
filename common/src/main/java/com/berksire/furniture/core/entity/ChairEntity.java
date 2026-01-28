@@ -1,4 +1,4 @@
-package com.berksire.furniture.client.entity;
+package com.berksire.furniture.core.entity;
 
 import com.berksire.furniture.core.util.FurnitureUtil;
 import net.minecraft.core.BlockPos;

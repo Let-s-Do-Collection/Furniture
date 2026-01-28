@@ -6,7 +6,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.JukeboxSong;
 
 public class JukeboxSongRegistry {
-
     public static final ResourceKey<JukeboxSong> CPHS_PRIDE = create("cphs_pride");
     public static final ResourceKey<JukeboxSong> LETSDO_THEME = create("letsdo_theme");
 

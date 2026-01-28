@@ -90,6 +90,11 @@ public class GramophoneBlockEntity extends BlockEntity implements Clearable {
     public void tick(Level level, BlockState state) {
         this.tickCount++;
         this.jukeboxSongPlayer.tick(level, state);
+
+        if (level.isClientSide) {
+            return;
+        }
+
         JukeboxSong song = this.jukeboxSongPlayer.getSong();
         if (this.isPlaying && song != null) {
             long elapsed = this.jukeboxSongPlayer.getTicksSinceSongStarted();
@@ -97,8 +102,13 @@ public class GramophoneBlockEntity extends BlockEntity implements Clearable {
             if (elapsed >= length) {
                 if (this.repeat) {
                     JukeboxSong.fromStack(level.registryAccess(), this.recordItem).ifPresent(holder -> {
-                        this.jukeboxSongPlayer.setSongWithoutPlaying(holder, 0L);
+                        this.jukeboxSongPlayer.stop(level, state);
+                        this.jukeboxSongPlayer.play(level, holder);
+                        this.recordStartedTick = this.tickCount;
+                        level.gameEvent(GameEvent.JUKEBOX_PLAY, this.worldPosition, GameEvent.Context.of(this.getBlockState()));
                         level.levelEvent(null, 1010, this.worldPosition, Item.getId(this.recordItem.getItem()));
+                        level.updateNeighborsAt(this.worldPosition, this.getBlockState().getBlock());
+                        this.setChanged();
                     });
                 } else {
                     this.stopPlaying();
