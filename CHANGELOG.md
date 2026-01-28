@@ -3,6 +3,9 @@
 **Added**
 * KO_KR translation (thanks to cs8minty)
 
+**Fixed**
+* Gramophone repeat mode stopping after one track
+
 ***
 
 [1.1.2]
