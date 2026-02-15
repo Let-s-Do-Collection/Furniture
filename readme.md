@@ -1,4 +1,4 @@
-![Furniture](https://lets-do.ch/assets/mod-logos/furniture.png)
+![Furniture](https://lets-do.ch/assets/mod-logos/furniture.webp)
 
 <br>
 
