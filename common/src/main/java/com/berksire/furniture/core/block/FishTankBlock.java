@@ -38,7 +38,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@SuppressWarnings("deprecation")
 public class FishTankBlock extends BaseEntityBlock implements EntityBlock {
     public static final EnumProperty<BedPart> PART = EnumProperty.create("part", BedPart.class);
     public static final BooleanProperty HAS_COD = BooleanProperty.create("has_cod");

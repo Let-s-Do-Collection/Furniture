@@ -8,7 +8,6 @@ import com.berksire.furniture.client.render.block.*;
 import com.berksire.furniture.client.render.entity.ChairRenderer;
 import com.berksire.furniture.client.render.entity.PellsRenderer;
 import com.berksire.furniture.core.registry.EntityTypeRegistry;
-import com.berksire.furniture.core.registry.StorageTypeRegistry;
 import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
 import dev.architectury.registry.client.level.entity.EntityRendererRegistry;
 import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
@@ -17,7 +16,6 @@ import dev.architectury.registry.registries.RegistrySupplier;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 
 import java.util.stream.Stream;
@@ -38,17 +36,6 @@ public class FurnitureClient {
         BlockEntityRendererRegistry.register(EntityTypeRegistry.COFFER_BLOCK_ENTITY.get(), CofferRenderer::new);
         BlockEntityRendererRegistry.register(EntityTypeRegistry.DISPLAY_BLOCK_ENTITY.get(), context -> new DisplayRenderer());
         BlockEntityRendererRegistry.register(EntityTypeRegistry.FISH_TANK_BLOCK_ENTITY.get(), FishTankRenderer::new);
-
-        registerStorageType();
-    }
-
-    public static void registerStorageTypes(ResourceLocation location, StorageTypeRenderer renderer){
-        StorageBlockEntityRenderer.registerStorageType(location, renderer);
-    }
-
-    public static void registerStorageType(){
-        registerStorageTypes(StorageTypeRegistry.FLOWER_POT_BIG, new FlowerPotBigRenderer());
-        registerStorageTypes(StorageTypeRegistry.FLOWER_BOX, new FlowerBoxRenderer());
     }
 
     public static void preInitClient() {

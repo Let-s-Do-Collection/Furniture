@@ -28,7 +28,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-@SuppressWarnings("deprecation")
 public class StreetLanternWallBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final IntegerProperty BULBS = IntegerProperty.create("bulbs", 0, 1);
@@ -48,7 +47,7 @@ public class StreetLanternWallBlock extends HorizontalDirectionalBlock implement
     public static final MapCodec<StreetLanternWallBlock> CODEC = simpleCodec(StreetLanternWallBlock::new);
 
     @Override
-    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+    protected @NotNull MapCodec<? extends HorizontalDirectionalBlock> codec() {
         return CODEC;
     }
 

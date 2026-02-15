@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class PellsEntity extends Mob {
+
     private static final EntityDataAccessor<Float> LAST_DAMAGE = SynchedEntityData.defineId(PellsEntity.class, EntityDataSerializers.FLOAT);
     private static final Predicate<Entity> RIDABLE_MINECARTS = (p_31582_) -> p_31582_ instanceof AbstractMinecart;
     private static final EntityDataAccessor<Boolean> IS_CRIT = SynchedEntityData.defineId(PellsEntity.class, EntityDataSerializers.BOOLEAN);

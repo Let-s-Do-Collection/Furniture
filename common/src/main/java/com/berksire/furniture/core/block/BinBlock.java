@@ -23,7 +23,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-@SuppressWarnings("deprecation")
 public class BinBlock extends Block {
     public static final IntegerProperty FILL_STAGE = IntegerProperty.create("fill_stage", 0, 11);
     private static final VoxelShape SHAPE = Shapes.box(2.0 / 16.0, 0.0, 2.0 / 16.0, 14.0 / 16.0, 15.0 / 16.0, 14.0 / 16.0);
