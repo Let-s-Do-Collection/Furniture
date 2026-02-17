@@ -6,13 +6,17 @@ import com.berksire.furniture.core.item.CanvasItem;
 import com.berksire.furniture.core.item.PellsSpawnItem;
 import com.berksire.furniture.core.item.TrashBagItem;
 import com.berksire.furniture.core.util.FurnitureUtil;
+import dev.architectury.platform.Platform;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.level.block.AbstractCandleBlock;
 import net.minecraft.world.level.block.Block;
@@ -84,22 +88,42 @@ public class ObjectRegistry {
             "white", "light_gray", "gray", "black", "red", "orange", "yellow", "lime", "green", "cyan", "light_blue", "blue", "purple", "magenta", "pink", "brown"
     };
 
-    public static final String[] woodTypes = {
+    public static final String[] vanillaWoodTypes = {
             "oak", "spruce", "birch", "jungle", "acacia", "dark_oak", "mangrove", "cherry"
     };
 
+    public static final String[] bloomingNatureWoodTypes = {
+            "aspen", "larch", "baobab", "cypress", "ebony", "chestnut", "fan_palm", "fir", "swamp_oak", "swamp_cypress"
+    };
+
+    public static final String[] woodTypes;
+
     static {
-        for (String woodType : woodTypes) {
-            BENCHES.put(woodType, registerWithItem(woodType + "_bench", () -> new BenchBlock(BlockBehaviour.Properties.ofFullCopy(getCorrespondingPlank(woodType)).pushReaction(PushReaction.IGNORE))));
-            CABINETS.put(woodType, registerWithItem(woodType + "_cabinet", () -> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD), SoundRegistry.CABINET_OPEN, SoundRegistry.CABINET_CLOSE)));
-            CLOCKS.put(woodType, registerWithItem(woodType + "_clock", () -> new ClockBlock(BlockBehaviour.Properties.ofFullCopy(getCorrespondingPlank(woodType)).pushReaction(PushReaction.IGNORE), ClockBlock.WoodType.valueOf(woodType.toUpperCase()))));
-            GRANDFATHER_CLOCKS.put(woodType, registerWithItem(woodType + "_grandfather_clock", () -> new GrandfatherClockBlock(BlockBehaviour.Properties.ofFullCopy(getCorrespondingPlank(woodType)).pushReaction(PushReaction.IGNORE), GrandfatherClockBlock.WoodType.valueOf(woodType.toUpperCase()))));
-            MIRRORS.put(woodType, registerWithItem(woodType + "_mirror", () -> new MirrorBlock(BlockBehaviour.Properties.ofFullCopy(getCorrespondingPlank(woodType)).pushReaction(PushReaction.IGNORE))));
-            SHUTTERS.put(woodType, registerWithItem(woodType + "_shutter", () -> new ShutterBlock(BlockBehaviour.Properties.ofFullCopy(getCorrespondingPlank(woodType)).pushReaction(PushReaction.IGNORE))));
-            DESKS.put(woodType, registerWithItem(woodType + "_desk", () -> new DeskBlock(BlockBehaviour.Properties.ofFullCopy(getCorrespondingPlank(woodType)).pushReaction(PushReaction.IGNORE))));
-            DRESSER.put(woodType, registerWithItem(woodType + "_dresser", () -> new DresserBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD), SoundRegistry.CABINET_OPEN, SoundRegistry.CABINET_CLOSE)));
-            DESK_CHAIRS.put(woodType, registerWithItem(woodType + "_desk_chair", () -> new DeskChairBlock(BlockBehaviour.Properties.ofFullCopy(getCorrespondingPlank(woodType)))));
+        if (Platform.isModLoaded("bloomingnature")) {
+            woodTypes = concat(vanillaWoodTypes, bloomingNatureWoodTypes);
+        } else {
+            woodTypes = vanillaWoodTypes;
         }
+
+        for (String woodType : woodTypes) {
+            Block plankBlock = getCorrespondingPlank(woodType);
+
+            BENCHES.put(woodType, registerWithItem(woodType + "_bench", () -> new BenchBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock).pushReaction(PushReaction.IGNORE))));
+            CABINETS.put(woodType, registerWithItem(woodType + "_cabinet", () -> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD), SoundRegistry.CABINET_OPEN, SoundRegistry.CABINET_CLOSE)));
+
+            ClockBlock.WoodType clockWoodType = isVanillaWoodType(woodType) ? ClockBlock.WoodType.valueOf(woodType.toUpperCase(Locale.ENGLISH)) : ClockBlock.WoodType.OAK;
+            GrandfatherClockBlock.WoodType grandfatherClockWoodType = isVanillaWoodType(woodType) ? GrandfatherClockBlock.WoodType.valueOf(woodType.toUpperCase(Locale.ENGLISH)) : GrandfatherClockBlock.WoodType.OAK;
+
+            CLOCKS.put(woodType, registerWithItem(woodType + "_clock", () -> new ClockBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock).pushReaction(PushReaction.IGNORE), clockWoodType)));
+            GRANDFATHER_CLOCKS.put(woodType, registerWithItem(woodType + "_grandfather_clock", () -> new GrandfatherClockBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock).pushReaction(PushReaction.IGNORE), grandfatherClockWoodType)));
+
+            MIRRORS.put(woodType, registerWithItem(woodType + "_mirror", () -> new MirrorBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock).pushReaction(PushReaction.IGNORE))));
+            SHUTTERS.put(woodType, registerWithItem(woodType + "_shutter", () -> new ShutterBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock).pushReaction(PushReaction.IGNORE))));
+            DESKS.put(woodType, registerWithItem(woodType + "_desk", () -> new DeskBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock).pushReaction(PushReaction.IGNORE))));
+            DRESSER.put(woodType, registerWithItem(woodType + "_dresser", () -> new DresserBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD), SoundRegistry.CABINET_OPEN, SoundRegistry.CABINET_CLOSE)));
+            DESK_CHAIRS.put(woodType, registerWithItem(woodType + "_desk_chair", () -> new DeskChairBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock))));
+        }
+
         for (String color : colors) {
             DyeColor dyeColor = DyeColor.valueOf(color.toUpperCase(Locale.ENGLISH));
             SOFAS.put(color, registerWithItem("sofa_" + color, () -> new SofaBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).pushReaction(PushReaction.DESTROY), dyeColor)));
@@ -119,8 +143,25 @@ public class ObjectRegistry {
 
             LAMP_ITEMS.put(color, registerItem(lampName, () -> new StandingAndWallBlockItem(lamp.get(), wallLamp.get(), new Item.Properties(), Direction.DOWN)));
         }
+
         BLOCKS.register();
         ITEMS.register();
+    }
+
+    private static boolean isVanillaWoodType(String woodType) {
+        for (String vanillaWoodType : vanillaWoodTypes) {
+            if (vanillaWoodType.equals(woodType)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static String[] concat(String[] first, String[] second) {
+        String[] result = new String[first.length + second.length];
+        System.arraycopy(first, 0, result, 0, first.length);
+        System.arraycopy(second, 0, result, first.length, second.length);
+        return result;
     }
 
     private static Block getCorrespondingPlank(String woodType) {
@@ -132,8 +173,18 @@ public class ObjectRegistry {
             case "dark_oak" -> Blocks.DARK_OAK_PLANKS;
             case "mangrove" -> Blocks.MANGROVE_PLANKS;
             case "cherry" -> Blocks.CHERRY_PLANKS;
-            default -> Blocks.OAK_PLANKS;
+            case "oak" -> Blocks.OAK_PLANKS;
+            default -> getModdedPlank("bloomingnature", woodType);
         };
+    }
+
+    private static Block getModdedPlank(String namespace, String woodType) {
+        ResourceLocation plankId = ResourceLocation.fromNamespaceAndPath(namespace, woodType + "_planks");
+        Block plankBlock = BuiltInRegistries.BLOCK.get(plankId);
+        if (plankBlock != Blocks.AIR) {
+            return plankBlock;
+        }
+        return Blocks.OAK_PLANKS;
     }
 
     private static Item.Properties getSettings(Consumer<Item.Properties> consumer) {

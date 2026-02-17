@@ -35,7 +35,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.function.Supplier;
 
-@SuppressWarnings("deprecation")
 public class ClockBlock extends FacingBlock implements EntityBlock {
     public enum WoodType {
         OAK,
@@ -57,8 +56,8 @@ public class ClockBlock extends FacingBlock implements EntityBlock {
 
     private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
         VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape, Shapes.box(0.21875, 0.21875, 0.875, 0.78125, 0.78125, 1), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.46875, 0.46875, 0.84375, 0.53125, 0.53125, 0.90625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.0625, 0.875, 0.9375, 0.9375, 1), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.4375, 0.4375, 0.8125, 0.5625, 0.5625, 0.875), BooleanOp.OR);
         return shape;
     };
 

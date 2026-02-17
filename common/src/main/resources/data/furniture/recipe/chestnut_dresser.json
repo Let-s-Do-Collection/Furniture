@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "furniture:chestnut_desk"
+    },
+    {
+      "item": "furniture:chestnut_cabinet"
+    }
+  ],
+  "result": {
+    "id": "furniture:chestnut_dresser",
+    "count": 1
+  }
+}

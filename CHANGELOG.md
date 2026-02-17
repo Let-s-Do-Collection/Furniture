@@ -1,3 +1,10 @@
+[1.1.4]
+
+**Added**
+* Compatibility layer for BloomingNature - when BloomingNature installed as well you can craft Furniture made out of BloomingNature woods
+
+***
+
 [1.1.3]
 
 **Added**

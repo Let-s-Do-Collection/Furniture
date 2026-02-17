@@ -1,0 +1,8 @@
+{
+  "parent": "furniture:block/oak_mirror_middle",
+  "textures": {
+    "0": "furniture:block/swamp_cypress_mirror_middle",
+    "1": "furniture:block/swamp_cypress_mirror_back",
+    "particle": "furniture:block/swamp_cypress_mirror_middle"
+  }
+}

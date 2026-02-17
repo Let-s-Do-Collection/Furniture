@@ -1,0 +1,8 @@
+{
+  "parent": "furniture:block/oak_mirror_top",
+  "textures": {
+    "0": "furniture:block/ebony_mirror_top",
+    "1": "furniture:block/ebony_mirror_back",
+    "particle": "furniture:block/ebony_mirror_top"
+  }
+}

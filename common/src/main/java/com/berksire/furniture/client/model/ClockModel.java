@@ -7,21 +7,30 @@ import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
-import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.client.model.geom.builders.CubeDeformation;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 
 public class ClockModel<T extends Entity> extends EntityModel<T> {
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(Furniture.identifier("clock"), "main");
-    private final ModelPart wallclock;
-    public final ModelPart hours;
-    public final ModelPart minutes;
+
+    private final ModelPart clock;
+    private final ModelPart minutes;
+    private final ModelPart hours;
 
     public ClockModel(ModelPart root) {
-        this.wallclock = root.getChild("wallclock");
-        ModelPart clockwork = wallclock.getChild("clockwork");
-        this.hours = clockwork.getChild("hours");
-        this.minutes = clockwork.getChild("minutes");
+        this.clock = root.getChild("clock");
+        this.minutes = this.clock.getChild("minutes");
+        this.hours = this.clock.getChild("hours");
+    }
+
+    public void setHandRotations(float minutesRotation, float hoursRotation) {
+        this.minutes.zRot = minutesRotation;
+        this.hours.zRot = hoursRotation;
     }
 
     @SuppressWarnings("unused")
@@ -29,24 +38,24 @@ public class ClockModel<T extends Entity> extends EntityModel<T> {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
 
-        PartDefinition wallclock = partdefinition.addOrReplaceChild("wallclock", CubeListBuilder.create().texOffs(0, 13).addBox(-4.5F, -5.5F, 0.25F, 9.0F, 9.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 17.0F, 5.75F));
+        PartDefinition clock = partdefinition.addOrReplaceChild("clock", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-        PartDefinition clockwork = wallclock.addOrReplaceChild("clockwork", CubeListBuilder.create().texOffs(2, 10).addBox(-0.5F, -1.5F, -0.25F, 1.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+        PartDefinition base = clock.addOrReplaceChild("base", CubeListBuilder.create().texOffs(0, 16).addBox(-13.0F, -14.0F, -1.0F, 14.0F, 14.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(6.0F, -1.0F, 7.0F));
 
-        PartDefinition hours = clockwork.addOrReplaceChild("hours", CubeListBuilder.create().texOffs(3, 9).addBox(-0.5F, -3.5F, 0.0F, 1.0F, 3.5F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -1.0F, 0.0F));
+        PartDefinition clockwork = clock.addOrReplaceChild("clockwork", CubeListBuilder.create().texOffs(2, 13).addBox(-1.0F, -1.0F, -0.5F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -8.0F, 5.5F));
 
-        PartDefinition minutes = clockwork.addOrReplaceChild("minutes", CubeListBuilder.create().texOffs(3, 9).addBox(-0.5F, -3.5F, 0.0F, 1.0F, 3.5F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -1.0F, 0.0F));
+        PartDefinition minutes = clock.addOrReplaceChild("minutes", CubeListBuilder.create().texOffs(0, 12).addBox(-0.5F, -5.5F, 0.0F, 1.0F, 6.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -8.0F, 5.5F));
 
-        return LayerDefinition.create(meshdefinition, 24, 24);
+        PartDefinition hours = clock.addOrReplaceChild("hours", CubeListBuilder.create().texOffs(0, 12).addBox(-0.5F, -4.5F, 0.0F, 1.0F, 5.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -8.0F, 5.5F));
+
+        return LayerDefinition.create(meshdefinition, 32, 32);
     }
-
     @Override
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-
     }
 
     @Override
     public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int i, int j, int k) {
-        wallclock.render(poseStack, vertexConsumer, i, j, k);
+        clock.render(poseStack, vertexConsumer, i, j, k);
     }
 }

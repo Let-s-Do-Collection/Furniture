@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    " B ",
+    " B "
+  ],
+  "key": {
+    "#": {
+      "item": "furniture:chestnut_clock"
+    },
+    "B": {
+      "item": "bloomingnature:chestnut_planks"
+    }
+  },
+  "result": {
+    "id": "furniture:chestnut_grandfather_clock",
+    "count": 1
+  }
+}

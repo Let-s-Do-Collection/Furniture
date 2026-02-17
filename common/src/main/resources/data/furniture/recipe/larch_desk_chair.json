@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  #",
+    "BB#",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:iron_nugget"
+    },
+    "B": {
+      "item": "bloomingnature:larch_slab"
+    }
+  },
+  "result": {
+    "id": "furniture:larch_desk_chair",
+    "count": 2
+  }
+}

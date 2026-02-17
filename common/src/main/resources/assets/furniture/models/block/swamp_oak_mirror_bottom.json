@@ -1,0 +1,8 @@
+{
+  "parent": "furniture:block/oak_mirror_bottom",
+  "textures": {
+    "0": "furniture:block/swamp_oak_mirror_bottom",
+    "1": "furniture:block/swamp_oak_mirror_back",
+    "particle": "furniture:block/swamp_oak_mirror_bottom"
+  }
+}

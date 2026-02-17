@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "furniture:block/ebony_clock",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "furniture:block/ebony_clock"
+    },
+    "facing=south": {
+      "model": "furniture:block/ebony_clock",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "furniture:block/ebony_clock",
+      "y": 270
+    }
+  }
+}

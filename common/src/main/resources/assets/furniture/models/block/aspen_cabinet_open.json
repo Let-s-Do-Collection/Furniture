@@ -1,0 +1,11 @@
+{
+  "parent": "furniture:block/oak_cabinet_open",
+  "textures": {
+    "2": "furniture:block/aspen_cabinet",
+    "3": "furniture:block/aspen_cabinet_side",
+    "4": "furniture:block/aspen_cabinet_top",
+    "5": "furniture:block/aspen_cabinet_bottom",
+    "6": "furniture:block/aspen_cabinet_front",
+    "particle": "furniture:block/aspen_cabinet_top"
+  }
+}

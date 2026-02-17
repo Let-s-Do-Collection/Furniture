@@ -1,0 +1,9 @@
+{
+  "parent": "furniture:block/oak_dresser_single",
+  "textures": {
+    "0": "furniture:block/fan_palm_dresser_front",
+    "1": "furniture:block/fan_palm_dresser_side",
+    "2": "furniture:block/fan_palm_desk_top",
+    "particle": "furniture:block/fan_palm_dresser_front"
+  }
+}

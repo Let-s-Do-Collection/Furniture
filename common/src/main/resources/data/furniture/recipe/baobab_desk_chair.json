@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  #",
+    "BB#",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:iron_nugget"
+    },
+    "B": {
+      "item": "bloomingnature:baobab_slab"
+    }
+  },
+  "result": {
+    "id": "furniture:baobab_desk_chair",
+    "count": 2
+  }
+}

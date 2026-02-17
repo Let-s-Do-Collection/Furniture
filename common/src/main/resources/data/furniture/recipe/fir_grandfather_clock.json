@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    " B ",
+    " B "
+  ],
+  "key": {
+    "#": {
+      "item": "furniture:fir_clock"
+    },
+    "B": {
+      "item": "bloomingnature:fir_planks"
+    }
+  },
+  "result": {
+    "id": "furniture:fir_grandfather_clock",
+    "count": 1
+  }
+}

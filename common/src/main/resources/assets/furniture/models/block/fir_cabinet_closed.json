@@ -1,0 +1,11 @@
+{
+  "parent": "furniture:block/oak_cabinet_closed",
+  "textures": {
+    "2": "furniture:block/fir_cabinet",
+    "3": "furniture:block/fir_cabinet_side",
+    "4": "furniture:block/fir_cabinet_top",
+    "5": "furniture:block/fir_cabinet_bottom",
+    "6": "furniture:block/fir_cabinet_front",
+    "particle": "furniture:block/fir_cabinet_top"
+  }
+}

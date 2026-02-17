@@ -1,0 +1,9 @@
+{
+  "parent": "furniture:block/oak_bench_right_no_lean",
+  "textures": {
+    "0": "furniture:block/cypress_bench_top",
+    "1": "furniture:block/cypress_bench_front_side",
+    "2": "furniture:block/cypress_bench_front",
+    "particle": "furniture:block/cypress_bench_top"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "parent": "furniture:block/oak_dresser_connected_middle",
+  "textures": {
+    "1": "furniture:block/fan_palm_dresser_side",
+    "2": "furniture:block/fan_palm_dresser_side_inner",
+    "3": "furniture:block/fan_palm_desk_connected_middle",
+    "4": "furniture:block/fan_palm_dresser_back_middle",
+    "6": "furniture:block/fan_palm_dresser_middle",
+    "particle": "furniture:block/fan_palm_dresser_side_inner"
+  }
+}

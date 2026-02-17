@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "B B",
+    "B B"
+  ],
+  "key": {
+    "#": {
+      "item": "bloomingnature:swamp_oak_planks"
+    },
+    "B": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "id": "furniture:swamp_oak_desk"
+  }
+}

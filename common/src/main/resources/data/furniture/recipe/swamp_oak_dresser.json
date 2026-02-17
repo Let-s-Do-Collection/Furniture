@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "furniture:swamp_oak_desk"
+    },
+    {
+      "item": "furniture:swamp_oak_cabinet"
+    }
+  ],
+  "result": {
+    "id": "furniture:swamp_oak_dresser",
+    "count": 1
+  }
+}

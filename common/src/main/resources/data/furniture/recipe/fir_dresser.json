@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "furniture:fir_desk"
+    },
+    {
+      "item": "furniture:fir_cabinet"
+    }
+  ],
+  "result": {
+    "id": "furniture:fir_dresser",
+    "count": 1
+  }
+}

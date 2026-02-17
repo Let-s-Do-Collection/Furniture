@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "BBB",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "B": {
+      "item": "bloomingnature:swamp_cypress_slab"
+    }
+  },
+  "result": {
+    "id": "furniture:swamp_cypress_bench",
+    "count": 2
+  }
+}

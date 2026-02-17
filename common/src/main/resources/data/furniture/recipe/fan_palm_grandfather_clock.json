@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    " B ",
+    " B "
+  ],
+  "key": {
+    "#": {
+      "item": "furniture:fan_palm_clock"
+    },
+    "B": {
+      "item": "bloomingnature:fan_palm_planks"
+    }
+  },
+  "result": {
+    "id": "furniture:fan_palm_grandfather_clock",
+    "count": 1
+  }
+}

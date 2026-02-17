@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#B#",
+    "#A#"
+  ],
+  "key": {
+    "A": {
+      "item": "bloomingnature:chestnut_slab"
+    },
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "B": {
+      "item": "minecraft:clock"
+    }
+  },
+  "result": {
+    "id": "furniture:chestnut_clock",
+    "count": 1
+  }
+}

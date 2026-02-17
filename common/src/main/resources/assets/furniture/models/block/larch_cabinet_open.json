@@ -1,0 +1,11 @@
+{
+  "parent": "furniture:block/oak_cabinet_open",
+  "textures": {
+    "2": "furniture:block/larch_cabinet",
+    "3": "furniture:block/larch_cabinet_side",
+    "4": "furniture:block/larch_cabinet_top",
+    "5": "furniture:block/larch_cabinet_bottom",
+    "6": "furniture:block/larch_cabinet_front",
+    "particle": "furniture:block/larch_cabinet_top"
+  }
+}

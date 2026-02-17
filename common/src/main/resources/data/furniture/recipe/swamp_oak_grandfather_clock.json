@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    " B ",
+    " B "
+  ],
+  "key": {
+    "#": {
+      "item": "furniture:swamp_oak_clock"
+    },
+    "B": {
+      "item": "bloomingnature:swamp_oak_planks"
+    }
+  },
+  "result": {
+    "id": "furniture:swamp_oak_grandfather_clock",
+    "count": 1
+  }
+}

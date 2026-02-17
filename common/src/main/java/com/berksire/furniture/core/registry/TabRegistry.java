@@ -1,6 +1,7 @@
 package com.berksire.furniture.core.registry;
 
 import com.berksire.furniture.Furniture;
+import dev.architectury.platform.Platform;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
@@ -91,7 +92,47 @@ public class TabRegistry {
             })
             .build());
 
+    public static RegistrySupplier<CreativeModeTab> FURNITURE_BLOOMINGNATURE_TAB;
+
     static {
+        if (Platform.isModLoaded("bloomingnature")) {
+            FURNITURE_BLOOMINGNATURE_TAB = FURNITURE_TABS.register("furniture_bloomingnature", () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 1)
+                    .icon(() -> new ItemStack(ObjectRegistry.CABINETS.get("aspen").get()))
+                    .title(Component.translatable("itemGroup.furniture.furniture_bloomingnature_tab"))
+                    .displayItems((parameters, out) -> {
+                        String[] bloomingNatureWoodTypeOrder = {
+                                "aspen", "larch", "baobab", "cypress", "ebony", "chestnut", "fan_palm", "fir", "swamp_oak", "swamp_cypress"
+                        };
+                        for (String woodType : bloomingNatureWoodTypeOrder) {
+                            ObjectRegistry.SHUTTERS.get(woodType).ifPresent(out::accept);
+                        }
+                        for (String woodType : bloomingNatureWoodTypeOrder) {
+                            ObjectRegistry.BENCHES.get(woodType).ifPresent(out::accept);
+                        }
+                        for (String woodType : bloomingNatureWoodTypeOrder) {
+                            ObjectRegistry.DESK_CHAIRS.get(woodType).ifPresent(out::accept);
+                        }
+                        for (String woodType : bloomingNatureWoodTypeOrder) {
+                            ObjectRegistry.CABINETS.get(woodType).ifPresent(out::accept);
+                        }
+                        for (String woodType : bloomingNatureWoodTypeOrder) {
+                            ObjectRegistry.DRESSER.get(woodType).ifPresent(out::accept);
+                        }
+                        for (String woodType : bloomingNatureWoodTypeOrder) {
+                            ObjectRegistry.DESKS.get(woodType).ifPresent(out::accept);
+                        }
+                        for (String woodType : bloomingNatureWoodTypeOrder) {
+                            ObjectRegistry.CLOCKS.get(woodType).ifPresent(out::accept);
+                        }
+                        for (String woodType : bloomingNatureWoodTypeOrder) {
+                            ObjectRegistry.GRANDFATHER_CLOCKS.get(woodType).ifPresent(out::accept);
+                        }
+                        for (String woodType : bloomingNatureWoodTypeOrder) {
+                            ObjectRegistry.MIRRORS.get(woodType).ifPresent(out::accept);
+                        }
+                    })
+                    .build());
+        }
         FURNITURE_TABS.register();
     }
 }
