@@ -1,6 +1,6 @@
 package com.berksire.furniture.core.block;
 
-import com.berksire.furniture.core.util.FurnitureUtil;
+import com.berksire.furniture.core.util.GeneralUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
@@ -33,7 +33,7 @@ import org.jetbrains.annotations.Nullable;
 @SuppressWarnings("deprecation")
 public class ShutterBlock extends Block implements SimpleWaterloggedBlock {
     public static final DirectionProperty FACING;
-    public static final EnumProperty<FurnitureUtil.VerticalConnectingType> TYPE;
+    public static final EnumProperty<GeneralUtil.VerticalConnectingType> TYPE;
     public static final BooleanProperty LEFT;
     public static final BooleanProperty OPEN;
     public static final BooleanProperty POWERED;
@@ -42,7 +42,7 @@ public class ShutterBlock extends Block implements SimpleWaterloggedBlock {
 
     public ShutterBlock(Properties settings) {
         super(settings);
-        this.registerDefaultState(((((this.stateDefinition.any().setValue(FACING, Direction.NORTH)).setValue(TYPE, FurnitureUtil.VerticalConnectingType.NONE)).setValue(OPEN, false)).setValue(LEFT, false).setValue(POWERED, false)).setValue(WATERLOGGED, false));
+        this.registerDefaultState(((((this.stateDefinition.any().setValue(FACING, Direction.NORTH)).setValue(TYPE, GeneralUtil.VerticalConnectingType.NONE)).setValue(OPEN, false)).setValue(LEFT, false).setValue(POWERED, false)).setValue(WATERLOGGED, false));
     }
 
     @Override
@@ -95,7 +95,7 @@ public class ShutterBlock extends Block implements SimpleWaterloggedBlock {
                 world.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
             }
         }
-        FurnitureUtil.VerticalConnectingType type = getType(state, world.getBlockState(pos.above()), world.getBlockState(pos.below()));
+        GeneralUtil.VerticalConnectingType type = getType(state, world.getBlockState(pos.above()), world.getBlockState(pos.below()));
         if (state.getValue(TYPE) != type) {
             state = state.setValue(TYPE, type);
         }
@@ -121,7 +121,7 @@ public class ShutterBlock extends Block implements SimpleWaterloggedBlock {
     public void toggleShutters(BlockState state, Level level, BlockPos pos, boolean open) {
         BlockState updateState = state;
         BlockPos updatePos = pos;
-        if (state.getValue(TYPE) == FurnitureUtil.VerticalConnectingType.MIDDLE || state.getValue(TYPE) == FurnitureUtil.VerticalConnectingType.BOTTOM) {
+        if (state.getValue(TYPE) == GeneralUtil.VerticalConnectingType.MIDDLE || state.getValue(TYPE) == GeneralUtil.VerticalConnectingType.BOTTOM) {
             int heightUp = level.dimensionType().height() - updatePos.getY();
             for (int i = 0; i < heightUp; i++) {
                 BlockState above = level.getBlockState(updatePos.above());
@@ -134,7 +134,7 @@ public class ShutterBlock extends Block implements SimpleWaterloggedBlock {
                 }
             }
         }
-        if (state.getValue(TYPE) == FurnitureUtil.VerticalConnectingType.MIDDLE || state.getValue(TYPE) == FurnitureUtil.VerticalConnectingType.TOP) {
+        if (state.getValue(TYPE) == GeneralUtil.VerticalConnectingType.MIDDLE || state.getValue(TYPE) == GeneralUtil.VerticalConnectingType.TOP) {
             updateState = state;
             updatePos = pos;
             int heightDown = level.dimensionType().minY() - updatePos.getY();
@@ -159,20 +159,20 @@ public class ShutterBlock extends Block implements SimpleWaterloggedBlock {
         return SoundEvents.BAMBOO_WOOD_DOOR_CLOSE;
     }
 
-    public FurnitureUtil.VerticalConnectingType getType(BlockState state, BlockState above, BlockState below) {
+    public GeneralUtil.VerticalConnectingType getType(BlockState state, BlockState above, BlockState below) {
         boolean shape_above_same = above.getBlock() == state.getBlock() && above.getValue(FACING) == state.getValue(FACING)
                 && above.getValue(OPEN) == state.getValue(OPEN) && above.getValue(LEFT) == state.getValue(LEFT);
         boolean shape_below_same = below.getBlock() == state.getBlock() && below.getValue(FACING) == state.getValue(FACING)
                 && below.getValue(OPEN) == state.getValue(OPEN) && below.getValue(LEFT) == state.getValue(LEFT);
 
         if (shape_above_same && !shape_below_same) {
-            return FurnitureUtil.VerticalConnectingType.BOTTOM;
+            return GeneralUtil.VerticalConnectingType.BOTTOM;
         } else if (!shape_above_same && shape_below_same) {
-            return FurnitureUtil.VerticalConnectingType.TOP;
+            return GeneralUtil.VerticalConnectingType.TOP;
         } else if (shape_above_same) {
-            return FurnitureUtil.VerticalConnectingType.MIDDLE;
+            return GeneralUtil.VerticalConnectingType.MIDDLE;
         }
-        return FurnitureUtil.VerticalConnectingType.NONE;
+        return GeneralUtil.VerticalConnectingType.NONE;
     }
 
     @Override
@@ -197,7 +197,7 @@ public class ShutterBlock extends Block implements SimpleWaterloggedBlock {
 
     static {
         FACING = BlockStateProperties.HORIZONTAL_FACING;
-        TYPE = FurnitureUtil.VerticalConnectingType.VERTICAL_CONNECTING_TYPE;
+        TYPE = GeneralUtil.VerticalConnectingType.VERTICAL_CONNECTING_TYPE;
         LEFT = BooleanProperty.create("left");
         OPEN = BlockStateProperties.OPEN;
         POWERED = BlockStateProperties.POWERED;

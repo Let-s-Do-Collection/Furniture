@@ -2,7 +2,7 @@ package com.berksire.furniture.core.block;
 
 import com.berksire.furniture.core.block.entity.GramophoneBlockEntity;
 import com.berksire.furniture.core.registry.EntityTypeRegistry;
-import com.berksire.furniture.core.util.FurnitureUtil;
+import com.berksire.furniture.core.util.GeneralUtil;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -57,13 +57,13 @@ public class GramophoneBlock extends BaseEntityBlock {
 
     public static final Map<Direction, VoxelShape> SHAPE_LOWER_MAP = net.minecraft.Util.make(new HashMap<>(), map -> {
         for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
-            map.put(direction, FurnitureUtil.rotateShape(Direction.NORTH, direction, SHAPE_LOWER));
+            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, SHAPE_LOWER));
         }
     });
 
     public static final Map<Direction, VoxelShape> SHAPE_UPPER_MAP = net.minecraft.Util.make(new HashMap<>(), map -> {
         for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
-            map.put(direction, FurnitureUtil.rotateShape(Direction.NORTH, direction, SHAPE_UPPER));
+            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, SHAPE_UPPER));
         }
     });
 

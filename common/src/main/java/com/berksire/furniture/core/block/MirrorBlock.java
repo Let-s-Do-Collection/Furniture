@@ -1,6 +1,6 @@
 package com.berksire.furniture.core.block;
 
-import com.berksire.furniture.core.util.FurnitureUtil;
+import com.berksire.furniture.core.util.GeneralUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -27,22 +27,22 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class MirrorBlock extends Block implements SimpleWaterloggedBlock {
-    public static final EnumProperty<FurnitureUtil.VerticalConnectingType> TYPE = FurnitureUtil.VerticalConnectingType.VERTICAL_CONNECTING_TYPE;
+    public static final EnumProperty<GeneralUtil.VerticalConnectingType> TYPE = GeneralUtil.VerticalConnectingType.VERTICAL_CONNECTING_TYPE;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    private static final Map<FurnitureUtil.VerticalConnectingType, Supplier<VoxelShape>> SHAPES_SUPPLIERS = new HashMap<>();
-    private static final Map<Direction, Map<FurnitureUtil.VerticalConnectingType, VoxelShape>> SHAPES = new EnumMap<>(Direction.class);
+    private static final Map<GeneralUtil.VerticalConnectingType, Supplier<VoxelShape>> SHAPES_SUPPLIERS = new HashMap<>();
+    private static final Map<Direction, Map<GeneralUtil.VerticalConnectingType, VoxelShape>> SHAPES = new EnumMap<>(Direction.class);
 
     static {
-        SHAPES_SUPPLIERS.put(FurnitureUtil.VerticalConnectingType.NONE, MirrorBlock::makeSingleShape);
-        SHAPES_SUPPLIERS.put(FurnitureUtil.VerticalConnectingType.MIDDLE, MirrorBlock::makeMiddleShape);
-        SHAPES_SUPPLIERS.put(FurnitureUtil.VerticalConnectingType.TOP, MirrorBlock::makeTopShape);
-        SHAPES_SUPPLIERS.put(FurnitureUtil.VerticalConnectingType.BOTTOM, MirrorBlock::makeBottomShape);
+        SHAPES_SUPPLIERS.put(GeneralUtil.VerticalConnectingType.NONE, MirrorBlock::makeSingleShape);
+        SHAPES_SUPPLIERS.put(GeneralUtil.VerticalConnectingType.MIDDLE, MirrorBlock::makeMiddleShape);
+        SHAPES_SUPPLIERS.put(GeneralUtil.VerticalConnectingType.TOP, MirrorBlock::makeTopShape);
+        SHAPES_SUPPLIERS.put(GeneralUtil.VerticalConnectingType.BOTTOM, MirrorBlock::makeBottomShape);
 
         for (Direction direction : Direction.Plane.HORIZONTAL) {
             SHAPES.put(direction, new HashMap<>());
-            for (Map.Entry<FurnitureUtil.VerticalConnectingType, Supplier<VoxelShape>> entry : SHAPES_SUPPLIERS.entrySet()) {
-                SHAPES.get(direction).put(entry.getKey(), FurnitureUtil.rotateShape(Direction.NORTH, direction, entry.getValue().get()));
+            for (Map.Entry<GeneralUtil.VerticalConnectingType, Supplier<VoxelShape>> entry : SHAPES_SUPPLIERS.entrySet()) {
+                SHAPES.get(direction).put(entry.getKey(), GeneralUtil.rotateShape(Direction.NORTH, direction, entry.getValue().get()));
             }
         }
     }
@@ -51,7 +51,7 @@ public class MirrorBlock extends Block implements SimpleWaterloggedBlock {
         super(settings);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
-                .setValue(TYPE, FurnitureUtil.VerticalConnectingType.NONE)
+                .setValue(TYPE, GeneralUtil.VerticalConnectingType.NONE)
                 .setValue(WATERLOGGED, false));
     }
 
@@ -79,25 +79,25 @@ public class MirrorBlock extends Block implements SimpleWaterloggedBlock {
     public void neighborChanged(BlockState state, Level world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
         if (world.isClientSide) return;
 
-        FurnitureUtil.VerticalConnectingType type = getType(state, world.getBlockState(pos.above()), world.getBlockState(pos.below()));
+        GeneralUtil.VerticalConnectingType type = getType(state, world.getBlockState(pos.above()), world.getBlockState(pos.below()));
         if (state.getValue(TYPE) != type) {
             state = state.setValue(TYPE, type);
         }
         world.setBlock(pos, state, 3);
     }
 
-    public FurnitureUtil.VerticalConnectingType getType(BlockState state, BlockState above, BlockState below) {
+    public GeneralUtil.VerticalConnectingType getType(BlockState state, BlockState above, BlockState below) {
         boolean shapeAboveSame = above.getBlock() == state.getBlock() && above.getValue(FACING) == state.getValue(FACING);
         boolean shapeBelowSame = below.getBlock() == state.getBlock() && below.getValue(FACING) == state.getValue(FACING);
 
         if (shapeAboveSame && shapeBelowSame) {
-            return FurnitureUtil.VerticalConnectingType.MIDDLE;
+            return GeneralUtil.VerticalConnectingType.MIDDLE;
         } else if (shapeAboveSame) {
-            return FurnitureUtil.VerticalConnectingType.BOTTOM;
+            return GeneralUtil.VerticalConnectingType.BOTTOM;
         } else if (shapeBelowSame) {
-            return FurnitureUtil.VerticalConnectingType.TOP;
+            return GeneralUtil.VerticalConnectingType.TOP;
         } else {
-            return FurnitureUtil.VerticalConnectingType.NONE;
+            return GeneralUtil.VerticalConnectingType.NONE;
         }
     }
 
@@ -105,7 +105,7 @@ public class MirrorBlock extends Block implements SimpleWaterloggedBlock {
     @SuppressWarnings("deprecation")
     public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         Direction direction = state.getValue(FACING);
-        FurnitureUtil.VerticalConnectingType type = state.getValue(TYPE);
+        GeneralUtil.VerticalConnectingType type = state.getValue(TYPE);
         return SHAPES.get(direction).get(type);
     }
 

@@ -1,15 +1,7 @@
 package com.berksire.furniture.core.registry;
 
 import com.berksire.furniture.Furniture;
-import com.berksire.furniture.core.block.entity.CabinetBlockEntity;
-import com.berksire.furniture.core.block.entity.ChimneyBlockEntity;
-import com.berksire.furniture.core.block.entity.ClockBlockEntity;
-import com.berksire.furniture.core.block.entity.CofferBlockEntity;
-import com.berksire.furniture.core.block.entity.DisplayBlockEntity;
-import com.berksire.furniture.core.block.entity.DresserBlockEntity;
-import com.berksire.furniture.core.block.entity.FishTankBlockEntity;
-import com.berksire.furniture.core.block.entity.GramophoneBlockEntity;
-import com.berksire.furniture.core.block.entity.GrandfatherClockBlockEntity;
+import com.berksire.furniture.core.block.entity.*;
 import com.berksire.furniture.core.entity.CanvasEntity;
 import com.berksire.furniture.core.entity.ChairEntity;
 import com.berksire.furniture.core.entity.PellsEntity;
@@ -35,6 +27,7 @@ public final class EntityTypeRegistry {
 
     public static final RegistrySupplier<BlockEntityType<GrandfatherClockBlockEntity>> GRANDFATHER_CLOCK_BLOCK_ENTITY = registerBlockEntity("grandfather_clock", () -> BlockEntityType.Builder.of(GrandfatherClockBlockEntity::new, toBlocks(GRANDFATHER_CLOCKS)).build(null));
     public static final RegistrySupplier<BlockEntityType<ClockBlockEntity>> CLOCK_BLOCK_ENTITY = registerBlockEntity("clock", () -> BlockEntityType.Builder.of(ClockBlockEntity::new, toBlocks(CLOCKS)).build(null));
+    public static final RegistrySupplier<BlockEntityType<WardrobeBlockEntity>> WARDROBE_BLOCK_ENTITY = registerBlockEntity("wardrobe", () -> BlockEntityType.Builder.of(WardrobeBlockEntity::new, toBlocks(WARDROBES)).build(null));
     public static final RegistrySupplier<BlockEntityType<CofferBlockEntity>> COFFER_BLOCK_ENTITY = registerBlockEntity("coffer", () -> BlockEntityType.Builder.of(CofferBlockEntity::new, COFFER.get()).build(null));
     public static final RegistrySupplier<BlockEntityType<CabinetBlockEntity>> CABINET_BLOCK_ENTITY = registerBlockEntity("cabinet", () -> BlockEntityType.Builder.of(CabinetBlockEntity::new, toBlocks(CABINETS)).build(null));
     public static final RegistrySupplier<BlockEntityType<FishTankBlockEntity>> FISH_TANK_BLOCK_ENTITY = registerBlockEntity("fish_tank", () -> BlockEntityType.Builder.of(FishTankBlockEntity::new, COPPER_FISH_TANK.get(), IRON_FISH_TANK.get()).build(null));

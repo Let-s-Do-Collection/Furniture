@@ -1,6 +1,6 @@
 package com.berksire.furniture.core.block;
 
-import com.berksire.furniture.core.util.FurnitureUtil;
+import com.berksire.furniture.core.util.GeneralUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -19,11 +19,11 @@ import org.jetbrains.annotations.Nullable;
 @SuppressWarnings("deprecation")
 public class LineConnectingBlock extends Block {
     public static final DirectionProperty FACING;
-    public static final EnumProperty<FurnitureUtil.LineConnectingType> TYPE;
+    public static final EnumProperty<GeneralUtil.LineConnectingType> TYPE;
 
     public LineConnectingBlock(Properties settings) {
         super(settings);
-        this.registerDefaultState(((this.stateDefinition.any().setValue(FACING, Direction.NORTH)).setValue(TYPE, FurnitureUtil.LineConnectingType.NONE)));
+        this.registerDefaultState(((this.stateDefinition.any().setValue(FACING, Direction.NORTH)).setValue(TYPE, GeneralUtil.LineConnectingType.NONE)));
     }
 
     @Nullable
@@ -48,7 +48,7 @@ public class LineConnectingBlock extends Block {
         if (world.isClientSide) return;
 
         Direction facing = state.getValue(FACING);
-        FurnitureUtil.LineConnectingType type;
+        GeneralUtil.LineConnectingType type;
         switch (facing) {
             case EAST -> type = getType(state, world.getBlockState(pos.south()), world.getBlockState(pos.north()));
             case SOUTH -> type = getType(state, world.getBlockState(pos.west()), world.getBlockState(pos.east()));
@@ -61,18 +61,18 @@ public class LineConnectingBlock extends Block {
         world.setBlock(pos, state, 3);
     }
 
-    public FurnitureUtil.LineConnectingType getType(BlockState state, BlockState left, BlockState right) {
+    public GeneralUtil.LineConnectingType getType(BlockState state, BlockState left, BlockState right) {
         boolean shape_left_same = isConnectable(left, state);
         boolean shape_right_same = isConnectable(right, state);
 
         if (shape_left_same && shape_right_same) {
-            return FurnitureUtil.LineConnectingType.MIDDLE;
+            return GeneralUtil.LineConnectingType.MIDDLE;
         } else if (shape_left_same) {
-            return FurnitureUtil.LineConnectingType.LEFT;
+            return GeneralUtil.LineConnectingType.LEFT;
         } else if (shape_right_same) {
-            return FurnitureUtil.LineConnectingType.RIGHT;
+            return GeneralUtil.LineConnectingType.RIGHT;
         }
-        return FurnitureUtil.LineConnectingType.NONE;
+        return GeneralUtil.LineConnectingType.NONE;
     }
 
     protected boolean isConnectable(BlockState state1, BlockState state2) {
@@ -98,6 +98,6 @@ public class LineConnectingBlock extends Block {
 
     static {
         FACING = BlockStateProperties.HORIZONTAL_FACING;
-        TYPE = FurnitureUtil.LINE_CONNECTING_TYPE;
+        TYPE = GeneralUtil.LINE_CONNECTING_TYPE;
     }
 }

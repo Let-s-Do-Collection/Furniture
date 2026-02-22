@@ -1,6 +1,6 @@
 package com.berksire.furniture.core.block;
 
-import com.berksire.furniture.core.util.FurnitureUtil;
+import com.berksire.furniture.core.util.GeneralUtil;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -29,7 +29,7 @@ import java.util.function.Supplier;
 
 @SuppressWarnings("deprecation")
 public class StreetLanternBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
-    public static final EnumProperty<FurnitureUtil.VerticalConnectingType> TYPE = FurnitureUtil.VerticalConnectingType.VERTICAL_CONNECTING_TYPE;
+    public static final EnumProperty<GeneralUtil.VerticalConnectingType> TYPE = GeneralUtil.VerticalConnectingType.VERTICAL_CONNECTING_TYPE;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final IntegerProperty BULBS = IntegerProperty.create("bulbs", 0, 1);
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
@@ -41,25 +41,25 @@ public class StreetLanternBlock extends HorizontalDirectionalBlock implements Si
 
     public static final Map<Direction, VoxelShape> SINGLE_SHAPE = Util.make(new HashMap<>(), map -> {
         for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
-            map.put(direction, FurnitureUtil.rotateShape(Direction.NORTH, direction, SINGLE_SHAPE_SUPPLIER.get()));
+            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, SINGLE_SHAPE_SUPPLIER.get()));
         }
     });
 
     public static final Map<Direction, VoxelShape> DOUBLE_SHAPE = Util.make(new HashMap<>(), map -> {
         for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
-            map.put(direction, FurnitureUtil.rotateShape(Direction.NORTH, direction, DOUBLE_SHAPE_SUPPLIER.get()));
+            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, DOUBLE_SHAPE_SUPPLIER.get()));
         }
     });
 
     public static final Map<Direction, VoxelShape> MIDDLE_SHAPE = Util.make(new HashMap<>(), map -> {
         for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
-            map.put(direction, FurnitureUtil.rotateShape(Direction.NORTH, direction, MIDDLE_SHAPE_SUPPLIER.get()));
+            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, MIDDLE_SHAPE_SUPPLIER.get()));
         }
     });
 
     public static final Map<Direction, VoxelShape> BOTTOM_SHAPE = Util.make(new HashMap<>(), map -> {
         for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
-            map.put(direction, FurnitureUtil.rotateShape(Direction.NORTH, direction, BOTTOM_SHAPE_SUPPLIER.get()));
+            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, BOTTOM_SHAPE_SUPPLIER.get()));
         }
     });
 
@@ -67,7 +67,7 @@ public class StreetLanternBlock extends HorizontalDirectionalBlock implements Si
         super(settings);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
-                .setValue(TYPE, FurnitureUtil.VerticalConnectingType.NONE)
+                .setValue(TYPE, GeneralUtil.VerticalConnectingType.NONE)
                 .setValue(WATERLOGGED, false)
                 .setValue(BULBS, 0)
                 .setValue(LIT, true));
@@ -100,7 +100,7 @@ public class StreetLanternBlock extends HorizontalDirectionalBlock implements Si
         }
 
         BlockState blockState = context.getLevel().getBlockState(clickedPos);
-        if (blockState.is(this) && (blockState.getValue(TYPE) == FurnitureUtil.VerticalConnectingType.TOP || blockState.getValue(TYPE) == FurnitureUtil.VerticalConnectingType.NONE)) {
+        if (blockState.is(this) && (blockState.getValue(TYPE) == GeneralUtil.VerticalConnectingType.TOP || blockState.getValue(TYPE) == GeneralUtil.VerticalConnectingType.NONE)) {
             return blockState.setValue(BULBS, Math.min(1, blockState.getValue(BULBS) + 1));
         }
 
@@ -127,24 +127,24 @@ public class StreetLanternBlock extends HorizontalDirectionalBlock implements Si
     @SuppressWarnings("deprecation")
     public void neighborChanged(BlockState state, Level world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
         if (world.isClientSide) return;
-        FurnitureUtil.VerticalConnectingType type = getType(state, world.getBlockState(pos.above()), world.getBlockState(pos.below()));
+        GeneralUtil.VerticalConnectingType type = getType(state, world.getBlockState(pos.above()), world.getBlockState(pos.below()));
         if (state.getValue(TYPE) != type) {
             state = state.setValue(TYPE, type);
         }
         world.setBlock(pos, state, 3);
     }
 
-    public FurnitureUtil.VerticalConnectingType getType(BlockState state, BlockState above, BlockState below) {
+    public GeneralUtil.VerticalConnectingType getType(BlockState state, BlockState above, BlockState below) {
         boolean shapeAboveSame = above.getBlock() == state.getBlock();
         boolean shapeBelowSame = below.getBlock() == state.getBlock();
         if (shapeAboveSame && shapeBelowSame) {
-            return FurnitureUtil.VerticalConnectingType.MIDDLE;
+            return GeneralUtil.VerticalConnectingType.MIDDLE;
         } else if (shapeAboveSame) {
-            return FurnitureUtil.VerticalConnectingType.BOTTOM;
+            return GeneralUtil.VerticalConnectingType.BOTTOM;
         } else if (shapeBelowSame) {
-            return FurnitureUtil.VerticalConnectingType.TOP;
+            return GeneralUtil.VerticalConnectingType.TOP;
         } else {
-            return FurnitureUtil.VerticalConnectingType.NONE;
+            return GeneralUtil.VerticalConnectingType.NONE;
         }
     }
 
@@ -184,7 +184,7 @@ public class StreetLanternBlock extends HorizontalDirectionalBlock implements Si
     @Override
     public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         Direction direction = state.getValue(FACING);
-        FurnitureUtil.VerticalConnectingType type = state.getValue(TYPE);
+        GeneralUtil.VerticalConnectingType type = state.getValue(TYPE);
         if (state.getValue(BULBS) == 1) {
             return DOUBLE_SHAPE.get(direction);
         }
@@ -201,7 +201,7 @@ public class StreetLanternBlock extends HorizontalDirectionalBlock implements Si
     }
 
     public static boolean canProvideLight(BlockState state) {
-        return state.getValue(LIT) && (state.getValue(TYPE) == FurnitureUtil.VerticalConnectingType.TOP || state.getValue(TYPE) == FurnitureUtil.VerticalConnectingType.NONE);
+        return state.getValue(LIT) && (state.getValue(TYPE) == GeneralUtil.VerticalConnectingType.TOP || state.getValue(TYPE) == GeneralUtil.VerticalConnectingType.NONE);
     }
 
     public static int vanillaLightLevel(BlockState state) {

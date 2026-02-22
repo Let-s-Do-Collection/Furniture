@@ -225,7 +225,7 @@
   "block.furniture.dark_oak_desk_chair": "Dark Oak Desk Chair",
   "block.furniture.mangrove_desk_chair": "Mangrove Desk Chair",
   "block.furniture.cherry_desk_chair": "Cherry Desk Chair",
-  "itemGroup.furniture.furniture_bloomingnature_tab": "Furniture x BloomingNature",
+  "itemGroup.furniture.furniture_bloomingnature_tab": "[Let's Do] Furniture Compat Layer",
 
   "block.furniture.aspen_bench": "Aspen Bench",
   "block.furniture.aspen_cabinet": "Aspen Cabinet",
@@ -325,5 +325,24 @@
   "block.furniture.swamp_cypress_shutter": "Swamp Cypress Shutter",
   "block.furniture.swamp_cypress_desk": "Swamp Cypress Desk",
   "block.furniture.swamp_cypress_dresser": "Swamp Cypress Dresser",
-  "block.furniture.swamp_cypress_desk_chair": "Swamp Cypress Desk Chair"
+  "block.furniture.swamp_cypress_desk_chair": "Swamp Cypress Desk Chair",
+  "block.furniture.oak_wardrobe": "Oak Wardrobe",
+  "block.furniture.spruce_wardrobe": "Spruce Wardrobe",
+  "block.furniture.birch_wardrobe": "Birch Wardrobe",
+  "block.furniture.jungle_wardrobe": "Jungle Wardrobe",
+  "block.furniture.acacia_wardrobe": "Acacia Wardrobe",
+  "block.furniture.dark_oak_wardrobe": "Dark Oak Wardrobe",
+  "block.furniture.mangrove_wardrobe": "Mangrove Wardrobe",
+  "block.furniture.cherry_wardrobe": "Cherry Wardrobe",
+
+  "block.furniture.aspen_wardrobe": "Aspen Wardrobe",
+  "block.furniture.larch_wardrobe": "Larch Wardrobe",
+  "block.furniture.baobab_wardrobe": "Baobab Wardrobe",
+  "block.furniture.cypress_wardrobe": "Cypress Wardrobe",
+  "block.furniture.ebony_wardrobe": "Ebony Wardrobe",
+  "block.furniture.chestnut_wardrobe": "Chestnut Wardrobe",
+  "block.furniture.fan_palm_wardrobe": "Fan Palm Wardrobe",
+  "block.furniture.fir_wardrobe": "Fir Wardrobe",
+  "block.furniture.swamp_oak_wardrobe": "Swamp Oak Wardrobe",
+  "block.furniture.swamp_cypress_wardrobe": "Swamp Cypress Wardrobe"
 }

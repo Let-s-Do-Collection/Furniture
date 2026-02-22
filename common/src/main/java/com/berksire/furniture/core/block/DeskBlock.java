@@ -1,6 +1,6 @@
 package com.berksire.furniture.core.block;
 
-import com.berksire.furniture.core.util.FurnitureUtil;
+import com.berksire.furniture.core.util.GeneralUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -27,8 +27,8 @@ import java.util.function.Supplier;
 
 @SuppressWarnings("deprecation")
 public class DeskBlock extends LineConnectingBlock implements SimpleWaterloggedBlock {
-    private static final Map<FurnitureUtil.LineConnectingType, Supplier<VoxelShape>> SHAPES_SUPPLIERS = new HashMap<>();
-    private static final Map<Direction, Map<FurnitureUtil.LineConnectingType, VoxelShape>> SHAPES = new EnumMap<>(Direction.class);
+    private static final Map<GeneralUtil.LineConnectingType, Supplier<VoxelShape>> SHAPES_SUPPLIERS = new HashMap<>();
+    private static final Map<Direction, Map<GeneralUtil.LineConnectingType, VoxelShape>> SHAPES = new EnumMap<>(Direction.class);
     public static final BooleanProperty WATERLOGGED;
 
     public DeskBlock(Properties settings) {
@@ -70,7 +70,7 @@ public class DeskBlock extends LineConnectingBlock implements SimpleWaterloggedB
     @SuppressWarnings("deprecation")
     public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         Direction direction = state.getValue(FACING);
-        FurnitureUtil.LineConnectingType type = state.getValue(TYPE);
+        GeneralUtil.LineConnectingType type = state.getValue(TYPE);
         return SHAPES.get(direction).get(type);
     }
 
@@ -108,15 +108,15 @@ public class DeskBlock extends LineConnectingBlock implements SimpleWaterloggedB
 
     static {
         WATERLOGGED = BlockStateProperties.WATERLOGGED;
-        SHAPES_SUPPLIERS.put(FurnitureUtil.LineConnectingType.NONE, DeskBlock::makeSingleShape);
-        SHAPES_SUPPLIERS.put(FurnitureUtil.LineConnectingType.MIDDLE, DeskBlock::makeMiddleShape);
-        SHAPES_SUPPLIERS.put(FurnitureUtil.LineConnectingType.RIGHT, DeskBlock::makeRightShape);
-        SHAPES_SUPPLIERS.put(FurnitureUtil.LineConnectingType.LEFT, DeskBlock::makeLeftShape);
+        SHAPES_SUPPLIERS.put(GeneralUtil.LineConnectingType.NONE, DeskBlock::makeSingleShape);
+        SHAPES_SUPPLIERS.put(GeneralUtil.LineConnectingType.MIDDLE, DeskBlock::makeMiddleShape);
+        SHAPES_SUPPLIERS.put(GeneralUtil.LineConnectingType.RIGHT, DeskBlock::makeRightShape);
+        SHAPES_SUPPLIERS.put(GeneralUtil.LineConnectingType.LEFT, DeskBlock::makeLeftShape);
 
         for (Direction direction : Direction.Plane.HORIZONTAL) {
             SHAPES.put(direction, new HashMap<>());
-            for (Map.Entry<FurnitureUtil.LineConnectingType, Supplier<VoxelShape>> entry : SHAPES_SUPPLIERS.entrySet()) {
-                SHAPES.get(direction).put(entry.getKey(), FurnitureUtil.rotateShape(Direction.NORTH, direction, entry.getValue().get()));
+            for (Map.Entry<GeneralUtil.LineConnectingType, Supplier<VoxelShape>> entry : SHAPES_SUPPLIERS.entrySet()) {
+                SHAPES.get(direction).put(entry.getKey(), GeneralUtil.rotateShape(Direction.NORTH, direction, entry.getValue().get()));
             }
         }
     }

@@ -1,6 +1,6 @@
 package com.berksire.furniture.core.block;
 
-import com.berksire.furniture.core.util.FurnitureUtil;
+import com.berksire.furniture.core.util.GeneralUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -40,13 +40,13 @@ public class DeskChairBlock extends Block {
 
     public static final Map<Direction, VoxelShape> SHAPE_LOWER_MAP = net.minecraft.Util.make(new HashMap<>(), map -> {
         for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
-            map.put(direction, FurnitureUtil.rotateShape(Direction.NORTH, direction, SHAPE_LOWER));
+            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, SHAPE_LOWER));
         }
     });
 
     public static final Map<Direction, VoxelShape> SHAPE_UPPER_MAP = net.minecraft.Util.make(new HashMap<>(), map -> {
         for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
-            map.put(direction, FurnitureUtil.rotateShape(Direction.NORTH, direction, SHAPE_UPPER));
+            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, SHAPE_UPPER));
         }
     });
 
@@ -100,7 +100,7 @@ public class DeskChairBlock extends Block {
     @Override
     protected @NotNull ItemInteractionResult useItemOn(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
         if (blockState.getValue(HALF) == DoubleBlockHalf.LOWER) {
-            return FurnitureUtil.useItemOn(level, player, interactionHand, blockHitResult, 0.2);
+            return GeneralUtil.useItemOn(level, player, interactionHand, blockHitResult, 0.2);
         }
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }

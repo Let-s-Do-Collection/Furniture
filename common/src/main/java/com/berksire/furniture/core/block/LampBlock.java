@@ -1,6 +1,6 @@
 package com.berksire.furniture.core.block;
 
-import com.berksire.furniture.core.util.FurnitureUtil;
+import com.berksire.furniture.core.util.GeneralUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -33,19 +33,19 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class LampBlock extends Block implements SimpleWaterloggedBlock {
-    public static final EnumProperty<FurnitureUtil.VerticalConnectingType> TYPE = FurnitureUtil.VerticalConnectingType.VERTICAL_CONNECTING_TYPE;
+    public static final EnumProperty<GeneralUtil.VerticalConnectingType> TYPE = GeneralUtil.VerticalConnectingType.VERTICAL_CONNECTING_TYPE;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    private static final Map<FurnitureUtil.VerticalConnectingType, Supplier<VoxelShape>> SHAPES_SUPPLIERS = new HashMap<>();
-    private static final Map<FurnitureUtil.VerticalConnectingType, VoxelShape> SHAPES = new HashMap<>();
+    private static final Map<GeneralUtil.VerticalConnectingType, Supplier<VoxelShape>> SHAPES_SUPPLIERS = new HashMap<>();
+    private static final Map<GeneralUtil.VerticalConnectingType, VoxelShape> SHAPES = new HashMap<>();
     private final DyeColor color;
 
     static {
-        SHAPES_SUPPLIERS.put(FurnitureUtil.VerticalConnectingType.NONE, LampBlock::makeSingleShape);
-        SHAPES_SUPPLIERS.put(FurnitureUtil.VerticalConnectingType.MIDDLE, LampBlock::makeMiddleShape);
-        SHAPES_SUPPLIERS.put(FurnitureUtil.VerticalConnectingType.TOP, LampBlock::makeTopShape);
-        SHAPES_SUPPLIERS.put(FurnitureUtil.VerticalConnectingType.BOTTOM, LampBlock::makeBottomShape);
+        SHAPES_SUPPLIERS.put(GeneralUtil.VerticalConnectingType.NONE, LampBlock::makeSingleShape);
+        SHAPES_SUPPLIERS.put(GeneralUtil.VerticalConnectingType.MIDDLE, LampBlock::makeMiddleShape);
+        SHAPES_SUPPLIERS.put(GeneralUtil.VerticalConnectingType.TOP, LampBlock::makeTopShape);
+        SHAPES_SUPPLIERS.put(GeneralUtil.VerticalConnectingType.BOTTOM, LampBlock::makeBottomShape);
 
-        for (Map.Entry<FurnitureUtil.VerticalConnectingType, Supplier<VoxelShape>> entry : SHAPES_SUPPLIERS.entrySet()) {
+        for (Map.Entry<GeneralUtil.VerticalConnectingType, Supplier<VoxelShape>> entry : SHAPES_SUPPLIERS.entrySet()) {
             SHAPES.put(entry.getKey(), entry.getValue().get());
         }
     }
@@ -54,7 +54,7 @@ public class LampBlock extends Block implements SimpleWaterloggedBlock {
         super(properties);
         this.color = color;
         this.registerDefaultState(this.stateDefinition.any()
-                .setValue(TYPE, FurnitureUtil.VerticalConnectingType.NONE)
+                .setValue(TYPE, GeneralUtil.VerticalConnectingType.NONE)
                 .setValue(AbstractCandleBlock.LIT, false)
                 .setValue(WATERLOGGED, false));
     }
@@ -88,24 +88,24 @@ public class LampBlock extends Block implements SimpleWaterloggedBlock {
     public void neighborChanged(BlockState state, Level world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
         if (world.isClientSide) return;
 
-        FurnitureUtil.VerticalConnectingType type = getType(world.getBlockState(pos.above()), world.getBlockState(pos.below()));
+        GeneralUtil.VerticalConnectingType type = getType(world.getBlockState(pos.above()), world.getBlockState(pos.below()));
         if (state.getValue(TYPE) != type) {
             world.setBlock(pos, state.setValue(TYPE, type), 3);
         }
     }
 
-    public FurnitureUtil.VerticalConnectingType getType(BlockState above, BlockState below) {
+    public GeneralUtil.VerticalConnectingType getType(BlockState above, BlockState below) {
         boolean shapeAboveSame = above.getBlock() instanceof LampBlock;
         boolean shapeBelowSame = below.getBlock() instanceof LampBlock;
 
         if (shapeAboveSame && shapeBelowSame) {
-            return FurnitureUtil.VerticalConnectingType.MIDDLE;
+            return GeneralUtil.VerticalConnectingType.MIDDLE;
         } else if (shapeAboveSame) {
-            return FurnitureUtil.VerticalConnectingType.BOTTOM;
+            return GeneralUtil.VerticalConnectingType.BOTTOM;
         } else if (shapeBelowSame) {
-            return FurnitureUtil.VerticalConnectingType.TOP;
+            return GeneralUtil.VerticalConnectingType.TOP;
         } else {
-            return FurnitureUtil.VerticalConnectingType.NONE;
+            return GeneralUtil.VerticalConnectingType.NONE;
         }
     }
 
@@ -144,7 +144,7 @@ public class LampBlock extends Block implements SimpleWaterloggedBlock {
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult blockHitResult) {
-        if (player.isShiftKeyDown() && (state.getValue(TYPE) == FurnitureUtil.VerticalConnectingType.NONE || state.getValue(TYPE) == FurnitureUtil.VerticalConnectingType.TOP)) {
+        if (player.isShiftKeyDown() && (state.getValue(TYPE) == GeneralUtil.VerticalConnectingType.NONE || state.getValue(TYPE) == GeneralUtil.VerticalConnectingType.TOP)) {
             boolean lit = !state.getValue(AbstractCandleBlock.LIT);
             world.setBlock(pos, state.setValue(AbstractCandleBlock.LIT, lit), 3);
             world.playSound(null, pos, SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_ON, SoundSource.BLOCKS, 1.0F, 1.0F);

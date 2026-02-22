@@ -1,7 +1,7 @@
 package com.berksire.furniture.core.block;
 
 import com.berksire.furniture.core.block.entity.DresserBlockEntity;
-import com.berksire.furniture.core.util.FurnitureUtil;
+import com.berksire.furniture.core.util.GeneralUtil;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -45,11 +45,11 @@ import java.util.function.Supplier;
 
 @SuppressWarnings("deprecation")
 public class DresserBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
-    private static final Map<FurnitureUtil.LineConnectingType, Supplier<VoxelShape>> SHAPES_SUPPLIERS = new HashMap<>();
-    private static final Map<Direction, Map<FurnitureUtil.LineConnectingType, VoxelShape>> SHAPES = new EnumMap<>(Direction.class);
+    private static final Map<GeneralUtil.LineConnectingType, Supplier<VoxelShape>> SHAPES_SUPPLIERS = new HashMap<>();
+    private static final Map<Direction, Map<GeneralUtil.LineConnectingType, VoxelShape>> SHAPES = new EnumMap<>(Direction.class);
     public static final BooleanProperty WATERLOGGED;
     public static final DirectionProperty FACING;
-    public static final EnumProperty<FurnitureUtil.LineConnectingType> TYPE;
+    public static final EnumProperty<GeneralUtil.LineConnectingType> TYPE;
     private final Supplier<SoundEvent> openSound;
     private final Supplier<SoundEvent> closeSound;
 
@@ -57,7 +57,7 @@ public class DresserBlock extends BaseEntityBlock implements SimpleWaterloggedBl
         super(settings);
         this.openSound = openSound;
         this.closeSound = closeSound;
-        this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false).setValue(FACING, Direction.NORTH).setValue(TYPE, FurnitureUtil.LineConnectingType.NONE));
+        this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false).setValue(FACING, Direction.NORTH).setValue(TYPE, GeneralUtil.LineConnectingType.NONE));
     }
 
     private DresserBlock(Properties properties) {
@@ -150,18 +150,18 @@ public class DresserBlock extends BaseEntityBlock implements SimpleWaterloggedBl
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
-    public FurnitureUtil.LineConnectingType getType(BlockState state, BlockState left, BlockState right) {
+    public GeneralUtil.LineConnectingType getType(BlockState state, BlockState left, BlockState right) {
         boolean shape_left_same = isConnectable(left, state);
         boolean shape_right_same = isConnectable(right, state);
 
         if (shape_left_same && shape_right_same) {
-            return FurnitureUtil.LineConnectingType.MIDDLE;
+            return GeneralUtil.LineConnectingType.MIDDLE;
         } else if (shape_left_same) {
-            return FurnitureUtil.LineConnectingType.LEFT;
+            return GeneralUtil.LineConnectingType.LEFT;
         } else if (shape_right_same) {
-            return FurnitureUtil.LineConnectingType.RIGHT;
+            return GeneralUtil.LineConnectingType.RIGHT;
         }
-        return FurnitureUtil.LineConnectingType.NONE;
+        return GeneralUtil.LineConnectingType.NONE;
     }
 
     protected boolean isConnectable(BlockState state1, BlockState state2) {
@@ -176,7 +176,7 @@ public class DresserBlock extends BaseEntityBlock implements SimpleWaterloggedBl
         if (world.isClientSide) return;
 
         Direction facing = state.getValue(FACING);
-        FurnitureUtil.LineConnectingType type;
+        GeneralUtil.LineConnectingType type;
         switch (facing) {
             case EAST -> type = getType(state, world.getBlockState(pos.south()), world.getBlockState(pos.north()));
             case SOUTH -> type = getType(state, world.getBlockState(pos.west()), world.getBlockState(pos.east()));
@@ -193,7 +193,7 @@ public class DresserBlock extends BaseEntityBlock implements SimpleWaterloggedBl
     @SuppressWarnings("deprecation")
     public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         Direction direction = state.getValue(FACING);
-        FurnitureUtil.LineConnectingType type = state.getValue(TYPE);
+        GeneralUtil.LineConnectingType type = state.getValue(TYPE);
         return SHAPES.get(direction).get(type);
     }
 
@@ -236,16 +236,16 @@ public class DresserBlock extends BaseEntityBlock implements SimpleWaterloggedBl
     static {
         WATERLOGGED = BlockStateProperties.WATERLOGGED;
         FACING = BlockStateProperties.HORIZONTAL_FACING;
-        TYPE = FurnitureUtil.LINE_CONNECTING_TYPE;
-        SHAPES_SUPPLIERS.put(FurnitureUtil.LineConnectingType.NONE, DresserBlock::makeSingleShape);
-        SHAPES_SUPPLIERS.put(FurnitureUtil.LineConnectingType.MIDDLE, DresserBlock::makeMiddleShape);
-        SHAPES_SUPPLIERS.put(FurnitureUtil.LineConnectingType.RIGHT, DresserBlock::makeRightShape);
-        SHAPES_SUPPLIERS.put(FurnitureUtil.LineConnectingType.LEFT, DresserBlock::makeLeftShape);
+        TYPE = GeneralUtil.LINE_CONNECTING_TYPE;
+        SHAPES_SUPPLIERS.put(GeneralUtil.LineConnectingType.NONE, DresserBlock::makeSingleShape);
+        SHAPES_SUPPLIERS.put(GeneralUtil.LineConnectingType.MIDDLE, DresserBlock::makeMiddleShape);
+        SHAPES_SUPPLIERS.put(GeneralUtil.LineConnectingType.RIGHT, DresserBlock::makeRightShape);
+        SHAPES_SUPPLIERS.put(GeneralUtil.LineConnectingType.LEFT, DresserBlock::makeLeftShape);
 
         for (Direction direction : Direction.Plane.HORIZONTAL) {
             SHAPES.put(direction, new HashMap<>());
-            for (Map.Entry<FurnitureUtil.LineConnectingType, Supplier<VoxelShape>> entry : SHAPES_SUPPLIERS.entrySet()) {
-                SHAPES.get(direction).put(entry.getKey(), FurnitureUtil.rotateShape(Direction.NORTH, direction, entry.getValue().get()));
+            for (Map.Entry<GeneralUtil.LineConnectingType, Supplier<VoxelShape>> entry : SHAPES_SUPPLIERS.entrySet()) {
+                SHAPES.get(direction).put(entry.getKey(), GeneralUtil.rotateShape(Direction.NORTH, direction, entry.getValue().get()));
             }
         }
     }

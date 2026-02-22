@@ -1,6 +1,6 @@
 package com.berksire.furniture.core.block;
 
-import com.berksire.furniture.core.util.FurnitureUtil;
+import com.berksire.furniture.core.util.GeneralUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
@@ -36,12 +36,12 @@ public class PouffeBlock extends Block {
 
     @Override
     protected @NotNull ItemInteractionResult useItemOn(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        return FurnitureUtil.useItemOn(level, player, interactionHand, blockHitResult, 0.2);
+        return GeneralUtil.useItemOn(level, player, interactionHand, blockHitResult, 0.2);
     }
 
     @Override
     public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
-        FurnitureUtil.onStateReplaced(world, pos);
+        GeneralUtil.onStateReplaced(world, pos);
     }
 
     @Override

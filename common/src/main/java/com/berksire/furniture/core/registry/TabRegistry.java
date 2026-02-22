@@ -48,6 +48,9 @@ public class TabRegistry {
                     ObjectRegistry.DRESSER.get(woodType).ifPresent(out::accept);
                 }
                 for (String woodType : woodTypeOrder) {
+                    ObjectRegistry.WARDROBES.get(woodType).ifPresent(out::accept);
+                }
+                for (String woodType : woodTypeOrder) {
                     ObjectRegistry.DESKS.get(woodType).ifPresent(out::accept);
                 }
                 out.accept(ObjectRegistry.WOODEN_PLANTER.get());
@@ -117,6 +120,9 @@ public class TabRegistry {
                         }
                         for (String woodType : bloomingNatureWoodTypeOrder) {
                             ObjectRegistry.DRESSER.get(woodType).ifPresent(out::accept);
+                        }
+                        for (String woodType : bloomingNatureWoodTypeOrder) {
+                            ObjectRegistry.WARDROBES.get(woodType).ifPresent(out::accept);
                         }
                         for (String woodType : bloomingNatureWoodTypeOrder) {
                             ObjectRegistry.DESKS.get(woodType).ifPresent(out::accept);

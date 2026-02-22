@@ -1,6 +1,6 @@
 package com.berksire.furniture.core.block;
 
-import com.berksire.furniture.core.util.FurnitureUtil;
+import com.berksire.furniture.core.util.GeneralUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -32,20 +32,20 @@ import java.util.function.Supplier;
 
 @SuppressWarnings("deprecation")
 public class SteamVentBlock extends Block implements SimpleWaterloggedBlock {
-    public static final EnumProperty<FurnitureUtil.VerticalConnectingType> TYPE = FurnitureUtil.VerticalConnectingType.VERTICAL_CONNECTING_TYPE;
+    public static final EnumProperty<GeneralUtil.VerticalConnectingType> TYPE = GeneralUtil.VerticalConnectingType.VERTICAL_CONNECTING_TYPE;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final BooleanProperty PARTICLES_ENABLED = BooleanProperty.create("particles_enabled");
 
-    private static final Map<FurnitureUtil.VerticalConnectingType, Supplier<VoxelShape>> SHAPES_SUPPLIERS = new HashMap<>();
-    private static final Map<FurnitureUtil.VerticalConnectingType, VoxelShape> SHAPES = new EnumMap<>(FurnitureUtil.VerticalConnectingType.class);
+    private static final Map<GeneralUtil.VerticalConnectingType, Supplier<VoxelShape>> SHAPES_SUPPLIERS = new HashMap<>();
+    private static final Map<GeneralUtil.VerticalConnectingType, VoxelShape> SHAPES = new EnumMap<>(GeneralUtil.VerticalConnectingType.class);
 
     static {
-        SHAPES_SUPPLIERS.put(FurnitureUtil.VerticalConnectingType.NONE, SteamVentBlock::makeSingleShape);
-        SHAPES_SUPPLIERS.put(FurnitureUtil.VerticalConnectingType.MIDDLE, SteamVentBlock::makeMiddleShape);
-        SHAPES_SUPPLIERS.put(FurnitureUtil.VerticalConnectingType.TOP, SteamVentBlock::makeTopShape);
-        SHAPES_SUPPLIERS.put(FurnitureUtil.VerticalConnectingType.BOTTOM, SteamVentBlock::makeBottomShape);
+        SHAPES_SUPPLIERS.put(GeneralUtil.VerticalConnectingType.NONE, SteamVentBlock::makeSingleShape);
+        SHAPES_SUPPLIERS.put(GeneralUtil.VerticalConnectingType.MIDDLE, SteamVentBlock::makeMiddleShape);
+        SHAPES_SUPPLIERS.put(GeneralUtil.VerticalConnectingType.TOP, SteamVentBlock::makeTopShape);
+        SHAPES_SUPPLIERS.put(GeneralUtil.VerticalConnectingType.BOTTOM, SteamVentBlock::makeBottomShape);
 
-        for (Map.Entry<FurnitureUtil.VerticalConnectingType, Supplier<VoxelShape>> entry : SHAPES_SUPPLIERS.entrySet()) {
+        for (Map.Entry<GeneralUtil.VerticalConnectingType, Supplier<VoxelShape>> entry : SHAPES_SUPPLIERS.entrySet()) {
             SHAPES.put(entry.getKey(), entry.getValue().get());
         }
     }
@@ -53,7 +53,7 @@ public class SteamVentBlock extends Block implements SimpleWaterloggedBlock {
     public SteamVentBlock(Properties settings) {
         super(settings);
         this.registerDefaultState(this.stateDefinition.any()
-                .setValue(TYPE, FurnitureUtil.VerticalConnectingType.NONE)
+                .setValue(TYPE, GeneralUtil.VerticalConnectingType.NONE)
                 .setValue(WATERLOGGED, false)
                 .setValue(PARTICLES_ENABLED, false));
     }
@@ -79,31 +79,31 @@ public class SteamVentBlock extends Block implements SimpleWaterloggedBlock {
     public void neighborChanged(BlockState state, Level world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
         if (world.isClientSide) return;
 
-        FurnitureUtil.VerticalConnectingType type = getType(state, world.getBlockState(pos.above()), world.getBlockState(pos.below()));
+        GeneralUtil.VerticalConnectingType type = getType(state, world.getBlockState(pos.above()), world.getBlockState(pos.below()));
         if (state.getValue(TYPE) != type) {
             state = state.setValue(TYPE, type);
         }
         world.setBlock(pos, state, 3);
     }
 
-    public FurnitureUtil.VerticalConnectingType getType(BlockState state, BlockState above, BlockState below) {
+    public GeneralUtil.VerticalConnectingType getType(BlockState state, BlockState above, BlockState below) {
         boolean shapeAboveSame = above.getBlock() == state.getBlock();
         boolean shapeBelowSame = below.getBlock() == state.getBlock();
 
         if (shapeAboveSame && shapeBelowSame) {
-            return FurnitureUtil.VerticalConnectingType.MIDDLE;
+            return GeneralUtil.VerticalConnectingType.MIDDLE;
         } else if (shapeAboveSame) {
-            return FurnitureUtil.VerticalConnectingType.BOTTOM;
+            return GeneralUtil.VerticalConnectingType.BOTTOM;
         } else if (shapeBelowSame) {
-            return FurnitureUtil.VerticalConnectingType.TOP;
+            return GeneralUtil.VerticalConnectingType.TOP;
         } else {
-            return FurnitureUtil.VerticalConnectingType.NONE;
+            return GeneralUtil.VerticalConnectingType.NONE;
         }
     }
 
     @Override
     public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        FurnitureUtil.VerticalConnectingType type = state.getValue(TYPE);
+        GeneralUtil.VerticalConnectingType type = state.getValue(TYPE);
         return SHAPES.get(type);
     }
 
@@ -120,7 +120,7 @@ public class SteamVentBlock extends Block implements SimpleWaterloggedBlock {
 
     @Override
     public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
-        if (state.getValue(PARTICLES_ENABLED) && (state.getValue(TYPE) == FurnitureUtil.VerticalConnectingType.NONE || state.getValue(TYPE) == FurnitureUtil.VerticalConnectingType.BOTTOM)) {
+        if (state.getValue(PARTICLES_ENABLED) && (state.getValue(TYPE) == GeneralUtil.VerticalConnectingType.NONE || state.getValue(TYPE) == GeneralUtil.VerticalConnectingType.BOTTOM)) {
             double x = pos.getX() + 0.5;
             double y = pos.getY() - 1;
             double z = pos.getZ() + 0.5;

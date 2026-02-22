@@ -1,6 +1,6 @@
 package com.berksire.furniture.core.block;
 
-import com.berksire.furniture.core.util.FurnitureUtil;
+import com.berksire.furniture.core.util.GeneralUtil;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -125,7 +125,7 @@ public class BenchBlock extends LineConnectingBlock {
         if (player.isShiftKeyDown()) {
             return toggleRest(blockState, level, blockPos);
         }
-        return FurnitureUtil.useItemOn(level, player, interactionHand, blockHitResult, 0.1);
+        return GeneralUtil.useItemOn(level, player, interactionHand, blockHitResult, 0.1);
     }
 
     public @NotNull ItemInteractionResult toggleRest(BlockState state, Level world, BlockPos pos) {
@@ -136,27 +136,27 @@ public class BenchBlock extends LineConnectingBlock {
 
     @Override
     public void neighborChanged(BlockState state, Level world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
-        FurnitureUtil.LineConnectingType type = getType(state, world.getBlockState(pos.relative(state.getValue(FACING).getClockWise())), world.getBlockState(pos.relative(state.getValue(FACING).getCounterClockWise())));
+        GeneralUtil.LineConnectingType type = getType(state, world.getBlockState(pos.relative(state.getValue(FACING).getClockWise())), world.getBlockState(pos.relative(state.getValue(FACING).getCounterClockWise())));
         if (state.getValue(TYPE) != type) {
             state = state.setValue(TYPE, type);
             world.setBlock(pos, state, 3);
         }
     }
 
-    public FurnitureUtil.LineConnectingType getType(BlockState state, BlockState clockwise, BlockState counterClockwise) {
+    public GeneralUtil.LineConnectingType getType(BlockState state, BlockState clockwise, BlockState counterClockwise) {
         boolean shape_clockwise_same = clockwise.getBlock() == state.getBlock() && clockwise.getValue(FACING) == state.getValue(FACING)
                 && clockwise.getValue(REST) == state.getValue(REST);
         boolean shape_counterClockwise_same = counterClockwise.getBlock() == state.getBlock() && counterClockwise.getValue(FACING) == state.getValue(FACING)
                 && counterClockwise.getValue(REST) == state.getValue(REST);
 
         if (shape_clockwise_same && !shape_counterClockwise_same) {
-            return FurnitureUtil.LineConnectingType.RIGHT;
+            return GeneralUtil.LineConnectingType.RIGHT;
         } else if (!shape_clockwise_same && shape_counterClockwise_same) {
-            return FurnitureUtil.LineConnectingType.LEFT;
+            return GeneralUtil.LineConnectingType.LEFT;
         } else if (shape_clockwise_same) {
-            return FurnitureUtil.LineConnectingType.MIDDLE;
+            return GeneralUtil.LineConnectingType.MIDDLE;
         }
-        return FurnitureUtil.LineConnectingType.NONE;
+        return GeneralUtil.LineConnectingType.NONE;
     }
 
     private void updateConnectedBlocks(BlockState state, Level world, BlockPos pos, boolean newRestState) {
@@ -174,48 +174,48 @@ public class BenchBlock extends LineConnectingBlock {
 
     @Override
     public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
-        FurnitureUtil.onStateReplaced(world, pos);
+        GeneralUtil.onStateReplaced(world, pos);
     }
 
     static {
         SHAPE = Util.make(new HashMap<>(), map -> {
             for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
-                map.put(direction, FurnitureUtil.rotateShape(Direction.NORTH, direction, noneShapeSupplier.get()));
+                map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, noneShapeSupplier.get()));
             }
         });
         MIDDLE_SHAPE = Util.make(new HashMap<>(), map -> {
             for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
-                map.put(direction, FurnitureUtil.rotateShape(Direction.NORTH, direction, middleShapeSupplier.get()));
+                map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, middleShapeSupplier.get()));
             }
         });
         LEFT_SHAPE = Util.make(new HashMap<>(), map -> {
-            map.put(Direction.NORTH, FurnitureUtil.rotateShape(Direction.NORTH, Direction.NORTH, rightShapeSupplier.get()));
-            map.put(Direction.SOUTH, FurnitureUtil.rotateShape(Direction.NORTH, Direction.SOUTH, rightShapeSupplier.get()));
-            map.put(Direction.EAST, FurnitureUtil.rotateShape(Direction.NORTH, Direction.EAST, rightShapeSupplier.get()));
-            map.put(Direction.WEST, FurnitureUtil.rotateShape(Direction.NORTH, Direction.WEST, rightShapeSupplier.get()));
+            map.put(Direction.NORTH, GeneralUtil.rotateShape(Direction.NORTH, Direction.NORTH, rightShapeSupplier.get()));
+            map.put(Direction.SOUTH, GeneralUtil.rotateShape(Direction.NORTH, Direction.SOUTH, rightShapeSupplier.get()));
+            map.put(Direction.EAST, GeneralUtil.rotateShape(Direction.NORTH, Direction.EAST, rightShapeSupplier.get()));
+            map.put(Direction.WEST, GeneralUtil.rotateShape(Direction.NORTH, Direction.WEST, rightShapeSupplier.get()));
         });
         RIGHT_SHAPE = Util.make(new HashMap<>(), map -> {
-            map.put(Direction.NORTH, FurnitureUtil.rotateShape(Direction.NORTH, Direction.NORTH, leftShapeSupplier.get()));
-            map.put(Direction.SOUTH, FurnitureUtil.rotateShape(Direction.NORTH, Direction.SOUTH, leftShapeSupplier.get()));
-            map.put(Direction.EAST, FurnitureUtil.rotateShape(Direction.NORTH, Direction.EAST, leftShapeSupplier.get()));
-            map.put(Direction.WEST, FurnitureUtil.rotateShape(Direction.NORTH, Direction.WEST, leftShapeSupplier.get()));
+            map.put(Direction.NORTH, GeneralUtil.rotateShape(Direction.NORTH, Direction.NORTH, leftShapeSupplier.get()));
+            map.put(Direction.SOUTH, GeneralUtil.rotateShape(Direction.NORTH, Direction.SOUTH, leftShapeSupplier.get()));
+            map.put(Direction.EAST, GeneralUtil.rotateShape(Direction.NORTH, Direction.EAST, leftShapeSupplier.get()));
+            map.put(Direction.WEST, GeneralUtil.rotateShape(Direction.NORTH, Direction.WEST, leftShapeSupplier.get()));
         });
         NONE_REST_SHAPE = Util.make(new HashMap<>(), map -> {
             for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
-                map.put(direction, FurnitureUtil.rotateShape(Direction.NORTH, direction, noneRestShapeSupplier.get()));
+                map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, noneRestShapeSupplier.get()));
             }
         });
         LEFT_REST_SHAPE = Util.make(new HashMap<>(), map -> {
-            map.put(Direction.NORTH, FurnitureUtil.rotateShape(Direction.NORTH, Direction.NORTH, rightRestShapeSupplier.get()));
-            map.put(Direction.SOUTH, FurnitureUtil.rotateShape(Direction.NORTH, Direction.SOUTH, rightRestShapeSupplier.get()));
-            map.put(Direction.EAST, FurnitureUtil.rotateShape(Direction.NORTH, Direction.EAST, rightRestShapeSupplier.get()));
-            map.put(Direction.WEST, FurnitureUtil.rotateShape(Direction.NORTH, Direction.WEST, rightRestShapeSupplier.get()));
+            map.put(Direction.NORTH, GeneralUtil.rotateShape(Direction.NORTH, Direction.NORTH, rightRestShapeSupplier.get()));
+            map.put(Direction.SOUTH, GeneralUtil.rotateShape(Direction.NORTH, Direction.SOUTH, rightRestShapeSupplier.get()));
+            map.put(Direction.EAST, GeneralUtil.rotateShape(Direction.NORTH, Direction.EAST, rightRestShapeSupplier.get()));
+            map.put(Direction.WEST, GeneralUtil.rotateShape(Direction.NORTH, Direction.WEST, rightRestShapeSupplier.get()));
         });
         RIGHT_REST_SHAPE = Util.make(new HashMap<>(), map -> {
-            map.put(Direction.NORTH, FurnitureUtil.rotateShape(Direction.NORTH, Direction.NORTH, leftRestShapeSupplier.get()));
-            map.put(Direction.SOUTH, FurnitureUtil.rotateShape(Direction.NORTH, Direction.SOUTH, leftRestShapeSupplier.get()));
-            map.put(Direction.EAST, FurnitureUtil.rotateShape(Direction.NORTH, Direction.EAST, leftRestShapeSupplier.get()));
-            map.put(Direction.WEST, FurnitureUtil.rotateShape(Direction.NORTH, Direction.WEST, leftRestShapeSupplier.get()));
+            map.put(Direction.NORTH, GeneralUtil.rotateShape(Direction.NORTH, Direction.NORTH, leftRestShapeSupplier.get()));
+            map.put(Direction.SOUTH, GeneralUtil.rotateShape(Direction.NORTH, Direction.SOUTH, leftRestShapeSupplier.get()));
+            map.put(Direction.EAST, GeneralUtil.rotateShape(Direction.NORTH, Direction.EAST, leftRestShapeSupplier.get()));
+            map.put(Direction.WEST, GeneralUtil.rotateShape(Direction.NORTH, Direction.WEST, leftRestShapeSupplier.get()));
         });
     }
 

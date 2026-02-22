@@ -1,6 +1,6 @@
 package com.berksire.furniture.core.entity;
 
-import com.berksire.furniture.core.util.FurnitureUtil;
+import com.berksire.furniture.core.util.GeneralUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
@@ -29,7 +29,7 @@ public class ChairEntity extends Entity {
     @Override
     public @NotNull Vec3 getDismountLocationForPassenger(LivingEntity passenger) {
         if (passenger instanceof Player p) {
-            BlockPos pos = FurnitureUtil.getPreviousPlayerPosition(p, this);
+            BlockPos pos = GeneralUtil.getPreviousPlayerPosition(p, this);
             if (pos != null) {
                 discard();
                 return new Vec3(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D);
@@ -44,7 +44,7 @@ public class ChairEntity extends Entity {
     @Override
     public void remove(RemovalReason reason) {
         super.remove(reason);
-        FurnitureUtil.removeChairEntity(level(), blockPosition());
+        GeneralUtil.removeChairEntity(level(), blockPosition());
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.berksire.furniture.core.block;
 
 import com.berksire.furniture.core.block.entity.CofferBlockEntity;
 import com.berksire.furniture.core.registry.EntityTypeRegistry;
-import com.berksire.furniture.core.util.FurnitureUtil;
+import com.berksire.furniture.core.util.GeneralUtil;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -72,7 +72,7 @@ public class CofferBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
 
 	public static final Map<Direction, VoxelShape> SHAPE = net.minecraft.Util.make(new HashMap<>(), map -> {
 		for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
-			map.put(direction, FurnitureUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
+			map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
 		}
 	});
 

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "furniture:cypress_cabinet"
+    },
+    {
+      "item": "furniture:cypress_cabinet"
+    }
+  ],
+  "result": {
+    "id": "furniture:cypress_wardrobe",
+    "count": 1
+  }
+}

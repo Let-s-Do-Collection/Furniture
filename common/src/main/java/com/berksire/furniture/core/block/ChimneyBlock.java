@@ -29,7 +29,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import static com.berksire.furniture.core.util.FurnitureUtil.SmokeType;
+import static com.berksire.furniture.core.util.GeneralUtil.SmokeType;
 
 @SuppressWarnings("deprecation")
 public class ChimneyBlock extends Block implements EntityBlock {

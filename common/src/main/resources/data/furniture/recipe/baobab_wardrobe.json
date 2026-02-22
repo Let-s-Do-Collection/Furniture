@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "furniture:baobab_cabinet"
+    },
+    {
+      "item": "furniture:baobab_cabinet"
+    }
+  ],
+  "result": {
+    "id": "furniture:baobab_wardrobe",
+    "count": 1
+  }
+}

@@ -1,6 +1,6 @@
 package com.berksire.furniture.core.block;
 
-import com.berksire.furniture.core.util.FurnitureUtil;
+import com.berksire.furniture.core.util.GeneralUtil;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -97,7 +97,7 @@ public class StreetLanternWallBlock extends HorizontalDirectionalBlock implement
     private static Map<Direction, VoxelShape> createDirectionalShapes(Supplier<VoxelShape> shapeSupplier) {
         return Util.make(new HashMap<>(), map -> {
             for (Direction direction : Direction.Plane.HORIZONTAL) {
-                map.put(direction, FurnitureUtil.rotateShape(Direction.NORTH, direction, shapeSupplier.get()));
+                map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, shapeSupplier.get()));
             }
         });
     }

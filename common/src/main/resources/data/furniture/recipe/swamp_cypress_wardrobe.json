@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "furniture:swamp_cypress_cabinet"
+    },
+    {
+      "item": "furniture:swamp_cypress_cabinet"
+    }
+  ],
+  "result": {
+    "id": "furniture:swamp_cypress_wardrobe",
+    "count": 1
+  }
+}

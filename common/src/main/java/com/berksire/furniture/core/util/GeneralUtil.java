@@ -33,7 +33,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 import java.util.function.Supplier;
 
-public class FurnitureUtil {
+public class GeneralUtil {
     private static final Map<ResourceLocation, Map<BlockPos, Pair<ChairEntity, BlockPos>>> CHAIRS = new HashMap<>();
 
     public static <T extends Block> RegistrySupplier<T> registerWithItem(DeferredRegister<Block> registerB, Registrar<Block> registrarB, DeferredRegister<Item> registerI, Registrar<Item> registrarI, ResourceLocation name, Supplier<T> block) {
@@ -107,14 +107,14 @@ public class FurnitureUtil {
     public static ItemInteractionResult useItemOn(Level world, Player player, InteractionHand hand, BlockHitResult hit, double extraHeight) {
         if (world.isClientSide) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         if (player.isShiftKeyDown()) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-        if (FurnitureUtil.isPlayerSitting(player)) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        if (GeneralUtil.isPlayerSitting(player)) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         if (hit.getDirection() == Direction.DOWN) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         BlockPos hitPos = hit.getBlockPos();
-        if (!FurnitureUtil.isOccupied(world, hitPos) && player.getItemInHand(hand).isEmpty()) {
+        if (!GeneralUtil.isOccupied(world, hitPos) && player.getItemInHand(hand).isEmpty()) {
             ChairEntity chair = EntityTypeRegistry.CHAIR.get().create(world);
             assert chair != null;
             chair.moveTo(hitPos.getX() + 0.5D, hitPos.getY() + 0.25D + extraHeight, hitPos.getZ() + 0.5D, 0, 0);
-            if (FurnitureUtil.addChairEntity(world, hitPos, chair, player.blockPosition())) {
+            if (GeneralUtil.addChairEntity(world, hitPos, chair, player.blockPosition())) {
                 world.addFreshEntity(chair);
                 player.startRiding(chair);
                 return ItemInteractionResult.SUCCESS;
@@ -125,9 +125,9 @@ public class FurnitureUtil {
 
     public static void onStateReplaced(Level world, BlockPos pos) {
         if (!world.isClientSide) {
-            ChairEntity entity = FurnitureUtil.getChairEntity(world, pos);
+            ChairEntity entity = GeneralUtil.getChairEntity(world, pos);
             if (entity != null) {
-                FurnitureUtil.removeChairEntity(world, pos);
+                GeneralUtil.removeChairEntity(world, pos);
                 entity.ejectPassengers();
             }
         }
@@ -176,7 +176,7 @@ public class FurnitureUtil {
 
     public static boolean isOccupied(Level world, BlockPos pos) {
         ResourceLocation id = getDimensionTypeId(world);
-        return FurnitureUtil.CHAIRS.containsKey(id) && FurnitureUtil.CHAIRS.get(id).containsKey(pos);
+        return GeneralUtil.CHAIRS.containsKey(id) && GeneralUtil.CHAIRS.get(id).containsKey(pos);
     }
 
     public static boolean isPlayerSitting(Player player) {

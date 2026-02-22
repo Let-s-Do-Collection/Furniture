@@ -5,7 +5,7 @@ import com.berksire.furniture.core.block.*;
 import com.berksire.furniture.core.item.CanvasItem;
 import com.berksire.furniture.core.item.PellsSpawnItem;
 import com.berksire.furniture.core.item.TrashBagItem;
-import com.berksire.furniture.core.util.FurnitureUtil;
+import com.berksire.furniture.core.util.GeneralUtil;
 import dev.architectury.platform.Platform;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.Registrar;
@@ -16,7 +16,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.level.block.AbstractCandleBlock;
 import net.minecraft.world.level.block.Block;
@@ -52,6 +51,7 @@ public class ObjectRegistry {
     public static final Map<String, RegistrySupplier<Block>> BENCHES = new HashMap<>();
     public static final Map<String, RegistrySupplier<Block>> MIRRORS = new HashMap<>();
     public static final Map<String, RegistrySupplier<Block>> SHUTTERS = new HashMap<>();
+    public static final Map<String, RegistrySupplier<Block>> WARDROBES = new HashMap<>();
     public static final RegistrySupplier<Block> GRAMOPHONE = registerWithItem("gramophone", () -> new GramophoneBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.JUKEBOX)));
     public static final RegistrySupplier<Block> TELESCOPE = registerWithItem("telescope", () -> new TelescopeBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)));
     public static final RegistrySupplier<Block> COFFER = registerWithItem("coffer", () -> new CofferBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_WOOL).pushReaction(PushReaction.DESTROY)));
@@ -122,6 +122,7 @@ public class ObjectRegistry {
             DESKS.put(woodType, registerWithItem(woodType + "_desk", () -> new DeskBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock).pushReaction(PushReaction.IGNORE))));
             DRESSER.put(woodType, registerWithItem(woodType + "_dresser", () -> new DresserBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD), SoundRegistry.CABINET_OPEN, SoundRegistry.CABINET_CLOSE)));
             DESK_CHAIRS.put(woodType, registerWithItem(woodType + "_desk_chair", () -> new DeskChairBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock))));
+            WARDROBES.put(woodType, registerWithItem(woodType + "_wardrobe", () -> new WardrobeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD))));
         }
 
         for (String color : colors) {
@@ -199,14 +200,14 @@ public class ObjectRegistry {
     }
 
     public static <T extends Block> RegistrySupplier<T> registerWithItem(String name, Supplier<T> block) {
-        return FurnitureUtil.registerWithItem(BLOCKS, BLOCK_REGISTRAR, ITEMS, ITEM_REGISTRAR, Furniture.identifier(name), block);
+        return GeneralUtil.registerWithItem(BLOCKS, BLOCK_REGISTRAR, ITEMS, ITEM_REGISTRAR, Furniture.identifier(name), block);
     }
 
     public static <T extends Block> RegistrySupplier<T> registerWithoutItem(String path, Supplier<T> block) {
-        return FurnitureUtil.registerWithoutItem(BLOCKS, BLOCK_REGISTRAR, Furniture.identifier(path), block);
+        return GeneralUtil.registerWithoutItem(BLOCKS, BLOCK_REGISTRAR, Furniture.identifier(path), block);
     }
 
     public static <T extends Item> RegistrySupplier<T> registerItem(String path, Supplier<T> itemSupplier) {
-        return FurnitureUtil.registerItem(ITEMS, ITEM_REGISTRAR, Furniture.identifier(path), itemSupplier);
+        return GeneralUtil.registerItem(ITEMS, ITEM_REGISTRAR, Furniture.identifier(path), itemSupplier);
     }
 }
