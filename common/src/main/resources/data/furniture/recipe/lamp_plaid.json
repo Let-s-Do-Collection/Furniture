@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#B#",
+    " B "
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:stick"
+    },
+    "#": {
+      "item": "meadow:plaid_wool"
+    }
+  },
+  "result": {
+    "id": "furniture:lamp_plaid",
+    "count": 2
+  }
+}

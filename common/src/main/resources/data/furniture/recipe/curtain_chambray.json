@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BB ",
+    "## ",
+    "## "
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:stick"
+    },
+    "#": {
+      "item": "meadow:chambray_wool"
+    }
+  },
+  "result": {
+    "id": "furniture:curtain_chambray",
+    "count": 4
+  }
+}

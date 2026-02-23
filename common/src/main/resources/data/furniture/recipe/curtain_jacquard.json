@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BB ",
+    "## ",
+    "## "
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:stick"
+    },
+    "#": {
+      "item": "meadow:jacquard_wool"
+    }
+  },
+  "result": {
+    "id": "furniture:curtain_jacquard",
+    "count": 4
+  }
+}

@@ -225,7 +225,7 @@
   "block.furniture.dark_oak_desk_chair": "Dark Oak Desk Chair",
   "block.furniture.mangrove_desk_chair": "Mangrove Desk Chair",
   "block.furniture.cherry_desk_chair": "Cherry Desk Chair",
-  "itemGroup.furniture.furniture_bloomingnature_tab": "[Let's Do] Furniture Compat Layer",
+  "itemGroup.furniture.furniture_compat_layer_tab": "[Let's Do] Furniture Compat Layer",
 
   "block.furniture.aspen_bench": "Aspen Bench",
   "block.furniture.aspen_cabinet": "Aspen Cabinet",
@@ -344,5 +344,32 @@
   "block.furniture.fan_palm_wardrobe": "Fan Palm Wardrobe",
   "block.furniture.fir_wardrobe": "Fir Wardrobe",
   "block.furniture.swamp_oak_wardrobe": "Swamp Oak Wardrobe",
-  "block.furniture.swamp_cypress_wardrobe": "Swamp Cypress Wardrobe"
+  "block.furniture.swamp_cypress_wardrobe": "Swamp Cypress Wardrobe",
+  "block.furniture.lamp_rustic": "Rustic Lamp",
+  "block.furniture.curtain_rustic": "Rustic Curtain",
+  "block.furniture.pouffe_rustic": "Rustic Pouffe",
+
+  "block.furniture.lamp_linen": "Linen Lamp",
+  "block.furniture.curtain_linen": "Linen Curtain",
+  "block.furniture.pouffe_linen": "Linen Pouffe",
+
+  "block.furniture.lamp_jacquard": "Jacquard Lamp",
+  "block.furniture.curtain_jacquard": "Jacquard Curtain",
+  "block.furniture.pouffe_jacquard": "Jacquard Pouffe",
+
+  "block.furniture.lamp_plaid": "Plaid Lamp",
+  "block.furniture.curtain_plaid": "Plaid Curtain",
+  "block.furniture.pouffe_plaid": "Plaid Pouffe",
+
+  "block.furniture.lamp_chambray": "Chambray Lamp",
+  "block.furniture.curtain_chambray": "Chambray Curtain",
+  "block.furniture.pouffe_chambray": "Chambray Pouffe",
+
+  "block.furniture.lamp_tweed": "Tweed Lamp",
+  "block.furniture.curtain_tweed": "Tweed Curtain",
+  "block.furniture.pouffe_tweed": "Tweed Pouffe",
+
+  "block.furniture.lamp_warped": "Warped Lamp",
+  "block.furniture.curtain_warped": "Warped Curtain",
+  "block.furniture.pouffe_warped": "Warped Pouffe"
 }

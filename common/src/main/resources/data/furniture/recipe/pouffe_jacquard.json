@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "meadow:jacquard_wool"
+    }
+  },
+  "result": {
+    "id": "furniture:pouffe_jacquard",
+    "count": 1
+  }
+}

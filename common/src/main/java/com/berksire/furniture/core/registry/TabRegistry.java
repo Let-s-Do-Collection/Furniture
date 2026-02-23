@@ -8,6 +8,9 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
+
+import java.util.Map;
 
 @SuppressWarnings("unused")
 public class TabRegistry {
@@ -23,54 +26,31 @@ public class TabRegistry {
                 String[] woodTypeOrder = {
                         "oak", "spruce", "birch", "jungle", "acacia", "dark_oak", "mangrove", "cherry"
                 };
-                for (String color : colorOrder) {
-                    ObjectRegistry.SOFAS.get(color).ifPresent(out::accept);
-                }
-                for (String color : colorOrder) {
-                    ObjectRegistry.POUFFE.get(color).ifPresent(out::accept);
-                }
-                for (String color : colorOrder) {
-                    ObjectRegistry.LAMP_ITEMS.get(color).ifPresent(out::accept);
-                }
-                for (String woodType : woodTypeOrder) {
-                    ObjectRegistry.SHUTTERS.get(woodType).ifPresent(out::accept);
-                }
-                for (String woodType : woodTypeOrder) {
-                    ObjectRegistry.BENCHES.get(woodType).ifPresent(out::accept);
-                }
-                for (String woodType : woodTypeOrder) {
-                    ObjectRegistry.DESK_CHAIRS.get(woodType).ifPresent(out::accept);
-                }
-                for (String woodType : woodTypeOrder) {
-                    ObjectRegistry.CABINETS.get(woodType).ifPresent(out::accept);
-                }
-                for (String woodType : woodTypeOrder) {
-                    ObjectRegistry.DRESSER.get(woodType).ifPresent(out::accept);
-                }
-                for (String woodType : woodTypeOrder) {
-                    ObjectRegistry.WARDROBES.get(woodType).ifPresent(out::accept);
-                }
-                for (String woodType : woodTypeOrder) {
-                    ObjectRegistry.DESKS.get(woodType).ifPresent(out::accept);
-                }
+
+                for (String color : colorOrder) acceptIfPresent(ObjectRegistry.SOFAS, color, out);
+                for (String color : colorOrder) acceptIfPresent(ObjectRegistry.POUFFE, color, out);
+                for (String color : colorOrder) acceptIfPresent(ObjectRegistry.LAMP_ITEMS, color, out);
+
+                for (String woodType : woodTypeOrder) acceptIfPresent(ObjectRegistry.SHUTTERS, woodType, out);
+                for (String woodType : woodTypeOrder) acceptIfPresent(ObjectRegistry.BENCHES, woodType, out);
+                for (String woodType : woodTypeOrder) acceptIfPresent(ObjectRegistry.DESK_CHAIRS, woodType, out);
+                for (String woodType : woodTypeOrder) acceptIfPresent(ObjectRegistry.CABINETS, woodType, out);
+                for (String woodType : woodTypeOrder) acceptIfPresent(ObjectRegistry.DRESSER, woodType, out);
+                for (String woodType : woodTypeOrder) acceptIfPresent(ObjectRegistry.WARDROBES, woodType, out);
+                for (String woodType : woodTypeOrder) acceptIfPresent(ObjectRegistry.DESKS, woodType, out);
+
                 out.accept(ObjectRegistry.WOODEN_PLANTER.get());
                 out.accept(ObjectRegistry.STONE_BRICK_PLANTER.get());
                 out.accept(ObjectRegistry.STEAM_VENT.get());
                 out.accept(ObjectRegistry.STONE_BRICKS_CHIMNEY.get());
                 out.accept(ObjectRegistry.BRICK_CHIMNEY.get());
                 out.accept(ObjectRegistry.COPPER_CHIMNEY.get());
-                for (String woodType : woodTypeOrder) {
-                    ObjectRegistry.CLOCKS.get(woodType).ifPresent(out::accept);
-                }
-                for (String woodType : woodTypeOrder) {
-                    ObjectRegistry.GRANDFATHER_CLOCKS.get(woodType).ifPresent(out::accept);
-                }
-                for (String woodType : woodTypeOrder) {
-                    ObjectRegistry.MIRRORS.get(woodType).ifPresent(out::accept);
-                }
-                for (String color : colorOrder) {
-                    ObjectRegistry.CURTAINS.get(color).ifPresent(out::accept);
-                }
+
+                for (String woodType : woodTypeOrder) acceptIfPresent(ObjectRegistry.CLOCKS, woodType, out);
+                for (String woodType : woodTypeOrder) acceptIfPresent(ObjectRegistry.GRANDFATHER_CLOCKS, woodType, out);
+                for (String woodType : woodTypeOrder) acceptIfPresent(ObjectRegistry.MIRRORS, woodType, out);
+                for (String color : colorOrder) acceptIfPresent(ObjectRegistry.CURTAINS, color, out);
+
                 out.accept(ObjectRegistry.TELESCOPE.get());
                 out.accept(ObjectRegistry.GRAMOPHONE.get());
                 out.accept(ObjectRegistry.CASH_REGISTER.get());
@@ -95,50 +75,97 @@ public class TabRegistry {
             })
             .build());
 
-    public static RegistrySupplier<CreativeModeTab> FURNITURE_BLOOMINGNATURE_TAB;
+    public static RegistrySupplier<CreativeModeTab> FURNITURE_COMPAT_LAYER_TAB;
 
     static {
-        if (Platform.isModLoaded("bloomingnature")) {
-            FURNITURE_BLOOMINGNATURE_TAB = FURNITURE_TABS.register("furniture_bloomingnature", () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 1)
-                    .icon(() -> new ItemStack(ObjectRegistry.CABINETS.get("aspen").get()))
-                    .title(Component.translatable("itemGroup.furniture.furniture_bloomingnature_tab"))
+        boolean bloomingNatureLoaded = Platform.isModLoaded("bloomingnature");
+        boolean meadowLoaded = Platform.isModLoaded("meadow");
+
+        if (bloomingNatureLoaded || meadowLoaded) {
+            FURNITURE_COMPAT_LAYER_TAB = FURNITURE_TABS.register("furniture_compat_layer", () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 1)
+                    .icon(() -> buildCompatIcon(bloomingNatureLoaded, meadowLoaded))
+                    .title(Component.translatable("itemGroup.furniture.furniture_compat_layer_tab"))
                     .displayItems((parameters, out) -> {
                         String[] bloomingNatureWoodTypeOrder = {
                                 "aspen", "larch", "baobab", "cypress", "ebony", "chestnut", "fan_palm", "fir", "swamp_oak", "swamp_cypress"
                         };
-                        for (String woodType : bloomingNatureWoodTypeOrder) {
-                            ObjectRegistry.SHUTTERS.get(woodType).ifPresent(out::accept);
-                        }
-                        for (String woodType : bloomingNatureWoodTypeOrder) {
-                            ObjectRegistry.BENCHES.get(woodType).ifPresent(out::accept);
-                        }
-                        for (String woodType : bloomingNatureWoodTypeOrder) {
-                            ObjectRegistry.DESK_CHAIRS.get(woodType).ifPresent(out::accept);
-                        }
-                        for (String woodType : bloomingNatureWoodTypeOrder) {
-                            ObjectRegistry.CABINETS.get(woodType).ifPresent(out::accept);
-                        }
-                        for (String woodType : bloomingNatureWoodTypeOrder) {
-                            ObjectRegistry.DRESSER.get(woodType).ifPresent(out::accept);
-                        }
-                        for (String woodType : bloomingNatureWoodTypeOrder) {
-                            ObjectRegistry.WARDROBES.get(woodType).ifPresent(out::accept);
-                        }
-                        for (String woodType : bloomingNatureWoodTypeOrder) {
-                            ObjectRegistry.DESKS.get(woodType).ifPresent(out::accept);
-                        }
-                        for (String woodType : bloomingNatureWoodTypeOrder) {
-                            ObjectRegistry.CLOCKS.get(woodType).ifPresent(out::accept);
-                        }
-                        for (String woodType : bloomingNatureWoodTypeOrder) {
-                            ObjectRegistry.GRANDFATHER_CLOCKS.get(woodType).ifPresent(out::accept);
-                        }
-                        for (String woodType : bloomingNatureWoodTypeOrder) {
-                            ObjectRegistry.MIRRORS.get(woodType).ifPresent(out::accept);
+                        String[] meadowWoodTypeOrder = {
+                                "pine"
+                        };
+                        String[] compatWoodTypeOrder = buildCompatWoodTypeOrder(bloomingNatureLoaded, meadowLoaded, bloomingNatureWoodTypeOrder, meadowWoodTypeOrder);
+
+                        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.SHUTTERS, woodType, out);
+                        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.BENCHES, woodType, out);
+                        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.DESK_CHAIRS, woodType, out);
+                        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.CABINETS, woodType, out);
+                        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.DRESSER, woodType, out);
+                        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.WARDROBES, woodType, out);
+                        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.DESKS, woodType, out);
+                        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.CLOCKS, woodType, out);
+                        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.GRANDFATHER_CLOCKS, woodType, out);
+                        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.MIRRORS, woodType, out);
+
+                        if (meadowLoaded) {
+                            String[] meadowTextileOrder = {
+                                    "rustic", "linen", "jacquard", "plaid", "chambray", "tweed", "warped"
+                            };
+                            for (String textile : meadowTextileOrder) acceptIfPresent(ObjectRegistry.POUFFE, "meadow_" + textile, out);
+                            for (String textile : meadowTextileOrder) acceptIfPresent(ObjectRegistry.CURTAINS, "meadow_" + textile, out);
+                            for (String textile : meadowTextileOrder) acceptIfPresent(ObjectRegistry.LAMP_ITEMS, "meadow_" + textile, out);
                         }
                     })
                     .build());
         }
+
         FURNITURE_TABS.register();
+    }
+
+    private static String[] buildCompatWoodTypeOrder(boolean bloomingNatureLoaded, boolean meadowLoaded, String[] bloomingNatureWoodTypeOrder, String[] meadowWoodTypeOrder) {
+        if (bloomingNatureLoaded && meadowLoaded) {
+            return concat(bloomingNatureWoodTypeOrder, meadowWoodTypeOrder);
+        }
+        if (bloomingNatureLoaded) {
+            return bloomingNatureWoodTypeOrder;
+        }
+        if (meadowLoaded) {
+            return meadowWoodTypeOrder;
+        }
+        return new String[0];
+    }
+
+    private static String[] concat(String[] first, String[] second) {
+        String[] result = new String[first.length + second.length];
+        System.arraycopy(first, 0, result, 0, first.length);
+        System.arraycopy(second, 0, result, first.length, second.length);
+        return result;
+    }
+
+    private static ItemStack buildCompatIcon(boolean bloomingNatureLoaded, boolean meadowLoaded) {
+        if (bloomingNatureLoaded) {
+            RegistrySupplier<?> supplier = ObjectRegistry.CABINETS.get("aspen");
+            if (supplier != null) {
+                Object value = supplier.get();
+                if (value instanceof ItemLike itemLike) return new ItemStack(itemLike);
+            }
+        }
+        if (meadowLoaded) {
+            RegistrySupplier<?> supplier = ObjectRegistry.CABINETS.get("pine");
+            if (supplier != null) {
+                Object value = supplier.get();
+                if (value instanceof ItemLike itemLike) return new ItemStack(itemLike);
+            }
+        }
+        return new ItemStack(ObjectRegistry.BOAT_IN_A_JAR.get());
+    }
+
+    private static void acceptIfPresent(Map<String, ? extends RegistrySupplier<?>> registrySuppliers, String key, CreativeModeTab.Output out) {
+        RegistrySupplier<?> supplier = registrySuppliers.get(key);
+        if (supplier != null) {
+            supplier.ifPresent(value -> {
+                if (value instanceof ItemLike itemLike) {
+                    out.accept(new ItemStack(itemLike));
+                }
+            });
+        }
     }
 }

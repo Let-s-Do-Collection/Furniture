@@ -52,6 +52,7 @@ public class ObjectRegistry {
     public static final Map<String, RegistrySupplier<Block>> MIRRORS = new HashMap<>();
     public static final Map<String, RegistrySupplier<Block>> SHUTTERS = new HashMap<>();
     public static final Map<String, RegistrySupplier<Block>> WARDROBES = new HashMap<>();
+
     public static final RegistrySupplier<Block> GRAMOPHONE = registerWithItem("gramophone", () -> new GramophoneBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.JUKEBOX)));
     public static final RegistrySupplier<Block> TELESCOPE = registerWithItem("telescope", () -> new TelescopeBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)));
     public static final RegistrySupplier<Block> COFFER = registerWithItem("coffer", () -> new CofferBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_WOOL).pushReaction(PushReaction.DESTROY)));
@@ -88,6 +89,10 @@ public class ObjectRegistry {
             "white", "light_gray", "gray", "black", "red", "orange", "yellow", "lime", "green", "cyan", "light_blue", "blue", "purple", "magenta", "pink", "brown"
     };
 
+    public static final String[] meadowTextileTypes = {
+            "rustic", "linen", "jacquard", "plaid", "chambray", "tweed", "warped"
+    };
+
     public static final String[] vanillaWoodTypes = {
             "oak", "spruce", "birch", "jungle", "acacia", "dark_oak", "mangrove", "cherry"
     };
@@ -96,14 +101,24 @@ public class ObjectRegistry {
             "aspen", "larch", "baobab", "cypress", "ebony", "chestnut", "fan_palm", "fir", "swamp_oak", "swamp_cypress"
     };
 
+    public static final String[] meadowWoodTypes = {
+            "pine"
+    };
+
     public static final String[] woodTypes;
 
     static {
+        String[] resolvedWoodTypes = vanillaWoodTypes;
+
         if (Platform.isModLoaded("bloomingnature")) {
-            woodTypes = concat(vanillaWoodTypes, bloomingNatureWoodTypes);
-        } else {
-            woodTypes = vanillaWoodTypes;
+            resolvedWoodTypes = concat(resolvedWoodTypes, bloomingNatureWoodTypes);
         }
+
+        if (Platform.isModLoaded("meadow")) {
+            resolvedWoodTypes = concat(resolvedWoodTypes, meadowWoodTypes);
+        }
+
+        woodTypes = resolvedWoodTypes;
 
         for (String woodType : woodTypes) {
             Block plankBlock = getCorrespondingPlank(woodType);
@@ -118,15 +133,19 @@ public class ObjectRegistry {
             GRANDFATHER_CLOCKS.put(woodType, registerWithItem(woodType + "_grandfather_clock", () -> new GrandfatherClockBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock).pushReaction(PushReaction.IGNORE), grandfatherClockWoodType)));
 
             MIRRORS.put(woodType, registerWithItem(woodType + "_mirror", () -> new MirrorBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock).pushReaction(PushReaction.IGNORE))));
-            SHUTTERS.put(woodType, registerWithItem(woodType + "_shutter", () -> new ShutterBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock).pushReaction(PushReaction.IGNORE))));
             DESKS.put(woodType, registerWithItem(woodType + "_desk", () -> new DeskBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock).pushReaction(PushReaction.IGNORE))));
-            DRESSER.put(woodType, registerWithItem(woodType + "_dresser", () -> new DresserBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD), SoundRegistry.CABINET_OPEN, SoundRegistry.CABINET_CLOSE)));
             DESK_CHAIRS.put(woodType, registerWithItem(woodType + "_desk_chair", () -> new DeskChairBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock))));
-            WARDROBES.put(woodType, registerWithItem(woodType + "_wardrobe", () -> new WardrobeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD))));
+
+            if (!isMeadowWoodType(woodType)) {
+                SHUTTERS.put(woodType, registerWithItem(woodType + "_shutter", () -> new ShutterBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock).pushReaction(PushReaction.IGNORE))));
+                DRESSER.put(woodType, registerWithItem(woodType + "_dresser", () -> new DresserBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD), SoundRegistry.CABINET_OPEN, SoundRegistry.CABINET_CLOSE)));
+                WARDROBES.put(woodType, registerWithItem(woodType + "_wardrobe", () -> new WardrobeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD))));
+            }
         }
 
         for (String color : colors) {
             DyeColor dyeColor = DyeColor.valueOf(color.toUpperCase(Locale.ENGLISH));
+
             SOFAS.put(color, registerWithItem("sofa_" + color, () -> new SofaBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).pushReaction(PushReaction.DESTROY), dyeColor)));
             POUFFE.put(color, registerWithItem("pouffe_" + color, () -> new PouffeBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_WOOL).pushReaction(PushReaction.NORMAL), dyeColor)));
             CURTAINS.put(color, registerWithItem("curtain_" + color, () -> new CurtainBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_WOOL).pushReaction(PushReaction.DESTROY), dyeColor)));
@@ -134,15 +153,44 @@ public class ObjectRegistry {
             String lampName = "lamp_" + color;
             String wallLampName = "lamp_wall_" + color;
 
-            RegistrySupplier<Block> lamp = registerWithoutItem(lampName, () -> new LampBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
-                    .lightLevel(state -> state.getValue(AbstractCandleBlock.LIT) ? 15 : 0).pushReaction(PushReaction.DESTROY), dyeColor));
+            RegistrySupplier<Block> lamp = registerWithoutItem(lampName, () -> new LampBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).lightLevel(state -> state.getValue(AbstractCandleBlock.LIT) ? 15 : 0).pushReaction(PushReaction.DESTROY), dyeColor));
             LAMPS.put(color, lamp);
 
-            RegistrySupplier<Block> wallLamp = registerWithoutItem(wallLampName, () -> new LampWallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
-                    .lightLevel(state -> state.getValue(AbstractCandleBlock.LIT) ? 15 : 0).pushReaction(PushReaction.DESTROY), dyeColor));
+            RegistrySupplier<Block> wallLamp = registerWithoutItem(wallLampName, () -> new LampWallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).lightLevel(state -> state.getValue(AbstractCandleBlock.LIT) ? 15 : 0).pushReaction(PushReaction.DESTROY), dyeColor));
             WALL_LAMPS.put(color, wallLamp);
 
             LAMP_ITEMS.put(color, registerItem(lampName, () -> new StandingAndWallBlockItem(lamp.get(), wallLamp.get(), new Item.Properties(), Direction.DOWN)));
+        }
+
+        if (Platform.isModLoaded("meadow")) {
+            Block meadowLampPlank = getModdedPlank("meadow", "pine");
+
+            for (String meadowTextileType : meadowTextileTypes) {
+                String meadowKey = "meadow_" + meadowTextileType;
+
+                CURTAINS.put(meadowKey, registerWithItem("curtain_" + meadowTextileType, () -> {
+                    Block meadowWoolBlock = getOptionalBlock("meadow", meadowTextileType + "_wool");
+                    BlockBehaviour.Properties curtainProperties = meadowWoolBlock != Blocks.AIR ? BlockBehaviour.Properties.ofFullCopy(meadowWoolBlock) : BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL);
+                    return new CurtainBlock(curtainProperties.pushReaction(PushReaction.DESTROY), DyeColor.WHITE);
+                }));
+
+                POUFFE.put(meadowKey, registerWithItem("pouffe_" + meadowTextileType, () -> {
+                    Block meadowWoolBlock = getOptionalBlock("meadow", meadowTextileType + "_wool");
+                    BlockBehaviour.Properties pouffeProperties = meadowWoolBlock != Blocks.AIR ? BlockBehaviour.Properties.ofFullCopy(meadowWoolBlock) : BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL);
+                    return new PouffeBlock(pouffeProperties.pushReaction(PushReaction.NORMAL), DyeColor.WHITE);
+                }));
+
+                String lampName = "lamp_" + meadowTextileType;
+                String wallLampName = "lamp_wall_" + meadowTextileType;
+
+                RegistrySupplier<Block> lamp = registerWithoutItem(lampName, () -> new LampBlock(BlockBehaviour.Properties.ofFullCopy(meadowLampPlank).lightLevel(state -> state.getValue(AbstractCandleBlock.LIT) ? 15 : 0).pushReaction(PushReaction.DESTROY), DyeColor.WHITE));
+                LAMPS.put(meadowKey, lamp);
+
+                RegistrySupplier<Block> wallLamp = registerWithoutItem(wallLampName, () -> new LampWallBlock(BlockBehaviour.Properties.ofFullCopy(meadowLampPlank).lightLevel(state -> state.getValue(AbstractCandleBlock.LIT) ? 15 : 0).pushReaction(PushReaction.DESTROY), DyeColor.WHITE));
+                WALL_LAMPS.put(meadowKey, wallLamp);
+
+                LAMP_ITEMS.put(meadowKey, registerItem(lampName, () -> new StandingAndWallBlockItem(lamp.get(), wallLamp.get(), new Item.Properties(), Direction.DOWN)));
+            }
         }
 
         BLOCKS.register();
@@ -152,6 +200,15 @@ public class ObjectRegistry {
     private static boolean isVanillaWoodType(String woodType) {
         for (String vanillaWoodType : vanillaWoodTypes) {
             if (vanillaWoodType.equals(woodType)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean isMeadowWoodType(String woodType) {
+        for (String meadowWoodType : meadowWoodTypes) {
+            if (meadowWoodType.equals(woodType)) {
                 return true;
             }
         }
@@ -175,7 +232,7 @@ public class ObjectRegistry {
             case "mangrove" -> Blocks.MANGROVE_PLANKS;
             case "cherry" -> Blocks.CHERRY_PLANKS;
             case "oak" -> Blocks.OAK_PLANKS;
-            default -> getModdedPlank("bloomingnature", woodType);
+            default -> getModdedPlank(isMeadowWoodType(woodType) ? "meadow" : "bloomingnature", woodType);
         };
     }
 
@@ -186,6 +243,15 @@ public class ObjectRegistry {
             return plankBlock;
         }
         return Blocks.OAK_PLANKS;
+    }
+
+    private static Block getOptionalBlock(String namespace, String path) {
+        ResourceLocation resourceLocation = ResourceLocation.fromNamespaceAndPath(namespace, path);
+        Block resolvedBlock = BuiltInRegistries.BLOCK.get(resourceLocation);
+        if (resolvedBlock != Blocks.AIR) {
+            return resolvedBlock;
+        }
+        return Blocks.AIR;
     }
 
     private static Item.Properties getSettings(Consumer<Item.Properties> consumer) {

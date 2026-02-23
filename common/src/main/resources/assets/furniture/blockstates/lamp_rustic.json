@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "type=none,lit=false": {
+      "model": "furniture:block/lamp_single_rustic"
+    },
+    "type=none,lit=true": {
+      "model": "furniture:block/lamp_single_rustic"
+    },
+    "type=top,lit=false": {
+      "model": "furniture:block/lamp_top_rustic"
+    },
+    "type=top,lit=true": {
+      "model": "furniture:block/lamp_top_rustic"
+    },
+    "type=middle,lit=false": {
+      "model": "furniture:block/lamp_middle"
+    },
+    "type=middle,lit=true": {
+      "model": "furniture:block/lamp_middle"
+    },
+    "type=bottom,lit=false": {
+      "model": "furniture:block/lamp_bottom"
+    },
+    "type=bottom,lit=true": {
+      "model": "furniture:block/lamp_bottom"
+    }
+  }
+}

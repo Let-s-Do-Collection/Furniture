@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "meadow:warped_wool"
+    }
+  },
+  "result": {
+    "id": "furniture:pouffe_warped",
+    "count": 1
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "type=none,lit=false": {
+      "model": "furniture:block/lamp_single_chambray"
+    },
+    "type=none,lit=true": {
+      "model": "furniture:block/lamp_single_chambray"
+    },
+    "type=top,lit=false": {
+      "model": "furniture:block/lamp_top_chambray"
+    },
+    "type=top,lit=true": {
+      "model": "furniture:block/lamp_top_chambray"
+    },
+    "type=middle,lit=false": {
+      "model": "furniture:block/lamp_middle"
+    },
+    "type=middle,lit=true": {
+      "model": "furniture:block/lamp_middle"
+    },
+    "type=bottom,lit=false": {
+      "model": "furniture:block/lamp_bottom"
+    },
+    "type=bottom,lit=true": {
+      "model": "furniture:block/lamp_bottom"
+    }
+  }
+}

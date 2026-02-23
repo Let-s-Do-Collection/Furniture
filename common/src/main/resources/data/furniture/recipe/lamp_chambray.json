@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#B#",
+    " B "
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:stick"
+    },
+    "#": {
+      "item": "meadow:chambray_wool"
+    }
+  },
+  "result": {
+    "id": "furniture:lamp_chambray",
+    "count": 2
+  }
+}

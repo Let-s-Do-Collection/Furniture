@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "meadow:chambray_wool"
+    }
+  },
+  "result": {
+    "id": "furniture:pouffe_chambray",
+    "count": 1
+  }
+}

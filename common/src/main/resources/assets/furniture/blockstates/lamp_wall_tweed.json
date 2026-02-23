@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "furniture:block/lamp_wall_tweed"
+    },
+    "facing=south": {
+      "model": "furniture:block/lamp_wall_tweed",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "furniture:block/lamp_wall_tweed",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "furniture:block/lamp_wall_tweed",
+      "y": 90
+    }
+  }
+}
