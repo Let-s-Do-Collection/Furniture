@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#B#",
+    "#A#"
+  ],
+  "key": {
+    "A": {
+      "item": "meadow:pine_slab"
+    },
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "B": {
+      "item": "minecraft:tinted_glass"
+    }
+  },
+  "result": {
+    "id": "furniture:pine_mirror",
+    "count": 2
+  }
+}

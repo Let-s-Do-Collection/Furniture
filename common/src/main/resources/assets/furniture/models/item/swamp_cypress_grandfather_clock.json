@@ -1,3 +1,6 @@
 {
-  "parent": "minecraft:item/generated"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "furniture:item/swamp_cypress_grandfather_clock"
+  }
 }

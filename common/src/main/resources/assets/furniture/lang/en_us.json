@@ -371,5 +371,11 @@
 
   "block.furniture.lamp_warped": "Warped Lamp",
   "block.furniture.curtain_warped": "Warped Curtain",
-  "block.furniture.pouffe_warped": "Warped Pouffe"
+  "block.furniture.pouffe_warped": "Warped Pouffe",
+  "block.furniture.pine_desk_chair": "Pine Desk Chair",
+  "block.furniture.pine_cabinet": "Pine Cabinet",
+  "block.furniture.pine_clock": "Pine Clock",
+  "block.furniture.pine_mirror": "Pine Mirror",
+
+  "block.furniture.pine_grandfather_clock": "Pine Grandfather Clock"
 }

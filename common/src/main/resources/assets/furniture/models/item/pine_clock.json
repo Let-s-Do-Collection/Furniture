@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "furniture:item/ebony_grandfather_clock"
+    "layer0": "furniture:item/pine_clock"
   }
 }

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  #",
+    "BB#",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:iron_nugget"
+    },
+    "B": {
+      "item": "meadow:pine_slab"
+    }
+  },
+  "result": {
+    "id": "furniture:pine_desk_chair",
+    "count": 2
+  }
+}
