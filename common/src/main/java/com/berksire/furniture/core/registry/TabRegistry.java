@@ -142,14 +142,14 @@ public class TabRegistry {
 
     private static ItemStack buildCompatIcon(boolean bloomingNatureLoaded, boolean meadowLoaded) {
         if (bloomingNatureLoaded) {
-            RegistrySupplier<?> supplier = ObjectRegistry.CABINETS.get("aspen");
+            RegistrySupplier<?> supplier = ObjectRegistry.CLOCKS.get("aspen");
             if (supplier != null) {
                 Object value = supplier.get();
                 if (value instanceof ItemLike itemLike) return new ItemStack(itemLike);
             }
         }
         if (meadowLoaded) {
-            RegistrySupplier<?> supplier = ObjectRegistry.CABINETS.get("pine");
+            RegistrySupplier<?> supplier = ObjectRegistry.CLOCKS.get("pine");
             if (supplier != null) {
                 Object value = supplier.get();
                 if (value instanceof ItemLike itemLike) return new ItemStack(itemLike);

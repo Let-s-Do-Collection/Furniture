@@ -124,7 +124,7 @@ public class ClockBlock extends FacingBlock implements EntityBlock {
             int hours = (int) ((time / 1000 + 6) % 24);
             int minutes = (int) (60 * (time % 1000) / 1000);
 
-            player.displayClientMessage(Component.translatable("tooltip.furniture.clock", String.format(Locale.ENGLISH, "%02d:%02d", hours, minutes)), true);
+            player.displayClientMessage(Component.translatable("tooltip.furniture.clock", String.format(Locale.ROOT, "%02d:%02d", hours, minutes)), true);
         }
         return InteractionResult.SUCCESS;
     }

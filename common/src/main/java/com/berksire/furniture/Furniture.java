@@ -15,6 +15,7 @@ public class Furniture {
         Reflection.initialize(
                 TagRegistry.class,
                 ObjectRegistry.class,
+                
                 EntityTypeRegistry.class,
                 TabRegistry.class,
                 SoundRegistry.class,

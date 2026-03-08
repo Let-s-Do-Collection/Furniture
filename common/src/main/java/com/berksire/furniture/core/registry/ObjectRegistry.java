@@ -1,7 +1,40 @@
 package com.berksire.furniture.core.registry;
 
 import com.berksire.furniture.Furniture;
-import com.berksire.furniture.core.block.*;
+import com.berksire.furniture.core.block.BenchBlock;
+import com.berksire.furniture.core.block.BinBlock;
+import com.berksire.furniture.core.block.BoatInAJarBlock;
+import com.berksire.furniture.core.block.BlueprintsBlock;
+import com.berksire.furniture.core.block.CabinetBlock;
+import com.berksire.furniture.core.block.CashRegisterBlock;
+import com.berksire.furniture.core.block.ChimneyBlock;
+import com.berksire.furniture.core.block.ClockBlock;
+import com.berksire.furniture.core.block.CofferBlock;
+import com.berksire.furniture.core.block.CopperChimneyBlock;
+import com.berksire.furniture.core.block.CurtainBlock;
+import com.berksire.furniture.core.block.DeskBlock;
+import com.berksire.furniture.core.block.DeskChairBlock;
+import com.berksire.furniture.core.block.DisplayBlock;
+import com.berksire.furniture.core.block.DresserBlock;
+import com.berksire.furniture.core.block.ExplorersBoxBlock;
+import com.berksire.furniture.core.block.FishTankBlock;
+import com.berksire.furniture.core.block.GramophoneBlock;
+import com.berksire.furniture.core.block.GrandfatherClockBlock;
+import com.berksire.furniture.core.block.LampBlock;
+import com.berksire.furniture.core.block.LampWallBlock;
+import com.berksire.furniture.core.block.MirrorBlock;
+import com.berksire.furniture.core.block.PlanterBlock;
+import com.berksire.furniture.core.block.PouffeBlock;
+import com.berksire.furniture.core.block.SewingKitBlock;
+import com.berksire.furniture.core.block.ShutterBlock;
+import com.berksire.furniture.core.block.SofaBlock;
+import com.berksire.furniture.core.block.SteamVentBlock;
+import com.berksire.furniture.core.block.StreetLanternBlock;
+import com.berksire.furniture.core.block.StreetLanternWallBlock;
+import com.berksire.furniture.core.block.TelescopeBlock;
+import com.berksire.furniture.core.block.TerrariumBlock;
+import com.berksire.furniture.core.block.ToolBoxBlock;
+import com.berksire.furniture.core.block.WardrobeBlock;
 import com.berksire.furniture.core.item.CanvasItem;
 import com.berksire.furniture.core.item.PellsSpawnItem;
 import com.berksire.furniture.core.item.TrashBagItem;
@@ -126,11 +159,10 @@ public class ObjectRegistry {
             BENCHES.put(woodType, registerWithItem(woodType + "_bench", () -> new BenchBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock).pushReaction(PushReaction.IGNORE))));
             CABINETS.put(woodType, registerWithItem(woodType + "_cabinet", () -> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD), SoundRegistry.CABINET_OPEN, SoundRegistry.CABINET_CLOSE)));
 
-            ClockBlock.WoodType clockWoodType = isVanillaWoodType(woodType) ? ClockBlock.WoodType.valueOf(woodType.toUpperCase(Locale.ENGLISH)) : ClockBlock.WoodType.OAK;
-            GrandfatherClockBlock.WoodType grandfatherClockWoodType = isVanillaWoodType(woodType) ? GrandfatherClockBlock.WoodType.valueOf(woodType.toUpperCase(Locale.ENGLISH)) : GrandfatherClockBlock.WoodType.OAK;
+            ClockBlock.WoodType clockWoodType = isVanillaWoodType(woodType) ? ClockBlock.WoodType.valueOf(woodType.toUpperCase(Locale.ROOT)) : ClockBlock.WoodType.OAK;
 
             CLOCKS.put(woodType, registerWithItem(woodType + "_clock", () -> new ClockBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock).pushReaction(PushReaction.IGNORE), clockWoodType)));
-            GRANDFATHER_CLOCKS.put(woodType, registerWithItem(woodType + "_grandfather_clock", () -> new GrandfatherClockBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock).pushReaction(PushReaction.IGNORE), grandfatherClockWoodType)));
+            GRANDFATHER_CLOCKS.put(woodType, registerWithItem(woodType + "_grandfather_clock", () -> new GrandfatherClockBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock).pushReaction(PushReaction.IGNORE))));
 
             MIRRORS.put(woodType, registerWithItem(woodType + "_mirror", () -> new MirrorBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock).pushReaction(PushReaction.IGNORE))));
             DESK_CHAIRS.put(woodType, registerWithItem(woodType + "_desk_chair", () -> new DeskChairBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock))));
@@ -144,7 +176,7 @@ public class ObjectRegistry {
         }
 
         for (String color : colors) {
-            DyeColor dyeColor = DyeColor.valueOf(color.toUpperCase(Locale.ENGLISH));
+            DyeColor dyeColor = DyeColor.valueOf(color.toUpperCase(Locale.ROOT));
 
             SOFAS.put(color, registerWithItem("sofa_" + color, () -> new SofaBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).pushReaction(PushReaction.DESTROY), dyeColor)));
             POUFFE.put(color, registerWithItem("pouffe_" + color, () -> new PouffeBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_WOOL).pushReaction(PushReaction.NORMAL), dyeColor)));

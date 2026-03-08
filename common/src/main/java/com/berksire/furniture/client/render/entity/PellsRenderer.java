@@ -21,7 +21,7 @@ import java.util.Locale;
 
 public class PellsRenderer extends MobRenderer<PellsEntity, PellsModel<PellsEntity>>{
     protected static final ResourceLocation TEXTURE = Furniture.identifier("textures/entity/pells.png");
-    private static final DecimalFormat FORMAT = new DecimalFormat("###.##", new DecimalFormatSymbols(Locale.ENGLISH));
+    private static final DecimalFormat FORMAT = new DecimalFormat("###.##", new DecimalFormatSymbols(Locale.ROOT));
 
     public PellsRenderer(EntityRendererProvider.Context context){
         super(context, new PellsModel<>(PellsModel.createBodyLayer().bakeRoot()), 0.0F);

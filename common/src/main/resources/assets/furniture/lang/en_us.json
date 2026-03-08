@@ -225,8 +225,7 @@
   "block.furniture.dark_oak_desk_chair": "Dark Oak Desk Chair",
   "block.furniture.mangrove_desk_chair": "Mangrove Desk Chair",
   "block.furniture.cherry_desk_chair": "Cherry Desk Chair",
-  "itemGroup.furniture.furniture_compat_layer_tab": "[Let's Do] Furniture Compat Layer",
-
+  "itemGroup.furniture.furniture_compat_layer_tab": "[Let's Do] Furniture CL",
   "block.furniture.aspen_bench": "Aspen Bench",
   "block.furniture.aspen_cabinet": "Aspen Cabinet",
   "block.furniture.aspen_clock": "Aspen Clock",
@@ -236,7 +235,6 @@
   "block.furniture.aspen_desk": "Aspen Desk",
   "block.furniture.aspen_dresser": "Aspen Dresser",
   "block.furniture.aspen_desk_chair": "Aspen Desk Chair",
-
   "block.furniture.larch_bench": "Larch Bench",
   "block.furniture.larch_cabinet": "Larch Cabinet",
   "block.furniture.larch_clock": "Larch Clock",
@@ -246,7 +244,6 @@
   "block.furniture.larch_desk": "Larch Desk",
   "block.furniture.larch_dresser": "Larch Dresser",
   "block.furniture.larch_desk_chair": "Larch Desk Chair",
-
   "block.furniture.baobab_bench": "Baobab Bench",
   "block.furniture.baobab_cabinet": "Baobab Cabinet",
   "block.furniture.baobab_clock": "Baobab Clock",
@@ -256,7 +253,6 @@
   "block.furniture.baobab_desk": "Baobab Desk",
   "block.furniture.baobab_dresser": "Baobab Dresser",
   "block.furniture.baobab_desk_chair": "Baobab Desk Chair",
-
   "block.furniture.cypress_bench": "Cypress Bench",
   "block.furniture.cypress_cabinet": "Cypress Cabinet",
   "block.furniture.cypress_clock": "Cypress Clock",
@@ -266,7 +262,6 @@
   "block.furniture.cypress_desk": "Cypress Desk",
   "block.furniture.cypress_dresser": "Cypress Dresser",
   "block.furniture.cypress_desk_chair": "Cypress Desk Chair",
-
   "block.furniture.ebony_bench": "Ebony Bench",
   "block.furniture.ebony_cabinet": "Ebony Cabinet",
   "block.furniture.ebony_clock": "Ebony Clock",
@@ -276,7 +271,6 @@
   "block.furniture.ebony_desk": "Ebony Desk",
   "block.furniture.ebony_dresser": "Ebony Dresser",
   "block.furniture.ebony_desk_chair": "Ebony Desk Chair",
-
   "block.furniture.chestnut_bench": "Chestnut Bench",
   "block.furniture.chestnut_cabinet": "Chestnut Cabinet",
   "block.furniture.chestnut_clock": "Chestnut Clock",
@@ -286,7 +280,6 @@
   "block.furniture.chestnut_desk": "Chestnut Desk",
   "block.furniture.chestnut_dresser": "Chestnut Dresser",
   "block.furniture.chestnut_desk_chair": "Chestnut Desk Chair",
-
   "block.furniture.fan_palm_bench": "Fan Palm Bench",
   "block.furniture.fan_palm_cabinet": "Fan Palm Cabinet",
   "block.furniture.fan_palm_clock": "Fan Palm Clock",
@@ -296,7 +289,6 @@
   "block.furniture.fan_palm_desk": "Fan Palm Desk",
   "block.furniture.fan_palm_dresser": "Fan Palm Dresser",
   "block.furniture.fan_palm_desk_chair": "Fan Palm Desk Chair",
-
   "block.furniture.fir_bench": "Fir Bench",
   "block.furniture.fir_cabinet": "Fir Cabinet",
   "block.furniture.fir_clock": "Fir Clock",
@@ -306,7 +298,6 @@
   "block.furniture.fir_desk": "Fir Desk",
   "block.furniture.fir_dresser": "Fir Dresser",
   "block.furniture.fir_desk_chair": "Fir Desk Chair",
-
   "block.furniture.swamp_oak_bench": "Swamp Oak Bench",
   "block.furniture.swamp_oak_cabinet": "Swamp Oak Cabinet",
   "block.furniture.swamp_oak_clock": "Swamp Oak Clock",
@@ -316,7 +307,6 @@
   "block.furniture.swamp_oak_desk": "Swamp Oak Desk",
   "block.furniture.swamp_oak_dresser": "Swamp Oak Dresser",
   "block.furniture.swamp_oak_desk_chair": "Swamp Oak Desk Chair",
-
   "block.furniture.swamp_cypress_bench": "Swamp Cypress Bench",
   "block.furniture.swamp_cypress_cabinet": "Swamp Cypress Cabinet",
   "block.furniture.swamp_cypress_clock": "Swamp Cypress Clock",
@@ -334,7 +324,6 @@
   "block.furniture.dark_oak_wardrobe": "Dark Oak Wardrobe",
   "block.furniture.mangrove_wardrobe": "Mangrove Wardrobe",
   "block.furniture.cherry_wardrobe": "Cherry Wardrobe",
-
   "block.furniture.aspen_wardrobe": "Aspen Wardrobe",
   "block.furniture.larch_wardrobe": "Larch Wardrobe",
   "block.furniture.baobab_wardrobe": "Baobab Wardrobe",
@@ -348,27 +337,21 @@
   "block.furniture.lamp_rustic": "Rustic Lamp",
   "block.furniture.curtain_rustic": "Rustic Curtain",
   "block.furniture.pouffe_rustic": "Rustic Pouffe",
-
   "block.furniture.lamp_linen": "Linen Lamp",
   "block.furniture.curtain_linen": "Linen Curtain",
   "block.furniture.pouffe_linen": "Linen Pouffe",
-
   "block.furniture.lamp_jacquard": "Jacquard Lamp",
   "block.furniture.curtain_jacquard": "Jacquard Curtain",
   "block.furniture.pouffe_jacquard": "Jacquard Pouffe",
-
   "block.furniture.lamp_plaid": "Plaid Lamp",
   "block.furniture.curtain_plaid": "Plaid Curtain",
   "block.furniture.pouffe_plaid": "Plaid Pouffe",
-
   "block.furniture.lamp_chambray": "Chambray Lamp",
   "block.furniture.curtain_chambray": "Chambray Curtain",
   "block.furniture.pouffe_chambray": "Chambray Pouffe",
-
   "block.furniture.lamp_tweed": "Tweed Lamp",
   "block.furniture.curtain_tweed": "Tweed Curtain",
   "block.furniture.pouffe_tweed": "Tweed Pouffe",
-
   "block.furniture.lamp_warped": "Warped Lamp",
   "block.furniture.curtain_warped": "Warped Curtain",
   "block.furniture.pouffe_warped": "Warped Pouffe",
@@ -376,6 +359,5 @@
   "block.furniture.pine_cabinet": "Pine Cabinet",
   "block.furniture.pine_clock": "Pine Clock",
   "block.furniture.pine_mirror": "Pine Mirror",
-
   "block.furniture.pine_grandfather_clock": "Pine Grandfather Clock"
 }
