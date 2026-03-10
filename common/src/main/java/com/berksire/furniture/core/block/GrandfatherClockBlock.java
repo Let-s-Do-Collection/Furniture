@@ -174,17 +174,11 @@ public class GrandfatherClockBlock extends FacingBlock implements EntityBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        if (state.getValue(PART) != Part.BOTTOM) {
-            return null;
-        }
         return new GrandfatherClockBlockEntity(pos, state);
     }
 
     @Override
     public @NotNull RenderShape getRenderShape(BlockState state) {
-        if (state.getValue(PART) != Part.BOTTOM) {
-            return RenderShape.INVISIBLE;
-        }
         return RenderShape.ENTITYBLOCK_ANIMATED;
     }
 

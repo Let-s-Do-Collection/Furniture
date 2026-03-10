@@ -160,6 +160,94 @@
     "furniture:lamp_wall_purple",
     "furniture:lamp_wall_red",
     "furniture:lamp_wall_white",
-    "furniture:lamp_wall_yellow"
+    "furniture:lamp_wall_yellow",
+    {
+      "id": "furniture:aspen_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:aspen_grandfather_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:larch_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:larch_grandfather_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:baobab_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:baobab_grandfather_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:cypress_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:cypress_grandfather_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:ebony_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:ebony_grandfather_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:chestnut_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:chestnut_grandfather_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:fan_palm_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:fan_palm_grandfather_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:fir_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:fir_grandfather_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:swamp_oak_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:swamp_oak_grandfather_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:swamp_cypress_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:swamp_cypress_grandfather_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:pine_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:pine_grandfather_clock",
+      "required": false
+    }
   ]
 }

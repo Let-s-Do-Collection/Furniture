@@ -16,5 +16,19 @@
   "result": {
     "id": "furniture:pine_bench",
     "count": 2
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "meadow"
+      ]
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "meadow"
+    }
+  ]
 }

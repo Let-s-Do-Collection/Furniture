@@ -43,11 +43,10 @@ public class GrandfatherClockRenderer implements BlockEntityRenderer<Grandfather
 
         poseStack.pushPose();
         poseStack.translate(0.5D, 1.5D, 0.5D);
-        poseStack.scale(1.0F, -1.0F, -1.0F);
+        poseStack.mulPose(Axis.XP.rotationDegrees(180.0F));
 
         Direction direction = blockState.getValue(BlockStateProperties.HORIZONTAL_FACING);
-        float rotationDegrees = direction.toYRot();
-        poseStack.mulPose(Axis.YP.rotationDegrees(rotationDegrees));
+        poseStack.mulPose(Axis.YP.rotationDegrees(direction.toYRot()));
 
         this.model.pendulum.setPos(0.0F, 10.0F, 5.0F);
         this.model.minutes.setPos(0.0F, -24.0F, 0.0F);

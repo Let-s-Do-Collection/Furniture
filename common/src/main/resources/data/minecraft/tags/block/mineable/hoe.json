@@ -49,6 +49,62 @@
     "furniture:curtain_purple",
     "furniture:curtain_red",
     "furniture:curtain_white",
-    "furniture:curtain_yellow"
+    "furniture:curtain_yellow",
+    {
+      "id": "furniture:pouffe_rustic",
+      "required": false
+    },
+    {
+      "id": "furniture:pouffe_linen",
+      "required": false
+    },
+    {
+      "id": "furniture:pouffe_jacquard",
+      "required": false
+    },
+    {
+      "id": "furniture:pouffe_plaid",
+      "required": false
+    },
+    {
+      "id": "furniture:pouffe_chambray",
+      "required": false
+    },
+    {
+      "id": "furniture:pouffe_tweed",
+      "required": false
+    },
+    {
+      "id": "furniture:pouffe_warped",
+      "required": false
+    },
+    {
+      "id": "furniture:curtain_rustic",
+      "required": false
+    },
+    {
+      "id": "furniture:curtain_linen",
+      "required": false
+    },
+    {
+      "id": "furniture:curtain_jacquard",
+      "required": false
+    },
+    {
+      "id": "furniture:curtain_plaid",
+      "required": false
+    },
+    {
+      "id": "furniture:curtain_chambray",
+      "required": false
+    },
+    {
+      "id": "furniture:curtain_tweed",
+      "required": false
+    },
+    {
+      "id": "furniture:curtain_warped",
+      "required": false
+    }
   ]
 }
