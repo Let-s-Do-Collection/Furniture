@@ -2,9 +2,10 @@
 
 **Fixed** 
 * Removed unused recipes 
+* Crash when using the turkish language pack
 
 **Added**
-* Compatibility layer for BloomingNature - when BloomingNature installed as well you can craft Furniture made out of BloomingNature woods
+* Compatibility layer for BloomingNature, Meadow, AlpineWhispers and Beachparty. When these mods are installed, you can craft furniture made from their woods.
 
 ***
 

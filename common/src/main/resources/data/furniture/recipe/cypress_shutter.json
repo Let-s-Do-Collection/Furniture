@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BB ",
+    "BB ",
+    "BB "
+  ],
+  "key": {
+    "B": {
+      "item": "bloomingnature:cypress_slab"
+    }
+  },
+  "result": {
+    "id": "furniture:cypress_shutter",
+    "count": 4
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "bloomingnature"
+      ]
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "bloomingnature"
+    }
+  ]
+}
