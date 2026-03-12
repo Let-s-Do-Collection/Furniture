@@ -248,6 +248,130 @@
     {
       "id": "furniture:pine_grandfather_clock",
       "required": false
+    },
+    {
+      "id": "furniture:palm_bench",
+      "required": false
+    },
+    {
+      "id": "furniture:palm_cabinet",
+      "required": false
+    },
+    {
+      "id": "furniture:palm_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:palm_desk",
+      "required": false
+    },
+    {
+      "id": "furniture:palm_desk_chair",
+      "required": false
+    },
+    {
+      "id": "furniture:palm_dresser",
+      "required": false
+    },
+    {
+      "id": "furniture:palm_grandfather_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:palm_mirror",
+      "required": false
+    },
+    {
+      "id": "furniture:palm_shutter",
+      "required": false
+    },
+    {
+      "id": "furniture:palm_wardrobe",
+      "required": false
+    },
+    {
+      "id": "furniture:dark_cherry_bench",
+      "required": false
+    },
+    {
+      "id": "furniture:dark_cherry_cabinet",
+      "required": false
+    },
+    {
+      "id": "furniture:dark_cherry_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:dark_cherry_desk",
+      "required": false
+    },
+    {
+      "id": "furniture:dark_cherry_desk_chair",
+      "required": false
+    },
+    {
+      "id": "furniture:dark_cherry_dresser",
+      "required": false
+    },
+    {
+      "id": "furniture:dark_cherry_grandfather_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:dark_cherry_mirror",
+      "required": false
+    },
+    {
+      "id": "furniture:dark_cherry_shutter",
+      "required": false
+    },
+    {
+      "id": "furniture:dark_cherry_wardrobe",
+      "required": false
+    },
+    {
+      "id": "furniture:arolla_pine_bench",
+      "required": false
+    },
+    {
+      "id": "furniture:arolla_pine_cabinet",
+      "required": false
+    },
+    {
+      "id": "furniture:arolla_pine_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:arolla_pine_desk_chair",
+      "required": false
+    },
+    {
+      "id": "furniture:arolla_pine_grandfather_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:arolla_pine_mirror",
+      "required": false
+    },
+    {
+      "id": "furniture:arolla_pine_shutter",
+      "required": false
+    },
+    {
+      "id": "furniture:curtain_homespun",
+      "required": false
+    },
+    {
+      "id": "furniture:lamp_homespun",
+      "required": false
+    },
+    {
+      "id": "furniture:lamp_wall_homespun",
+      "required": false
+    },
+    {
+      "id": "furniture:pouffe_homespun",
+      "required": false
     }
   ]
 }

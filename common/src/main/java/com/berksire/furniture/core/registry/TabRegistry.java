@@ -80,19 +80,22 @@ public class TabRegistry {
     static {
         boolean bloomingNatureLoaded = Platform.isModLoaded("bloomingnature");
         boolean meadowLoaded = Platform.isModLoaded("meadow");
+        boolean beachpartyLoaded = Platform.isModLoaded("beachparty");
+        boolean alpineWhispersLoaded = Platform.isModLoaded("alpinewhispers");
+        boolean vineryLoaded = Platform.isModLoaded("vinery");
 
-        if (bloomingNatureLoaded || meadowLoaded) {
+        if (bloomingNatureLoaded || meadowLoaded || beachpartyLoaded || alpineWhispersLoaded || vineryLoaded) {
             FURNITURE_COMPAT_LAYER_TAB = FURNITURE_TABS.register("furniture_compat_layer", () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 1)
-                    .icon(() -> buildCompatIcon(bloomingNatureLoaded, meadowLoaded))
+                    .icon(() -> buildCompatIcon(bloomingNatureLoaded, meadowLoaded, beachpartyLoaded, alpineWhispersLoaded, vineryLoaded))
                     .title(Component.translatable("itemGroup.furniture.furniture_compat_layer_tab"))
                     .displayItems((parameters, out) -> {
-                        String[] bloomingNatureWoodTypeOrder = {
-                                "aspen", "larch", "baobab", "cypress", "ebony", "chestnut", "fan_palm", "fir", "swamp_oak", "swamp_cypress"
-                        };
-                        String[] meadowWoodTypeOrder = {
-                                "pine"
-                        };
-                        String[] compatWoodTypeOrder = buildCompatWoodTypeOrder(bloomingNatureLoaded, meadowLoaded, bloomingNatureWoodTypeOrder, meadowWoodTypeOrder);
+                        String[] compatWoodTypeOrder = buildCompatWoodTypeOrder(
+                                bloomingNatureLoaded,
+                                meadowLoaded,
+                                beachpartyLoaded,
+                                alpineWhispersLoaded,
+                                vineryLoaded
+                        );
 
                         for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.SHUTTERS, woodType, out);
                         for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.BENCHES, woodType, out);
@@ -113,6 +116,12 @@ public class TabRegistry {
                             for (String textile : meadowTextileOrder) acceptIfPresent(ObjectRegistry.CURTAINS, "meadow_" + textile, out);
                             for (String textile : meadowTextileOrder) acceptIfPresent(ObjectRegistry.LAMP_ITEMS, "meadow_" + textile, out);
                         }
+
+                        if (alpineWhispersLoaded) {
+                            acceptIfPresent(ObjectRegistry.POUFFE, "alpinewhispers_homespun", out);
+                            acceptIfPresent(ObjectRegistry.CURTAINS, "alpinewhispers_homespun", out);
+                            acceptIfPresent(ObjectRegistry.LAMP_ITEMS, "alpinewhispers_homespun", out);
+                        }
                     })
                     .build());
         }
@@ -120,17 +129,40 @@ public class TabRegistry {
         FURNITURE_TABS.register();
     }
 
-    private static String[] buildCompatWoodTypeOrder(boolean bloomingNatureLoaded, boolean meadowLoaded, String[] bloomingNatureWoodTypeOrder, String[] meadowWoodTypeOrder) {
-        if (bloomingNatureLoaded && meadowLoaded) {
-            return concat(bloomingNatureWoodTypeOrder, meadowWoodTypeOrder);
-        }
+    private static String[] buildCompatWoodTypeOrder(boolean bloomingNatureLoaded, boolean meadowLoaded, boolean beachpartyLoaded, boolean alpineWhispersLoaded, boolean vineryLoaded) {
+        String[] compatWoodTypeOrder = new String[0];
+
         if (bloomingNatureLoaded) {
-            return bloomingNatureWoodTypeOrder;
+            compatWoodTypeOrder = concat(compatWoodTypeOrder, new String[]{
+                    "aspen", "larch", "baobab", "cypress", "ebony", "chestnut", "fan_palm", "fir", "swamp_oak", "swamp_cypress"
+            });
         }
+
         if (meadowLoaded) {
-            return meadowWoodTypeOrder;
+            compatWoodTypeOrder = concat(compatWoodTypeOrder, new String[]{
+                    "pine"
+            });
         }
-        return new String[0];
+
+        if (beachpartyLoaded) {
+            compatWoodTypeOrder = concat(compatWoodTypeOrder, new String[]{
+                    "palm"
+            });
+        }
+
+        if (alpineWhispersLoaded) {
+            compatWoodTypeOrder = concat(compatWoodTypeOrder, new String[]{
+                    "arolla_pine"
+            });
+        }
+
+        if (vineryLoaded) {
+            compatWoodTypeOrder = concat(compatWoodTypeOrder, new String[]{
+                    "dark_cherry"
+            });
+        }
+
+        return compatWoodTypeOrder;
     }
 
     private static String[] concat(String[] first, String[] second) {
@@ -140,19 +172,50 @@ public class TabRegistry {
         return result;
     }
 
-    private static ItemStack buildCompatIcon(boolean bloomingNatureLoaded, boolean meadowLoaded) {
+    private static ItemStack buildCompatIcon(boolean bloomingNatureLoaded, boolean meadowLoaded, boolean beachpartyLoaded, boolean alpineWhispersLoaded, boolean vineryLoaded) {
         if (bloomingNatureLoaded) {
             RegistrySupplier<?> supplier = ObjectRegistry.CLOCKS.get("aspen");
             if (supplier != null) {
                 Object value = supplier.get();
-                if (value instanceof ItemLike itemLike) return new ItemStack(itemLike);
+                if (value instanceof ItemLike itemLike) {
+                    return new ItemStack(itemLike);
+                }
             }
         }
         if (meadowLoaded) {
             RegistrySupplier<?> supplier = ObjectRegistry.CLOCKS.get("pine");
             if (supplier != null) {
                 Object value = supplier.get();
-                if (value instanceof ItemLike itemLike) return new ItemStack(itemLike);
+                if (value instanceof ItemLike itemLike) {
+                    return new ItemStack(itemLike);
+                }
+            }
+        }
+        if (beachpartyLoaded) {
+            RegistrySupplier<?> supplier = ObjectRegistry.CLOCKS.get("palm");
+            if (supplier != null) {
+                Object value = supplier.get();
+                if (value instanceof ItemLike itemLike) {
+                    return new ItemStack(itemLike);
+                }
+            }
+        }
+        if (alpineWhispersLoaded) {
+            RegistrySupplier<?> supplier = ObjectRegistry.CLOCKS.get("arolla_pine");
+            if (supplier != null) {
+                Object value = supplier.get();
+                if (value instanceof ItemLike itemLike) {
+                    return new ItemStack(itemLike);
+                }
+            }
+        }
+        if (vineryLoaded) {
+            RegistrySupplier<?> supplier = ObjectRegistry.CLOCKS.get("dark_cherry");
+            if (supplier != null) {
+                Object value = supplier.get();
+                if (value instanceof ItemLike itemLike) {
+                    return new ItemStack(itemLike);
+                }
             }
         }
         return new ItemStack(ObjectRegistry.BOAT_IN_A_JAR.get());

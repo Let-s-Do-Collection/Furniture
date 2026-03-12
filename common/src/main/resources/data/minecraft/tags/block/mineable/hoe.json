@@ -105,6 +105,14 @@
     {
       "id": "furniture:curtain_warped",
       "required": false
+    },
+    {
+      "id": "furniture:curtain_homespun",
+      "required": false
+    },
+    {
+      "id": "furniture:pouffe_homespun",
+      "required": false
     }
   ]
 }

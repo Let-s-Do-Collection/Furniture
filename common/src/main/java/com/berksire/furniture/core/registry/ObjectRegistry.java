@@ -126,6 +126,10 @@ public class ObjectRegistry {
             "rustic", "linen", "jacquard", "plaid", "chambray", "tweed", "warped"
     };
 
+    public static final String[] alpineWhispersTextileTypes = {
+            "homespun"
+    };
+
     public static final String[] vanillaWoodTypes = {
             "oak", "spruce", "birch", "jungle", "acacia", "dark_oak", "mangrove", "cherry"
     };
@@ -136,6 +140,18 @@ public class ObjectRegistry {
 
     public static final String[] meadowWoodTypes = {
             "pine"
+    };
+
+    public static final String[] beachpartyWoodTypes = {
+            "palm"
+    };
+
+    public static final String[] alpineWhispersWoodTypes = {
+            "arolla_pine"
+    };
+
+    public static final String[] vineryWoodTypes = {
+            "dark_cherry"
     };
 
     public static final String[] woodTypes;
@@ -149,6 +165,18 @@ public class ObjectRegistry {
 
         if (Platform.isModLoaded("meadow")) {
             resolvedWoodTypes = concat(resolvedWoodTypes, meadowWoodTypes);
+        }
+
+        if (Platform.isModLoaded("beachparty")) {
+            resolvedWoodTypes = concat(resolvedWoodTypes, beachpartyWoodTypes);
+        }
+
+        if (Platform.isModLoaded("alpinewhispers")) {
+            resolvedWoodTypes = concat(resolvedWoodTypes, alpineWhispersWoodTypes);
+        }
+
+        if (Platform.isModLoaded("vinery")) {
+            resolvedWoodTypes = concat(resolvedWoodTypes, vineryWoodTypes);
         }
 
         woodTypes = resolvedWoodTypes;
@@ -168,8 +196,11 @@ public class ObjectRegistry {
             DESK_CHAIRS.put(woodType, registerWithItem(woodType + "_desk_chair", () -> new DeskChairBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock))));
 
             if (!isMeadowWoodType(woodType)) {
-                DESKS.put(woodType, registerWithItem(woodType + "_desk", () -> new DeskBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock).pushReaction(PushReaction.IGNORE))));
                 SHUTTERS.put(woodType, registerWithItem(woodType + "_shutter", () -> new ShutterBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock).pushReaction(PushReaction.IGNORE))));
+            }
+
+            if (!isMeadowWoodType(woodType) && !isAlpineWhispersWoodType(woodType)) {
+                DESKS.put(woodType, registerWithItem(woodType + "_desk", () -> new DeskBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock).pushReaction(PushReaction.IGNORE))));
                 DRESSER.put(woodType, registerWithItem(woodType + "_dresser", () -> new DresserBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD), SoundRegistry.CABINET_OPEN, SoundRegistry.CABINET_CLOSE)));
                 WARDROBES.put(woodType, registerWithItem(woodType + "_wardrobe", () -> new WardrobeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD))));
             }
@@ -225,6 +256,37 @@ public class ObjectRegistry {
             }
         }
 
+        if (Platform.isModLoaded("alpinewhispers")) {
+            Block alpineLampPlank = getModdedPlank("alpinewhispers", "arolla_pine");
+
+            for (String alpineWhispersTextileType : alpineWhispersTextileTypes) {
+                String alpineWhispersKey = "alpinewhispers_" + alpineWhispersTextileType;
+
+                CURTAINS.put(alpineWhispersKey, registerWithItem("curtain_" + alpineWhispersTextileType, () -> {
+                    Block alpineWhispersWoolBlock = getOptionalBlock("alpinewhispers", alpineWhispersTextileType + "_wool");
+                    BlockBehaviour.Properties curtainProperties = alpineWhispersWoolBlock != Blocks.AIR ? BlockBehaviour.Properties.ofFullCopy(alpineWhispersWoolBlock) : BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL);
+                    return new CurtainBlock(curtainProperties.pushReaction(PushReaction.DESTROY), DyeColor.WHITE);
+                }));
+
+                POUFFE.put(alpineWhispersKey, registerWithItem("pouffe_" + alpineWhispersTextileType, () -> {
+                    Block alpineWhispersWoolBlock = getOptionalBlock("alpinewhispers", alpineWhispersTextileType + "_wool");
+                    BlockBehaviour.Properties pouffeProperties = alpineWhispersWoolBlock != Blocks.AIR ? BlockBehaviour.Properties.ofFullCopy(alpineWhispersWoolBlock) : BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL);
+                    return new PouffeBlock(pouffeProperties.pushReaction(PushReaction.NORMAL), DyeColor.WHITE);
+                }));
+
+                String lampName = "lamp_" + alpineWhispersTextileType;
+                String wallLampName = "lamp_wall_" + alpineWhispersTextileType;
+
+                RegistrySupplier<Block> lamp = registerWithoutItem(lampName, () -> new LampBlock(BlockBehaviour.Properties.ofFullCopy(alpineLampPlank).lightLevel(state -> state.getValue(AbstractCandleBlock.LIT) ? 15 : 0).pushReaction(PushReaction.DESTROY), DyeColor.WHITE));
+                LAMPS.put(alpineWhispersKey, lamp);
+
+                RegistrySupplier<Block> wallLamp = registerWithoutItem(wallLampName, () -> new LampWallBlock(BlockBehaviour.Properties.ofFullCopy(alpineLampPlank).lightLevel(state -> state.getValue(AbstractCandleBlock.LIT) ? 15 : 0).pushReaction(PushReaction.DESTROY), DyeColor.WHITE));
+                WALL_LAMPS.put(alpineWhispersKey, wallLamp);
+
+                LAMP_ITEMS.put(alpineWhispersKey, registerItem(lampName, () -> new StandingAndWallBlockItem(lamp.get(), wallLamp.get(), new Item.Properties(), Direction.DOWN)));
+            }
+        }
+
         BLOCKS.register();
         ITEMS.register();
     }
@@ -241,6 +303,15 @@ public class ObjectRegistry {
     private static boolean isMeadowWoodType(String woodType) {
         for (String meadowWoodType : meadowWoodTypes) {
             if (meadowWoodType.equals(woodType)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean isAlpineWhispersWoodType(String woodType) {
+        for (String alpineWhispersWoodType : alpineWhispersWoodTypes) {
+            if (alpineWhispersWoodType.equals(woodType)) {
                 return true;
             }
         }
@@ -264,8 +335,28 @@ public class ObjectRegistry {
             case "mangrove" -> Blocks.MANGROVE_PLANKS;
             case "cherry" -> Blocks.CHERRY_PLANKS;
             case "oak" -> Blocks.OAK_PLANKS;
-            default -> getModdedPlank(isMeadowWoodType(woodType) ? "meadow" : "bloomingnature", woodType);
+            default -> getModdedPlank(getWoodNamespace(woodType), woodType);
         };
+    }
+
+    private static String getWoodNamespace(String woodType) {
+        if (isMeadowWoodType(woodType)) {
+            return "meadow";
+        }
+        if (isAlpineWhispersWoodType(woodType)) {
+            return "alpinewhispers";
+        }
+        for (String beachpartyWoodType : beachpartyWoodTypes) {
+            if (beachpartyWoodType.equals(woodType)) {
+                return "beachparty";
+            }
+        }
+        for (String vineryWoodType : vineryWoodTypes) {
+            if (vineryWoodType.equals(woodType)) {
+                return "vinery";
+            }
+        }
+        return "bloomingnature";
     }
 
     private static Block getModdedPlank(String namespace, String woodType) {
