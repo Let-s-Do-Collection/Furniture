@@ -7,6 +7,9 @@
 **Added**
 * Compatibility layer for BloomingNature, Meadow, AlpineWhispers and Beachparty. When these mods are installed, you can craft furniture made from their woods.
 
+**Changed**
+* Updated ru_ru (tefnya)
+
 ***
 
 [1.1.3]
