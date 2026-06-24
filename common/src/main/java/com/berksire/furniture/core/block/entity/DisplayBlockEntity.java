@@ -52,6 +52,8 @@ public class DisplayBlockEntity extends BlockEntity implements Clearable {
         CompoundTag compoundTag = new CompoundTag();
         if (!this.displayedItem.isEmpty()) {
             compoundTag.put("DisplayedItem", this.displayedItem.save(provider));
+        } else {
+            compoundTag.put("DisplayedItem", new CompoundTag());
         }
         return compoundTag;
     }
