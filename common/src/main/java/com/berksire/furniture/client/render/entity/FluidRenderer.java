@@ -19,7 +19,7 @@ import net.minecraft.world.level.block.state.BlockState;
 @SuppressWarnings("deprecation, unused")
 public class FluidRenderer {
 
-    private static final RenderType FLUID = RenderType.entityTranslucentCull(TextureAtlas.LOCATION_BLOCKS);
+    private static final RenderType FLUID = RenderType.entityTranslucent(TextureAtlas.LOCATION_BLOCKS);
 
     public static VertexConsumer getFluidBuilder(MultiBufferSource buffer) {
         return buffer.getBuffer(FLUID);
@@ -33,26 +33,25 @@ public class FluidRenderer {
                 .getBlockModel(state)
                 .getParticleIcon();
 
-        int color = 0x2A4DA0FF;
+        int biomeColor = level != null ? level.getBiome(blockPos).value().getWaterColor() : 0x3F76E4;
+        int color = (224 << 24) | biomeColor;
         int blockLightIn = (light >> 4) & 0xF;
         light = (light & 0xF00000) | (blockLightIn << 4);
 
         ms.pushPose();
 
-        for (int pass = 0; pass < 2; pass++) {
-            for (Direction side : Direction.values()) {
-                if (side == Direction.DOWN && !renderBottom) continue;
+        for (Direction side : Direction.values()) {
+            if (side == Direction.DOWN && !renderBottom) continue;
 
-                boolean positive = side.getAxisDirection() == Direction.AxisDirection.POSITIVE;
-                if (side.getAxis().isHorizontal()) {
-                    if (side.getAxis() == Direction.Axis.X) {
-                        renderStillTiledFace(side, zMin, yMin, zMax, yMax, positive ? xMax : xMin, builder, ms, light, color, fluidTexture);
-                    } else {
-                        renderStillTiledFace(side, xMin, yMin, xMax, yMax, positive ? zMax : zMin, builder, ms, light, color, fluidTexture);
-                    }
+            boolean positive = side.getAxisDirection() == Direction.AxisDirection.POSITIVE;
+            if (side.getAxis().isHorizontal()) {
+                if (side.getAxis() == Direction.Axis.X) {
+                    renderStillTiledFace(side, zMin, yMin, zMax, yMax, positive ? xMax : xMin, builder, ms, light, color, fluidTexture);
                 } else {
-                    renderStillTiledFace(side, xMin, zMin, xMax, zMax, positive ? yMax : yMin, builder, ms, light, color, fluidTexture);
+                    renderStillTiledFace(side, xMin, yMin, xMax, yMax, positive ? zMax : zMin, builder, ms, light, color, fluidTexture);
                 }
+            } else {
+                renderStillTiledFace(side, xMin, zMin, xMax, zMax, positive ? yMax : yMin, builder, ms, light, color, fluidTexture);
             }
         }
 

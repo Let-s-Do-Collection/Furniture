@@ -100,8 +100,8 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> STEAM_VENT = registerWithItem("steam_vent", () -> new SteamVentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
     public static final RegistrySupplier<Block> COPPER_FISH_TANK = registerWithItem("copper_fish_tank", () -> new FishTankBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK)));
     public static final RegistrySupplier<Block> IRON_FISH_TANK = registerWithItem("iron_fish_tank", () -> new FishTankBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
-    public static final RegistrySupplier<Block> BRICK_CHIMNEY = registerWithItem("brick_chimney", () -> new ChimneyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
-    public static final RegistrySupplier<Block> STONE_BRICKS_CHIMNEY = registerWithItem("stone_bricks_chimney", () -> new ChimneyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
+    public static final RegistrySupplier<Block> BRICK_CHIMNEY = registerWithItem("brick_chimney", () -> new ChimneyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS)));
+    public static final RegistrySupplier<Block> STONE_BRICKS_CHIMNEY = registerWithItem("stone_bricks_chimney", () -> new ChimneyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS)));
     public static final RegistrySupplier<Block> COPPER_CHIMNEY = registerWithItem("copper_chimney", () -> new CopperChimneyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK)));
     public static final RegistrySupplier<Block> BOAT_IN_A_JAR = registerWithItem("boat_in_a_jar", () -> new BoatInAJarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS)));
     public static final RegistrySupplier<Block> STREET_LANTERN = registerWithoutItem("street_lantern", () -> new StreetLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT).lightLevel(StreetLanternBlock::vanillaLightLevel)));

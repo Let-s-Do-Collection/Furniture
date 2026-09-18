@@ -30,6 +30,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
@@ -195,10 +196,16 @@ public class CofferBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
 
 	@Nullable
 	@Override
-	@SuppressWarnings("unused")
 	public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
 		FluidState fluidState = blockPlaceContext.getLevel().getFluidState(blockPlaceContext.getClickedPos());
-		return this.defaultBlockState().setValue(FACING, blockPlaceContext.getHorizontalDirection().getOpposite());
+		return this.defaultBlockState()
+				.setValue(FACING, blockPlaceContext.getHorizontalDirection().getOpposite())
+				.setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER);
+	}
+
+	@Override
+	public @NotNull FluidState getFluidState(BlockState state) {
+		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
 	}
 
 	@Nullable

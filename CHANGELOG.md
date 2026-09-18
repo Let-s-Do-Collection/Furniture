@@ -2,6 +2,14 @@
 
 **Fixed**
 * Empty CompoundTag not returned in getUpdateTag, causing sync issues (thanks to Osmond Lee)
+* Meadow and Alpine Whispers curtains not showing connected textures when stacked
+* Homespun curtain (Alpine Whispers) not dropping when broken
+* Wardrobe items duplicating when broken as part of a Sable physics contraption
+* Grandfather Clock's hour and minute hands were swapped
+* Canvas paintings rendering at the wrong scale, requiring far larger walls than intended
+* Brick and Stone Bricks Chimney using iron block properties (hardness, sound) instead of their own material
+* Coffer placed underwater not staying waterlogged
+* Fish Tank water rendering with doubled, darker translucency
 
 **Added**
 * Sable EntityType tags for sub-level retention/destruction compatibility (thanks to BeeIsYou)
