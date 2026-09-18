@@ -51,7 +51,7 @@ public class ClockRenderer implements BlockEntityRenderer<ClockBlockEntity> {
         poseStack.mulPose(Axis.YP.rotationDegrees(rotation));
 
         ResourceLocation texture = resolveClockTexture(blockState.getBlock());
-        VertexConsumer vertexConsumer = bufferSource.getBuffer(RenderType.entityCutout(texture));
+        VertexConsumer vertexConsumer = bufferSource.getBuffer(RenderType.entityCutoutNoCull(texture));
         renderModel(poseStack, vertexConsumer, combinedLight, combinedOverlay);
 
         poseStack.popPose();

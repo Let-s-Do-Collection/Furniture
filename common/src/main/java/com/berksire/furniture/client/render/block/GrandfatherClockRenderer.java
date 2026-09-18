@@ -66,7 +66,7 @@ public class GrandfatherClockRenderer implements BlockEntityRenderer<Grandfather
         this.model.hours.zRot = (float) ((hours12 + (minutes / 60.0F)) * Math.PI / 6.0D);
 
         ResourceLocation texture = resolveTexture(blockState);
-        VertexConsumer vertexConsumer = bufferSource.getBuffer(RenderType.entityCutout(texture));
+        VertexConsumer vertexConsumer = bufferSource.getBuffer(RenderType.entityCutoutNoCull(texture));
         this.model.renderToBuffer(poseStack, vertexConsumer, combinedLight, combinedOverlay, -1);
 
         poseStack.popPose();

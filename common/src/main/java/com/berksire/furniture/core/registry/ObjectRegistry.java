@@ -189,8 +189,8 @@ public class ObjectRegistry {
 
             ClockBlock.WoodType clockWoodType = isVanillaWoodType(woodType) ? ClockBlock.WoodType.valueOf(woodType.toUpperCase(Locale.ROOT)) : ClockBlock.WoodType.OAK;
 
-            CLOCKS.put(woodType, registerWithItem(woodType + "_clock", () -> new ClockBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock).pushReaction(PushReaction.IGNORE), clockWoodType)));
-            GRANDFATHER_CLOCKS.put(woodType, registerWithItem(woodType + "_grandfather_clock", () -> new GrandfatherClockBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock).pushReaction(PushReaction.IGNORE))));
+            CLOCKS.put(woodType, registerWithItem(woodType + "_clock", () -> new ClockBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock).noOcclusion().pushReaction(PushReaction.IGNORE), clockWoodType)));
+            GRANDFATHER_CLOCKS.put(woodType, registerWithItem(woodType + "_grandfather_clock", () -> new GrandfatherClockBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock).noOcclusion().pushReaction(PushReaction.IGNORE))));
 
             MIRRORS.put(woodType, registerWithItem(woodType + "_mirror", () -> new MirrorBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock).pushReaction(PushReaction.IGNORE))));
             DESK_CHAIRS.put(woodType, registerWithItem(woodType + "_desk_chair", () -> new DeskChairBlock(BlockBehaviour.Properties.ofFullCopy(plankBlock))));
