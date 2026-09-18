@@ -52,10 +52,10 @@ public class GrandfatherClockModel<T extends Entity> extends EntityModel<T> {
         PartDefinition clock = grandfatherClock.addOrReplaceChild("clock", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
         clock.addOrReplaceChild("minutes", CubeListBuilder.create()
-                .texOffs(52, 37).addBox(-0.5F, -3.5F, -0.25F, 1.0F, 4.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -34.0F, -4.0F));
+                .texOffs(52, 32).addBox(-0.5F, -4.5F, -0.25F, 1.0F, 5.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -34.0F, -4.0F));
 
         clock.addOrReplaceChild("hours", CubeListBuilder.create()
-                .texOffs(52, 32).addBox(-0.5F, -4.5F, -0.25F, 1.0F, 5.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -34.0F, -4.0F));
+                .texOffs(52, 37).addBox(-0.5F, -3.5F, -0.25F, 1.0F, 4.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -34.0F, -4.0F));
 
         grandfatherClock.addOrReplaceChild("inner", CubeListBuilder.create()
                         .texOffs(25, 1).addBox(5.0F, -26.0F, -4.0F, 0.0F, 17.0F, 11.0F, new CubeDeformation(0.0F))

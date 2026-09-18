@@ -1,7 +1,7 @@
 {
   "asset_id": "furniture:rabbit",
-  "height": 8,
-  "width": 4,
+  "height": 1,
+  "width": 2,
   "title": {
     "translate": "painting.furniture.rabbit.title"
   },

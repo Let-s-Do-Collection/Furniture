@@ -1,7 +1,7 @@
 {
   "asset_id": "furniture:sleeping_fox",
-  "height": 6,
-  "width": 12,
+  "height": 3,
+  "width": 1,
   "title": {
     "translate": "painting.furniture.sleeping_fox.title"
   },

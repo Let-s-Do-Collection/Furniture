@@ -1,7 +1,7 @@
 {
   "asset_id": "furniture:sitting_bear",
-  "height": 12,
-  "width": 12,
+  "height": 3,
+  "width": 3,
   "title": {
     "translate": "painting.furniture.sitting_bear.title"
   },

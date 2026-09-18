@@ -1,7 +1,7 @@
 {
   "asset_id": "furniture:foraging_woodpecker",
-  "height": 8,
-  "width": 16,
+  "height": 4,
+  "width": 2,
   "title": {
     "translate": "painting.furniture.foraging_woodpecker.title"
   },

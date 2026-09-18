@@ -1,7 +1,7 @@
 {
   "asset_id": "furniture:waterfall",
-  "height": 12,
-  "width": 16,
+  "height": 4,
+  "width": 3,
   "title": {
     "translate": "painting.furniture.waterfall.title"
   },
