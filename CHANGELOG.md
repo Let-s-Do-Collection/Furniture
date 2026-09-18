@@ -1,3 +1,14 @@
+[1.1.5]
+
+**Fixed**
+* Empty CompoundTag not returned in getUpdateTag, causing sync issues (thanks to Osmond Lee)
+
+**Added**
+* Sable EntityType tags for sub-level retention/destruction compatibility (thanks to BeeIsYou)
+* Italian translation (thanks to Serena)
+
+***
+
 [1.1.4]
 
 **Fixed** 
