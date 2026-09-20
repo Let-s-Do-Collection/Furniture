@@ -58,7 +58,7 @@ public class ClockRenderer implements BlockEntityRenderer<ClockBlockEntity> {
     }
 
     private void renderModel(PoseStack poseStack, VertexConsumer vertexConsumer, int light, int overlay) {
-        this.model.renderToBuffer(poseStack, vertexConsumer, light, overlay, 0xFFFFFF);
+        this.model.renderToBuffer(poseStack, vertexConsumer, light, overlay, -1);
     }
 
     private static ResourceLocation resolveClockTexture(Block block) {

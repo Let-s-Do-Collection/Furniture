@@ -1,3 +1,11 @@
+[1.1.6]
+
+**Fixed**
+* Clock rendering invisible with shader packs enabled
+* Grandfather Clock's inner side walls z-fighting
+
+***
+
 [1.1.5]
 
 **Fixed**

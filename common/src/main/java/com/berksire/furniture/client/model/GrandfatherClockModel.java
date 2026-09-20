@@ -36,10 +36,8 @@ public class GrandfatherClockModel<T extends Entity> extends EntityModel<T> {
         MeshDefinition meshDefinition = new MeshDefinition();
         PartDefinition root = meshDefinition.getRoot();
 
-        PartDefinition grandfatherClock = root.addOrReplaceChild("grandfather_clock", CubeListBuilder.create()
-                .texOffs(48, 49).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F))
+        PartDefinition grandfatherClock = root.addOrReplaceChild("grandfather_clock", CubeListBuilder.create().texOffs(48, 49).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F))
                 .texOffs(0, 0).addBox(-6.0F, 8.0F, 0.0F, 12.0F, 26.0F, 12.0F, new CubeDeformation(0.0F))
-                .texOffs(2, 1).addBox(-5.0F, 8.0F, 0.0F, 10.0F, 17.0F, 11.0F, new CubeDeformation(0.0F))
                 .texOffs(0, 64).addBox(-7.0F, 25.0F, -1.0F, 14.0F, 2.0F, 13.0F, new CubeDeformation(0.0F))
                 .texOffs(0, 64).addBox(-7.0F, 6.0F, -1.0F, 14.0F, 2.0F, 13.0F, new CubeDeformation(0.0F))
                 .texOffs(0, 38).addBox(-6.0F, -4.0F, 0.0F, 12.0F, 10.0F, 12.0F, new CubeDeformation(0.0F))
@@ -57,12 +55,9 @@ public class GrandfatherClockModel<T extends Entity> extends EntityModel<T> {
         clock.addOrReplaceChild("hours", CubeListBuilder.create()
                 .texOffs(52, 37).addBox(-0.5F, -3.5F, -0.25F, 1.0F, 4.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -34.0F, -4.0F));
 
-        grandfatherClock.addOrReplaceChild("inner", CubeListBuilder.create()
-                        .texOffs(25, 1).addBox(5.0F, -26.0F, -4.0F, 0.0F, 17.0F, 11.0F, new CubeDeformation(0.0F))
-                
-                        .texOffs(37, 12).addBox(-5.0F, -26.0F, 7.0F, 10.0F, 17.0F, 0.0F, new CubeDeformation(0.0F))
-                        .texOffs(25, 1).addBox(-5.0F, -26.0F, -4.0F, 0.0F, 17.0F, 11.0F, new CubeDeformation(0.0F)),
-                PartPose.offset(0.0F, 24.0F, 0.0F));
+        grandfatherClock.addOrReplaceChild("inner", CubeListBuilder.create().texOffs(36, 0).addBox(5.0F, -26.0F, -4.0F, 1.0F, 17.0F, 12.0F, new CubeDeformation(0.0F))
+                .texOffs(36, 0).mirror().addBox(-6.0F, -26.0F, -4.0F, 1.0F, 17.0F, 12.0F, new CubeDeformation(0.0F)).mirror(false)
+                .texOffs(36, 11).mirror().addBox(-5.0F, -26.0F, 7.0F, 10.0F, 17.0F, 1.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, 24.0F, 0.0F));
 
 
         return LayerDefinition.create(meshDefinition, 96, 96);
