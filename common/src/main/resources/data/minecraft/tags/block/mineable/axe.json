@@ -372,6 +372,466 @@
     {
       "id": "furniture:pouffe_homespun",
       "required": false
+    },
+    "furniture:acacia_wardrobe",
+    "furniture:birch_wardrobe",
+    "furniture:cherry_wardrobe",
+    "furniture:dark_oak_wardrobe",
+    "furniture:jungle_wardrobe",
+    "furniture:mangrove_wardrobe",
+    "furniture:oak_wardrobe",
+    "furniture:spruce_wardrobe",
+    {
+      "id": "furniture:aspen_bench",
+      "required": false
+    },
+    {
+      "id": "furniture:aspen_cabinet",
+      "required": false
+    },
+    {
+      "id": "furniture:aspen_desk",
+      "required": false
+    },
+    {
+      "id": "furniture:aspen_desk_chair",
+      "required": false
+    },
+    {
+      "id": "furniture:aspen_dresser",
+      "required": false
+    },
+    {
+      "id": "furniture:aspen_mirror",
+      "required": false
+    },
+    {
+      "id": "furniture:aspen_shutter",
+      "required": false
+    },
+    {
+      "id": "furniture:aspen_wardrobe",
+      "required": false
+    },
+    {
+      "id": "furniture:baobab_bench",
+      "required": false
+    },
+    {
+      "id": "furniture:baobab_cabinet",
+      "required": false
+    },
+    {
+      "id": "furniture:baobab_desk",
+      "required": false
+    },
+    {
+      "id": "furniture:baobab_desk_chair",
+      "required": false
+    },
+    {
+      "id": "furniture:baobab_dresser",
+      "required": false
+    },
+    {
+      "id": "furniture:baobab_mirror",
+      "required": false
+    },
+    {
+      "id": "furniture:baobab_shutter",
+      "required": false
+    },
+    {
+      "id": "furniture:baobab_wardrobe",
+      "required": false
+    },
+    {
+      "id": "furniture:chestnut_bench",
+      "required": false
+    },
+    {
+      "id": "furniture:chestnut_cabinet",
+      "required": false
+    },
+    {
+      "id": "furniture:chestnut_desk",
+      "required": false
+    },
+    {
+      "id": "furniture:chestnut_desk_chair",
+      "required": false
+    },
+    {
+      "id": "furniture:chestnut_dresser",
+      "required": false
+    },
+    {
+      "id": "furniture:chestnut_mirror",
+      "required": false
+    },
+    {
+      "id": "furniture:chestnut_shutter",
+      "required": false
+    },
+    {
+      "id": "furniture:chestnut_wardrobe",
+      "required": false
+    },
+    {
+      "id": "furniture:cypress_bench",
+      "required": false
+    },
+    {
+      "id": "furniture:cypress_cabinet",
+      "required": false
+    },
+    {
+      "id": "furniture:cypress_desk",
+      "required": false
+    },
+    {
+      "id": "furniture:cypress_desk_chair",
+      "required": false
+    },
+    {
+      "id": "furniture:cypress_dresser",
+      "required": false
+    },
+    {
+      "id": "furniture:cypress_mirror",
+      "required": false
+    },
+    {
+      "id": "furniture:cypress_shutter",
+      "required": false
+    },
+    {
+      "id": "furniture:cypress_wardrobe",
+      "required": false
+    },
+    {
+      "id": "furniture:ebony_bench",
+      "required": false
+    },
+    {
+      "id": "furniture:ebony_cabinet",
+      "required": false
+    },
+    {
+      "id": "furniture:ebony_desk",
+      "required": false
+    },
+    {
+      "id": "furniture:ebony_desk_chair",
+      "required": false
+    },
+    {
+      "id": "furniture:ebony_dresser",
+      "required": false
+    },
+    {
+      "id": "furniture:ebony_mirror",
+      "required": false
+    },
+    {
+      "id": "furniture:ebony_shutter",
+      "required": false
+    },
+    {
+      "id": "furniture:ebony_wardrobe",
+      "required": false
+    },
+    {
+      "id": "furniture:fan_palm_bench",
+      "required": false
+    },
+    {
+      "id": "furniture:fan_palm_cabinet",
+      "required": false
+    },
+    {
+      "id": "furniture:fan_palm_desk",
+      "required": false
+    },
+    {
+      "id": "furniture:fan_palm_desk_chair",
+      "required": false
+    },
+    {
+      "id": "furniture:fan_palm_dresser",
+      "required": false
+    },
+    {
+      "id": "furniture:fan_palm_mirror",
+      "required": false
+    },
+    {
+      "id": "furniture:fan_palm_shutter",
+      "required": false
+    },
+    {
+      "id": "furniture:fan_palm_wardrobe",
+      "required": false
+    },
+    {
+      "id": "furniture:fir_bench",
+      "required": false
+    },
+    {
+      "id": "furniture:fir_cabinet",
+      "required": false
+    },
+    {
+      "id": "furniture:fir_desk",
+      "required": false
+    },
+    {
+      "id": "furniture:fir_desk_chair",
+      "required": false
+    },
+    {
+      "id": "furniture:fir_dresser",
+      "required": false
+    },
+    {
+      "id": "furniture:fir_mirror",
+      "required": false
+    },
+    {
+      "id": "furniture:fir_shutter",
+      "required": false
+    },
+    {
+      "id": "furniture:fir_wardrobe",
+      "required": false
+    },
+    {
+      "id": "furniture:larch_bench",
+      "required": false
+    },
+    {
+      "id": "furniture:larch_cabinet",
+      "required": false
+    },
+    {
+      "id": "furniture:larch_desk",
+      "required": false
+    },
+    {
+      "id": "furniture:larch_desk_chair",
+      "required": false
+    },
+    {
+      "id": "furniture:larch_dresser",
+      "required": false
+    },
+    {
+      "id": "furniture:larch_mirror",
+      "required": false
+    },
+    {
+      "id": "furniture:larch_shutter",
+      "required": false
+    },
+    {
+      "id": "furniture:larch_wardrobe",
+      "required": false
+    },
+    {
+      "id": "furniture:swamp_cypress_bench",
+      "required": false
+    },
+    {
+      "id": "furniture:swamp_cypress_cabinet",
+      "required": false
+    },
+    {
+      "id": "furniture:swamp_cypress_desk",
+      "required": false
+    },
+    {
+      "id": "furniture:swamp_cypress_desk_chair",
+      "required": false
+    },
+    {
+      "id": "furniture:swamp_cypress_dresser",
+      "required": false
+    },
+    {
+      "id": "furniture:swamp_cypress_mirror",
+      "required": false
+    },
+    {
+      "id": "furniture:swamp_cypress_shutter",
+      "required": false
+    },
+    {
+      "id": "furniture:swamp_cypress_wardrobe",
+      "required": false
+    },
+    {
+      "id": "furniture:swamp_oak_bench",
+      "required": false
+    },
+    {
+      "id": "furniture:swamp_oak_cabinet",
+      "required": false
+    },
+    {
+      "id": "furniture:swamp_oak_desk",
+      "required": false
+    },
+    {
+      "id": "furniture:swamp_oak_desk_chair",
+      "required": false
+    },
+    {
+      "id": "furniture:swamp_oak_dresser",
+      "required": false
+    },
+    {
+      "id": "furniture:swamp_oak_mirror",
+      "required": false
+    },
+    {
+      "id": "furniture:swamp_oak_shutter",
+      "required": false
+    },
+    {
+      "id": "furniture:swamp_oak_wardrobe",
+      "required": false
+    },
+    {
+      "id": "furniture:pine_bench",
+      "required": false
+    },
+    {
+      "id": "furniture:pine_cabinet",
+      "required": false
+    },
+    {
+      "id": "furniture:pine_desk_chair",
+      "required": false
+    },
+    {
+      "id": "furniture:pine_mirror",
+      "required": false
+    },
+    {
+      "id": "furniture:pine_window",
+      "required": false
+    },
+    {
+      "id": "furniture:curtain_chambray",
+      "required": false
+    },
+    {
+      "id": "furniture:curtain_jacquard",
+      "required": false
+    },
+    {
+      "id": "furniture:curtain_linen",
+      "required": false
+    },
+    {
+      "id": "furniture:curtain_plaid",
+      "required": false
+    },
+    {
+      "id": "furniture:curtain_rustic",
+      "required": false
+    },
+    {
+      "id": "furniture:curtain_tweed",
+      "required": false
+    },
+    {
+      "id": "furniture:curtain_warped",
+      "required": false
+    },
+    {
+      "id": "furniture:lamp_chambray",
+      "required": false
+    },
+    {
+      "id": "furniture:lamp_jacquard",
+      "required": false
+    },
+    {
+      "id": "furniture:lamp_linen",
+      "required": false
+    },
+    {
+      "id": "furniture:lamp_plaid",
+      "required": false
+    },
+    {
+      "id": "furniture:lamp_rustic",
+      "required": false
+    },
+    {
+      "id": "furniture:lamp_tweed",
+      "required": false
+    },
+    {
+      "id": "furniture:lamp_warped",
+      "required": false
+    },
+    {
+      "id": "furniture:lamp_wall_chambray",
+      "required": false
+    },
+    {
+      "id": "furniture:lamp_wall_jacquard",
+      "required": false
+    },
+    {
+      "id": "furniture:lamp_wall_linen",
+      "required": false
+    },
+    {
+      "id": "furniture:lamp_wall_plaid",
+      "required": false
+    },
+    {
+      "id": "furniture:lamp_wall_rustic",
+      "required": false
+    },
+    {
+      "id": "furniture:lamp_wall_tweed",
+      "required": false
+    },
+    {
+      "id": "furniture:lamp_wall_warped",
+      "required": false
+    },
+    {
+      "id": "furniture:pouffe_chambray",
+      "required": false
+    },
+    {
+      "id": "furniture:pouffe_jacquard",
+      "required": false
+    },
+    {
+      "id": "furniture:pouffe_linen",
+      "required": false
+    },
+    {
+      "id": "furniture:pouffe_plaid",
+      "required": false
+    },
+    {
+      "id": "furniture:pouffe_rustic",
+      "required": false
+    },
+    {
+      "id": "furniture:pouffe_tweed",
+      "required": false
+    },
+    {
+      "id": "furniture:pouffe_warped",
+      "required": false
     }
   ]
 }
