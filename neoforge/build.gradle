@@ -31,6 +31,14 @@ configurations {
 }
 
 dependencies {
+    modLocalRuntime("maven.modrinth:lets-do-bloomingnature:EKgADGat") { transitive = false }
+    modLocalRuntime("maven.modrinth:lets-do-meadow:SdTfMLxH") { transitive = false }
+    modLocalRuntime("maven.modrinth:lets-do-beachparty:HN4rzKRl") { transitive = false }
+    modLocalRuntime("maven.modrinth:lets-do-alpine-whispers:SR1AzHK6") { transitive = false }
+    modLocalRuntime("maven.modrinth:lets-do-vinery:DLINXOWN") { transitive = false }
+    modLocalRuntime("maven.modrinth:biolith:EAjbdreT") { transitive = false }
+    modLocalRuntime("maven.modrinth:curios:yohfFbgD") { transitive = false }
+    include(modImplementation("net.satisfy.foundation:foundation-neoforge:${rootProject.foundation_version}") { transitive = false })
     neoForge "net.neoforged:neoforge:${rootProject.forge_version}"
     modImplementation "me.shedaniel:RoughlyEnoughItems-neoforge:$rei_version"
     modApi "dev.architectury:architectury-neoforge:${rootProject.architectury_version}"
@@ -38,14 +46,11 @@ dependencies {
     shadowCommon(project(path: ":common", configuration: "transformProductionNeoForge")) { transitive = false }
 }
 
-tasks.withType(ProcessResources).configureEach {
-    var replaceProperties = [
-            mod_version            : mod_version,
-    ]
-    inputs.properties replaceProperties
+processResources {
+    inputs.property "version", project.version
 
-    filesMatching(['META-INF/neoforge.mods.toml']) {
-        expand replaceProperties
+    filesMatching("META-INF/neoforge.mods.toml") {
+        expand "version": project.version
     }
 }
 

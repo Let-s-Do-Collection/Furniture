@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  #",
+    "BB#",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:iron_nugget"
+    },
+    "B": {
+      "item": "bloomingnature:cactus_slab"
+    }
+  },
+  "result": {
+    "id": "furniture:cactus_desk_chair",
+    "count": 2
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "furniture:compat_enabled",
+      "mod": "bloomingnature",
+      "furniture": "desk_chairs"
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "furniture:compat_enabled",
+      "mod": "bloomingnature",
+      "furniture": "desk_chairs"
+    }
+  ]
+}

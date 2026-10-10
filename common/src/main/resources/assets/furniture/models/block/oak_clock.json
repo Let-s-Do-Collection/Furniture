@@ -1,4 +1,5 @@
 {
+  "parent": "furniture:block/template_clock",
   "textures": {
     "particle": "minecraft:block/oak_planks"
   }

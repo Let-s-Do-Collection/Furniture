@@ -1,5 +1,5 @@
 {
-  "parent": "furniture:block/oak_shutter_main",
+  "parent": "furniture:block/template_shutter_main",
   "textures": {
     "particle": "furniture:block/larch_shutter_main",
     "middle": "furniture:block/larch_shutter_main"

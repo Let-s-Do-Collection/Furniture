@@ -1,0 +1,73 @@
+{
+  "display": {
+    "icon": {
+      "id": "furniture:sofa_red"
+    },
+    "title": {
+      "translate": "advancement.furniture.root"
+    },
+    "description": {
+      "translate": "advancement.furniture.root.desc"
+    },
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false,
+    "background": "furniture:textures/block/curtain_red_middle.png"
+  },
+  "criteria": {
+    "has_furniture": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "furniture:oak_bench",
+              "furniture:oak_cabinet",
+              "furniture:oak_clock",
+              "furniture:oak_grandfather_clock",
+              "furniture:oak_mirror",
+              "furniture:oak_desk_chair",
+              "furniture:oak_shutter",
+              "furniture:oak_desk",
+              "furniture:oak_dresser",
+              "furniture:oak_wardrobe",
+              "furniture:sofa_red",
+              "furniture:pouffe_red",
+              "furniture:curtain_red",
+              "furniture:lamp_red",
+              "furniture:gramophone",
+              "furniture:telescope",
+              "furniture:coffer",
+              "furniture:explorers_box",
+              "furniture:cash_register",
+              "furniture:tool_box",
+              "furniture:blueprints",
+              "furniture:sewing_kit",
+              "furniture:bin",
+              "furniture:steam_pipe",
+              "furniture:steam_vent",
+              "furniture:copper_fish_tank",
+              "furniture:iron_fish_tank",
+              "furniture:brick_chimney",
+              "furniture:stone_bricks_chimney",
+              "furniture:copper_chimney",
+              "furniture:boat_in_a_jar",
+              "furniture:street_lantern_item",
+              "furniture:plated_street_lantern_item",
+              "furniture:display",
+              "furniture:terrarium",
+              "furniture:wooden_planter",
+              "furniture:stone_brick_planter"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_furniture"
+    ]
+  ]
+}

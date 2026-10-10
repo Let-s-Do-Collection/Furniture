@@ -1,0 +1,9 @@
+{
+  "parent": "furniture:block/template_dresser_single",
+  "textures": {
+    "0": "furniture:block/cactus_dresser_front",
+    "1": "furniture:block/cactus_dresser_side",
+    "2": "furniture:block/cactus_cabinet_top",
+    "particle": "furniture:block/cactus_dresser_front"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "credit": "Made by Berksire",
+  "textures": {
+    "pipe": "furniture:block/steam_pipe",
+    "elbow": "furniture:block/steam_pipe_elbow",
+    "particle": "furniture:block/steam_pipe"
+  },
+  "elements": [
+    {
+      "from": [
+        4,
+        4,
+        4
+      ],
+      "to": [
+        12,
+        12,
+        12
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            4,
+            8,
+            12
+          ],
+          "texture": "#pipe"
+        },
+        "east": {
+          "uv": [
+            0,
+            4,
+            8,
+            12
+          ],
+          "texture": "#pipe"
+        },
+        "south": {
+          "uv": [
+            0,
+            4,
+            8,
+            12
+          ],
+          "texture": "#pipe"
+        },
+        "west": {
+          "uv": [
+            0,
+            4,
+            8,
+            12
+          ],
+          "texture": "#pipe"
+        },
+        "up": {
+          "uv": [
+            0,
+            4,
+            8,
+            12
+          ],
+          "texture": "#pipe"
+        },
+        "down": {
+          "uv": [
+            0,
+            4,
+            8,
+            12
+          ],
+          "texture": "#pipe"
+        }
+      }
+    }
+  ]
+}

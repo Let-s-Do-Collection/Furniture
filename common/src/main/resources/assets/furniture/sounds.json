@@ -46,5 +46,23 @@
         "stream": true
       }
     ]
+  },
+  "cash_register": {
+    "subtitle": "subtitles.furniture.cash_register",
+    "sounds": [
+      "furniture:cash_register"
+    ]
+  },
+  "grandfathers_clock_bell": {
+    "subtitle": "subtitles.furniture.grandfathers_clock_bell",
+    "sounds": [
+      "furniture:grandfathers_clock_bell"
+    ]
+  },
+  "grandfathers_clock_bell_short": {
+    "subtitle": "subtitles.furniture.grandfathers_clock_bell",
+    "sounds": [
+      "furniture:grandfathers_clock_bell_short"
+    ]
   }
 }

@@ -1,0 +1,28 @@
+{
+  "parent": "furniture:furniture/root",
+  "display": {
+    "icon": {
+      "id": "furniture:pells"
+    },
+    "title": {
+      "translate": "advancement.furniture.pells_broken"
+    },
+    "description": {
+      "translate": "advancement.furniture.pells_broken.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "broken": {
+      "trigger": "furniture:pells_broken"
+    }
+  },
+  "requirements": [
+    [
+      "broken"
+    ]
+  ]
+}

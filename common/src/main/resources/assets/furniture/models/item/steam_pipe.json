@@ -1,0 +1,217 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "pipe": "furniture:block/steam_pipe",
+    "elbow": "furniture:block/steam_pipe_elbow",
+    "particle": "furniture:block/steam_pipe",
+    "flange": "furniture:block/steam_pipe_flange"
+  },
+  "elements": [
+    {
+      "from": [
+        4,
+        0,
+        4
+      ],
+      "to": [
+        12,
+        16,
+        12
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            8,
+            16
+          ],
+          "texture": "#pipe"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            8,
+            16
+          ],
+          "texture": "#pipe"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            8,
+            16
+          ],
+          "texture": "#pipe"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            8,
+            16
+          ],
+          "texture": "#pipe"
+        },
+        "up": {
+          "uv": [
+            8,
+            0,
+            16,
+            8
+          ],
+          "texture": "#pipe",
+          "cullface": "up"
+        },
+        "down": {
+          "uv": [
+            8,
+            0,
+            16,
+            8
+          ],
+          "texture": "#pipe",
+          "cullface": "down"
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        0,
+        3
+      ],
+      "to": [
+        13,
+        2,
+        13
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            10,
+            10,
+            12
+          ],
+          "texture": "#flange"
+        },
+        "east": {
+          "uv": [
+            0,
+            10,
+            10,
+            12
+          ],
+          "texture": "#flange"
+        },
+        "south": {
+          "uv": [
+            0,
+            10,
+            10,
+            12
+          ],
+          "texture": "#flange"
+        },
+        "west": {
+          "uv": [
+            0,
+            10,
+            10,
+            12
+          ],
+          "texture": "#flange"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            10,
+            10
+          ],
+          "texture": "#flange"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            10,
+            10
+          ],
+          "texture": "#flange"
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        14,
+        3
+      ],
+      "to": [
+        13,
+        16,
+        13
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            10,
+            10,
+            12
+          ],
+          "texture": "#flange"
+        },
+        "east": {
+          "uv": [
+            0,
+            10,
+            10,
+            12
+          ],
+          "texture": "#flange"
+        },
+        "south": {
+          "uv": [
+            0,
+            10,
+            10,
+            12
+          ],
+          "texture": "#flange"
+        },
+        "west": {
+          "uv": [
+            0,
+            10,
+            10,
+            12
+          ],
+          "texture": "#flange"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            10,
+            10
+          ],
+          "texture": "#flange"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            10,
+            10
+          ],
+          "texture": "#flange"
+        }
+      }
+    }
+  ]
+}

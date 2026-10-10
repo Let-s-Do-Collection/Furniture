@@ -1,5 +1,5 @@
 {
-  "parent": "furniture:block/oak_cabinet_open",
+  "parent": "furniture:block/template_cabinet_open",
   "textures": {
     "2": "furniture:block/fir_cabinet",
     "3": "furniture:block/fir_cabinet_side",

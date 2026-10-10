@@ -1,0 +1,40 @@
+{
+  "parent": "furniture:furniture/root",
+  "display": {
+    "icon": {
+      "id": "furniture:bin"
+    },
+    "title": {
+      "translate": "advancement.furniture.bin"
+    },
+    "description": {
+      "translate": "advancement.furniture.bin.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "trash": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "furniture:bin"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "trash"
+    ]
+  ]
+}

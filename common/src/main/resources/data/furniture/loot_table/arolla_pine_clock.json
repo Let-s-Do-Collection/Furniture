@@ -19,16 +19,16 @@
   ],
   "fabric:load_conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "alpinewhispers"
-      ]
+      "condition": "furniture:compat_enabled",
+      "mod": "alpinewhispers",
+      "furniture": "clocks"
     }
   ],
   "neoforge:conditions": [
     {
-      "type": "neoforge:mod_loaded",
-      "modid": "alpinewhispers"
+      "type": "furniture:compat_enabled",
+      "mod": "alpinewhispers",
+      "furniture": "clocks"
     }
   ]
 }

@@ -1,17 +1,32 @@
 {
   "variants": {
-    "facing=east": {
+    "facing=north,open=false": {
+      "model": "furniture:block/cash_register"
+    },
+    "facing=north,open=true": {
+      "model": "furniture:block/cash_register"
+    },
+    "facing=east,open=false": {
       "model": "furniture:block/cash_register",
       "y": 90
     },
-    "facing=north": {
-      "model": "furniture:block/cash_register"
+    "facing=east,open=true": {
+      "model": "furniture:block/cash_register",
+      "y": 90
     },
-    "facing=south": {
+    "facing=south,open=false": {
       "model": "furniture:block/cash_register",
       "y": 180
     },
-    "facing=west": {
+    "facing=south,open=true": {
+      "model": "furniture:block/cash_register",
+      "y": 180
+    },
+    "facing=west,open=false": {
+      "model": "furniture:block/cash_register",
+      "y": 270
+    },
+    "facing=west,open=true": {
       "model": "furniture:block/cash_register",
       "y": 270
     }

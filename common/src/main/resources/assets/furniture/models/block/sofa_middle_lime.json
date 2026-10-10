@@ -1,5 +1,5 @@
 {
-  "parent": "furniture:block/sofa_middle_template",
+  "parent": "furniture:block/template_sofa_middle",
   "textures": {
     "0": "furniture:block/sofa_back_lime",
     "1": "furniture:block/sofa_bottom",

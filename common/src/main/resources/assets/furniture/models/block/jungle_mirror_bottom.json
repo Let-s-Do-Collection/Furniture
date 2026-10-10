@@ -1,5 +1,5 @@
 {
-  "parent": "furniture:block/oak_mirror_bottom",
+  "parent": "furniture:block/template_mirror_bottom",
   "textures": {
     "0": "furniture:block/jungle_mirror_bottom",
     "1": "furniture:block/jungle_mirror_back",

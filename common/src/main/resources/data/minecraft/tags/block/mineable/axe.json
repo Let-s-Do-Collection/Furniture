@@ -718,10 +718,6 @@
       "required": false
     },
     {
-      "id": "furniture:pine_window",
-      "required": false
-    },
-    {
       "id": "furniture:curtain_chambray",
       "required": false
     },
@@ -831,6 +827,46 @@
     },
     {
       "id": "furniture:pouffe_warped",
+      "required": false
+    },
+    {
+      "id": "furniture:cactus_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:cactus_grandfather_clock",
+      "required": false
+    },
+    {
+      "id": "furniture:cactus_bench",
+      "required": false
+    },
+    {
+      "id": "furniture:cactus_cabinet",
+      "required": false
+    },
+    {
+      "id": "furniture:cactus_desk",
+      "required": false
+    },
+    {
+      "id": "furniture:cactus_desk_chair",
+      "required": false
+    },
+    {
+      "id": "furniture:cactus_dresser",
+      "required": false
+    },
+    {
+      "id": "furniture:cactus_mirror",
+      "required": false
+    },
+    {
+      "id": "furniture:cactus_shutter",
+      "required": false
+    },
+    {
+      "id": "furniture:cactus_wardrobe",
       "required": false
     }
   ]

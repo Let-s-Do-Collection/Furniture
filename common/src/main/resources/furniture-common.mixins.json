@@ -1,15 +1,21 @@
 {
   "required": true,
-  "package": "com.berksire.furniture.core.mixin",
+  "package": "net.satisfy.furniture.core.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "CartographyTableMenuMixin",
     "CraftingMenuMixin",
     "CropBlockMixin",
+    "JukeboxSongPlayerMixin",
+    "LivingEntityMixin",
     "LoomMenuMixin",
     "SmithingMenuMixin"
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "client": [
+    "AbstractClientPlayerMixin",
+    "GameRendererMixin"
+  ]
 }

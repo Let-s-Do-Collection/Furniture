@@ -1,0 +1,41 @@
+{
+  "parent": "furniture:furniture/root",
+  "display": {
+    "icon": {
+      "id": "furniture:oak_desk_chair"
+    },
+    "title": {
+      "translate": "advancement.furniture.sit"
+    },
+    "description": {
+      "translate": "advancement.furniture.sit.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "sit": {
+      "trigger": "minecraft:started_riding",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "vehicle": {
+                "type": "furniture:chair"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "sit"
+    ]
+  ]
+}

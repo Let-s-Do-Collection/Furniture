@@ -1,0 +1,28 @@
+{
+  "parent": "furniture:furniture/root",
+  "display": {
+    "icon": {
+      "id": "furniture:telescope"
+    },
+    "title": {
+      "translate": "advancement.furniture.stargazer"
+    },
+    "description": {
+      "translate": "advancement.furniture.stargazer.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "stargazer": {
+      "trigger": "furniture:stargazer"
+    }
+  },
+  "requirements": [
+    [
+      "stargazer"
+    ]
+  ]
+}

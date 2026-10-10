@@ -19,16 +19,16 @@
   ],
   "fabric:load_conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "vinery"
-      ]
+      "condition": "furniture:compat_enabled",
+      "mod": "vinery",
+      "furniture": "dressers"
     }
   ],
   "neoforge:conditions": [
     {
-      "type": "neoforge:mod_loaded",
-      "modid": "vinery"
+      "type": "furniture:compat_enabled",
+      "mod": "vinery",
+      "furniture": "dressers"
     }
   ]
 }

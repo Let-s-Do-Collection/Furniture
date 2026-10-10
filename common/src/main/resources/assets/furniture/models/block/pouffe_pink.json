@@ -1,5 +1,5 @@
 {
-  "parent": "furniture:block/pouffe_template",
+  "parent": "furniture:block/template_pouffe",
   "textures": {
     "0": "furniture:block/sofa_side_pink",
     "1": "furniture:block/sofa_top_pink",

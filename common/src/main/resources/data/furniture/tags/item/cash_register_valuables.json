@@ -1,0 +1,21 @@
+{
+  "values": [
+    "minecraft:emerald",
+    "minecraft:diamond",
+    "minecraft:gold_ingot",
+    "minecraft:gold_nugget",
+    "minecraft:iron_ingot",
+    "minecraft:iron_nugget",
+    "minecraft:copper_ingot",
+    "minecraft:netherite_ingot",
+    "minecraft:netherite_scrap",
+    "minecraft:amethyst_shard",
+    "minecraft:lapis_lazuli",
+    "minecraft:quartz",
+    "minecraft:raw_gold",
+    "minecraft:emerald_block",
+    "minecraft:diamond_block",
+    "minecraft:gold_block",
+    "minecraft:paper"
+  ]
+}

@@ -3,22 +3,33 @@
   "id": "furniture",
   "version": "${version}",
   "name": "[Let's Do] Furniture",
-  "description": "Let's expand your world with a whole set of new and exciting furnitures!",
+  "description": "Furnish your world with chairs, sofas, clocks, lamps, fish tanks, telescopes and much more, all in the cozy Let's Do style.",
   "authors": [
-    "berksire, satisfy, cph101"
+    "satisfy"
+  ],
+  "contributors": [
+    "berksire",
+    "cph101dev",
+    "MissLilitu"
   ],
   "contact": {
-    "sources": "https://github.com/satisfyu/NeverEnoughFurniture"
+    "homepage": "https://www.lets-do.ch",
+    "wiki": "https://lets-do.ch/wiki/furniture/",
+    "sources": "https://github.com/Let-s-Do-Collection/Furniture",
+    "issues": "https://github.com/satisfyu/Let-s-Do-Hub"
   },
   "license": "Custom",
   "icon": "pack.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.berksire.furniture.fabric.FurnitureFabric"
+      "net.satisfy.furniture.fabric.FurnitureFabric"
     ],
     "client": [
-      "com.berksire.furniture.fabric.client.FurnitureClientFabric"
+      "net.satisfy.furniture.fabric.client.FurnitureClientFabric"
+    ],
+    "modmenu": [
+      "net.satisfy.furniture.fabric.config.ModMenu"
     ]
   },
   "mixins": [
@@ -26,8 +37,11 @@
     "furniture-fabric.mixins.json"
   ],
   "depends": {
-    "fabric": "*",
-    "minecraft": ">=1.21.1",
-    "architectury": ">=6.5.77"
+    "fabricloader": ">=0.16.14",
+    "fabric-api": "*",
+    "minecraft": ">=1.21.1 <1.22",
+    "architectury": ">=13.0.8",
+    "foundation": ">=1.0.5",
+    "cloth-config": "*"
   }
 }

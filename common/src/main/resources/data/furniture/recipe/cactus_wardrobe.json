@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "furniture:cactus_cabinet"
+    },
+    {
+      "item": "furniture:cactus_cabinet"
+    }
+  ],
+  "result": {
+    "id": "furniture:cactus_wardrobe",
+    "count": 1
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "furniture:compat_enabled",
+      "mod": "bloomingnature",
+      "furniture": "wardrobes"
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "furniture:compat_enabled",
+      "mod": "bloomingnature",
+      "furniture": "wardrobes"
+    }
+  ]
+}

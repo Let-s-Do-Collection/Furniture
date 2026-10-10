@@ -1,0 +1,11 @@
+{
+  "parent": "furniture:block/template_cabinet_open",
+  "textures": {
+    "2": "furniture:block/cactus_cabinet",
+    "3": "furniture:block/cactus_cabinet_side",
+    "4": "furniture:block/cactus_cabinet_top",
+    "5": "furniture:block/cactus_cabinet_bottom",
+    "6": "furniture:block/cactus_cabinet_front",
+    "particle": "furniture:block/cactus_cabinet_top"
+  }
+}

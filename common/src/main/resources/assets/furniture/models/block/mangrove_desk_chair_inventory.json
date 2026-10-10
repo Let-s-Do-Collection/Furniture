@@ -1,5 +1,5 @@
 {
-  "parent": "furniture:block/oak_desk_chair_inventory",
+  "parent": "furniture:block/template_desk_chair_inventory",
   "textures": {
     "1": "furniture:block/desk_chair_parts",
     "2": "furniture:block/mangrove_desk_chair",

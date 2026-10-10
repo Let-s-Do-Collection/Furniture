@@ -1,130 +1,258 @@
 {
   "variants": {
-    "type=none,bulbs=0,facing=north": {
+    "type=none,bulbs=0,facing=north,pots=false": {
       "model": "furniture:block/street_lantern_single",
       "y": 0
     },
-    "type=none,bulbs=0,facing=south": {
-      "model": "furniture:block/street_lantern_single",
-      "y": 180
-    },
-    "type=none,bulbs=0,facing=west": {
-      "model": "furniture:block/street_lantern_single",
-      "y": 270
-    },
-    "type=none,bulbs=0,facing=east": {
-      "model": "furniture:block/street_lantern_single",
-      "y": 90
-    },
-    "type=none,bulbs=1,facing=north": {
-      "model": "furniture:block/street_lantern_single_double",
-      "y": 0
-    },
-    "type=none,bulbs=1,facing=south": {
-      "model": "furniture:block/street_lantern_single_double",
-      "y": 180
-    },
-    "type=none,bulbs=1,facing=west": {
-      "model": "furniture:block/street_lantern_single_double",
-      "y": 270
-    },
-    "type=none,bulbs=1,facing=east": {
-      "model": "furniture:block/street_lantern_single_double",
-      "y": 90
-    },
-    "type=top,bulbs=0,facing=north": {
+    "type=none,bulbs=0,facing=north,pots=true": {
       "model": "furniture:block/street_lantern_single",
       "y": 0
     },
-    "type=top,bulbs=0,facing=south": {
+    "type=none,bulbs=0,facing=south,pots=false": {
       "model": "furniture:block/street_lantern_single",
       "y": 180
     },
-    "type=top,bulbs=0,facing=west": {
+    "type=none,bulbs=0,facing=south,pots=true": {
+      "model": "furniture:block/street_lantern_single",
+      "y": 180
+    },
+    "type=none,bulbs=0,facing=west,pots=false": {
       "model": "furniture:block/street_lantern_single",
       "y": 270
     },
-    "type=top,bulbs=0,facing=east": {
+    "type=none,bulbs=0,facing=west,pots=true": {
+      "model": "furniture:block/street_lantern_single",
+      "y": 270
+    },
+    "type=none,bulbs=0,facing=east,pots=false": {
       "model": "furniture:block/street_lantern_single",
       "y": 90
     },
-    "type=top,bulbs=1,facing=north": {
+    "type=none,bulbs=0,facing=east,pots=true": {
+      "model": "furniture:block/street_lantern_single",
+      "y": 90
+    },
+    "type=none,bulbs=1,facing=north,pots=false": {
       "model": "furniture:block/street_lantern_single_double",
       "y": 0
     },
-    "type=top,bulbs=1,facing=south": {
+    "type=none,bulbs=1,facing=north,pots=true": {
+      "model": "furniture:block/street_lantern_single_double_pots",
+      "y": 0
+    },
+    "type=none,bulbs=1,facing=south,pots=false": {
       "model": "furniture:block/street_lantern_single_double",
       "y": 180
     },
-    "type=top,bulbs=1,facing=west": {
+    "type=none,bulbs=1,facing=south,pots=true": {
+      "model": "furniture:block/street_lantern_single_double_pots",
+      "y": 180
+    },
+    "type=none,bulbs=1,facing=west,pots=false": {
       "model": "furniture:block/street_lantern_single_double",
       "y": 270
     },
-    "type=top,bulbs=1,facing=east": {
+    "type=none,bulbs=1,facing=west,pots=true": {
+      "model": "furniture:block/street_lantern_single_double_pots",
+      "y": 270
+    },
+    "type=none,bulbs=1,facing=east,pots=false": {
       "model": "furniture:block/street_lantern_single_double",
       "y": 90
     },
-    "type=middle,bulbs=0,facing=north": {
+    "type=none,bulbs=1,facing=east,pots=true": {
+      "model": "furniture:block/street_lantern_single_double_pots",
+      "y": 90
+    },
+    "type=top,bulbs=0,facing=north,pots=false": {
+      "model": "furniture:block/street_lantern_single",
+      "y": 0
+    },
+    "type=top,bulbs=0,facing=north,pots=true": {
+      "model": "furniture:block/street_lantern_single",
+      "y": 0
+    },
+    "type=top,bulbs=0,facing=south,pots=false": {
+      "model": "furniture:block/street_lantern_single",
+      "y": 180
+    },
+    "type=top,bulbs=0,facing=south,pots=true": {
+      "model": "furniture:block/street_lantern_single",
+      "y": 180
+    },
+    "type=top,bulbs=0,facing=west,pots=false": {
+      "model": "furniture:block/street_lantern_single",
+      "y": 270
+    },
+    "type=top,bulbs=0,facing=west,pots=true": {
+      "model": "furniture:block/street_lantern_single",
+      "y": 270
+    },
+    "type=top,bulbs=0,facing=east,pots=false": {
+      "model": "furniture:block/street_lantern_single",
+      "y": 90
+    },
+    "type=top,bulbs=0,facing=east,pots=true": {
+      "model": "furniture:block/street_lantern_single",
+      "y": 90
+    },
+    "type=top,bulbs=1,facing=north,pots=false": {
+      "model": "furniture:block/street_lantern_single_double",
+      "y": 0
+    },
+    "type=top,bulbs=1,facing=north,pots=true": {
+      "model": "furniture:block/street_lantern_single_double_pots",
+      "y": 0
+    },
+    "type=top,bulbs=1,facing=south,pots=false": {
+      "model": "furniture:block/street_lantern_single_double",
+      "y": 180
+    },
+    "type=top,bulbs=1,facing=south,pots=true": {
+      "model": "furniture:block/street_lantern_single_double_pots",
+      "y": 180
+    },
+    "type=top,bulbs=1,facing=west,pots=false": {
+      "model": "furniture:block/street_lantern_single_double",
+      "y": 270
+    },
+    "type=top,bulbs=1,facing=west,pots=true": {
+      "model": "furniture:block/street_lantern_single_double_pots",
+      "y": 270
+    },
+    "type=top,bulbs=1,facing=east,pots=false": {
+      "model": "furniture:block/street_lantern_single_double",
+      "y": 90
+    },
+    "type=top,bulbs=1,facing=east,pots=true": {
+      "model": "furniture:block/street_lantern_single_double_pots",
+      "y": 90
+    },
+    "type=middle,bulbs=0,facing=north,pots=false": {
       "model": "furniture:block/street_lantern_middle",
       "y": 0
     },
-    "type=middle,bulbs=0,facing=south": {
+    "type=middle,bulbs=0,facing=north,pots=true": {
+      "model": "furniture:block/street_lantern_middle",
+      "y": 0
+    },
+    "type=middle,bulbs=0,facing=south,pots=false": {
       "model": "furniture:block/street_lantern_middle",
       "y": 180
     },
-    "type=middle,bulbs=0,facing=west": {
+    "type=middle,bulbs=0,facing=south,pots=true": {
+      "model": "furniture:block/street_lantern_middle",
+      "y": 180
+    },
+    "type=middle,bulbs=0,facing=west,pots=false": {
       "model": "furniture:block/street_lantern_middle",
       "y": 270
     },
-    "type=middle,bulbs=0,facing=east": {
+    "type=middle,bulbs=0,facing=west,pots=true": {
+      "model": "furniture:block/street_lantern_middle",
+      "y": 270
+    },
+    "type=middle,bulbs=0,facing=east,pots=false": {
       "model": "furniture:block/street_lantern_middle",
       "y": 90
     },
-    "type=middle,bulbs=1,facing=north": {
-      "model": "furniture:block/street_lantern_middle",
-      "y": 0
-    },
-    "type=middle,bulbs=1,facing=south": {
-      "model": "furniture:block/street_lantern_middle",
-      "y": 180
-    },
-    "type=middle,bulbs=1,facing=west": {
-      "model": "furniture:block/street_lantern_middle",
-      "y": 270
-    },
-    "type=middle,bulbs=1,facing=east": {
+    "type=middle,bulbs=0,facing=east,pots=true": {
       "model": "furniture:block/street_lantern_middle",
       "y": 90
     },
-    "type=bottom,bulbs=0,facing=north": {
+    "type=middle,bulbs=1,facing=north,pots=false": {
+      "model": "furniture:block/street_lantern_middle",
+      "y": 0
+    },
+    "type=middle,bulbs=1,facing=north,pots=true": {
+      "model": "furniture:block/street_lantern_middle",
+      "y": 0
+    },
+    "type=middle,bulbs=1,facing=south,pots=false": {
+      "model": "furniture:block/street_lantern_middle",
+      "y": 180
+    },
+    "type=middle,bulbs=1,facing=south,pots=true": {
+      "model": "furniture:block/street_lantern_middle",
+      "y": 180
+    },
+    "type=middle,bulbs=1,facing=west,pots=false": {
+      "model": "furniture:block/street_lantern_middle",
+      "y": 270
+    },
+    "type=middle,bulbs=1,facing=west,pots=true": {
+      "model": "furniture:block/street_lantern_middle",
+      "y": 270
+    },
+    "type=middle,bulbs=1,facing=east,pots=false": {
+      "model": "furniture:block/street_lantern_middle",
+      "y": 90
+    },
+    "type=middle,bulbs=1,facing=east,pots=true": {
+      "model": "furniture:block/street_lantern_middle",
+      "y": 90
+    },
+    "type=bottom,bulbs=0,facing=north,pots=false": {
       "model": "furniture:block/street_lantern_bottom",
       "y": 0
     },
-    "type=bottom,bulbs=0,facing=south": {
+    "type=bottom,bulbs=0,facing=north,pots=true": {
+      "model": "furniture:block/street_lantern_bottom",
+      "y": 0
+    },
+    "type=bottom,bulbs=0,facing=south,pots=false": {
       "model": "furniture:block/street_lantern_bottom",
       "y": 180
     },
-    "type=bottom,bulbs=0,facing=west": {
+    "type=bottom,bulbs=0,facing=south,pots=true": {
+      "model": "furniture:block/street_lantern_bottom",
+      "y": 180
+    },
+    "type=bottom,bulbs=0,facing=west,pots=false": {
       "model": "furniture:block/street_lantern_bottom",
       "y": 270
     },
-    "type=bottom,bulbs=0,facing=east": {
+    "type=bottom,bulbs=0,facing=west,pots=true": {
+      "model": "furniture:block/street_lantern_bottom",
+      "y": 270
+    },
+    "type=bottom,bulbs=0,facing=east,pots=false": {
       "model": "furniture:block/street_lantern_bottom",
       "y": 90
     },
-    "type=bottom,bulbs=1,facing=north": {
+    "type=bottom,bulbs=0,facing=east,pots=true": {
+      "model": "furniture:block/street_lantern_bottom",
+      "y": 90
+    },
+    "type=bottom,bulbs=1,facing=north,pots=false": {
       "model": "furniture:block/street_lantern_bottom",
       "y": 0
     },
-    "type=bottom,bulbs=1,facing=south": {
+    "type=bottom,bulbs=1,facing=north,pots=true": {
+      "model": "furniture:block/street_lantern_bottom",
+      "y": 0
+    },
+    "type=bottom,bulbs=1,facing=south,pots=false": {
       "model": "furniture:block/street_lantern_bottom",
       "y": 180
     },
-    "type=bottom,bulbs=1,facing=west": {
+    "type=bottom,bulbs=1,facing=south,pots=true": {
+      "model": "furniture:block/street_lantern_bottom",
+      "y": 180
+    },
+    "type=bottom,bulbs=1,facing=west,pots=false": {
       "model": "furniture:block/street_lantern_bottom",
       "y": 270
     },
-    "type=bottom,bulbs=1,facing=east": {
+    "type=bottom,bulbs=1,facing=west,pots=true": {
+      "model": "furniture:block/street_lantern_bottom",
+      "y": 270
+    },
+    "type=bottom,bulbs=1,facing=east,pots=false": {
+      "model": "furniture:block/street_lantern_bottom",
+      "y": 90
+    },
+    "type=bottom,bulbs=1,facing=east,pots=true": {
       "model": "furniture:block/street_lantern_bottom",
       "y": 90
     }

@@ -1,0 +1,10 @@
+{
+  "parent": "furniture:block/template_wardrobe_bottom_closed",
+  "textures": {
+    "1": "furniture:block/cactus_cabinet_top",
+    "2": "furniture:block/cactus_wardrobe_front_bottom_closed",
+    "4": "furniture:block/cactus_wardrobe_side_bottom",
+    "6": "furniture:block/cactus_wardrobe_inside_bottom",
+    "particle": "furniture:block/cactus_wardrobe_front_bottom_closed"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "parent": "furniture:furniture/bin",
+  "display": {
+    "icon": {
+      "id": "furniture:trash_bag"
+    },
+    "title": {
+      "translate": "advancement.furniture.bin_flies"
+    },
+    "description": {
+      "translate": "advancement.furniture.bin_flies.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "flies": {
+      "trigger": "furniture:bin_flies"
+    }
+  },
+  "requirements": [
+    [
+      "flies"
+    ]
+  ]
+}
