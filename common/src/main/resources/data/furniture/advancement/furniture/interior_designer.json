@@ -1,0 +1,569 @@
+{
+  "parent": "furniture:furniture/root",
+  "display": {
+    "icon": {
+      "id": "furniture:oak_dresser"
+    },
+    "title": {
+      "translate": "advancement.furniture.interior_designer"
+    },
+    "description": {
+      "translate": "advancement.furniture.interior_designer.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "oak_bench": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:oak_bench"
+          }
+        ]
+      }
+    },
+    "oak_cabinet": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:oak_cabinet"
+          }
+        ]
+      }
+    },
+    "oak_clock": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:oak_clock"
+          }
+        ]
+      }
+    },
+    "oak_grandfather_clock": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:oak_grandfather_clock"
+          }
+        ]
+      }
+    },
+    "oak_mirror": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:oak_mirror"
+          }
+        ]
+      }
+    },
+    "oak_desk_chair": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:oak_desk_chair"
+          }
+        ]
+      }
+    },
+    "oak_shutter": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:oak_shutter"
+          }
+        ]
+      }
+    },
+    "oak_desk": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:oak_desk"
+          }
+        ]
+      }
+    },
+    "oak_dresser": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:oak_dresser"
+          }
+        ]
+      }
+    },
+    "oak_wardrobe": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:oak_wardrobe"
+          }
+        ]
+      }
+    },
+    "sofa_red": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:sofa_red"
+          }
+        ]
+      }
+    },
+    "pouffe_red": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:pouffe_red"
+          }
+        ]
+      }
+    },
+    "curtain_red": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:curtain_red"
+          }
+        ]
+      }
+    },
+    "lamp_red": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:lamp_red"
+          }
+        ]
+      }
+    },
+    "lamp_wall_red": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:lamp_wall_red"
+          }
+        ]
+      }
+    },
+    "gramophone": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:gramophone"
+          }
+        ]
+      }
+    },
+    "telescope": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:telescope"
+          }
+        ]
+      }
+    },
+    "coffer": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:coffer"
+          }
+        ]
+      }
+    },
+    "explorers_box": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:explorers_box"
+          }
+        ]
+      }
+    },
+    "cash_register": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:cash_register"
+          }
+        ]
+      }
+    },
+    "tool_box": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:tool_box"
+          }
+        ]
+      }
+    },
+    "blueprints": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:blueprints"
+          }
+        ]
+      }
+    },
+    "sewing_kit": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:sewing_kit"
+          }
+        ]
+      }
+    },
+    "bin": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:bin"
+          }
+        ]
+      }
+    },
+    "steam_pipe": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:steam_pipe"
+          }
+        ]
+      }
+    },
+    "steam_vent": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:steam_vent"
+          }
+        ]
+      }
+    },
+    "copper_fish_tank": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:copper_fish_tank"
+          }
+        ]
+      }
+    },
+    "iron_fish_tank": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:iron_fish_tank"
+          }
+        ]
+      }
+    },
+    "brick_chimney": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:brick_chimney"
+          }
+        ]
+      }
+    },
+    "stone_bricks_chimney": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:stone_bricks_chimney"
+          }
+        ]
+      }
+    },
+    "copper_chimney": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:copper_chimney"
+          }
+        ]
+      }
+    },
+    "boat_in_a_jar": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:boat_in_a_jar"
+          }
+        ]
+      }
+    },
+    "street_lantern": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:street_lantern"
+          }
+        ]
+      }
+    },
+    "street_lantern_wall": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:street_lantern_wall"
+          }
+        ]
+      }
+    },
+    "plated_street_lantern": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:plated_street_lantern"
+          }
+        ]
+      }
+    },
+    "plated_street_lantern_wall": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:plated_street_lantern_wall"
+          }
+        ]
+      }
+    },
+    "display": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:display"
+          }
+        ]
+      }
+    },
+    "terrarium": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:terrarium"
+          }
+        ]
+      }
+    },
+    "wooden_planter": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:wooden_planter"
+          }
+        ]
+      }
+    },
+    "stone_brick_planter": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "furniture:stone_brick_planter"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "oak_bench"
+    ],
+    [
+      "oak_cabinet"
+    ],
+    [
+      "oak_clock"
+    ],
+    [
+      "oak_grandfather_clock"
+    ],
+    [
+      "oak_mirror"
+    ],
+    [
+      "oak_desk_chair"
+    ],
+    [
+      "oak_shutter"
+    ],
+    [
+      "oak_desk"
+    ],
+    [
+      "oak_dresser"
+    ],
+    [
+      "oak_wardrobe"
+    ],
+    [
+      "sofa_red"
+    ],
+    [
+      "pouffe_red"
+    ],
+    [
+      "curtain_red"
+    ],
+    [
+      "lamp_red",
+      "lamp_wall_red"
+    ],
+    [
+      "gramophone"
+    ],
+    [
+      "telescope"
+    ],
+    [
+      "coffer"
+    ],
+    [
+      "explorers_box"
+    ],
+    [
+      "cash_register"
+    ],
+    [
+      "tool_box"
+    ],
+    [
+      "blueprints"
+    ],
+    [
+      "sewing_kit"
+    ],
+    [
+      "bin"
+    ],
+    [
+      "steam_pipe"
+    ],
+    [
+      "steam_vent"
+    ],
+    [
+      "copper_fish_tank",
+      "iron_fish_tank"
+    ],
+    [
+      "brick_chimney",
+      "stone_bricks_chimney",
+      "copper_chimney"
+    ],
+    [
+      "boat_in_a_jar"
+    ],
+    [
+      "street_lantern",
+      "street_lantern_wall",
+      "plated_street_lantern",
+      "plated_street_lantern_wall"
+    ],
+    [
+      "display"
+    ],
+    [
+      "terrarium"
+    ],
+    [
+      "wooden_planter",
+      "stone_brick_planter"
+    ]
+  ],
+  "rewards": {
+    "experience": 250
+  }
+}

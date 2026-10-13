@@ -1,5 +1,5 @@
 {
-  "parent": "furniture:block/lamp_top_green",
+  "parent": "furniture:block/template_lamp_top",
   "textures": {
     "0": "furniture:block/lamp_plaid_side",
     "1": "furniture:block/lamp_plaid_top",

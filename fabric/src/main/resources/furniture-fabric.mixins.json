@@ -1,8 +1,8 @@
 {
   "required": true,
-  "package": "com.berksire.furniture.fabric.client.mixin",
+  "package": "net.satisfy.furniture.fabric.client.mixin",
   "compatibilityLevel": "JAVA_21",
-  "plugin": "com.berksire.furniture.fabric.client.mixin.FurnitureMixinPlugin",
+  "plugin": "net.satisfy.furniture.fabric.client.mixin.FurnitureMixinPlugin",
   "mixins": [
     "IrisColoredLightsMixin"
   ],

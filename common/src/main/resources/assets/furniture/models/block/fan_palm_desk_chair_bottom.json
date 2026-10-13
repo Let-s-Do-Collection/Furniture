@@ -1,5 +1,5 @@
 {
-  "parent": "furniture:block/oak_desk_chair_bottom",
+  "parent": "furniture:block/template_desk_chair_bottom",
   "textures": {
     "1": "furniture:block/desk_chair_parts",
     "2": "furniture:block/fan_palm_desk_chair",

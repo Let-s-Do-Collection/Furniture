@@ -1,35 +1,67 @@
 {
   "variants": {
-    "facing=north,half=lower": {
+    "active=false,facing=north,half=lower": {
       "model": "furniture:block/telescope_lower",
       "y": 0
     },
-    "facing=south,half=lower": {
+    "active=false,facing=north,half=upper": {
+      "model": "furniture:block/telescope_upper",
+      "y": 0
+    },
+    "active=true,facing=north,half=lower": {
+      "model": "furniture:block/telescope_lower",
+      "y": 0
+    },
+    "active=true,facing=north,half=upper": {
+      "model": "furniture:block/telescope_upper_post",
+      "y": 0
+    },
+    "active=false,facing=south,half=lower": {
       "model": "furniture:block/telescope_lower",
       "y": 180
     },
-    "facing=west,half=lower": {
+    "active=false,facing=south,half=upper": {
+      "model": "furniture:block/telescope_upper",
+      "y": 180
+    },
+    "active=true,facing=south,half=lower": {
+      "model": "furniture:block/telescope_lower",
+      "y": 180
+    },
+    "active=true,facing=south,half=upper": {
+      "model": "furniture:block/telescope_upper_post",
+      "y": 180
+    },
+    "active=false,facing=west,half=lower": {
       "model": "furniture:block/telescope_lower",
       "y": 270
     },
-    "facing=east,half=lower": {
+    "active=false,facing=west,half=upper": {
+      "model": "furniture:block/telescope_upper",
+      "y": 270
+    },
+    "active=true,facing=west,half=lower": {
+      "model": "furniture:block/telescope_lower",
+      "y": 270
+    },
+    "active=true,facing=west,half=upper": {
+      "model": "furniture:block/telescope_upper_post",
+      "y": 270
+    },
+    "active=false,facing=east,half=lower": {
       "model": "furniture:block/telescope_lower",
       "y": 90
     },
-    "facing=north,half=upper": {
+    "active=false,facing=east,half=upper": {
       "model": "furniture:block/telescope_upper",
-      "y": 0
+      "y": 90
     },
-    "facing=south,half=upper": {
-      "model": "furniture:block/telescope_upper",
-      "y": 180
+    "active=true,facing=east,half=lower": {
+      "model": "furniture:block/telescope_lower",
+      "y": 90
     },
-    "facing=west,half=upper": {
-      "model": "furniture:block/telescope_upper",
-      "y": 270
-    },
-    "facing=east,half=upper": {
-      "model": "furniture:block/telescope_upper",
+    "active=true,facing=east,half=upper": {
+      "model": "furniture:block/telescope_upper_post",
       "y": 90
     }
   }

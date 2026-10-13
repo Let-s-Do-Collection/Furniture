@@ -19,16 +19,16 @@
   ],
   "fabric:load_conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "meadow"
-      ]
+      "condition": "furniture:compat_enabled",
+      "mod": "meadow",
+      "furniture": "desk_chairs"
     }
   ],
   "neoforge:conditions": [
     {
-      "type": "neoforge:mod_loaded",
-      "modid": "meadow"
+      "type": "furniture:compat_enabled",
+      "mod": "meadow",
+      "furniture": "desk_chairs"
     }
   ]
 }

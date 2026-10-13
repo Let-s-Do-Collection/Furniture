@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BB ",
+    "BB ",
+    "BB "
+  ],
+  "key": {
+    "B": {
+      "item": "bloomingnature:cactus_slab"
+    }
+  },
+  "result": {
+    "id": "furniture:cactus_shutter",
+    "count": 4
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "furniture:compat_enabled",
+      "mod": "bloomingnature",
+      "furniture": "shutters"
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "furniture:compat_enabled",
+      "mod": "bloomingnature",
+      "furniture": "shutters"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "B B",
+    "B B"
+  ],
+  "key": {
+    "#": {
+      "item": "beachparty:palm_planks"
+    },
+    "B": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "id": "furniture:palm_desk"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "furniture:compat_enabled",
+      "mod": "beachparty",
+      "furniture": "desks"
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "furniture:compat_enabled",
+      "mod": "beachparty",
+      "furniture": "desks"
+    }
+  ]
+}

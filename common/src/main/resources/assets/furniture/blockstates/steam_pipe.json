@@ -1,0 +1,1994 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "OR": [
+          {
+            "north": "none",
+            "east": "none",
+            "south": "none",
+            "west": "none",
+            "up": "none",
+            "down": "none"
+          },
+          {
+            "north": "none",
+            "east": "none",
+            "south": "none",
+            "west": "none",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "none",
+            "south": "none",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "none",
+            "east": "none",
+            "south": "none",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          }
+        ]
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_straight"
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "north": "none",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "none",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "none",
+            "west": "none",
+            "up": "none",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "none",
+            "down": "none"
+          }
+        ]
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_straight",
+        "x": 90
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "north": "none",
+            "east": "none",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "none"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "none",
+            "up": "none",
+            "down": "none"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "none"
+          }
+        ]
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_straight",
+        "x": 90,
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "north": "pipe|flange",
+        "east": "none",
+        "south": "none",
+        "west": "none",
+        "up": "pipe|flange",
+        "down": "none"
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_elbow"
+      }
+    },
+    {
+      "when": {
+        "north": "none",
+        "east": "pipe|flange",
+        "south": "none",
+        "west": "none",
+        "up": "pipe|flange",
+        "down": "none"
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_elbow",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "north": "none",
+        "east": "none",
+        "south": "pipe|flange",
+        "west": "none",
+        "up": "pipe|flange",
+        "down": "none"
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_elbow",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "north": "none",
+        "east": "none",
+        "south": "none",
+        "west": "pipe|flange",
+        "up": "pipe|flange",
+        "down": "none"
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_elbow",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "north": "none",
+        "east": "none",
+        "south": "pipe|flange",
+        "west": "none",
+        "up": "none",
+        "down": "pipe|flange"
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_elbow",
+        "x": 180
+      }
+    },
+    {
+      "when": {
+        "north": "none",
+        "east": "none",
+        "south": "none",
+        "west": "pipe|flange",
+        "up": "none",
+        "down": "pipe|flange"
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_elbow",
+        "x": 180,
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "north": "pipe|flange",
+        "east": "none",
+        "south": "none",
+        "west": "none",
+        "up": "none",
+        "down": "pipe|flange"
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_elbow",
+        "x": 180,
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "north": "none",
+        "east": "pipe|flange",
+        "south": "none",
+        "west": "none",
+        "up": "none",
+        "down": "pipe|flange"
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_elbow",
+        "x": 180,
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "north": "pipe|flange",
+        "east": "pipe|flange",
+        "south": "none",
+        "west": "none",
+        "up": "none",
+        "down": "none"
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_elbow_horizontal"
+      }
+    },
+    {
+      "when": {
+        "north": "none",
+        "east": "pipe|flange",
+        "south": "pipe|flange",
+        "west": "none",
+        "up": "none",
+        "down": "none"
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_elbow_horizontal",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "north": "none",
+        "east": "none",
+        "south": "pipe|flange",
+        "west": "pipe|flange",
+        "up": "none",
+        "down": "none"
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_elbow_horizontal",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "north": "pipe|flange",
+        "east": "none",
+        "south": "none",
+        "west": "pipe|flange",
+        "up": "none",
+        "down": "none"
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_elbow_horizontal",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "north": "none",
+            "east": "none",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "none",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "none"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "none",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "none",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "none",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          }
+        ]
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_core"
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "north": "none",
+            "east": "none",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "none",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "none",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          }
+        ]
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_arm"
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "north": "none",
+            "east": "none",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "none",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "none",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          }
+        ]
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_arm",
+        "x": 180
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "none",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "none",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "none",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          }
+        ]
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_arm",
+        "x": 90
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "north": "none",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "none",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "none"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "none",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          }
+        ]
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_arm",
+        "x": 90,
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "none"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "none",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "none",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "none",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          }
+        ]
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_arm",
+        "x": 90,
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "north": "none",
+            "east": "none",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "none",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "none"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "none",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "none",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "none",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "none",
+            "down": "pipe|flange"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "none"
+          },
+          {
+            "north": "pipe|flange",
+            "east": "pipe|flange",
+            "south": "pipe|flange",
+            "west": "pipe|flange",
+            "up": "pipe|flange",
+            "down": "pipe|flange"
+          }
+        ]
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_arm",
+        "x": 90,
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "up": "flange"
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_flange"
+      }
+    },
+    {
+      "when": {
+        "down": "flange"
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_flange",
+        "x": 180
+      }
+    },
+    {
+      "when": {
+        "north": "flange"
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_flange",
+        "x": 90
+      }
+    },
+    {
+      "when": {
+        "south": "flange"
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_flange",
+        "x": 90,
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "east": "flange"
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_flange",
+        "x": 90,
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "west": "flange"
+      },
+      "apply": {
+        "model": "furniture:block/steam_pipe_flange",
+        "x": 90,
+        "y": 270
+      }
+    }
+  ]
+}

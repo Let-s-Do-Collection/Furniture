@@ -1,5 +1,5 @@
 {
-  "parent": "furniture:block/oak_dresser_connected_left",
+  "parent": "furniture:block/template_dresser_connected_left",
   "textures": {
     "0": "furniture:block/palm_dresser_frontside",
     "2": "furniture:block/palm_dresser_side_inner",

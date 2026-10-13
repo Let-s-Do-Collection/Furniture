@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "BBB",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "B": {
+      "item": "bloomingnature:cactus_slab"
+    }
+  },
+  "result": {
+    "id": "furniture:cactus_bench",
+    "count": 2
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "furniture:compat_enabled",
+      "mod": "bloomingnature",
+      "furniture": "benches"
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "furniture:compat_enabled",
+      "mod": "bloomingnature",
+      "furniture": "benches"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "parent": "furniture:furniture/stargazer",
+  "display": {
+    "icon": {
+      "id": "furniture:telescope"
+    },
+    "title": {
+      "translate": "advancement.furniture.shooting_star"
+    },
+    "description": {
+      "translate": "advancement.furniture.shooting_star.desc"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "shooting_star": {
+      "trigger": "furniture:shooting_star"
+    }
+  },
+  "requirements": [
+    [
+      "shooting_star"
+    ]
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "parent": "furniture:furniture/root",
+  "display": {
+    "icon": {
+      "id": "furniture:cash_register"
+    },
+    "title": {
+      "translate": "advancement.furniture.cash_register"
+    },
+    "description": {
+      "translate": "advancement.furniture.cash_register.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "trade": {
+      "trigger": "furniture:cash_register_trade"
+    }
+  },
+  "requirements": [
+    [
+      "trade"
+    ]
+  ]
+}

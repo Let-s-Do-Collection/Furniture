@@ -1,0 +1,202 @@
+{
+	"credit": "Made by Satisfy",
+	"textures": {
+		"0": "furniture:block/boat_in_a_jar_bottle",
+		"1": "furniture:block/boat_in_a_jar_parts",
+		"2": "furniture:block/boat_in_a_jar_water",
+		"3": "furniture:block/boat_in_a_jar_stand",
+		"particle": "furniture:block/boat_in_a_jar_bottle"
+	},
+	"elements": [
+		{
+			"name": "boat",
+			"from": [
+				9,
+				6,
+				5.5
+			],
+			"to": [
+				13,
+				9,
+				10.5
+			],
+			"rotation": {
+				"angle": 0,
+				"axis": "y",
+				"origin": [
+					9,
+					6,
+					5.5
+				]
+			},
+			"faces": {
+				"north": {
+					"uv": [
+						9,
+						9,
+						13,
+						12
+					],
+					"texture": "#2"
+				},
+				"east": {
+					"uv": [
+						9,
+						13,
+						14,
+						16
+					],
+					"texture": "#1"
+				},
+				"south": {
+					"uv": [
+						13,
+						9,
+						9,
+						12
+					],
+					"texture": "#2"
+				},
+				"west": {
+					"uv": [
+						5,
+						9,
+						8,
+						14
+					],
+					"rotation": 90,
+					"texture": "#2"
+				},
+				"up": {
+					"uv": [
+						5,
+						9,
+						9,
+						14
+					],
+					"texture": "#2"
+				},
+				"down": {
+					"uv": [
+						5,
+						9,
+						9,
+						14
+					],
+					"texture": "#2"
+				}
+			}
+		},
+		{
+			"name": "boat",
+			"from": [
+				2,
+				5,
+				5.5
+			],
+			"to": [
+				11,
+				8,
+				10.5
+			],
+			"rotation": {
+				"angle": 0,
+				"axis": "y",
+				"origin": [
+					2,
+					5,
+					5.5
+				]
+			},
+			"faces": {
+				"north": {
+					"uv": [
+						0,
+						13,
+						9,
+						16
+					],
+					"texture": "#1"
+				},
+				"east": {
+					"uv": [
+						9,
+						13,
+						14,
+						16
+					],
+					"texture": "#1"
+				},
+				"south": {
+					"uv": [
+						9,
+						13,
+						0,
+						16
+					],
+					"texture": "#1"
+				},
+				"west": {
+					"uv": [
+						9,
+						13,
+						14,
+						16
+					],
+					"texture": "#1"
+				},
+				"up": {
+					"uv": [
+						0,
+						9,
+						9,
+						14
+					],
+					"texture": "#2"
+				}
+			}
+		},
+		{
+			"name": "sail",
+			"from": [
+				6,
+				8,
+				5.5
+			],
+			"to": [
+				6,
+				13,
+				10.5
+			],
+			"rotation": {
+				"angle": 0,
+				"axis": "y",
+				"origin": [
+					6,
+					8,
+					5.5
+				]
+			},
+			"faces": {
+				"east": {
+					"uv": [
+						11,
+						5,
+						16,
+						10
+					],
+					"texture": "#1"
+				},
+				"west": {
+					"uv": [
+						11,
+						0,
+						16,
+						5
+					],
+					"texture": "#1"
+				}
+			}
+		}
+	]
+}

@@ -1,5 +1,5 @@
 {
-  "parent": "furniture:block/oak_mirror_top",
+  "parent": "furniture:block/template_mirror_top",
   "textures": {
     "0": "furniture:block/baobab_mirror_top",
     "1": "furniture:block/baobab_mirror_back",

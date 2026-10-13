@@ -1,0 +1,277 @@
+{
+  "parent": "furniture:block/template_bench_left",
+  "textures": {
+    "0": "furniture:block/oak_bench_top",
+    "1": "furniture:block/oak_bench_front_side",
+    "2": "furniture:block/oak_bench_front",
+    "particle": "furniture:block/cherry_bench_top",
+    "4": "furniture:block/cash_register_bottom",
+    "0_0": "furniture:block/cash_register_side",
+    "0_1": "furniture:block/cash_register_back",
+    "0_2": "furniture:block/cash_register_top"
+  },
+  "format_version": "26.3",
+  "credit": "Made by Berksire",
+  "elements": [
+    {
+      "from": [
+        2,
+        0,
+        2
+      ],
+      "to": [
+        14,
+        3,
+        3
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          2,
+          0,
+          2
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            13,
+            4,
+            16,
+            16
+          ],
+          "rotation": 90,
+          "texture": "#0_0"
+        },
+        "east": {
+          "uv": [
+            11,
+            13,
+            12,
+            16
+          ],
+          "texture": "#0_0"
+        },
+        "south": {
+          "uv": [
+            13,
+            4,
+            16,
+            16
+          ],
+          "rotation": 90,
+          "texture": "#0_0"
+        },
+        "west": {
+          "uv": [
+            11,
+            13,
+            12,
+            16
+          ],
+          "texture": "#0_0"
+        },
+        "up": {
+          "uv": [
+            2,
+            13,
+            14,
+            14
+          ],
+          "texture": "#0_2"
+        },
+        "down": {
+          "uv": [
+            2,
+            13,
+            14,
+            14
+          ],
+          "texture": "#4"
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        0,
+        3
+      ],
+      "to": [
+        13,
+        1,
+        10
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          3,
+          0,
+          3
+        ]
+      },
+      "faces": {
+        "east": {
+          "uv": [
+            4,
+            13,
+            11,
+            14
+          ],
+          "texture": "#0_2"
+        },
+        "west": {
+          "uv": [
+            4,
+            13,
+            11,
+            14
+          ],
+          "texture": "#0_2"
+        },
+        "up": {
+          "uv": [
+            3,
+            7,
+            13,
+            14
+          ],
+          "texture": "#0_1"
+        },
+        "down": {
+          "uv": [
+            3,
+            7,
+            13,
+            14
+          ],
+          "texture": "#0_1"
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        1,
+        3
+      ],
+      "to": [
+        4,
+        2.975,
+        10
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          3,
+          1,
+          3
+        ]
+      },
+      "faces": {
+        "east": {
+          "uv": [
+            13,
+            9,
+            15,
+            16
+          ],
+          "rotation": 90,
+          "texture": "#0_0"
+        },
+        "west": {
+          "uv": [
+            13,
+            9,
+            15,
+            16
+          ],
+          "rotation": 90,
+          "texture": "#0_0"
+        },
+        "up": {
+          "uv": [
+            13,
+            9,
+            14,
+            16
+          ],
+          "texture": "#0_0"
+        }
+      }
+    },
+    {
+      "from": [
+        12,
+        1,
+        3
+      ],
+      "to": [
+        13,
+        2.975,
+        10
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          12,
+          1,
+          3
+        ]
+      },
+      "faces": {
+        "east": {
+          "uv": [
+            13,
+            9,
+            15,
+            16
+          ],
+          "rotation": 90,
+          "texture": "#0_0"
+        },
+        "west": {
+          "uv": [
+            13,
+            9,
+            15,
+            16
+          ],
+          "rotation": 90,
+          "texture": "#0_0"
+        },
+        "up": {
+          "uv": [
+            13,
+            9,
+            14,
+            16
+          ],
+          "texture": "#0_0"
+        }
+      }
+    }
+  ],
+  "groups": [
+    {
+      "name": "drawer",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "scope": 0,
+      "color": 0,
+      "children": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  ]
+}

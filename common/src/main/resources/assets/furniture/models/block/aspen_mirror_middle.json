@@ -1,5 +1,5 @@
 {
-  "parent": "furniture:block/oak_mirror_middle",
+  "parent": "furniture:block/template_mirror_middle",
   "textures": {
     "0": "furniture:block/aspen_mirror_middle",
     "1": "furniture:block/aspen_mirror_back",

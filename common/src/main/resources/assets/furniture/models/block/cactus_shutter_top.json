@@ -1,0 +1,7 @@
+{
+  "parent": "furniture:block/template_shutter_top",
+  "textures": {
+    "particle": "furniture:block/cactus_shutter_top",
+    "middle": "furniture:block/cactus_shutter_top"
+  }
+}

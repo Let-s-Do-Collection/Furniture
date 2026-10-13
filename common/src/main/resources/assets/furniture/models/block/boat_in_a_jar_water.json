@@ -1,0 +1,90 @@
+{
+	"credit": "Made by Satisfy",
+	"textures": {
+		"0": "furniture:block/boat_in_a_jar_bottle",
+		"1": "furniture:block/boat_in_a_jar_parts",
+		"2": "furniture:block/boat_in_a_jar_water",
+		"3": "furniture:block/boat_in_a_jar_stand",
+		"particle": "furniture:block/boat_in_a_jar_bottle"
+	},
+	"elements": [
+		{
+			"name": "water",
+			"from": [
+				0.1,
+				4.1,
+				3.6
+			],
+			"to": [
+				15.9,
+				5.1,
+				12.4
+			],
+			"rotation": {
+				"angle": 0,
+				"axis": "y",
+				"origin": [
+					0.1,
+					4,
+					3.6
+				]
+			},
+			"faces": {
+				"north": {
+					"uv": [
+						0.2,
+						8,
+						16,
+						9
+					],
+					"texture": "#2"
+				},
+				"east": {
+					"uv": [
+						0,
+						1,
+						8.8,
+						2
+					],
+					"texture": "#2"
+				},
+				"south": {
+					"uv": [
+						0,
+						8,
+						15.8,
+						9
+					],
+					"texture": "#2"
+				},
+				"west": {
+					"uv": [
+						0,
+						0,
+						8.8,
+						1
+					],
+					"texture": "#2"
+				},
+				"up": {
+					"uv": [
+						0,
+						0,
+						15.8,
+						8.8
+					],
+					"texture": "#2"
+				},
+				"down": {
+					"uv": [
+						0,
+						0,
+						15.8,
+						8.8
+					],
+					"texture": "#2"
+				}
+			}
+		}
+	]
+}

@@ -1,5 +1,5 @@
 {
-  "parent": "furniture:block/oak_dresser_single",
+  "parent": "furniture:block/template_dresser_single",
   "textures": {
     "0": "furniture:block/larch_dresser_front",
     "1": "furniture:block/larch_dresser_side",

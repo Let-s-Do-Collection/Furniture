@@ -1,0 +1,101 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:campfires",
+    "minecraft:furnace",
+    "minecraft:smoker",
+    "minecraft:blast_furnace",
+    {
+      "id": "farm_and_charm:stove",
+      "required": false
+    },
+    {
+      "id": "farm_and_charm:cooking_pot",
+      "required": false
+    },
+    {
+      "id": "farm_and_charm:roaster",
+      "required": false
+    },
+    {
+      "id": "candlelight:bamboo_stove",
+      "required": false
+    },
+    {
+      "id": "candlelight:basalt_stove",
+      "required": false
+    },
+    {
+      "id": "candlelight:cobblestone_stove",
+      "required": false
+    },
+    {
+      "id": "candlelight:deepslate_stove",
+      "required": false
+    },
+    {
+      "id": "candlelight:end_stove",
+      "required": false
+    },
+    {
+      "id": "candlelight:granite_stove",
+      "required": false
+    },
+    {
+      "id": "candlelight:mud_stove",
+      "required": false
+    },
+    {
+      "id": "candlelight:quartz_stove",
+      "required": false
+    },
+    {
+      "id": "candlelight:red_nether_bricks_stove",
+      "required": false
+    },
+    {
+      "id": "candlelight:sandstone_stove",
+      "required": false
+    },
+    {
+      "id": "candlelight:stone_bricks_stove",
+      "required": false
+    },
+    {
+      "id": "candlelight:cooking_pan",
+      "required": false
+    },
+    {
+      "id": "candlelight:cooking_pot",
+      "required": false
+    },
+    {
+      "id": "bakery:small_cooking_pot",
+      "required": false
+    },
+    {
+      "id": "brewery:brew_kettle",
+      "required": false
+    },
+    {
+      "id": "brewery:brew_oven",
+      "required": false
+    },
+    {
+      "id": "wok_and_bowl:wok",
+      "required": false
+    },
+    {
+      "id": "herbalbrews:stove",
+      "required": false
+    },
+    {
+      "id": "herbalbrews:tea_kettle",
+      "required": false
+    },
+    {
+      "id": "herbalbrews:copper_tea_kettle",
+      "required": false
+    }
+  ]
+}

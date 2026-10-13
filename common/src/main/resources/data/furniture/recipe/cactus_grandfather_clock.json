@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    " B ",
+    " B "
+  ],
+  "key": {
+    "#": {
+      "item": "furniture:cactus_clock"
+    },
+    "B": {
+      "item": "bloomingnature:cactus_planks"
+    }
+  },
+  "result": {
+    "id": "furniture:cactus_grandfather_clock",
+    "count": 1
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "furniture:compat_enabled",
+      "mod": "bloomingnature",
+      "furniture": "grandfather_clocks"
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "furniture:compat_enabled",
+      "mod": "bloomingnature",
+      "furniture": "grandfather_clocks"
+    }
+  ]
+}
