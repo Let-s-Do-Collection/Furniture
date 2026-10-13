@@ -89,10 +89,6 @@ public class PlatformHelperImpl {
         return FurnitureNeoForgeConfig.maxDurability;
     }
 
-    public static int getPellsWheatRepair() {
-        return FurnitureNeoForgeConfig.wheatRepair;
-    }
-
     public static int getBinBagDropChance() {
         return FurnitureNeoForgeConfig.bagDropChance;
     }

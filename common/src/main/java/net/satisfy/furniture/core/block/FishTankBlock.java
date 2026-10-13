@@ -152,7 +152,8 @@ public class FishTankBlock extends BaseEntityBlock implements EntityBlock {
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult blockHitResult) {
         ItemStack itemStack = player.getItemInHand(hand);
-        FishTankBlockEntity blockEntity = (FishTankBlockEntity) world.getBlockEntity(pos);
+        BlockPos footPos = footPos(pos, state);
+        FishTankBlockEntity blockEntity = world.getBlockEntity(footPos) instanceof FishTankBlockEntity foot ? foot : null;
 
         if (blockEntity != null) {
             boolean hasModified = false;
@@ -173,19 +174,13 @@ public class FishTankBlock extends BaseEntityBlock implements EntityBlock {
             }
 
             if (hasModified) {
-                world.setBlock(pos, state.setValue(HAS_SALMON, blockEntity.hasSalmon())
-                        .setValue(HAS_PUFFERFISH, blockEntity.hasPufferfish())
-                        .setValue(HAS_COD, blockEntity.hasCod()), 3);
-
-                BlockPos otherPartPos = state.getValue(PART) == BedPart.FOOT
-                        ? pos.relative(state.getValue(FACING))
-                        : pos.relative(state.getValue(FACING).getOpposite());
-
-                BlockState otherPartState = world.getBlockState(otherPartPos);
-                if (otherPartState.getBlock() == this) {
-                    world.setBlock(otherPartPos, otherPartState.setValue(HAS_SALMON, blockEntity.hasSalmon())
-                            .setValue(HAS_PUFFERFISH, blockEntity.hasPufferfish())
-                            .setValue(HAS_COD, blockEntity.hasCod()), 3);
+                for (BlockPos partPos : new BlockPos[]{footPos, footPos.relative(state.getValue(FACING))}) {
+                    BlockState partState = world.getBlockState(partPos);
+                    if (partState.getBlock() == this) {
+                        world.setBlock(partPos, partState.setValue(HAS_SALMON, blockEntity.hasSalmon())
+                                .setValue(HAS_PUFFERFISH, blockEntity.hasPufferfish())
+                                .setValue(HAS_COD, blockEntity.hasCod()), 3);
+                    }
                 }
                 if (player instanceof ServerPlayer serverPlayer) {
                     BlockNotice.send(serverPlayer, pos, Component.translatable("hud.furniture.fish_tank.added", Component.translatable("hud.furniture.fish_tank." + added)));
@@ -204,7 +199,7 @@ public class FishTankBlock extends BaseEntityBlock implements EntityBlock {
 
     @Override
     public BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, net.minecraft.world.entity.player.Player player) {
-        super.playerWillDestroy(world, pos, state, player);
+        FishTankBlockEntity blockEntity = world.getBlockEntity(footPos(pos, state)) instanceof FishTankBlockEntity foot ? foot : null;
 
         BlockPos otherPartPos = state.getValue(PART) == BedPart.FOOT
                 ? pos.relative(state.getValue(FACING))
@@ -215,9 +210,7 @@ public class FishTankBlock extends BaseEntityBlock implements EntityBlock {
             world.destroyBlock(otherPartPos, false);
         }
 
-        FishTankBlockEntity blockEntity = (FishTankBlockEntity) world.getBlockEntity(pos);
-
-        if (blockEntity != null) {
+        if (blockEntity != null && !world.isClientSide) {
             if (blockEntity.hasCod()) {
                 Cod cod = new Cod(EntityType.COD, world);
                 cod.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, 0.0F, 0.0F);
@@ -235,6 +228,10 @@ public class FishTankBlock extends BaseEntityBlock implements EntityBlock {
             }
         }
         return super.playerWillDestroy(world, pos, state, player);
+    }
+
+    private static BlockPos footPos(BlockPos pos, BlockState state) {
+        return state.getValue(PART) == BedPart.FOOT ? pos : pos.relative(state.getValue(FACING).getOpposite());
     }
 
     @Override

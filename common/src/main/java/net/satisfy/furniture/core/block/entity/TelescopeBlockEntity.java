@@ -31,6 +31,7 @@ public class TelescopeBlockEntity extends BlockEntity {
     public float renderYaw;
     public float renderPitch;
     public long lastRenderNanos;
+    public long inactiveSinceNanos = 1L;
 
     public TelescopeBlockEntity(BlockPos pos, BlockState state) {
         super(EntityTypeRegistry.TELESCOPE_BLOCK_ENTITY.get(), pos, state);

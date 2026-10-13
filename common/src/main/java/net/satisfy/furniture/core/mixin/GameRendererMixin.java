@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.GameRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(GameRenderer.class)
@@ -14,6 +15,13 @@ public abstract class GameRendererMixin {
     private void furniture$telescopeZoom(Camera camera, float partialTick, boolean useFovSetting, CallbackInfoReturnable<Double> cir) {
         if (useFovSetting && TelescopeViewHandler.isActive()) {
             cir.setReturnValue(cir.getReturnValue() * TelescopeViewHandler.getZoom(partialTick));
+        }
+    }
+
+    @Inject(method = "renderItemInHand", at = @At("HEAD"), cancellable = true)
+    private void furniture$hideHandInTelescope(CallbackInfo ci) {
+        if (TelescopeViewHandler.isActive()) {
+            ci.cancel();
         }
     }
 }

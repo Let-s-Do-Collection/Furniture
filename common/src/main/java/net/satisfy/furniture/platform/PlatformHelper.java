@@ -126,11 +126,6 @@ public abstract class PlatformHelper {
     }
 
     @ExpectPlatform
-    public static int getPellsWheatRepair() {
-        throw new AssertionError();
-    }
-
-    @ExpectPlatform
     public static int getBinBagDropChance() {
         throw new AssertionError();
     }

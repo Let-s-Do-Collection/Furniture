@@ -95,10 +95,6 @@ public class PlatformHelperImpl {
         return config().pells.maxDurability;
     }
 
-    public static int getPellsWheatRepair() {
-        return config().pells.wheatRepair;
-    }
-
     public static int getBinBagDropChance() {
         return config().bin.bagDropChance;
     }

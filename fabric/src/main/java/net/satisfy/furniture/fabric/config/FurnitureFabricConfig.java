@@ -136,7 +136,7 @@ public class FurnitureFabricConfig implements ConfigData {
 
     public static class MirrorSettings {
         @ConfigEntry.Gui.Tooltip
-        public boolean enableReflections = true;
+        public boolean enableReflections = false;
 
         @ConfigEntry.Gui.Tooltip
         @ConfigEntry.BoundedDiscrete(min = 4, max = 64)
@@ -219,10 +219,6 @@ public class FurnitureFabricConfig implements ConfigData {
         @ConfigEntry.Gui.Tooltip
         @ConfigEntry.BoundedDiscrete(min = 10, max = 1000)
         public int maxDurability = 150;
-
-        @ConfigEntry.Gui.Tooltip
-        @ConfigEntry.BoundedDiscrete(min = 1, max = 150)
-        public int wheatRepair = 15;
     }
 
     public static class BinSettings {

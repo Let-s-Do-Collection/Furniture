@@ -219,10 +219,9 @@ public class PellsEntity extends Mob {
     public @NotNull InteractionResult mobInteract(Player pPlayer, @NotNull InteractionHand pHand) {
         Level level = pPlayer.level();
         ItemStack held = pPlayer.getItemInHand(pHand);
-        float repair = held.is(Items.WHEAT) ? PlatformHelper.getPellsWheatRepair() : held.is(Items.HAY_BLOCK) ? maxDurability() : 0.0F;
-        if (!pPlayer.isShiftKeyDown() && repair > 0.0F && getDurability() < maxDurability()) {
+        if (!pPlayer.isShiftKeyDown() && held.is(Items.HAY_BLOCK) && getDurability() < maxDurability()) {
             if (!level.isClientSide()) {
-                entityData.set(DURABILITY, Math.min(maxDurability(), getDurability() + repair));
+                entityData.set(DURABILITY, maxDurability());
                 held.consume(1, pPlayer);
                 level.playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.GRASS_PLACE, SoundSource.NEUTRAL, 0.8F, 0.8F + random.nextFloat() * 0.3F);
                 spawnServerParticles(new BlockParticleOption(ParticleTypes.BLOCK, Blocks.HAY_BLOCK.defaultBlockState()), 12, 0.9D);
@@ -358,17 +357,17 @@ public class PellsEntity extends Mob {
 
     private void dropParts(float before, float after) {
         if (crossed(before, after, LEFT_ARM_THRESHOLD)) {
-            dropPart(1.2D, -0.4D, new ItemStack(Items.STICK));
+            dropPart(1.2D, -0.4D, new ItemStack(Items.WHEAT));
         }
         if (crossed(before, after, RIGHT_ARM_THRESHOLD)) {
-            dropPart(1.2D, 0.4D, new ItemStack(Items.STICK));
+            dropPart(1.2D, 0.4D, new ItemStack(Items.WHEAT));
         }
         if (crossed(before, after, HEAD_THRESHOLD)) {
             dropPart(1.6D, 0.0D, new ItemStack(Items.WHEAT, 2));
             dropArmor(EquipmentSlot.HEAD);
         }
         if (crossed(before, after, 0.0F)) {
-            dropPart(1.0D, 0.0D, new ItemStack(Items.WHEAT, 2), new ItemStack(Items.REDSTONE));
+            dropPart(1.0D, 0.0D, new ItemStack(Items.WHEAT, 2));
             dropArmor();
             this.level().playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.ARMOR_STAND_BREAK, SoundSource.NEUTRAL, 1.0F, 0.9F);
             spawnServerParticles(new BlockParticleOption(ParticleTypes.BLOCK, Blocks.HAY_BLOCK.defaultBlockState()), 40, 1.0D);

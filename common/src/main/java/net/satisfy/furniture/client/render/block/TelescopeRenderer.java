@@ -1,5 +1,6 @@
 package net.satisfy.furniture.client.render.block;
 
+import net.satisfy.furniture.client.handler.TelescopeViewHandler;
 import net.satisfy.furniture.client.render.BakedPartModels;
 import net.satisfy.furniture.core.block.TelescopeBlock;
 import net.satisfy.furniture.core.block.entity.TelescopeBlockEntity;
@@ -28,16 +29,28 @@ public class TelescopeRenderer implements BlockEntityRenderer<TelescopeBlockEnti
     private static final float PIVOT_Z = 6.0F / 16.0F;
 
     private static final float FOLLOW_SPEED = 12.0F;
+    private static final long INACTIVE_GRACE_NANOS = 250_000_000L;
 
     @Override
     public void render(TelescopeBlockEntity be, float partialTick, @NotNull PoseStack poseStack, @NotNull MultiBufferSource buffers, int light, int overlay) {
         BlockState state = be.getBlockState();
-        if (!(state.getBlock() instanceof TelescopeBlock) || !state.getValue(TelescopeBlock.ACTIVE)) {
+        if (!(state.getBlock() instanceof TelescopeBlock)) {
+            return;
+        }
+        if (!state.getValue(TelescopeBlock.ACTIVE)) {
+            if (be.inactiveSinceNanos == 0L) {
+                be.inactiveSinceNanos = System.nanoTime();
+            }
             be.lastRenderNanos = 0L;
             be.renderYaw = 0.0F;
             be.renderPitch = 0.0F;
+            if (System.nanoTime() - be.inactiveSinceNanos > INACTIVE_GRACE_NANOS) {
+                return;
+            }
+            renderTube(be, state, poseStack, buffers, light, overlay);
             return;
         }
+        be.inactiveSinceNanos = 0L;
         Direction facing = state.getValue(TelescopeBlock.FACING);
         float targetYaw = 0.0F;
         float targetPitch = 0.0F;
@@ -56,7 +69,7 @@ public class TelescopeRenderer implements BlockEntityRenderer<TelescopeBlockEnti
         if (snap) {
             be.renderYaw = targetYaw;
             be.renderPitch = targetPitch;
-            if (Minecraft.getInstance().options.getCameraType().isFirstPerson()) {
+            if (Minecraft.getInstance().options.getCameraType().isFirstPerson() && TelescopeViewHandler.isActiveAt(be.getBlockPos().below())) {
                 return;
             }
         } else {
@@ -64,7 +77,11 @@ public class TelescopeRenderer implements BlockEntityRenderer<TelescopeBlockEnti
             be.renderYaw += (targetYaw - be.renderYaw) * t;
             be.renderPitch += (targetPitch - be.renderPitch) * t;
         }
+        renderTube(be, state, poseStack, buffers, light, overlay);
+    }
 
+    private static void renderTube(TelescopeBlockEntity be, BlockState state, PoseStack poseStack, MultiBufferSource buffers, int light, int overlay) {
+        Direction facing = state.getValue(TelescopeBlock.FACING);
         poseStack.pushPose();
         poseStack.translate(0.5F, 0.0F, 0.5F);
         poseStack.mulPose(Axis.YP.rotationDegrees(180.0F - facing.toYRot()));

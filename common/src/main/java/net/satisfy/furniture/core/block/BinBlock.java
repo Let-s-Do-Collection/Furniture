@@ -67,6 +67,15 @@ public class BinBlock extends Block {
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack itemStack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult blockHitResult) {
+        if (state.getValue(DECORATIVE) || player.isShiftKeyDown()) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
+        if (state.getValue(FILL_STAGE) >= MAX_FILL_STAGE) {
+            if (!world.isClientSide) {
+                empty(state, world, pos, player);
+            }
+            return ItemInteractionResult.sidedSuccess(world.isClientSide);
+        }
         if (world.isClientSide) {
             return ItemInteractionResult.SUCCESS;
         }
@@ -85,16 +94,6 @@ public class BinBlock extends Block {
                 if (currentFillStage + 1 == FLY_STAGE && player instanceof ServerPlayer serverPlayer) {
                     TriggerRegistry.BIN_FLIES.get().trigger(serverPlayer);
                 }
-            } else {
-                world.playSound(null, pos, SoundEvents.COMPOSTER_READY, SoundSource.BLOCKS, 1.0F, 1.0F);
-                boolean bagFound = RANDOM.nextInt(100) < PlatformHelper.getBinBagDropChance();
-                if (bagFound) {
-                    dropItem(world, pos);
-                }
-                if (player instanceof ServerPlayer serverPlayer) {
-                    BlockNotice.send(serverPlayer, pos, Component.translatable(bagFound ? "hud.furniture.bin.bag_found" : "hud.furniture.bin.emptied"));
-                }
-                world.setBlock(pos, state.setValue(FILL_STAGE, 0), 3);
             }
             if (!player.getAbilities().instabuild) {
                 heldItem.shrink(1);
@@ -104,10 +103,28 @@ public class BinBlock extends Block {
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
+    private void empty(BlockState state, Level world, BlockPos pos, Player player) {
+        world.playSound(null, pos, SoundEvents.COMPOSTER_READY, SoundSource.BLOCKS, 1.0F, 1.0F);
+        boolean bagFound = RANDOM.nextInt(100) < PlatformHelper.getBinBagDropChance();
+        if (bagFound) {
+            dropItem(world, pos);
+        }
+        if (player instanceof ServerPlayer serverPlayer) {
+            BlockNotice.send(serverPlayer, pos, Component.translatable(bagFound ? "hud.furniture.bin.bag_found" : "hud.furniture.bin.emptied"));
+        }
+        world.setBlock(pos, state.setValue(FILL_STAGE, 0), 3);
+    }
+
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult blockHitResult) {
         if (!player.isShiftKeyDown()) {
-            return InteractionResult.PASS;
+            if (state.getValue(DECORATIVE) || state.getValue(FILL_STAGE) < MAX_FILL_STAGE) {
+                return InteractionResult.PASS;
+            }
+            if (!world.isClientSide) {
+                empty(state, world, pos, player);
+            }
+            return InteractionResult.sidedSuccess(world.isClientSide);
         }
         if (!world.isClientSide) {
             boolean decorative = !state.getValue(DECORATIVE);

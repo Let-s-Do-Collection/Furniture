@@ -37,7 +37,7 @@ public final class TelescopeViewHandler {
     private static final ResourceLocation SCOPE = ResourceLocation.withDefaultNamespace("textures/misc/spyglass_scope.png");
     private static final float MAX_YAW_OFFSET = 45.0F;
     private static final float MIN_PITCH = -85.0F;
-    private static final float MAX_PITCH = 15.0F;
+    private static final float MAX_PITCH = 0.0F;
     private static final double SKY_DISTANCE = 90.0;
 
     @Nullable
@@ -61,6 +61,10 @@ public final class TelescopeViewHandler {
 
     public static boolean isActive() {
         return active != null;
+    }
+
+    public static boolean isActiveAt(BlockPos base) {
+        return base.equals(active);
     }
 
     public static float getZoom(float partialTick) {

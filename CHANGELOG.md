@@ -1,3 +1,17 @@
+[1.1.8]
+
+**Fixed**
+* Fish Tank: both halves now share the same fish
+* Bin: full bins can be emptied with an empty hand, decoration mode now stops the bin from working instead of just suppressing particles
+* Telescope: no more flickering head, hand is hidden and you cant walk around anymore while looking through it
+* Mirror reflections are now off by default
+* Pells: no more infinite wheat, repairing now needs a Hay Bale and broken parts drop only 6 wheat in total
+
+**Changed**
+* Updated Russian translation (thanks to Tefnya)
+
+*** 
+
 [1.1.7]
 
 **Added**
@@ -7,7 +21,7 @@
 * Steam Vent now works as an extractor hood: it switches on automatically above lit stoves, campfires and furnaces and sucks up the steam
 * Steam Pipe: connects in all directions for bends and junctions. Route a Steam Vent into a Chimney and watch the smoke come out on top
 * Telescope: look through it with a strong zoom, check the moon phase and weather forecast in its info panel, and spot shooting stars at night
-* Cash Register: right-click (or send a redstone signal) to open the drawer with a satisfying KA-CHING! Store emeralds, diamonds, gold and other valuables in its four compartments, use comparators to read the fill level, and place it next to or diagonally above a villager's workstation to shop with the villager working there
+* Cash Register: right-click (or send a redstone signal) to open the drawer with a satisfying KA-CHING! Store emeralds, diamonds, gold and other valuables in its four compartments, use comparators to read the fill level, and place it next to or diagonally above a villager's workstation to shop with the villager working there (if hes around)
 * Boat in a Jar: right-click to shake it!
 * Mirrors are Mirroring now
 * Boat in a Jar: rocks harder during thunderstorms, and a Water Bottle brews a tiny storm inside the jar

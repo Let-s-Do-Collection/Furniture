@@ -43,7 +43,6 @@ public class FurnitureNeoForgeConfig {
     public static final ModConfigSpec.BooleanValue BOAT_IN_A_JAR_SHAKING;
     public static final ModConfigSpec.BooleanValue BOAT_IN_A_JAR_CAN_BREAK;
     public static final ModConfigSpec.IntValue PELLS_MAX_DURABILITY;
-    public static final ModConfigSpec.IntValue PELLS_WHEAT_REPAIR;
     public static final ModConfigSpec.IntValue BIN_BAG_DROP_CHANCE;
     public static final ModConfigSpec.BooleanValue BIN_ENABLE_STINK;
     public static final ModConfigSpec.BooleanValue BIN_ENABLE_FLIES;
@@ -86,7 +85,7 @@ public class FurnitureNeoForgeConfig {
     public static final ModConfigSpec.BooleanValue MIRROR_ENABLE_BLUR;
     public static final ModConfigSpec.IntValue MIRROR_REFLECTION_RANGE;
 
-    public static boolean enableReflections = true;
+    public static boolean enableReflections = false;
     public static int renderDistance = 24;
     public static int maxMirrors = 4;
     public static boolean enableBlur = true;
@@ -107,7 +106,6 @@ public class FurnitureNeoForgeConfig {
     public static boolean enableHornPulse = true;
     public static boolean enableCatsWatchFish = true;
     public static int maxDurability = 150;
-    public static int wheatRepair = 15;
     public static int bagDropChance = 25;
     public static boolean enableStink = true;
     public static boolean enableFlies = true;
@@ -174,7 +172,7 @@ public class FurnitureNeoForgeConfig {
 
         builder = new ModConfigSpec.Builder();
         builder.comment("Mirror reflections.").push("Mirror");
-        ENABLE_MIRROR_REFLECTIONS = builder.comment("Mirrors render live reflections. Disable for better performance.").define("enableReflections", true);
+        ENABLE_MIRROR_REFLECTIONS = builder.comment("Mirrors render live reflections. Disable for better performance.").define("enableReflections", false);
         MIRROR_RENDER_DISTANCE = builder.comment("Distance in blocks within which mirrors render reflections.").defineInRange("renderDistance", 24, 4, 64);
         MAX_MIRRORS = builder.comment("How many mirror surfaces can reflect at the same time.").defineInRange("maxMirrors", 4, 1, 8);
         MIRROR_ENABLE_BLUR = builder.comment("Reflections are slightly blurred like old glass.").define("enableBlur", true);
@@ -213,7 +211,6 @@ public class FurnitureNeoForgeConfig {
 
         builder.comment("Training dummy settings.").push("Pells");
         PELLS_MAX_DURABILITY = builder.comment("How much damage a pells can take before it breaks.").defineInRange("maxDurability", 150, 10, 1000);
-        PELLS_WHEAT_REPAIR = builder.comment("How much durability one wheat restores. A hay bale always repairs fully.").defineInRange("wheatRepair", 15, 1, 150);
         builder.pop();
 
         builder.comment("Bin and trash bag behaviour.").push("Bin");
@@ -303,7 +300,6 @@ public class FurnitureNeoForgeConfig {
         enableHornPulse = GRAMOPHONE_HORN_PULSE.get();
         enableCatsWatchFish = FISH_TANK_CATS_WATCH.get();
         maxDurability = PELLS_MAX_DURABILITY.get();
-        wheatRepair = PELLS_WHEAT_REPAIR.get();
         bagDropChance = BIN_BAG_DROP_CHANCE.get();
         enableStink = BIN_ENABLE_STINK.get();
         enableFlies = BIN_ENABLE_FLIES.get();

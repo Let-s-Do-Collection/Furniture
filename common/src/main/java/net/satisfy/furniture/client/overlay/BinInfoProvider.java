@@ -23,11 +23,14 @@ public class BinInfoProvider implements BlockInfoProvider {
         if (!(state.getBlock() instanceof BinBlock)) {
             return List.of();
         }
+        Component decorative = Component.translatable(state.getValue(BinBlock.DECORATIVE) ? "hud.furniture.bin.decorative_hint_off" : "hud.furniture.bin.decorative_hint_on").withStyle(ChatFormatting.GRAY);
+        if (state.getValue(BinBlock.DECORATIVE)) {
+            return List.of(InfoSection.title(decorative));
+        }
         int stage = state.getValue(BinBlock.FILL_STAGE);
         Component fill = Component.translatable("hud.furniture.bin.fill", stage, BinBlock.MAX_FILL_STAGE)
                 .withStyle(stage >= BinBlock.MAX_FILL_STAGE ? ChatFormatting.GOLD : ChatFormatting.GRAY);
         Component hint = Component.translatable(stage >= BinBlock.MAX_FILL_STAGE ? "hud.furniture.bin.full" : "hud.furniture.bin.hint").withStyle(ChatFormatting.GRAY);
-        Component decorative = Component.translatable(state.getValue(BinBlock.DECORATIVE) ? "hud.furniture.bin.decorative_hint_off" : "hud.furniture.bin.decorative_hint_on").withStyle(ChatFormatting.GRAY);
         return List.of(InfoSection.title(fill), InfoSection.title(hint), InfoSection.title(decorative));
     }
 }
