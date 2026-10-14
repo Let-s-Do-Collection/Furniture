@@ -16,5 +16,20 @@
       ],
       "rolls": 1
     }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "furniture:compat_enabled",
+      "mod": "vinery",
+      "furniture": "desk_chairs"
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "furniture:compat_enabled",
+      "mod": "vinery",
+      "furniture": "desk_chairs"
+    }
   ]
 }
+

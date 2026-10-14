@@ -1,3 +1,14 @@
+[1.1.9]
+
+**Fixed**
+* Mirror: no more crash and lag with enchanted armor from other mods (for example RPG Series with Iris & Cosmetic Armor)
+* Mirror: entities no longer turn invisible with shaders enabled
+* Mirror: frees its memory when leaving the world or turning reflections off, and a broken reflection no longer takes down the others
+* Pells: damaged Pells cant be picked up anymore, repair it first please! :)
+* Compat blocks loot tables now only load when the compat mod is installed
+
+*** 
+
 [1.1.8]
 
 **Fixed**

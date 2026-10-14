@@ -19,6 +19,8 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
+import net.satisfy.foundation.overlay.BlockNotice;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.CombatRules;
@@ -251,6 +253,13 @@ public class PellsEntity extends Mob {
                 }
                 return InteractionResult.sidedSuccess(level.isClientSide());
             }
+        }
+        if (pPlayer.isShiftKeyDown() && getDurability() < maxDurability()) {
+            if (pPlayer instanceof ServerPlayer serverPlayer) {
+                BlockNotice.send(serverPlayer, blockPosition(), Component.translatable("hud.furniture.pells.needs_repair"));
+                level.playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.VILLAGER_NO, SoundSource.NEUTRAL, 0.6F, 1.2F);
+            }
+            return InteractionResult.sidedSuccess(level.isClientSide());
         }
         if (pPlayer.isShiftKeyDown()) {
             if (!level.isClientSide()) {

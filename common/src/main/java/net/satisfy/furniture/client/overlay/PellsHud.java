@@ -41,10 +41,10 @@ public final class PellsHud {
             return;
         }
         float fraction = pells.getDurabilityFraction();
-        boolean damaged = fraction <= PellsEntity.REPAIR_HINT_THRESHOLD;
+        boolean damaged = fraction < 1.0F;
         List<Component> lines = new ArrayList<>();
         List<ResourceLocation> icons = new ArrayList<>();
-        if (damaged) {
+        if (fraction <= PellsEntity.REPAIR_HINT_THRESHOLD) {
             lines.add(Component.translatable(fraction <= 0.0F ? "hud.furniture.pells.destroyed" : fraction <= 0.05F ? "hud.furniture.pells.broken" : "hud.furniture.pells.almost_broken").withStyle(ChatFormatting.RED));
             icons.add(null);
         }
@@ -63,8 +63,10 @@ public final class PellsHud {
             lines.add(Component.translatable("hud.furniture.pells.repair").withStyle(ChatFormatting.GRAY));
             icons.add(null);
         }
-        lines.add(Component.translatable("hud.furniture.pells.remove").withStyle(ChatFormatting.GRAY));
-        icons.add(null);
+        if (!damaged) {
+            lines.add(Component.translatable("hud.furniture.pells.remove").withStyle(ChatFormatting.GRAY));
+            icons.add(null);
+        }
         int x = graphics.guiWidth() / 2 + 8;
         int y = graphics.guiHeight() / 2 + 4;
         Vector2i position = new Vector2i(x + 12, y - 12);

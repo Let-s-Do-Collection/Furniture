@@ -2,6 +2,7 @@ package net.satisfy.furniture.client.render.block;
 
 import net.minecraft.world.inventory.InventoryMenu;
 import net.satisfy.furniture.platform.PlatformHelper;
+import net.satisfy.furniture.client.util.ShaderPackHelper;
 import net.satisfy.furniture.core.block.MirrorBlock;
 import net.satisfy.furniture.core.block.entity.MirrorBlockEntity;
 import com.mojang.blaze3d.pipeline.RenderTarget;
@@ -44,11 +45,27 @@ import org.joml.Vector4f;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL30;
 
+import com.mojang.blaze3d.platform.Lighting;
+import net.minecraft.client.renderer.FogRenderer;
+import net.minecraft.client.renderer.LightTexture;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.ResourceManager;
+import net.satisfy.furniture.Furniture;
+import org.joml.Matrix4fStack;
+import org.joml.Quaternionf;
+
+import com.mojang.logging.LogUtils;
+import org.slf4j.Logger;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Environment(EnvType.CLIENT)
 public class MirrorRenderer implements BlockEntityRenderer<MirrorBlockEntity> {
@@ -73,9 +90,14 @@ public class MirrorRenderer implements BlockEntityRenderer<MirrorBlockEntity> {
     private static final Matrix4f CLIP_MATRIX = new Matrix4f();
     private static final float[] CORNER = new float[3];
     private static final float[] GLASS_VERTS = new float[GRID * GRID * 4 * 5];
+    private static final Matrix4f FRAME_VIEW = new Matrix4f();
+    private static final Matrix4f FRAME_CLIP = new Matrix4f();
+    private static Vec3 FRAME_CAM = Vec3.ZERO;
+    private static int TEXTURE_COUNTER;
     private static final Map<Long, Reflection> REFLECTIONS = new HashMap<>();
-    private static final ByteBufferBuilder BUFFER = new ByteBufferBuilder(1 << 18);
-    private static final MultiBufferSource.BufferSource BUFFER_SOURCE = MultiBufferSource.immediate(BUFFER);
+    private static final Logger LOGGER = LogUtils.getLogger();
+    private static final Set<Object> FAILED = new HashSet<>();
+    private static ClientLevel lastLevel;
 
     public MirrorRenderer(BlockEntityRendererProvider.Context context) {
     }
@@ -83,12 +105,11 @@ public class MirrorRenderer implements BlockEntityRenderer<MirrorBlockEntity> {
     @Override
     public void render(MirrorBlockEntity be, float partialTick, @NotNull PoseStack poseStack, @NotNull MultiBufferSource bufferSource, int light, int overlay) {
         Minecraft mc = Minecraft.getInstance();
-        if (mc.level == null || be.getLevel() == null || !PlatformHelper.areMirrorReflectionsEnabled()) return;
+        if (mc.level == null || be.getLevel() == null || !PlatformHelper.areMirrorReflectionsEnabled() || ShaderPackHelper.isRenderingShadowPass()) return;
         BlockState state = be.getBlockState();
         if (!(state.getBlock() instanceof MirrorBlock)) return;
 
-        Camera camera = mc.gameRenderer.getMainCamera();
-        Vec3 cam = camera.getPosition();
+        Vec3 cam = mc.gameRenderer.getMainCamera().getPosition();
         Direction facing = state.getValue(MirrorBlock.FACING);
         Vec3 normal = Vec3.atLowerCornerOf(facing.getNormal());
         Vec3 center = Vec3.atCenterOf(be.getBlockPos());
@@ -110,11 +131,60 @@ public class MirrorRenderer implements BlockEntityRenderer<MirrorBlockEntity> {
             REFLECTIONS.put(key, reflection);
         }
         reflection.lastUsed = System.nanoTime();
-        if (reflection.update(partialTick, cam, camera.getXRot(), camera.getYRot(), mc.level.getGameTime())) {
-            renderReflection(mc, reflection, facing, planePoint, normal, cam, partialTick);
-        }
+        reflection.facing = facing;
+        reflection.planePoint = planePoint;
+        reflection.normal = normal;
+        reflection.requested = true;
 
-        drawGlass(poseStack, reflection.target, facing, state.getValue(MirrorBlock.TYPE));
+        if (reflection.ready && reflection.texture != null) {
+            drawGlass(poseStack, bufferSource, reflection.texture, be.getBlockPos(), facing, state.getValue(MirrorBlock.TYPE));
+        }
+    }
+
+    public static void renderReflections() {
+        Minecraft mc = Minecraft.getInstance();
+        boolean enabled = PlatformHelper.areMirrorReflectionsEnabled();
+        if (mc.level != lastLevel || (!enabled && !REFLECTIONS.isEmpty())) {
+            clearAll();
+            lastLevel = mc.level;
+        }
+        if (mc.level == null || !enabled) return;
+        cleanup();
+        if (REFLECTIONS.isEmpty()) return;
+        Camera camera = mc.gameRenderer.getMainCamera();
+        Vec3 cam = camera.getPosition();
+        float partialTick = camera.getPartialTickTime();
+
+        FRAME_CAM = cam;
+        FRAME_VIEW.rotation(camera.rotation().conjugate(new Quaternionf()));
+        FRAME_CLIP.set(RenderSystem.getProjectionMatrix()).mul(FRAME_VIEW);
+
+        Matrix4fStack modelView = RenderSystem.getModelViewStack();
+        modelView.pushMatrix();
+        modelView.identity().mul(FRAME_VIEW);
+        RenderSystem.applyModelViewMatrix();
+        FogRenderer.setupNoFog();
+        Lighting.setupLevel();
+
+        try {
+            for (Reflection reflection : REFLECTIONS.values()) {
+                if (!reflection.requested) continue;
+                reflection.requested = false;
+                if (cam.subtract(reflection.planePoint).dot(reflection.normal) <= 0.01) continue;
+                try {
+                    if (reflection.update(partialTick, cam, camera.getXRot(), camera.getYRot(), mc.level.getGameTime())) {
+                        renderReflection(mc, reflection, reflection.facing, reflection.planePoint, reflection.normal, cam, partialTick);
+                    }
+                    reflection.ready = true;
+                } catch (Exception e) {
+                    logFailure("mirror facing " + reflection.facing + " at " + reflection.planePoint, e);
+                }
+            }
+
+        } finally {
+            modelView.popMatrix();
+            RenderSystem.applyModelViewMatrix();
+        }
     }
 
     private static Matrix4f mirrorMatrix(Direction.Axis axis, Vec3 planeRel) {
@@ -130,6 +200,8 @@ public class MirrorRenderer implements BlockEntityRenderer<MirrorBlockEntity> {
         if (reflection.target == null) {
             reflection.target = new TextureTarget(width, height, true, Minecraft.ON_OSX);
             reflection.target.setFilterMode(GL11.GL_LINEAR);
+            reflection.texture = ResourceLocation.fromNamespaceAndPath(Furniture.MOD_ID, "mirror/" + TEXTURE_COUNTER++);
+            mc.getTextureManager().register(reflection.texture, new TargetTexture(reflection));
         } else if (reflection.target.width != width || reflection.target.height != height) {
             reflection.target.resize(width, height, Minecraft.ON_OSX);
             reflection.target.setFilterMode(GL11.GL_LINEAR);
@@ -149,8 +221,18 @@ public class MirrorRenderer implements BlockEntityRenderer<MirrorBlockEntity> {
         int[] viewport = VIEWPORT;
         GL11.glGetIntegerv(GL11.GL_VIEWPORT, viewport);
 
-        reflection.target.clear(Minecraft.ON_OSX);
-        reflection.target.bindWrite(true);
+        try {
+            reflection.target.clear(Minecraft.ON_OSX);
+            reflection.target.bindWrite(true);
+            drawScene(mc, reflection, facing, planePoint, normal, cam, partialTick, width, height);
+        } finally {
+            GlStateManager._glBindFramebuffer(GL30.GL_FRAMEBUFFER, previousFbo);
+            RenderSystem.viewport(viewport[0], viewport[1], viewport[2], viewport[3]);
+        }
+    }
+
+    private static void drawScene(Minecraft mc, Reflection reflection, Direction facing, Vec3 planePoint, Vec3 normal, Vec3 cam, float partialTick, int width, int height) {
+        ClientLevel level = mc.level;
 
         Matrix4f mirror = mirrorMatrix(facing.getAxis(), planePoint.subtract(cam));
 
@@ -161,46 +243,114 @@ public class MirrorRenderer implements BlockEntityRenderer<MirrorBlockEntity> {
         AABB area = new AABB(planePoint, planePoint).inflate(PlatformHelper.getMirrorReflectionRange());
         EntityRenderDispatcher dispatcher = mc.getEntityRenderDispatcher();
         boolean shadows = mc.options.entityShadows().get();
+        MultiBufferSource.BufferSource buffers = mc.renderBuffers().bufferSource();
+        buffers.endBatch();
         dispatcher.setRenderShadow(false);
         GL11.glFrontFace(GL11.GL_CW);
-        for (Entity entity : level.getEntities((Entity) null, area, e -> !e.isInvisible() && !e.isSpectator())) {
-            double x = Mth.lerp(partialTick, entity.xOld, entity.getX());
-            double y = Mth.lerp(partialTick, entity.yOld, entity.getY());
-            double z = Mth.lerp(partialTick, entity.zOld, entity.getZ());
-            if ((x - planePoint.x) * normal.x + (y - planePoint.y) * normal.y + (z - planePoint.z) * normal.z <= 0) continue;
+        try {
+            for (Entity entity : level.getEntities((Entity) null, area, e -> !e.isInvisible() && !e.isSpectator())) {
+                double x = Mth.lerp(partialTick, entity.xOld, entity.getX());
+                double y = Mth.lerp(partialTick, entity.yOld, entity.getY());
+                double z = Mth.lerp(partialTick, entity.zOld, entity.getZ());
+                if ((x - planePoint.x) * normal.x + (y - planePoint.y) * normal.y + (z - planePoint.z) * normal.z <= 0) continue;
 
-            PoseStack pose = REFLECTION_POSE;
-            pose.pushPose();
-            pose.mulPose(mirror);
-            float yaw = Mth.lerp(partialTick, entity.yRotO, entity.getYRot());
-            try {
-                dispatcher.render(entity, x - cam.x, y - cam.y, z - cam.z, yaw, partialTick, pose, BUFFER_SOURCE, dispatcher.getPackedLightCoords(entity, partialTick));
-            } catch (Exception ignored) {
+                PoseStack pose = REFLECTION_POSE;
+                pose.pushPose();
+                pose.mulPose(mirror);
+                float yaw = Mth.lerp(partialTick, entity.yRotO, entity.getYRot());
+                try {
+                    dispatcher.render(entity, x - cam.x, y - cam.y, z - cam.z, yaw, partialTick, pose, buffers, dispatcher.getPackedLightCoords(entity, partialTick));
+                } catch (Exception e) {
+                    logFailure(entity.getType(), e);
+                } finally {
+                    pose.popPose();
+                }
             }
-            pose.popPose();
-        }
-        BlockEntityRenderDispatcher blockEntityDispatcher = mc.getBlockEntityRenderDispatcher();
-        for (BlockPos pos : reflection.near.blockEntities) {
-            BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity == null || blockEntity instanceof MirrorBlockEntity) continue;
-            PoseStack pose = REFLECTION_POSE;
-            pose.pushPose();
-            pose.mulPose(mirror);
-            pose.translate(pos.getX() - cam.x, pos.getY() - cam.y, pos.getZ() - cam.z);
-            try {
-                blockEntityDispatcher.render(blockEntity, partialTick, pose, BUFFER_SOURCE);
-            } catch (Exception ignored) {
+            BlockEntityRenderDispatcher blockEntityDispatcher = mc.getBlockEntityRenderDispatcher();
+            for (BlockPos pos : reflection.near.blockEntities) {
+                BlockEntity blockEntity = level.getBlockEntity(pos);
+                if (blockEntity == null || blockEntity instanceof MirrorBlockEntity) continue;
+                PoseStack pose = REFLECTION_POSE;
+                pose.pushPose();
+                pose.mulPose(mirror);
+                pose.translate(pos.getX() - cam.x, pos.getY() - cam.y, pos.getZ() - cam.z);
+                try {
+                    blockEntityDispatcher.render(blockEntity, partialTick, pose, buffers);
+                } catch (Exception e) {
+                    logFailure(blockEntity.getType(), e);
+                } finally {
+                    pose.popPose();
+                }
             }
-            pose.popPose();
+            buffers.endBatch();
+        } finally {
+            GL11.glFrontFace(GL11.GL_CCW);
+            dispatcher.setRenderShadow(shadows);
         }
-        BUFFER_SOURCE.endBatch();
-        GL11.glFrontFace(GL11.GL_CCW);
-        dispatcher.setRenderShadow(shadows);
 
         reflection.near.draw(mc, LAYER_TRANSLUCENT, mirror, cam, GameRenderer.getRendertypeTranslucentShader(), true, true);
 
-        GlStateManager._glBindFramebuffer(GL30.GL_FRAMEBUFFER, previousFbo);
-        RenderSystem.viewport(viewport[0], viewport[1], viewport[2], viewport[3]);
+        RenderSystem.colorMask(false, false, false, true);
+        RenderSystem.clearColor(0f, 0f, 0f, 1f);
+        RenderSystem.clear(GL11.GL_COLOR_BUFFER_BIT, Minecraft.ON_OSX);
+        RenderSystem.colorMask(true, true, true, true);
+
+        if (PlatformHelper.isMirrorBlurEnabled()) blur(reflection, width, height);
+        else if (reflection.blurred != null) {
+            reflection.blurred.destroyBuffers();
+            reflection.blurred = null;
+        }
+    }
+
+    private static void blur(Reflection reflection, int width, int height) {
+        if (reflection.blurred == null) {
+            reflection.blurred = new TextureTarget(width, height, false, Minecraft.ON_OSX);
+            reflection.blurred.setFilterMode(GL11.GL_LINEAR);
+        } else if (reflection.blurred.width != width || reflection.blurred.height != height) {
+            reflection.blurred.resize(width, height, Minecraft.ON_OSX);
+            reflection.blurred.setFilterMode(GL11.GL_LINEAR);
+        }
+        reflection.blurred.setClearColor(0f, 0f, 0f, 1f);
+        reflection.blurred.clear(Minecraft.ON_OSX);
+        reflection.blurred.bindWrite(true);
+
+        RenderSystem.backupProjectionMatrix();
+        RenderSystem.setProjectionMatrix(new Matrix4f(), VertexSorting.ORTHOGRAPHIC_Z);
+        Matrix4fStack modelView = RenderSystem.getModelViewStack();
+        modelView.pushMatrix();
+        modelView.identity();
+        RenderSystem.applyModelViewMatrix();
+        try {
+            RenderSystem.disableDepthTest();
+            RenderSystem.depthMask(false);
+            RenderSystem.disableCull();
+            RenderSystem.enableBlend();
+            RenderSystem.defaultBlendFunc();
+            RenderSystem.setShader(GameRenderer::getPositionTexShader);
+            RenderSystem.setShaderTexture(0, reflection.target.getColorTextureId());
+
+            float du = BLUR_RADIUS / width, dv = BLUR_RADIUS / height;
+            for (int n = 0; n < BLUR_TAPS.length; n++) {
+                RenderSystem.setShaderColor(1f, 1f, 1f, 1f / (n + 1));
+                float ou = BLUR_TAPS[n][0] * du, ov = BLUR_TAPS[n][1] * dv;
+                BufferBuilder builder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+                builder.addVertex(-1f, -1f, 0f).setUv(ou, ov);
+                builder.addVertex(1f, -1f, 0f).setUv(1f + ou, ov);
+                builder.addVertex(1f, 1f, 0f).setUv(1f + ou, 1f + ov);
+                builder.addVertex(-1f, 1f, 0f).setUv(ou, 1f + ov);
+                BufferUploader.drawWithShader(builder.buildOrThrow());
+            }
+
+        } finally {
+            RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
+            RenderSystem.disableBlend();
+            RenderSystem.enableCull();
+            RenderSystem.depthMask(true);
+            RenderSystem.enableDepthTest();
+            modelView.popMatrix();
+            RenderSystem.applyModelViewMatrix();
+            RenderSystem.restoreProjectionMatrix();
+        }
     }
 
     private static int layerOf(RenderType type) {
@@ -215,11 +365,12 @@ public class MirrorRenderer implements BlockEntityRenderer<MirrorBlockEntity> {
         float oz = (pos.getZ() & ~15) - origin.getZ();
         try {
             blockRenderer.renderLiquid(pos, level, new OffsetConsumer(consumer, ox, oy, oz), state, fluid);
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            logFailure(fluid.getType(), e);
         }
     }
 
-    private static void drawGlass(PoseStack poseStack, RenderTarget target, Direction facing, VerticalConnectingType type) {
+    private static void drawGlass(PoseStack poseStack, MultiBufferSource bufferSource, ResourceLocation texture, BlockPos blockPos, Direction facing, VerticalConnectingType type) {
         float minY = switch (type) {
             case NONE, BOTTOM -> 3f / 16f;
             default -> -0.001f;
@@ -229,16 +380,8 @@ public class MirrorRenderer implements BlockEntityRenderer<MirrorBlockEntity> {
             default -> 1.001f;
         };
 
-        Matrix4f pose = poseStack.last().pose();
-        Matrix4f clip = CLIP_MATRIX.set(RenderSystem.getProjectionMatrix()).mul(RenderSystem.getModelViewMatrix()).mul(pose);
-
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderTexture(0, target.getColorTextureId());
-        RenderSystem.enableBlend();
-        RenderSystem.defaultBlendFunc();
-        RenderSystem.enableDepthTest();
-        RenderSystem.depthMask(false);
-        RenderSystem.disableCull();
+        Vec3 rel = Vec3.atLowerCornerOf(blockPos).subtract(FRAME_CAM);
+        Matrix4f clip = CLIP_MATRIX.set(FRAME_CLIP).translate((float) rel.x, (float) rel.y, (float) rel.z);
 
         int count = 0;
         for (int i = 0; i < GRID; i++) {
@@ -265,24 +408,19 @@ public class MirrorRenderer implements BlockEntityRenderer<MirrorBlockEntity> {
                 if (!visible) count = start;
             }
         }
+        if (count == 0) return;
 
-        float du = BLUR_RADIUS / target.width, dv = BLUR_RADIUS / target.height;
-        int taps = PlatformHelper.isMirrorBlurEnabled() ? BLUR_TAPS.length : 1;
-        for (int n = 0; n < taps; n++) {
-            RenderSystem.setShaderColor(TINT_R, TINT_G, TINT_B, 1f / (n + 1));
-            float ou = BLUR_TAPS[n][0] * du, ov = BLUR_TAPS[n][1] * dv;
-            BufferBuilder builder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-            for (int v = 0; v < count; v += 5) {
-                builder.addVertex(pose, GLASS_VERTS[v], GLASS_VERTS[v + 1], GLASS_VERTS[v + 2]).setUv(GLASS_VERTS[v + 3] + ou, GLASS_VERTS[v + 4] + ov);
-            }
-            MeshData mesh = builder.build();
-            if (mesh != null) BufferUploader.drawWithShader(mesh);
+        PoseStack.Pose pose = poseStack.last();
+        VertexConsumer consumer = bufferSource.getBuffer(RenderType.entityCutoutNoCull(texture));
+        float nx = facing.getStepX(), ny = facing.getStepY(), nz = facing.getStepZ();
+        for (int v = 0; v < count; v += 5) {
+            consumer.addVertex(pose, GLASS_VERTS[v], GLASS_VERTS[v + 1], GLASS_VERTS[v + 2])
+                    .setColor(TINT_R, TINT_G, TINT_B, 1f)
+                    .setUv(GLASS_VERTS[v + 3], GLASS_VERTS[v + 4])
+                    .setOverlay(OverlayTexture.NO_OVERLAY)
+                    .setLight(LightTexture.FULL_BRIGHT)
+                    .setNormal(pose, nx, ny, nz);
         }
-
-        RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
-        RenderSystem.enableCull();
-        RenderSystem.depthMask(true);
-        RenderSystem.disableBlend();
     }
 
     private static void rotate(Direction facing, float x, float y, float z, float[] out) {
@@ -292,6 +430,42 @@ public class MirrorRenderer implements BlockEntityRenderer<MirrorBlockEntity> {
             case WEST -> { out[0] = z; out[1] = y; out[2] = 1 - x; }
             default -> { out[0] = x; out[1] = y; out[2] = z; }
         }
+    }
+
+    private static class TargetTexture extends AbstractTexture {
+        private final Reflection reflection;
+
+        TargetTexture(Reflection reflection) {
+            this.reflection = reflection;
+        }
+
+        @Override
+        public int getId() {
+            RenderTarget output = reflection.blurred != null ? reflection.blurred : reflection.target;
+            return output.getColorTextureId();
+        }
+
+        @Override
+        public void setFilter(boolean blur, boolean mipmap) {
+        }
+
+        @Override
+        public void releaseId() {
+        }
+
+        @Override
+        public void load(@NotNull ResourceManager resourceManager) {
+        }
+    }
+
+    private static void logFailure(Object type, Exception e) {
+        if (FAILED.add(type)) LOGGER.warn("Mirror reflection skipped {}", type, e);
+    }
+
+    private static void clearAll() {
+        for (Reflection reflection : REFLECTIONS.values()) reflection.destroy();
+        REFLECTIONS.clear();
+        FAILED.clear();
     }
 
     private static void cleanup() {
@@ -381,24 +555,39 @@ public class MirrorRenderer implements BlockEntityRenderer<MirrorBlockEntity> {
                         poseStack.translate(pos.getX() - origin.getX(), pos.getY() - origin.getY(), pos.getZ() - origin.getZ());
                         try {
                             blockRenderer.renderBatched(state, pos, level, poseStack, builders[layer], true, random);
-                        } catch (Exception ignored) {
+                        } catch (Exception e) {
+                            logFailure(state.getBlock(), e);
+                        } finally {
+                            poseStack.popPose();
                         }
-                        poseStack.popPose();
                     }
                 }
             }
 
             if (slice >= region.depthEnd()) {
-                for (int i = 0; i < LAYERS; i++) {
-                    MeshData mesh = builders[i].build();
-                    has[i] = mesh != null;
-                    if (mesh == null) continue;
-                    if (buffers[i] == null) buffers[i] = new VertexBuffer(VertexBuffer.Usage.STATIC);
-                    buffers[i].bind();
-                    buffers[i].upload(mesh);
-                    VertexBuffer.unbind();
-                }
+                BufferBuilder[] finished = builders;
                 builders = null;
+                int i = 0;
+                try {
+                    for (; i < LAYERS; i++) {
+                        MeshData mesh = finished[i].build();
+                        has[i] = mesh != null;
+                        if (mesh == null) continue;
+                        if (buffers[i] == null) buffers[i] = new VertexBuffer(VertexBuffer.Usage.STATIC);
+                        buffers[i].bind();
+                        buffers[i].upload(mesh);
+                        VertexBuffer.unbind();
+                    }
+                } catch (RuntimeException e) {
+                    VertexBuffer.unbind();
+                    for (int j = i + 1; j < LAYERS; j++) {
+                        MeshData rest = finished[j].build();
+                        if (rest != null) rest.close();
+                    }
+                    Arrays.fill(has, false);
+                    this.origin = null;
+                    throw e;
+                }
                 this.origin = buildOrigin;
                 blockEntities = pendingBlockEntities;
             }
@@ -426,13 +615,16 @@ public class MirrorRenderer implements BlockEntityRenderer<MirrorBlockEntity> {
             RenderSystem.setShaderTexture(0, InventoryMenu.BLOCK_ATLAS);
 
             if (shader.CHUNK_OFFSET != null) shader.CHUNK_OFFSET.set(0f, 0f, 0f);
-            buffers[layer].bind();
-            buffers[layer].drawWithShader(modelView, RenderSystem.getProjectionMatrix(), shader);
-            VertexBuffer.unbind();
-            GL11.glFrontFace(GL11.GL_CCW);
-            mc.gameRenderer.lightTexture().turnOffLightLayer();
-            RenderSystem.disableBlend();
-            atlas.setFilter(false, true);
+            try {
+                buffers[layer].bind();
+                buffers[layer].drawWithShader(modelView, RenderSystem.getProjectionMatrix(), shader);
+            } finally {
+                VertexBuffer.unbind();
+                GL11.glFrontFace(GL11.GL_CCW);
+                mc.gameRenderer.lightTexture().turnOffLightLayer();
+                RenderSystem.disableBlend();
+                atlas.setFilter(false, true);
+            }
         }
 
         void abort() {
@@ -493,6 +685,13 @@ public class MirrorRenderer implements BlockEntityRenderer<MirrorBlockEntity> {
         final RegionMesh near = new RegionMesh(NEAR);
         final RegionMesh far = new RegionMesh(FAR);
         RenderTarget target;
+        RenderTarget blurred;
+        ResourceLocation texture;
+        Direction facing;
+        Vec3 planePoint;
+        Vec3 normal;
+        boolean requested;
+        boolean ready;
         BlockPos anchor;
         long lastUsed;
         float partialTick = Float.NaN;
@@ -515,7 +714,9 @@ public class MirrorRenderer implements BlockEntityRenderer<MirrorBlockEntity> {
         }
 
         void destroy() {
+            if (texture != null) Minecraft.getInstance().getTextureManager().release(texture);
             if (target != null) target.destroyBuffers();
+            if (blurred != null) blurred.destroyBuffers();
             near.destroy();
             far.destroy();
         }

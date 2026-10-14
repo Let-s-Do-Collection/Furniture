@@ -509,6 +509,7 @@
   "hud.furniture.pells.health": "%s/%s",
   "hud.furniture.pells.armor": "%s",
   "hud.furniture.pells.repair": "§e[Right-Click]§r with a Hay Bale: Repair",
+  "hud.furniture.pells.needs_repair": "Needs Repair",
   "hud.furniture.pells.remove": "§e[Shift Right-Click]§r: Remove",
   "hud.furniture.bin.recycled": "Recycled: %s %s",
   "hud.furniture.bin.decorative_on": "Decoration Mode Enabled",

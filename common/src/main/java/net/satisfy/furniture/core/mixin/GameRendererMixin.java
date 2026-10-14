@@ -1,6 +1,8 @@
 package net.satisfy.furniture.core.mixin;
 
 import net.satisfy.furniture.client.handler.TelescopeViewHandler;
+import net.satisfy.furniture.client.render.block.MirrorRenderer;
+import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Camera;
 import net.minecraft.client.renderer.GameRenderer;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,5 +25,10 @@ public abstract class GameRendererMixin {
         if (TelescopeViewHandler.isActive()) {
             ci.cancel();
         }
+    }
+
+    @Inject(method = "renderLevel", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/LevelRenderer;renderLevel(Lnet/minecraft/client/DeltaTracker;ZLnet/minecraft/client/Camera;Lnet/minecraft/client/renderer/GameRenderer;Lnet/minecraft/client/renderer/LightTexture;Lorg/joml/Matrix4f;Lorg/joml/Matrix4f;)V"))
+    private void furniture$renderMirrors(DeltaTracker deltaTracker, CallbackInfo ci) {
+        MirrorRenderer.renderReflections();
     }
 }

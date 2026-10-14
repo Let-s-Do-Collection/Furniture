@@ -23,5 +23,20 @@
         }
       ]
     }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "furniture:compat_enabled",
+      "mod": "vinery",
+      "furniture": "wardrobes"
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "furniture:compat_enabled",
+      "mod": "vinery",
+      "furniture": "wardrobes"
+    }
   ]
 }
+

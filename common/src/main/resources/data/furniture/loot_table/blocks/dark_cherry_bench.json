@@ -16,5 +16,19 @@
       ],
       "rolls": 1
     }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "furniture:compat_enabled",
+      "mod": "vinery",
+      "furniture": "benches"
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "furniture:compat_enabled",
+      "mod": "vinery",
+      "furniture": "benches"
+    }
   ]
 }

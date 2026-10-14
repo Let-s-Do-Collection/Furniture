@@ -152,7 +152,7 @@ tasks.register("releaseChangelog") {
         }
         println "Using Discord webhook: ${discordWebhookUrl.replaceAll('/api/webhooks/[^/]+/[^/]+$', '/api/webhooks/********/********')}"
 
-        def modName = (project.findProperty("modDisplayName") ?: "furniture").toString()
+        def modName = (project.findProperty("modDisplayName") ?: "Furniture").toString()
         def versionLabel = rootProject.mod_version
         def full = rootProject.file("CHANGELOG.md").exists() ? rootProject.file("CHANGELOG.md").text : ""
         def m = (full =~ /(?ms)^(\[[^\]\n]+\][ \t]*$.*?)(?:^\*\*\*[ \t]*$|\z)/)
