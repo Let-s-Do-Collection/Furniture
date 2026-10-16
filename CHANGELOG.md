@@ -1,3 +1,13 @@
+[1.1.10]
+
+**Fixed**
+* Much faster game start in bigger modpacks with ModernFix: Foundation no longer loads the models of every other mod during startup, which also removes model warnings from other mods in the log
+
+**Changed**
+* Updated Russian translation (thanks to Tefnya)
+
+***
+
 [1.1.9]
 
 **Fixed**
