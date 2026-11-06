@@ -787,7 +787,7 @@
   "text.autoconfig.furniture.option.bin.enableFlies.@Tooltip": "Lixeiras cheias atraem moscas.",
   "text.autoconfig.furniture.option.bin.enableTrashBagCooldown": "Ativar tempo de recarga dos Sacos de Lixo",
   "text.autoconfig.furniture.option.bin.enableTrashBagCooldown.@Tooltip": "Determina se abrir um Saco de Lixo o coloca em tempo de recarga.",
-  "text.autoconfig.furniture.option.bin.trashBagCooldownSeconds": "Tempo de recarga dos Saco de Lixo",
+  "text.autoconfig.furniture.option.bin.trashBagCooldownSeconds": "Tempo de recarga dos Sacos de Lixo",
   "text.autoconfig.furniture.option.bin.trashBagCooldownSeconds.@Tooltip": "Quantidade de segundos até o jogador poder abrir o próximo Saco de Lixo.",
   "text.autoconfig.furniture.option.steam.ventSourceRange": "Alcance da fonte de vapor",
   "text.autoconfig.furniture.option.steam.ventSourceRange.@Tooltip": "A quantos blocos de distância de uma Saída de Vapor uma fonte de calor é procurada.",
