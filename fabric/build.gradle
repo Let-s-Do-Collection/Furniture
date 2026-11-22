@@ -38,7 +38,7 @@ dependencies {
     modLocalRuntime("maven.modrinth:trinkets:JagCscwi") { transitive = false }
     modLocalRuntime("org.ladysnake.cardinal-components-api:cardinal-components-base:6.1.3") { transitive = false }
     modLocalRuntime("org.ladysnake.cardinal-components-api:cardinal-components-entity:6.1.3") { transitive = false }
-    include(modImplementation("net.satisfy.foundation:foundation-fabric:${rootProject.foundation_version}") { transitive = false })
+    modImplementation("net.satisfy.foundation:foundation-fabric:${rootProject.foundation_version}") { transitive = false }
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     modImplementation("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
     modApi( "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
@@ -119,6 +119,7 @@ modrinth {
     additionalFiles = [tasks.sourcesJar.archiveFile]
 
     dependencies {
+        required.project "lets-do-foundation"
         required.project "architectury-api"
         required.project "cloth-config"
     }
@@ -136,6 +137,7 @@ tasks.register("curseforge1062363", net.darkhax.curseforgegradle.TaskPublishCurs
     mainFile.addGameVersion(rootProject.minecraft_version)
     mainFile.addModLoader("Fabric")
     mainFile.addEnvironment("Client", "Server")
+    mainFile.addRequirement("lets-do-foundation")
     mainFile.addRequirement("architectury-api")
     mainFile.addRequirement("cloth-config")
 }

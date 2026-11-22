@@ -79,17 +79,17 @@ public class WardrobeRenderer implements BlockEntityRenderer<WardrobeBlockEntity
         }
 
         renderArmorPiece(poseStack, buffer, packedLight,
-                be.getItem(WardrobeBlockEntity.SLOT_CHEST), EquipmentSlot.CHEST,
+                be.getInventory().get(WardrobeBlockEntity.SLOT_CHEST), EquipmentSlot.CHEST,
                 CHEST_TX, CHEST_TY, CHEST_TZ, CHEST_YAW, CHEST_PITCH, CHEST_ROLL, CHEST_SCALE,
                 partialTicks);
 
         renderArmorPiece(poseStack, buffer, packedLight,
-                be.getItem(WardrobeBlockEntity.SLOT_LEGS), EquipmentSlot.LEGS,
+                be.getInventory().get(WardrobeBlockEntity.SLOT_LEGS), EquipmentSlot.LEGS,
                 LEGS_TX, LEGS_TY, LEGS_TZ, LEGS_YAW, LEGS_PITCH, LEGS_ROLL, LEGS_SCALE,
                 partialTicks);
 
         renderArmorPiece(poseStack, buffer, packedLight,
-                be.getItem(WardrobeBlockEntity.SLOT_FEET), EquipmentSlot.FEET,
+                be.getInventory().get(WardrobeBlockEntity.SLOT_FEET), EquipmentSlot.FEET,
                 FEET_TX, FEET_TY, FEET_TZ, FEET_YAW, FEET_PITCH, FEET_ROLL, FEET_SCALE,
                 partialTicks);
 

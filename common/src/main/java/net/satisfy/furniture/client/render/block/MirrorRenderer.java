@@ -124,9 +124,7 @@ public class MirrorRenderer implements BlockEntityRenderer<MirrorBlockEntity> {
 
         Reflection reflection = REFLECTIONS.get(key);
         if (reflection == null) {
-            int maxPlanes = PlatformHelper.getMaxMirrors();
-            if (REFLECTIONS.size() >= maxPlanes) cleanup();
-            if (REFLECTIONS.size() >= maxPlanes) return;
+            if (REFLECTIONS.size() >= PlatformHelper.getMaxMirrors()) return;
             reflection = new Reflection();
             REFLECTIONS.put(key, reflection);
         }
@@ -142,6 +140,17 @@ public class MirrorRenderer implements BlockEntityRenderer<MirrorBlockEntity> {
     }
 
     public static void renderReflections() {
+        int previousFbo = GL11.glGetInteger(GL30.GL_FRAMEBUFFER_BINDING);
+        try {
+            renderAllReflections();
+        } finally {
+            if (GL11.glGetInteger(GL30.GL_FRAMEBUFFER_BINDING) != previousFbo) {
+                GlStateManager._glBindFramebuffer(GL30.GL_FRAMEBUFFER, previousFbo);
+            }
+        }
+    }
+
+    private static void renderAllReflections() {
         Minecraft mc = Minecraft.getInstance();
         boolean enabled = PlatformHelper.areMirrorReflectionsEnabled();
         if (mc.level != lastLevel || (!enabled && !REFLECTIONS.isEmpty())) {
@@ -168,7 +177,10 @@ public class MirrorRenderer implements BlockEntityRenderer<MirrorBlockEntity> {
 
         try {
             for (Reflection reflection : REFLECTIONS.values()) {
-                if (!reflection.requested) continue;
+                if (!reflection.requested) {
+                    reflection.ready = false;
+                    continue;
+                }
                 reflection.requested = false;
                 if (cam.subtract(reflection.planePoint).dot(reflection.normal) <= 0.01) continue;
                 try {
@@ -197,6 +209,9 @@ public class MirrorRenderer implements BlockEntityRenderer<MirrorBlockEntity> {
     private static void renderReflection(Minecraft mc, Reflection reflection, Direction facing, Vec3 planePoint, Vec3 normal, Vec3 cam, float partialTick) {
         RenderTarget main = mc.getMainRenderTarget();
         int width = main.width, height = main.height;
+        int previousFbo = GL11.glGetInteger(GL30.GL_FRAMEBUFFER_BINDING);
+        int[] viewport = VIEWPORT;
+        GL11.glGetIntegerv(GL11.GL_VIEWPORT, viewport);
         if (reflection.target == null) {
             reflection.target = new TextureTarget(width, height, true, Minecraft.ON_OSX);
             reflection.target.setFilterMode(GL11.GL_LINEAR);
@@ -216,10 +231,6 @@ public class MirrorRenderer implements BlockEntityRenderer<MirrorBlockEntity> {
 
         Vec3 sky = level.getSkyColor(cam, partialTick);
         reflection.target.setClearColor((float) sky.x, (float) sky.y, (float) sky.z, 1f);
-
-        int previousFbo = GL11.glGetInteger(GL30.GL_FRAMEBUFFER_BINDING);
-        int[] viewport = VIEWPORT;
-        GL11.glGetIntegerv(GL11.GL_VIEWPORT, viewport);
 
         try {
             reflection.target.clear(Minecraft.ON_OSX);

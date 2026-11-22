@@ -1,3 +1,14 @@
+[1.1.11]
+
+**Fixed**
+* The game no longer crashes when you place a Wardrobe or one comes into view - sorry!
+* With mirror reflections on in the config settings, the world no longer flickers for a moment when you walk to a mirror
+
+**Changed**
+* Foundation is no longer bundled inside the mod. It is now a separate required download, Modrinth and CurseForge install it automatically :)
+* The creative tab tooltip now has a colored frame and shows the mod id, like the other Let's Do mods
+
+***
 [1.1.10]
 
 **Fixed**

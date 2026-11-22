@@ -1,5 +1,7 @@
 package net.satisfy.furniture.client;
 
+import net.satisfy.foundation.client.creative.CreativeTabTooltips;
+import net.satisfy.foundation.rarity.FoundationRarity;
 import net.satisfy.furniture.client.overlay.SteamVentInfoProvider;
 import net.satisfy.furniture.client.overlay.BoatInAJarInfoProvider;
 import net.satisfy.furniture.client.overlay.LampInfoProvider;
@@ -41,6 +43,7 @@ import static net.satisfy.furniture.core.registry.ObjectRegistry.*;
 public class FurnitureClient {
 
     public static void onInitializeClient() {
+        CreativeTabTooltips.register(TabRegistry.FURNITURE_TAB.getKey(), FoundationRarity.solid("furniture:oak", 0xC08A5A));
         RenderTypeRegistry.register(RenderType.cutout(), BIN.get(), GRAMOPHONE.get(), CASH_REGISTER.get(), BOAT_IN_A_JAR.get(), STREET_LANTERN.get(), STREET_WALL_LANTERN.get(), PLATED_STREET_LANTERN.get(), PLATED_STREET_WALL_LANTERN.get(), DISPLAY.get(), TERRARIUM.get());
         for (RegistrySupplier<Block> block : Stream.concat(Stream.concat(LAMPS.values().stream(), WALL_LAMPS.values().stream()), Stream.concat(BENCHES.values().stream(), Stream.concat(DESKS.values().stream(), Stream.concat(DESK_CHAIRS.values().stream(), WARDROBES.values().stream())))).toList()) {RenderTypeRegistry.register(RenderType.cutout(), block.get());
         }
